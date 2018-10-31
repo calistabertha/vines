@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VrX-qX-nx1">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="PgN-da-ZOl">
+            <objects>
+                <viewController id="VrX-qX-nx1" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KEs-EE-N3a">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-bgsplashscreen" translatesAutoresizingMaskIntoConstraints="NO" id="zLo-wp-KUX">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <accessibility key="accessibilityConfiguration" hint="" identifier="00E709E2-FE92-40F2-BD1D-07CA96D931F6-asset" label=""/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-logomark-primary" translatesAutoresizingMaskIntoConstraints="NO" id="Kfw-nC-4Qv">
+                                <rect key="frame" x="75" y="310.5" width="226" height="46"/>
+                                <accessibility key="accessibilityConfiguration" hint="" identifier="B5A11AD2-1A72-4116-A8D8-934818809242-asset" label=""/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="zLo-wp-KUX" firstAttribute="leading" secondItem="BVL-e3-yjQ" secondAttribute="leading" id="9z1-Yh-FYC"/>
+                            <constraint firstItem="zLo-wp-KUX" firstAttribute="trailing" secondItem="BVL-e3-yjQ" secondAttribute="trailing" id="C5e-5P-waL"/>
+                            <constraint firstItem="zLo-wp-KUX" firstAttribute="bottom" secondItem="BVL-e3-yjQ" secondAttribute="bottom" id="bT9-n4-FQ1"/>
+                            <constraint firstItem="zLo-wp-KUX" firstAttribute="top" secondItem="KEs-EE-N3a" secondAttribute="top" id="gbo-V6-WgD"/>
+                            <constraint firstItem="Kfw-nC-4Qv" firstAttribute="centerX" secondItem="zLo-wp-KUX" secondAttribute="centerX" id="iZO-pY-ZTn"/>
+                            <constraint firstItem="Kfw-nC-4Qv" firstAttribute="centerY" secondItem="zLo-wp-KUX" secondAttribute="centerY" id="oG7-UB-QOJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="BVL-e3-yjQ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ubz-0a-LFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="img-bgsplashscreen" width="375" height="667"/>
+        <image name="img-logomark-primary" width="226" height="46"/>
+    </resources>
+</document>
