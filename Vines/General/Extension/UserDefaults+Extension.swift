@@ -31,6 +31,18 @@ extension UserDefaults {
         UserDefaults.standard.setValue(token, forKey: "USER_TOKEN")
     }
     
+    func setApiKey(apiKey: String) {
+        UserDefaults.standard.setValue(apiKey, forKey: "API_KEY")
+    }
+    
+    func getApiKey() -> String {
+        if let token = UserDefaults.standard.value(forKey: "API_KEY") as? String {
+            return token
+        }
+        
+        return ""
+    }
+    
     func getToken() -> String {
         /*if let user = self.getUserProfile() {
          return user.userToken

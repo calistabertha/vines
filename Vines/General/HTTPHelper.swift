@@ -63,18 +63,35 @@ class HTTPHelper {
         manager = Alamofire.SessionManager(configuration: config)
     }
     
-    func requestAPI(url: String, param: Parameters?, method: HTTPMethodHelper, completion: @escaping(_ success: Bool, _ data: JSON?) -> Void) {
+    func requestAPI(url: String, param: [String:Any], method: HTTPMethodHelper, completion: @escaping(_ success: Bool, _ data: JSON?) -> Void) {
         
         /*let token = UserDefaults.standard.getToken()
          let header = [
          "Access-Token" : token
          ]*/
-        let token = UserDefaults.standard.getToken()
-        let header = [
-            "Access-Token" : token
-        ]
         
-        manager.request(url, method: method.toHTTPMethod(), parameters: param, headers: header).responseJSON {
+//        let token = UserDefaults.standard.getToken()
+        let token = "bd9f1fcdc95abde54fdd46cf3fba93151d435a41"
+        var urls: URL?
+        var urlRequest: URLRequest?
+        urls = try? (Constants.ServicesAPI.apiBaseURL + url).asURL()
+        urlRequest = URLRequest(url: urls!)
+        urlRequest?.httpMethod = method.rawValue
+        urlRequest = try? JSONEncoding.default.encode(urlRequest!, with: param as! Parameters)
+        
+        urlRequest?.addValue(token, forHTTPHeaderField: "apikey")
+        
+        print("URL API => "+(urlRequest?.url?.absoluteString)!)
+        print("Parameter => \(param)")
+        
+        let req:URLRequest?
+        do {
+            req = try urlRequest!.asURLRequest()
+        } catch  {
+            req = nil
+        }
+        
+        manager.request(req!).responseJSON {
             (response) in
             
             self.requestHandler(response: response, url: url, param: param, method: method, completion: completion)
@@ -84,56 +101,61 @@ class HTTPHelper {
     fileprivate func requestHandler(response: DataResponse<Any>, url: String, param: Parameters?, method: HTTPMethodHelper, completion: @escaping(_ success: Bool, _ data: JSON?) -> Void) {
         if let data = response.result.value {
             let json = JSON(data)
-            if json["status"].stringValue == "EXPIRED_TOKEN" {
-                /*let params = [
-                 "refresh_token" : UserDefaults.standard.getRefreshToken()
-                 ]
-                 
-                 let refreshTokenURL = Constants.ServicesAPI.Authentication.refreshToken.baseURL
-                 
-                 manager.request(refreshTokenURL, method: .post, parameters: params).responseJSON(completionHandler: {
-                 (response) in
-                 guard let datas = response.result.value else {
-                 completion(false, nil)
-                 return
-                 }
-                 
-                 let refreshJSON = JSON(datas)
-                 let userProfile = UserDefaults.standard.getUserProfile()
-                 
-                 if let user = userProfile {
-                 user.userToken = refreshJSON["user_token"].stringValue
-                 user.refreshToken = refreshJSON["refresh_token"].stringValue
-                 
-                 UserDefaults.standard.setUserProfile(json: JSON(user.toJSON))
-                 } else {
-                 completion(false, nil)
-                 }
-                 
-                 self.requestAPI(url: url, param: param, method: method, completion: completion)
-                 })
-                 
-                 let dictExpired = [
-                 "is_expired" : true
-                 ]
-                 
-                 let dictJSON = JSON(dictExpired)
-                 
-                 completion(false, dictJSON)*/
-                
-                let alert = UIAlertController.init(title: "Your session has been expired. Please login again", message: nil, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
-                    (action) in
-                    let storyboard = UIStoryboard(name: Constants.StoryboardReferences.authentication, bundle: nil)
-                    let loginViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerID.Authentication.signIn) as! SignInViewController
-                    
-                    (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = loginViewController
-                    (UIApplication.shared.delegate as! AppDelegate).window?.makeKeyAndVisible()
-                }))
-                
-                (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController?.present(alert, animated: false, completion: nil)
-            } else {
+//            if json["status"].stringValue == "EXPIRED_TOKEN" {
+//                let params = [
+//                 "refresh_token" : UserDefaults.standard.getRefreshToken()
+//                 ]
+//
+//                 let refreshTokenURL = Constants.ServicesAPI.Authentication.refreshToken.baseURL
+//
+//                 manager.request(refreshTokenURL, method: .post, parameters: params).responseJSON(completionHandler: {
+//                 (response) in
+//                 guard let datas = response.result.value else {
+//                 completion(false, nil)
+//                 return
+//                 }
+//
+//                 let refreshJSON = JSON(datas)
+//                 let userProfile = UserDefaults.standard.getUserProfile()
+//
+//                 if let user = userProfile {
+//                 user.userToken = refreshJSON["user_token"].stringValue
+//                 user.refreshToken = refreshJSON["refresh_token"].stringValue
+//
+//                 UserDefaults.standard.setUserProfile(json: JSON(user.toJSON))
+//                 } else {
+//                 completion(false, nil)
+//                 }
+//
+//                 self.requestAPI(url: url, param: param, method: method, completion: completion)
+//                 })
+//
+//                 let dictExpired = [
+//                 "is_expired" : true
+//                 ]
+//
+//                 let dictJSON = JSON(dictExpired)
+//
+//                 completion(false, dictJSON)
+//
+//                let alert = UIAlertController.init(title: "Your session has been expired. Please login again", message: nil, preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+//                    (action) in
+//                    let storyboard = UIStoryboard(name: Constants.StoryboardReferences.authentication, bundle: nil)
+//                    let loginViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerID.Authentication.signIn) as! SignInViewController
+//
+//                    (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = loginViewController
+//                    (UIApplication.shared.delegate as! AppDelegate).window?.makeKeyAndVisible()
+//                }))
+//
+//                (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController?.present(alert, animated: false, completion: nil)
+//            } else {
+//
+//            }
+            if json["status"].intValue == 200 {
                 completion(true, json)
+            } else {
+                completion(false, json)
             }
         } else {
             completion(false, nil)
