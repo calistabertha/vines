@@ -53,4 +53,24 @@ class SignUpViewController: UIViewController {
          self.txtConfirmPassword.isSecureTextEntry = !self.txtConfirmPassword.isSecureTextEntry
     }
     
+    @IBAction func signUpButtonDidPush(_ sender: Any) {
+        let params = [
+            "fullname": self.txtFirstName.text! + self.txtLastName.text!,
+            "email": self.txtEmail.text!,
+            "password": self.txtPhoneNumber.text!,
+            "phone": self.txtPhoneNumber.text!,
+            "token_id":"12345jjkkllasdffnnnnnnnnnnnnnnn",
+            "longitude":"-6.2732980",
+            "latitude":"106.8694690"
+        ]
+        
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Authentication.register, param: params, method: HTTPMethodHelper.post) { (success, json) in
+            let data = RegisterModelBaseClass(json: json!)
+            if success {
+                print(data.data)
+            } else {
+                print(data.data)
+            }
+        }
+    }
 }

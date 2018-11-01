@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YI0-XN-VLC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YI0-XN-VLC">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -346,6 +346,9 @@
                                                         <real key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="signUpButtonDidPush:" destination="s5Z-tI-Rst" eventType="touchUpInside" id="roY-4F-35N"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VC6-6p-hrI">
                                                 <rect key="frame" x="94" y="579" width="187" height="20"/>
@@ -595,21 +598,21 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gh4-QN-YRr">
                                 <rect key="frame" x="90" y="627" width="195" height="20"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MzR-CW-ITx">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MzR-CW-ITx">
                                         <rect key="frame" x="0.0" y="0.0" width="136" height="20"/>
                                         <accessibility key="accessibilityConfiguration" hint="" identifier="56D0C808-B9E7-4A70-8A28-9FE9C2173575" label=""/>
                                         <attributedString key="attributedText">
                                             <fragment content="Doesn’t have an account?">
                                                 <attributes>
                                                     <color key="NSColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <font key="NSFont" size="12" name="Roboto-Regular"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" minimumLineHeight="20" maximumLineHeight="20" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pf2-UY-lei">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pf2-UY-lei">
                                         <rect key="frame" x="140" y="0.0" width="55" height="20"/>
                                         <accessibility key="accessibilityConfiguration" hint="" identifier="73A94696-695C-4B15-B4FB-5BFA7F0DA0FC" label=""/>
                                         <state key="normal">
@@ -617,7 +620,7 @@
                                                 <fragment content="SIGN UP!">
                                                     <attributes>
                                                         <color key="NSColor" red="0.46274509800000002" green="0.18039215689999999" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <font key="NSFont" size="12" name="Roboto-Bold"/>
+                                                        <font key="NSFont" metaFont="cellTitle"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" minimumLineHeight="20" maximumLineHeight="20" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -710,7 +713,7 @@
     <resources>
         <image name="ico-camera" width="30" height="30"/>
         <image name="ico-nav-arrowleft" width="32" height="16"/>
-        <image name="ico-nav-arrowright" width="8" height="8"/>
+        <image name="ico-nav-arrowright" width="12" height="12"/>
         <image name="ico-nav-password" width="10" height="10"/>
     </resources>
 </document>

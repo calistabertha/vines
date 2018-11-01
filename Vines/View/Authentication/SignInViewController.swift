@@ -37,9 +37,13 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func loginButtonDidPush(_ sender: Any) {
-        let storyboard = UIStoryboard(name: Constants.StoryboardReferences.home, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerID.Homepage.home)
-        navigationController?.pushViewController(vc, animated: true)
+        if let email = self.txtEmail.text, let password = self.txtPassword.text {
+            if !email.isValidEmail() {
+                print("Email not valid")
+            } else {
+                callAPILogin(email: email, password: password)
+            }
+        }
     }
     
     @IBAction func showPasswordButtonDidPush(_ sender: Any) {
@@ -58,6 +62,26 @@ class SignInViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    func callAPILogin(email: String, password: String) {
+        let params = [
+            "email": email,
+            "password": password
+        ]
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Authentication.login, param: params, method: HTTPMethodHelper.post) { (success, json) in
+            let data = LoginModelBaseClass(json: json!)
+            if success {
+                let token = data.data?.token
+                
+                UserDefaults.standard.setToken(token: token!)
+                
+                let storyboard = UIStoryboard(name: Constants.StoryboardReferences.home, bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerID.Homepage.home)
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                print(data.displayMessage)
+            }
+        }
+    }
 }
 
 extension SignInViewController: UITextFieldDelegate{

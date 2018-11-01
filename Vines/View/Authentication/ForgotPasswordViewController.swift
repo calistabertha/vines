@@ -36,5 +36,6 @@ class ForgotPasswordViewController: UIViewController {
     }
     
     @IBAction func resetButtonDidPush(_ sender: Any) {
+        
     }
 }
