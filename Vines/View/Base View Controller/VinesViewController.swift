@@ -20,7 +20,7 @@ class VinesViewController: UIViewController {
         
     }
     
-    func generateNavBarWithBackButton(titleString: String, viewController: VinesViewController) {
+    func generateNavBarWithBackButton(titleString: String, viewController: VinesViewController, isRightBarButton: Bool) {
         for view in navigationController?.navigationBar.subviews ?? [UIView]() {
             if view.tag == 100 {
                 view.removeFromSuperview()
@@ -41,7 +41,15 @@ class VinesViewController: UIViewController {
         let imageBack = UIImage.init(named: "ico-nav-arrowleft")
         let backButton = UIBarButtonItem.init(image: imageBack, style: .plain, target: viewController, action: #selector(backButtonDidPush))
         navigationController?.visibleViewController?.navigationItem.leftBarButtonItem = backButton
+        
+        if isRightBarButton{
+            let imageCart = UIImage.init(named: "ico-nav-arrowleft")
+            let cartButton = UIBarButtonItem.init(image: imageCart, style: .plain, target: viewController, action: #selector(cartButtonDidPush))
+            navigationController?.visibleViewController?.navigationItem.rightBarButtonItem = cartButton
+        }
     }
 
     @objc func backButtonDidPush() {}
+    
+    @objc func cartButtonDidPush() {}
 }

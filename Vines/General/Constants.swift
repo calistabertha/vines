@@ -24,6 +24,7 @@ struct Constants {
     struct StoryboardReferences {
         static let authentication = "Authentication"
         static let home = "Home"
+        static let detail = "Detail"
         
     }
     
@@ -39,5 +40,8 @@ struct Constants {
             static let allStore = "AllStoreViewController"
         }
         
+        struct Detail {
+            static let detail = "DetailProductViewController"
+        }
     }
 }
