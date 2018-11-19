@@ -1,6 +1,0 @@
-framework module Pods_VinesUITests {
-  umbrella header "Pods-VinesUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
