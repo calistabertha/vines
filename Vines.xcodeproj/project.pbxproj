@@ -26,6 +26,9 @@
 		CC613FF02160FDAD002C24CB /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CC613FEE2160FDAD002C24CB /* Roboto-Bold.ttf */; };
 		CC613FF12160FDAD002C24CB /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CC613FEF2160FDAD002C24CB /* Roboto-Regular.ttf */; };
 		CC613FF32160FF93002C24CB /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CC613FF22160FF93002C24CB /* Roboto-Italic.ttf */; };
+		CC62C3F621A5ACA100D2CA6F /* DetailStoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC62C3F421A5ACA100D2CA6F /* DetailStoreView.xib */; };
+		CC62C3F721A5ACA100D2CA6F /* DetailStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C3F521A5ACA100D2CA6F /* DetailStoreView.swift */; };
+		CC62C3FA21A5ACF700D2CA6F /* Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C3F921A5ACF700D2CA6F /* Modal.swift */; };
 		CC64A6B7217CA946000743DE /* AllStoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64A6B5217CA946000743DE /* AllStoreTableViewCell.swift */; };
 		CC64A6B8217CA946000743DE /* AllStoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC64A6B6217CA946000743DE /* AllStoreTableViewCell.xib */; };
 		CC81666E216A0692008FD617 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC81666D216A0692008FD617 /* UserDefaults+Extension.swift */; };
@@ -92,6 +95,9 @@
 		CC613FEE2160FDAD002C24CB /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		CC613FEF2160FDAD002C24CB /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		CC613FF22160FF93002C24CB /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		CC62C3F421A5ACA100D2CA6F /* DetailStoreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailStoreView.xib; sourceTree = "<group>"; };
+		CC62C3F521A5ACA100D2CA6F /* DetailStoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailStoreView.swift; sourceTree = "<group>"; };
+		CC62C3F921A5ACF700D2CA6F /* Modal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modal.swift; sourceTree = "<group>"; };
 		CC64A6B5217CA946000743DE /* AllStoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStoreTableViewCell.swift; sourceTree = "<group>"; };
 		CC64A6B6217CA946000743DE /* AllStoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllStoreTableViewCell.xib; sourceTree = "<group>"; };
 		CC81666D216A0692008FD617 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
@@ -239,6 +245,7 @@
 			children = (
 				CC954BFC217B3F6C0017C5F4 /* BaseCellProtocol.swift */,
 				CC613FED2160FD92002C24CB /* Font */,
+				CC62C3F821A5ACF700D2CA6F /* Modal */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -254,6 +261,23 @@
 				CC613FE92160FADE002C24CB /* RobotoCondensed-Regular.ttf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		CC62C3F321A5ACA100D2CA6F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CC62C3F421A5ACA100D2CA6F /* DetailStoreView.xib */,
+				CC62C3F521A5ACA100D2CA6F /* DetailStoreView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CC62C3F821A5ACF700D2CA6F /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				CC62C3F921A5ACF700D2CA6F /* Modal.swift */,
+			);
+			path = Modal;
 			sourceTree = "<group>";
 		};
 		CC81666C216A0662008FD617 /* Extension */ = {
@@ -336,6 +360,7 @@
 				CC81666C216A0662008FD617 /* Extension */,
 				CC613FE82160FAC8002C24CB /* Utilities */,
 				CC81666F216A06B6008FD617 /* Model */,
+				CC62C3F321A5ACA100D2CA6F /* View */,
 				CCD502D7216A01960070F457 /* Constants.swift */,
 				CCD502D9216A02670070F457 /* HTTPHelper.swift */,
 			);
@@ -461,6 +486,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC64A6B8217CA946000743DE /* AllStoreTableViewCell.xib in Resources */,
+				CC62C3F621A5ACA100D2CA6F /* DetailStoreView.xib in Resources */,
 				CC613FF02160FDAD002C24CB /* Roboto-Bold.ttf in Resources */,
 				CC613FF32160FF93002C24CB /* Roboto-Italic.ttf in Resources */,
 				CC613FEC2160FADE002C24CB /* RobotoCondensed-Bold.ttf in Resources */,
@@ -597,6 +623,7 @@
 				CC954BF3217B37B80017C5F4 /* AllStoreViewController.swift in Sources */,
 				CC613FB92160D621002C24CB /* AppDelegate.swift in Sources */,
 				9097CBAE2189F3080053382D /* LoginModelData.swift in Sources */,
+				CC62C3FA21A5ACF700D2CA6F /* Modal.swift in Sources */,
 				CCD502D8216A01960070F457 /* Constants.swift in Sources */,
 				9097CBAF2189F3080053382D /* LoginModelUserData.swift in Sources */,
 				907B67452189FB1600CFEDB1 /* RegisterModelBaseClass.swift in Sources */,
@@ -608,6 +635,7 @@
 				CC81667C216A081B008FD617 /* SignUpViewController.swift in Sources */,
 				9097CBAD2189F3080053382D /* LoginModelBaseClass.swift in Sources */,
 				CC816671216A06CE008FD617 /* ResponseModel.swift in Sources */,
+				CC62C3F721A5ACA100D2CA6F /* DetailStoreView.swift in Sources */,
 				CC954BFD217B3F6C0017C5F4 /* BaseCellProtocol.swift in Sources */,
 				907B67472189FD7100CFEDB1 /* StringExtension.swift in Sources */,
 				CC64A6B7217CA946000743DE /* AllStoreTableViewCell.swift in Sources */,
