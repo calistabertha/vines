@@ -14,6 +14,10 @@
 		9097CBAD2189F3080053382D /* LoginModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9097CBAA2189F3080053382D /* LoginModelBaseClass.swift */; };
 		9097CBAE2189F3080053382D /* LoginModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9097CBAB2189F3080053382D /* LoginModelData.swift */; };
 		9097CBAF2189F3080053382D /* LoginModelUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9097CBAC2189F3080053382D /* LoginModelUserData.swift */; };
+		90D4876321A6EC56005B5A7C /* StoreListModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4875E21A6EC56005B5A7C /* StoreListModelBaseClass.swift */; };
+		90D4876421A6EC56005B5A7C /* StoreListModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4875F21A6EC56005B5A7C /* StoreListModelData.swift */; };
+		90D4876521A6EC56005B5A7C /* StoreDetailModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4876121A6EC56005B5A7C /* StoreDetailModelBaseClass.swift */; };
+		90D4876621A6EC56005B5A7C /* StoreDetailModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4876221A6EC56005B5A7C /* StoreDetailModelData.swift */; };
 		B558C6006F461CCD6E69BDF8 /* Pods_VinesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15719DD66D0AE26349E7A63 /* Pods_VinesTests.framework */; };
 		CC613FB92160D621002C24CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC613FB82160D621002C24CB /* AppDelegate.swift */; };
 		CC613FC02160D622002C24CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC613FBF2160D622002C24CB /* Assets.xcassets */; };
@@ -72,6 +76,10 @@
 		9097CBAA2189F3080053382D /* LoginModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModelBaseClass.swift; sourceTree = "<group>"; };
 		9097CBAB2189F3080053382D /* LoginModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModelData.swift; sourceTree = "<group>"; };
 		9097CBAC2189F3080053382D /* LoginModelUserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModelUserData.swift; sourceTree = "<group>"; };
+		90D4875E21A6EC56005B5A7C /* StoreListModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreListModelBaseClass.swift; sourceTree = "<group>"; };
+		90D4875F21A6EC56005B5A7C /* StoreListModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreListModelData.swift; sourceTree = "<group>"; };
+		90D4876121A6EC56005B5A7C /* StoreDetailModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailModelBaseClass.swift; sourceTree = "<group>"; };
+		90D4876221A6EC56005B5A7C /* StoreDetailModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailModelData.swift; sourceTree = "<group>"; };
 		9BA2A0D10491F012CA590F83 /* Pods-Vines.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vines.release.xcconfig"; path = "Pods/Target Support Files/Pods-Vines/Pods-Vines.release.xcconfig"; sourceTree = "<group>"; };
 		A7217F70E7573C7489DCB90F /* Pods-VinesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VinesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VinesTests/Pods-VinesTests.release.xcconfig"; sourceTree = "<group>"; };
 		BE7012A6BB85A52BAEE7E640 /* Pods-VinesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VinesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VinesUITests/Pods-VinesUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -185,6 +193,24 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		90D4875D21A6EC56005B5A7C /* StoreList */ = {
+			isa = PBXGroup;
+			children = (
+				90D4875E21A6EC56005B5A7C /* StoreListModelBaseClass.swift */,
+				90D4875F21A6EC56005B5A7C /* StoreListModelData.swift */,
+			);
+			path = StoreList;
+			sourceTree = "<group>";
+		};
+		90D4876021A6EC56005B5A7C /* StoreDetail */ = {
+			isa = PBXGroup;
+			children = (
+				90D4876121A6EC56005B5A7C /* StoreDetailModelBaseClass.swift */,
+				90D4876221A6EC56005B5A7C /* StoreDetailModelData.swift */,
+			);
+			path = StoreDetail;
+			sourceTree = "<group>";
+		};
 		CC613FAC2160D621002C24CB = {
 			isa = PBXGroup;
 			children = (
@@ -292,8 +318,10 @@
 		CC81666F216A06B6008FD617 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				907B67432189FB1600CFEDB1 /* Register */,
 				9097CBA92189F3080053382D /* Login */,
+				907B67432189FB1600CFEDB1 /* Register */,
+				90D4876021A6EC56005B5A7C /* StoreDetail */,
+				90D4875D21A6EC56005B5A7C /* StoreList */,
 				CC816670216A06CE008FD617 /* ResponseModel.swift */,
 				CC816672216A06F3008FD617 /* UserModel.swift */,
 			);
@@ -623,19 +651,23 @@
 				CC954BF3217B37B80017C5F4 /* AllStoreViewController.swift in Sources */,
 				CC613FB92160D621002C24CB /* AppDelegate.swift in Sources */,
 				9097CBAE2189F3080053382D /* LoginModelData.swift in Sources */,
+				90D4876521A6EC56005B5A7C /* StoreDetailModelBaseClass.swift in Sources */,
 				CC62C3FA21A5ACF700D2CA6F /* Modal.swift in Sources */,
 				CCD502D8216A01960070F457 /* Constants.swift in Sources */,
 				9097CBAF2189F3080053382D /* LoginModelUserData.swift in Sources */,
 				907B67452189FB1600CFEDB1 /* RegisterModelBaseClass.swift in Sources */,
 				CC816676216A07A0008FD617 /* SignInViewController.swift in Sources */,
+				90D4876421A6EC56005B5A7C /* StoreListModelData.swift in Sources */,
 				CC81666E216A0692008FD617 /* UserDefaults+Extension.swift in Sources */,
 				CC816681216A16CA008FD617 /* HomeViewController.swift in Sources */,
 				CC81667E216A0826008FD617 /* ForgotPasswordViewController.swift in Sources */,
 				CC954BF6217B389D0017C5F4 /* VinesViewController.swift in Sources */,
 				CC81667C216A081B008FD617 /* SignUpViewController.swift in Sources */,
 				9097CBAD2189F3080053382D /* LoginModelBaseClass.swift in Sources */,
+				90D4876621A6EC56005B5A7C /* StoreDetailModelData.swift in Sources */,
 				CC816671216A06CE008FD617 /* ResponseModel.swift in Sources */,
 				CC62C3F721A5ACA100D2CA6F /* DetailStoreView.swift in Sources */,
+				90D4876321A6EC56005B5A7C /* StoreListModelBaseClass.swift in Sources */,
 				CC954BFD217B3F6C0017C5F4 /* BaseCellProtocol.swift in Sources */,
 				907B67472189FD7100CFEDB1 /* StringExtension.swift in Sources */,
 				CC64A6B7217CA946000743DE /* AllStoreTableViewCell.swift in Sources */,
@@ -805,7 +837,9 @@
 			baseConfigurationReference = 0F90E38478812A95B33C8CB0 /* Pods-Vines.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 3PKXDRS3N3;
 				INFOPLIST_FILE = Vines/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -813,6 +847,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vineswine.Vines;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Vines Development";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -823,7 +858,9 @@
 			baseConfigurationReference = 9BA2A0D10491F012CA590F83 /* Pods-Vines.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 3PKXDRS3N3;
 				INFOPLIST_FILE = Vines/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -831,6 +868,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vineswine.Vines;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Vines Distribution";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

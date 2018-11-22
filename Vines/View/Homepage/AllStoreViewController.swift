@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class AllStoreViewController: VinesViewController {
     @IBOutlet weak var viewDropDown: UIView!
@@ -17,9 +18,18 @@ class AllStoreViewController: VinesViewController {
         }
     }
     
+    var location: CLLocation = CLLocation(latitude: 106.818477, longitude: -6.282391)
+    var storeList:[StoreListModelData] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        fetchStore()
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,6 +43,22 @@ class AllStoreViewController: VinesViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
+    private func fetchStore() {
+        let params = [
+            "longitude": self.location.coordinate.longitude,
+            "latitude": self.location.coordinate.latitude
+        ]
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Store.list, param: params, method: HTTPMethodHelper.post) { (success, json) in
+            let data = StoreListModelBaseClass(json: json!)
+            if data.message == "success" {
+                self.storeList = data.data!
+                self.tableView.reloadData()
+            } else {
+                print(data.displayMessage!)
+            }
+        }
+    }
+    
     override func backButtonDidPush() {
         navigationController?.popViewController(animated: true)
     }
@@ -40,13 +66,13 @@ class AllStoreViewController: VinesViewController {
 
 extension AllStoreViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.storeList.count
     }
 }
 
 extension AllStoreViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return AllStoreTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
+        return AllStoreTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: self.storeList[safe: indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

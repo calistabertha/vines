@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class AllStoreTableViewCell: UITableViewCell {
     @IBOutlet weak var imgStore: UIImageView!
@@ -32,7 +33,13 @@ class AllStoreTableViewCell: UITableViewCell {
 
 extension AllStoreTableViewCell: TableViewCellProtocol {
     static func configure<T>(context: UIViewController, tableView: UITableView, indexPath: IndexPath, object: T) -> UITableViewCell {
+        let data = object as! StoreListModelData
         let cell = tableView.dequeueReusableCell(withIdentifier: AllStoreTableViewCell.identifier, for: indexPath) as! AllStoreTableViewCell
+        cell.imgStore.af_setImage(withURL: URL(string: data.image!)!)
+        cell.lblStore.text = data.name!
+        cell.lblTime.text = data.open!
+        cell.lblAddress.text = data.address!
+        
         cell.viewCalling.layer.cornerRadius = cell.viewCalling.frame.width / 2
         cell.viewCalling.layer.borderWidth = 2
         cell.viewCalling.layer.borderColor = UIColor(red: 125/255.0, green: 6/255.0, blue: 15/255.0, alpha: 1).cgColor
