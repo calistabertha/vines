@@ -27,7 +27,7 @@ class HomeViewController: UIViewController {
     }
     
     var tableDataSource: GMSAutocompleteTableDataSource?
-    var locationManager = CLLocationManager()
+    var locationManager:CLLocationManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +44,25 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setupLocation()
+    }
+    
+    private func setupLocation() {
+        locationManager = CLLocationManager()
+        // Ask for Authorisation from the User.
+        self.locationManager?.requestAlwaysAuthorization()
+        
+        // For use in foreground
+        self.locationManager?.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager?.delegate = self
+            locationManager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager?.startUpdatingLocation()
+        }
     }
     
     private func setupView() {
@@ -67,11 +86,7 @@ class HomeViewController: UIViewController {
         botomLayer.endPoint = CGPoint(x: 0.0, y: 0.0)
         self.viewTransparantBottom.layer.mask = botomLayer
         
-//        self.locationManager.delegate = self
-//        self.locationManager.startUpdatingLocation()
-//        viewMaps.delegate = self
-        
-        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6)
+        let camera = GMSCameraPosition.camera(withLatitude: -11.0, longitude: 13.0, zoom: 6)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView.isMyLocationEnabled = true
 
@@ -96,7 +111,9 @@ class HomeViewController: UIViewController {
     
     @IBAction func seeStoreButtonDidPush(_ sender: Any) {
         let storyboard = UIStoryboard(name: Constants.StoryboardReferences.home, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerID.Homepage.allStore)
+        let vc = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerID.Homepage.allStore) as! AllStoreViewController
+        guard let location = self.locationManager?.location else { return }
+        vc.location = location
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -120,19 +137,21 @@ extension HomeViewController: UITextFieldDelegate{
     }
 }
 
-//extension HomeViewController: CLLocationManagerDelegate{
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//
-//        let location = locations.last
-//
-//        let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude:(location?.coordinate.longitude)!, zoom:14)
-//        viewMaps.animate(to: camera)
-//
-//        //Finally stop updating location otherwise it will come again and again in this delegate
-//        self.locationManager.stopUpdatingLocation()
-//
-//    }
-//}
+extension HomeViewController: CLLocationManagerDelegate{
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+
+        let location = locations.last
+
+        let camera = GMSCameraPosition.camera(withLatitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude, zoom: 14)
+        
+        // Animate still not working.
+        self.viewMaps?.camera = camera
+        self.viewMaps?.animate(to: camera)
+        
+        //Finally stop updating location otherwise it will come again and again in this delegate
+        self.locationManager?.stopUpdatingLocation()
+    }
+}
 
 //extension HomeViewController: GMSMapViewDelegate{
 //    func mapViewDidFinishTileRendering(_ mapView: GMSMapView) {

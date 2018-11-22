@@ -18,6 +18,11 @@ struct Constants {
             static let register = "user/register"
             static let updatePassword = "user/update_password"
         }
+        
+        struct Store {
+            static let list = "store/list"
+            static let detail = "store/detail"
+        }
     
     }
     
