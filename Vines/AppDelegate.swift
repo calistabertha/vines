@@ -18,8 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        let storyboard = UIStoryboard(name: Constants.StoryboardReferences.authentication, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerID.Authentication.signIn)
+        let vc = HomeViewController()//SignInViewController()
         let navigationVC = UINavigationController.init(rootViewController: vc)
         window = UIWindow(frame: UIScreen.main.bounds);
         window?.rootViewController = navigationVC

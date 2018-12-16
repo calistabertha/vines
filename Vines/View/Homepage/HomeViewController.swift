@@ -11,7 +11,7 @@ import GoogleMaps
 import GooglePlaces
 
 class HomeViewController: UIViewController {
-
+    
     @IBOutlet weak var viewMaps: GMSMapView!
     @IBOutlet weak var viewTransparantTop: UIView!
     @IBOutlet weak var viewTransparantBottom: UIView!
@@ -35,7 +35,7 @@ class HomeViewController: UIViewController {
         self.view.addGestureRecognizer(tap)
         setupView()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -89,10 +89,10 @@ class HomeViewController: UIViewController {
         let camera = GMSCameraPosition.camera(withLatitude: -11.0, longitude: 13.0, zoom: 6)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView.isMyLocationEnabled = true
-
+        
         self.viewMaps.camera = camera
         self.viewMaps = mapView
-
+        
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2DMake(-33.86, 151.20)
         marker.title = "title"
@@ -106,12 +106,13 @@ class HomeViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    @IBAction func menuButtonDidPush(_ sender: Any) {
+    @IBAction func profileButtonDidPush(_ sender: Any) {
+        let vc = ProfileSwipeViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func seeStoreButtonDidPush(_ sender: Any) {
-        let storyboard = UIStoryboard(name: Constants.StoryboardReferences.home, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerID.Homepage.allStore) as! AllStoreViewController
+        let vc = AllStoreViewController()
         guard let location = self.locationManager?.location else { return }
         vc.location = location
         navigationController?.pushViewController(vc, animated: true)
@@ -125,7 +126,7 @@ extension HomeViewController: UITextFieldDelegate{
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-       // viewBackground.isHidden = true
+        // viewBackground.isHidden = true
         self.view.endEditing(true)
         return true
     }
@@ -139,9 +140,9 @@ extension HomeViewController: UITextFieldDelegate{
 
 extension HomeViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-
+        
         let location = locations.last
-
+        
         let camera = GMSCameraPosition.camera(withLatitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude, zoom: 14)
         
         // Animate still not working.

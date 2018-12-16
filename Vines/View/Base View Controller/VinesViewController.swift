@@ -43,7 +43,7 @@ class VinesViewController: UIViewController {
         navigationController?.visibleViewController?.navigationItem.leftBarButtonItem = backButton
         
         if isRightBarButton{
-            let imageCart = UIImage.init(named: "ico-nav-arrowleft")
+            let imageCart = UIImage.init(named: "ico-nav-cart_1")
             let cartButton = UIBarButtonItem.init(image: imageCart, style: .plain, target: viewController, action: #selector(cartButtonDidPush))
             navigationController?.visibleViewController?.navigationItem.rightBarButtonItem = cartButton
         }

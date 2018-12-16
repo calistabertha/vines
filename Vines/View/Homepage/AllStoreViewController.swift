@@ -2,7 +2,7 @@
 //  AllStoreViewController.swift
 //  Vines
 //
-//  Created by Calista Bertha on 20/10/18.
+//  Created by Calista Bertha on 09/12/18.
 //  Copyright © 2018 Calista Bertha. All rights reserved.
 //
 
@@ -13,8 +13,8 @@ class AllStoreViewController: VinesViewController {
     @IBOutlet weak var viewDropDown: UIView!
     @IBOutlet weak var tableView: UITableView!{
         didSet{
-                let xib = AllStoreTableViewCell.nib
-                tableView.register(xib, forCellReuseIdentifier: AllStoreTableViewCell.identifier)
+            let xib = AllStoreTableViewCell.nib
+            tableView.register(xib, forCellReuseIdentifier: AllStoreTableViewCell.identifier)
         }
     }
     
@@ -31,10 +31,10 @@ class AllStoreViewController: VinesViewController {
         
         fetchStore()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-       
+        
     }
     
     private func setupView() {
@@ -45,9 +45,9 @@ class AllStoreViewController: VinesViewController {
     
     private func fetchStore() {
         let params = [
-            "longitude": self.location.coordinate.longitude,
-            "latitude": self.location.coordinate.latitude
-        ]
+            "longitude": "106.8694690",//self.location.coordinate.longitude,
+            "latitude": "-6.2732980" //self.location.coordinate.latitude
+            ] as [String : Any]
         HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Store.list, param: params, method: HTTPMethodHelper.post) { (success, json) in
             let data = StoreListModelBaseClass(json: json!)
             if data.message == "success" {
@@ -79,10 +79,6 @@ extension AllStoreViewController: UITableViewDataSource{
         let detailView = DetailStoreView.init(frame: view.frame)
         detailView.delegate = self
         view.addSubview(detailView)
-
-//        let storyboard = UIStoryboard(name: Constants.StoryboardReferences.detail, bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerID.Detail.detail)
-//        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -92,7 +88,8 @@ extension AllStoreViewController: DetailStoreViewDelegate{
     }
     
     func goShoppingButtonDidPush() {
-        
+        let vc = StoreViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     

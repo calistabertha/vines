@@ -2,14 +2,21 @@
 //  SignInViewController.swift
 //  Vines
 //
-//  Created by Calista Bertha on 07/10/18.
+//  Created by Calista Bertha on 09/12/18.
 //  Copyright © 2018 Calista Bertha. All rights reserved.
 //
 
 import UIKit
 
 class SignInViewController: UIViewController {
-
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: "SignInViewController", bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!{
         didSet{
@@ -21,7 +28,7 @@ class SignInViewController: UIViewController {
         super.viewDidLoad()
         setupView()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -51,14 +58,12 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func signUpButtonDidPush(_ sender: Any) {
-        let storyboard = UIStoryboard(name: Constants.StoryboardReferences.authentication, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerID.Authentication.signUp)
+        let vc = SignUpViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func forgotButtonDidPush(_ sender: Any) {
-        let storyboard = UIStoryboard(name: Constants.StoryboardReferences.authentication, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerID.Authentication.forgot)
+        let vc = ForgotPasswordViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -74,8 +79,7 @@ class SignInViewController: UIViewController {
                 
                 UserDefaults.standard.setToken(token: token!)
                 
-                let storyboard = UIStoryboard(name: Constants.StoryboardReferences.home, bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerID.Homepage.home)
+                let vc = HomeViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {
                 print(data.displayMessage)

@@ -25,28 +25,4 @@ struct Constants {
         }
     
     }
-    
-    struct StoryboardReferences {
-        static let authentication = "Authentication"
-        static let home = "Home"
-        static let detail = "Detail"
-        
-    }
-    
-    struct ViewControllerID {
-        struct Authentication {
-            static let signIn = "SignInViewController"
-            static let signUp = "SignUpViewController"
-            static let forgot = "ForgotPasswordViewController"
-        }
-        
-        struct Homepage {
-            static let home = "HomeViewController"
-            static let allStore = "AllStoreViewController"
-        }
-        
-        struct Detail {
-            static let detail = "DetailProductViewController"
-        }
-    }
 }

@@ -2,14 +2,21 @@
 //  SignUpViewController.swift
 //  Vines
 //
-//  Created by Calista Bertha on 07/10/18.
+//  Created by Calista Bertha on 09/12/18.
 //  Copyright © 2018 Calista Bertha. All rights reserved.
 //
 
 import UIKit
 
-class SignUpViewController: UIViewController {
-
+class SignUpViewController: VinesViewController {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: "SignUpViewController", bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     @IBOutlet weak var btnSignUp: UIButton!
     @IBOutlet weak var viewUploadPicture: UIView!
     @IBOutlet weak var txtFirstName: UITextField!
@@ -18,39 +25,37 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtConfirmPassword: UITextField!
     @IBOutlet weak var txtPhoneNumber: UITextField!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = true
-    }
-    
     private func setupView() {
         btnSignUp.layer.cornerRadius = 5
+        generateNavBarWithBackButton(titleString: "", viewController: self, isRightBarButton: false)
     }
     
-    @IBAction func backButtonDidPush(_ sender: Any) {
+    override func backButtonDidPush() {
         navigationController?.popViewController(animated: true)
+        
     }
     
     @IBAction func uploadPictureButtonDidPush(_ sender: Any) {
     }
     
     @IBAction func showPasswordButtonDidPush(_ sender: Any) {
-         self.txtPassword.isSecureTextEntry = !self.txtPassword.isSecureTextEntry
+        self.txtPassword.isSecureTextEntry = !self.txtPassword.isSecureTextEntry
     }
     
     @IBAction func showConfirmButtonDidPush(_ sender: Any) {
-         self.txtConfirmPassword.isSecureTextEntry = !self.txtConfirmPassword.isSecureTextEntry
+        self.txtConfirmPassword.isSecureTextEntry = !self.txtConfirmPassword.isSecureTextEntry
     }
     
     @IBAction func signUpButtonDidPush(_ sender: Any) {
@@ -72,5 +77,7 @@ class SignUpViewController: UIViewController {
                 print(data.data)
             }
         }
+    }
+    @IBAction func signInButtonDidPush(_ sender: Any) {
     }
 }
