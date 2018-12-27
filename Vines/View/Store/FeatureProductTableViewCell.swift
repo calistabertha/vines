@@ -57,7 +57,7 @@ extension FeatureProductTableViewCell: UICollectionViewDelegate {
 
 extension FeatureProductTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10 //data.count
+        return 4 //data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

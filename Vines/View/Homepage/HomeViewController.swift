@@ -108,7 +108,12 @@ class HomeViewController: UIViewController {
     
     @IBAction func profileButtonDidPush(_ sender: Any) {
         let vc = ProfileSwipeViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        self.view.addSubview(vc.view)
+        self.addChildViewController(vc)
+        vc.delegate = self
+        vc.didMove(toParentViewController: self)
+
+        //navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func seeStoreButtonDidPush(_ sender: Any) {
@@ -190,5 +195,12 @@ extension HomeViewController: GMSAutocompleteViewControllerDelegate {
     func wasCancelled(_ viewController: GMSAutocompleteViewController) {
         print("Autocomplete was cancelled.")
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension HomeViewController: ProfileSwipeDelegate{
+    func dismissView(controller: ProfileSwipeViewController) {
+        controller.willMove(toParentViewController: nil)
+        controller.view.removeFromSuperview()
     }
 }

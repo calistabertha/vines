@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="PromotionTableViewCell" customModule="Vines" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="201"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="200.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZtM-3e-WWQ">
+                        <rect key="frame" x="24" y="0.0" width="272" height="184.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9uD-wK-9Ud">
+                                <rect key="frame" x="0.0" y="0.0" width="272" height="184.5"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="9uD-wK-9Ud" secondAttribute="bottom" id="GWP-Gu-aj6"/>
+                            <constraint firstAttribute="trailing" secondItem="9uD-wK-9Ud" secondAttribute="trailing" id="NUP-Y1-Rrt"/>
+                            <constraint firstItem="9uD-wK-9Ud" firstAttribute="leading" secondItem="ZtM-3e-WWQ" secondAttribute="leading" id="h2z-QS-IjI"/>
+                            <constraint firstItem="9uD-wK-9Ud" firstAttribute="top" secondItem="ZtM-3e-WWQ" secondAttribute="top" id="tNb-iK-irh"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ZtM-3e-WWQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="LrM-Lx-jAp"/>
+                    <constraint firstItem="ZtM-3e-WWQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="VaF-ur-8cO"/>
+                    <constraint firstAttribute="trailing" secondItem="ZtM-3e-WWQ" secondAttribute="trailing" constant="24" id="m8j-jb-ELH"/>
+                    <constraint firstAttribute="bottom" secondItem="ZtM-3e-WWQ" secondAttribute="bottom" constant="16" id="mYg-y8-Hum"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="imgPromotion" destination="9uD-wK-9Ud" id="Cad-gz-0ze"/>
+                <outlet property="viewCard" destination="ZtM-3e-WWQ" id="Ckm-9O-iRG"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

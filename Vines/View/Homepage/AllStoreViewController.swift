@@ -62,6 +62,12 @@ class AllStoreViewController: VinesViewController {
     override func backButtonDidPush() {
         navigationController?.popViewController(animated: true)
     }
+    
+    @objc func openDetail() {
+        let detailView = DetailStoreView.init(frame: view.frame)
+        detailView.delegate = self
+        view.addSubview(detailView)
+    }
 }
 
 extension AllStoreViewController: UITableViewDelegate {
@@ -72,14 +78,13 @@ extension AllStoreViewController: UITableViewDelegate {
 
 extension AllStoreViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return AllStoreTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: self.storeList[safe: indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: AllStoreTableViewCell.identifier, for: indexPath) as! AllStoreTableViewCell
+        cell.btnDetail.addTarget(self, action: #selector(openDetail), for: .touchUpInside)
+        
+        return cell
+        //return AllStoreTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: self.storeList[safe: indexPath.row])
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailView = DetailStoreView.init(frame: view.frame)
-        detailView.delegate = self
-        view.addSubview(detailView)
-    }
+
 }
 
 extension AllStoreViewController: DetailStoreViewDelegate{

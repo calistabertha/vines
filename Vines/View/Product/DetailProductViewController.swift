@@ -43,6 +43,7 @@ class DetailProductViewController: VinesViewController {
         
         btnAddItem.layer.cornerRadius = 5
         btnAddItem.layer.borderColor = UIColor.init(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).cgColor
+        btnAddItem.layer.borderWidth = 1
         btnBuyProduct.layer.cornerRadius = 5
         
         /*
@@ -57,6 +58,7 @@ class DetailProductViewController: VinesViewController {
     @IBAction func addItemButtonDidPush(_ sender: Any) {
         viewButton.isHidden = false
         btnProduct.layer.cornerRadius = 5
+        btnProduct.layer.borderWidth = 1
         btnProduct.layer.borderColor = UIColor.init(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).cgColor
         btnProduct.setTitle("ADDED", for: .normal)
         btnProduct.setTitleColor(UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), for: .normal)
@@ -107,9 +109,23 @@ extension DetailProductViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 0
+            return CGFloat.leastNormalMagnitude
         }else{
             return 50
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 1 {
+            return 16
+        }
+        return CGFloat.leastNormalMagnitude
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 2 {
+            return 355
+        }
+        return UITableViewAutomaticDimension
     }
 }

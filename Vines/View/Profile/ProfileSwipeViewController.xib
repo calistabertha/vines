@@ -20,6 +20,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileSwipeViewController" customModule="Vines" customModuleProvider="target">
             <connections>
+                <outlet property="cardView" destination="7Un-nz-uma" id="3V0-SQ-3H4"/>
+                <outlet property="imgProfile" destination="Qie-oB-V5g" id="N3Q-fQ-asK"/>
+                <outlet property="lblCopyright" destination="vy9-nA-ecA" id="CLC-lU-ctF"/>
+                <outlet property="lblEmail" destination="N9b-3W-PrM" id="P9v-ng-MAF"/>
+                <outlet property="lblFullname" destination="9wl-No-kqS" id="D2e-Ib-3Ms"/>
+                <outlet property="lblPhone" destination="4r8-gS-hq5" id="XHJ-9p-rt2"/>
+                <outlet property="tableView" destination="va5-mG-hWv" id="I8L-Pi-XqP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -92,6 +99,9 @@
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dj7-xf-APP">
                                                     <rect key="frame" x="0.0" y="0.0" width="70" height="20"/>
+                                                    <connections>
+                                                        <action selector="openProfileButtonDidPush:" destination="-1" eventType="touchUpInside" id="fyt-1I-tOB"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.70196078429999997" green="0.62352941179999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -127,11 +137,7 @@
                                         <constraint firstItem="N9b-3W-PrM" firstAttribute="leading" secondItem="9wl-No-kqS" secondAttribute="leading" id="vk2-Mw-Egq"/>
                                     </constraints>
                                 </view>
-                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tWq-Zz-OS3">
-                                    <rect key="frame" x="0.0" y="106" width="280" height="534"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </tableView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2018 Vines. All rights reserved" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vy9-nA-ecA">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vy9-nA-ecA">
                                     <rect key="frame" x="16" y="640" width="248" height="11"/>
                                     <accessibility key="accessibilityConfiguration" hint="" identifier="DC7B1BF8-6264-407D-B178-1130FF9FD29F" label=""/>
                                     <constraints>
@@ -141,32 +147,50 @@
                                     <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="deviceRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="va5-mG-hWv">
+                                    <rect key="frame" x="0.0" y="106" width="280" height="534"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-1" id="1XS-iS-2LH"/>
+                                        <outlet property="delegate" destination="-1" id="zpa-jz-4YY"/>
+                                    </connections>
+                                </tableView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="vy9-nA-ecA" secondAttribute="bottom" constant="16" id="Azc-fu-9Yf"/>
                                 <constraint firstItem="gof-N4-ZLI" firstAttribute="top" secondItem="6Yc-zs-GDl" secondAttribute="top" id="GJv-zc-b7D"/>
                                 <constraint firstItem="gof-N4-ZLI" firstAttribute="leading" secondItem="6Yc-zs-GDl" secondAttribute="leading" id="I63-pG-Ceu"/>
-                                <constraint firstItem="tWq-Zz-OS3" firstAttribute="leading" secondItem="6Yc-zs-GDl" secondAttribute="leading" id="Li1-sg-OXx"/>
-                                <constraint firstItem="tWq-Zz-OS3" firstAttribute="top" secondItem="gof-N4-ZLI" secondAttribute="bottom" id="TnE-jf-kMu"/>
-                                <constraint firstAttribute="trailing" secondItem="tWq-Zz-OS3" secondAttribute="trailing" id="b0B-Vv-63y"/>
+                                <constraint firstItem="va5-mG-hWv" firstAttribute="top" secondItem="gof-N4-ZLI" secondAttribute="bottom" id="Iv2-2q-VHH"/>
+                                <constraint firstAttribute="trailing" secondItem="va5-mG-hWv" secondAttribute="trailing" id="WPd-zh-mIq"/>
+                                <constraint firstItem="va5-mG-hWv" firstAttribute="leading" secondItem="6Yc-zs-GDl" secondAttribute="leading" id="XLH-4U-QT7"/>
                                 <constraint firstItem="vy9-nA-ecA" firstAttribute="leading" secondItem="6Yc-zs-GDl" secondAttribute="leading" constant="16" id="eU2-j8-CLN"/>
-                                <constraint firstItem="vy9-nA-ecA" firstAttribute="top" secondItem="tWq-Zz-OS3" secondAttribute="bottom" id="fGS-6k-NQX"/>
                                 <constraint firstAttribute="trailing" secondItem="gof-N4-ZLI" secondAttribute="trailing" id="jd4-sO-9f9"/>
+                                <constraint firstItem="vy9-nA-ecA" firstAttribute="top" secondItem="va5-mG-hWv" secondAttribute="bottom" id="qFb-Ep-54m"/>
                                 <constraint firstAttribute="trailing" secondItem="vy9-nA-ecA" secondAttribute="trailing" constant="16" id="vLF-In-MrA"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8LO-59-smt">
+                            <rect key="frame" x="280" y="0.0" width="95" height="667"/>
+                            <connections>
+                                <action selector="dismissViewButtonDidPush:" destination="-1" eventType="touchUpInside" id="xzg-9F-yhE"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="8LO-59-smt" firstAttribute="top" secondItem="7Un-nz-uma" secondAttribute="top" id="2EO-7x-jvv"/>
+                        <constraint firstAttribute="bottom" secondItem="8LO-59-smt" secondAttribute="bottom" id="5Ym-Cu-GQt"/>
+                        <constraint firstAttribute="trailing" secondItem="8LO-59-smt" secondAttribute="trailing" id="RHf-35-qWJ"/>
                         <constraint firstItem="6Yc-zs-GDl" firstAttribute="top" secondItem="7Un-nz-uma" secondAttribute="top" id="TK2-C5-aIR"/>
                         <constraint firstItem="6Yc-zs-GDl" firstAttribute="leading" secondItem="7Un-nz-uma" secondAttribute="leading" id="UuR-9u-o3y"/>
                         <constraint firstAttribute="trailing" secondItem="6Yc-zs-GDl" secondAttribute="trailing" constant="95" id="YzQ-1W-V09"/>
+                        <constraint firstItem="8LO-59-smt" firstAttribute="leading" secondItem="6Yc-zs-GDl" secondAttribute="trailing" id="sbm-QK-R3P"/>
                         <constraint firstAttribute="bottom" secondItem="6Yc-zs-GDl" secondAttribute="bottom" id="uTR-af-Fvk"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="7Un-nz-uma" secondAttribute="bottom" id="3s5-kk-ptu"/>
                 <constraint firstItem="7Un-nz-uma" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Jhj-Hc-aDB"/>
