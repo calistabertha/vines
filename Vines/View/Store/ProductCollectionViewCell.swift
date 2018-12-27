@@ -17,6 +17,12 @@ class ProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lblPrice1: UILabel!
     @IBOutlet weak var lblPrice2: UILabel!
     @IBOutlet weak var viewCart: UIView!
+    @IBOutlet weak var lblAction: UILabel!
+    @IBOutlet weak var iconAction: UIImageView!
+    
+    
+    @IBAction func cartButtonDidPush(_ sender: Any) {
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,7 +34,16 @@ class ProductCollectionViewCell: UICollectionViewCell {
 extension ProductCollectionViewCell: CollectionViewCellProtocol{
     static func configure<T>(context: UIViewController, collectionView: UICollectionView, indexPath: IndexPath, object: T) -> UICollectionViewCell {
          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as! ProductCollectionViewCell
+        guard let data = object as? String else { return cell }
         
+        if data == "wishlist" {
+            cell.btnFavorite.setImage(UIImage(named: "ico-buttonfavclicked"), for: .normal)
+            cell.btnFavorite.isSelected = true
+            cell.lblAction.text = "BUY PRODUCT"
+            cell.iconAction.image = UIImage(named: "ico-nav-arrow")
+        }
+        
+        cell.viewCart.layer.cornerRadius = 10
         return cell
     }
     

@@ -30,7 +30,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="53L-4D-TCq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="210.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uOX-9N-4Xh">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-event-3" translatesAutoresizingMaskIntoConstraints="NO" id="uOX-9N-4Xh">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="210.5"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gjg-2N-cGm">
@@ -70,7 +70,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="gjg-2N-cGm" firstAttribute="top" secondItem="53L-4D-TCq" secondAttribute="top" constant="110.5" id="Bu2-36-nfZ"/>
                             <constraint firstAttribute="bottom" secondItem="uOX-9N-4Xh" secondAttribute="bottom" id="JbH-nf-EuH"/>
                             <constraint firstItem="uOX-9N-4Xh" firstAttribute="top" secondItem="53L-4D-TCq" secondAttribute="top" id="JqY-RZ-Haf"/>
                             <constraint firstAttribute="trailing" secondItem="gjg-2N-cGm" secondAttribute="trailing" constant="25" id="YqX-RE-6hZ"/>
@@ -98,4 +97,7 @@
             <point key="canvasLocation" x="34" y="119.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="img-event-3" width="375" height="282"/>
+    </resources>
 </document>

@@ -19,6 +19,13 @@
 		90D4876521A6EC56005B5A7C /* StoreDetailModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4876121A6EC56005B5A7C /* StoreDetailModelBaseClass.swift */; };
 		90D4876621A6EC56005B5A7C /* StoreDetailModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4876221A6EC56005B5A7C /* StoreDetailModelData.swift */; };
 		B558C6006F461CCD6E69BDF8 /* Pods_VinesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15719DD66D0AE26349E7A63 /* Pods_VinesTests.framework */; };
+		CC0131BD21D370EF00A5B883 /* WishlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0131BB21D370EF00A5B883 /* WishlistViewController.swift */; };
+		CC0131BE21D370EF00A5B883 /* WishlistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC0131BC21D370EF00A5B883 /* WishlistViewController.xib */; };
+		CC070D0A21D4857A00E0ABE8 /* UIKit+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC070D0921D4857A00E0ABE8 /* UIKit+Extension.swift */; };
+		CC070D0E21D48B7200E0ABE8 /* PromotionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC070D0C21D48B7200E0ABE8 /* PromotionsViewController.swift */; };
+		CC070D0F21D48B7200E0ABE8 /* PromotionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC070D0D21D48B7200E0ABE8 /* PromotionsViewController.xib */; };
+		CC070D1221D48BC100E0ABE8 /* PromotionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC070D1021D48BC100E0ABE8 /* PromotionTableViewCell.swift */; };
+		CC070D1321D48BC100E0ABE8 /* PromotionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC070D1121D48BC100E0ABE8 /* PromotionTableViewCell.xib */; };
 		CC2512BB21C49E8E00B4F664 /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2512B921C49E8E00B4F664 /* DescriptionTableViewCell.swift */; };
 		CC2512BC21C49E8E00B4F664 /* DescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC2512BA21C49E8E00B4F664 /* DescriptionTableViewCell.xib */; };
 		CC2AF7F721BD1280002BA448 /* HeaderStoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2AF7F521BD1280002BA448 /* HeaderStoreTableViewCell.swift */; };
@@ -112,6 +119,13 @@
 		BE7012A6BB85A52BAEE7E640 /* Pods-VinesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VinesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VinesUITests/Pods-VinesUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C15719DD66D0AE26349E7A63 /* Pods_VinesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VinesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA1A5546BAFE8905F14AABB1 /* Pods_VinesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VinesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC0131BB21D370EF00A5B883 /* WishlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistViewController.swift; sourceTree = "<group>"; };
+		CC0131BC21D370EF00A5B883 /* WishlistViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WishlistViewController.xib; sourceTree = "<group>"; };
+		CC070D0921D4857A00E0ABE8 /* UIKit+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Extension.swift"; sourceTree = "<group>"; };
+		CC070D0C21D48B7200E0ABE8 /* PromotionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionsViewController.swift; sourceTree = "<group>"; };
+		CC070D0D21D48B7200E0ABE8 /* PromotionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PromotionsViewController.xib; sourceTree = "<group>"; };
+		CC070D1021D48BC100E0ABE8 /* PromotionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionTableViewCell.swift; sourceTree = "<group>"; };
+		CC070D1121D48BC100E0ABE8 /* PromotionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PromotionTableViewCell.xib; sourceTree = "<group>"; };
 		CC2512B921C49E8E00B4F664 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		CC2512BA21C49E8E00B4F664 /* DescriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DescriptionTableViewCell.xib; sourceTree = "<group>"; };
 		CC2AF7F521BD1280002BA448 /* HeaderStoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderStoreTableViewCell.swift; sourceTree = "<group>"; };
@@ -265,6 +279,26 @@
 			path = StoreDetail;
 			sourceTree = "<group>";
 		};
+		CC0131BA21D370D900A5B883 /* Wishlist */ = {
+			isa = PBXGroup;
+			children = (
+				CC0131BB21D370EF00A5B883 /* WishlistViewController.swift */,
+				CC0131BC21D370EF00A5B883 /* WishlistViewController.xib */,
+			);
+			path = Wishlist;
+			sourceTree = "<group>";
+		};
+		CC070D0B21D4872900E0ABE8 /* Promotion */ = {
+			isa = PBXGroup;
+			children = (
+				CC070D0C21D48B7200E0ABE8 /* PromotionsViewController.swift */,
+				CC070D0D21D48B7200E0ABE8 /* PromotionsViewController.xib */,
+				CC070D1021D48BC100E0ABE8 /* PromotionTableViewCell.swift */,
+				CC070D1121D48BC100E0ABE8 /* PromotionTableViewCell.xib */,
+			);
+			path = Promotion;
+			sourceTree = "<group>";
+		};
 		CC2AF7E521BC0970002BA448 /* Store */ = {
 			isa = PBXGroup;
 			children = (
@@ -397,6 +431,7 @@
 			children = (
 				CC81666D216A0692008FD617 /* UserDefaults+Extension.swift */,
 				907B67462189FD7100CFEDB1 /* StringExtension.swift */,
+				CC070D0921D4857A00E0ABE8 /* UIKit+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -417,6 +452,8 @@
 		CC816674216A0780008FD617 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CC070D0B21D4872900E0ABE8 /* Promotion */,
+				CC0131BA21D370D900A5B883 /* Wishlist */,
 				CC4CD36221C3E09C00217626 /* Product */,
 				CC2AF7E521BC0970002BA448 /* Store */,
 				CC8B4BC021B2B1B0001D0DBC /* Profile */,
@@ -599,6 +636,8 @@
 				CC2AF83C21BD2E9B002BA448 /* FeatureProductCollectionViewCell.xib in Resources */,
 				CC4CD36A21C3E22600217626 /* HeaderProductTableViewCell.xib in Resources */,
 				CC4CD36621C3E0AF00217626 /* DetailProductViewController.xib in Resources */,
+				CC0131BE21D370EF00A5B883 /* WishlistViewController.xib in Resources */,
+				CC070D0F21D48B7200E0ABE8 /* PromotionsViewController.xib in Resources */,
 				CC2C787021C26346006213EE /* HeaderSectionStoreTableViewCell.xib in Resources */,
 				CC62C3F621A5ACA100D2CA6F /* DetailStoreView.xib in Resources */,
 				CC2AF83021BD2DDA002BA448 /* FeatureProductTableViewCell.xib in Resources */,
@@ -614,6 +653,7 @@
 				CC613FF12160FDAD002C24CB /* Roboto-Regular.ttf in Resources */,
 				CC613FC32160D622002C24CB /* LaunchScreen.storyboard in Resources */,
 				CC613FC02160D622002C24CB /* Assets.xcassets in Resources */,
+				CC070D1321D48BC100E0ABE8 /* PromotionTableViewCell.xib in Resources */,
 				CC2AF84021BD3489002BA448 /* ProductCollectionViewCell.xib in Resources */,
 				CC2AF81421BD1A60002BA448 /* SignUpViewController.xib in Resources */,
 				CC2AF82B21BD21B1002BA448 /* AllStoreViewController.xib in Resources */,
@@ -745,6 +785,7 @@
 			files = (
 				CC816673216A06F3008FD617 /* UserModel.swift in Sources */,
 				CC8B4BC621B2B320001D0DBC /* MenuProfileTableViewCell.swift in Sources */,
+				CC070D1221D48BC100E0ABE8 /* PromotionTableViewCell.swift in Sources */,
 				CC2AF82F21BD2DDA002BA448 /* FeatureProductTableViewCell.swift in Sources */,
 				CC613FB92160D621002C24CB /* AppDelegate.swift in Sources */,
 				CC2C786F21C26346006213EE /* HeaderSectionStoreTableViewCell.swift in Sources */,
@@ -760,13 +801,16 @@
 				9097CBAF2189F3080053382D /* LoginModelUserData.swift in Sources */,
 				CC2AF83F21BD3489002BA448 /* ProductCollectionViewCell.swift in Sources */,
 				907B67452189FB1600CFEDB1 /* RegisterModelBaseClass.swift in Sources */,
+				CC0131BD21D370EF00A5B883 /* WishlistViewController.swift in Sources */,
 				90D4876421A6EC56005B5A7C /* StoreListModelData.swift in Sources */,
+				CC070D0A21D4857A00E0ABE8 /* UIKit+Extension.swift in Sources */,
 				CC81666E216A0692008FD617 /* UserDefaults+Extension.swift in Sources */,
 				CC954BF6217B389D0017C5F4 /* VinesViewController.swift in Sources */,
 				CC4CD36921C3E22600217626 /* HeaderProductTableViewCell.swift in Sources */,
 				9097CBAD2189F3080053382D /* LoginModelBaseClass.swift in Sources */,
 				90D4876621A6EC56005B5A7C /* StoreDetailModelData.swift in Sources */,
 				CC816671216A06CE008FD617 /* ResponseModel.swift in Sources */,
+				CC070D0E21D48B7200E0ABE8 /* PromotionsViewController.swift in Sources */,
 				CC2AF80821BD1A52002BA448 /* StoreViewController.swift in Sources */,
 				CC2AF83B21BD2E9B002BA448 /* FeatureProductCollectionViewCell.swift in Sources */,
 				CC62C3F721A5ACA100D2CA6F /* DetailStoreView.swift in Sources */,

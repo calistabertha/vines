@@ -28,6 +28,8 @@ class VinesViewController: UIViewController {
         }
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.setBackgroundImage(UIColor.clear.as1ptImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1).as1ptImage()
         UIApplication.shared.isStatusBarHidden = false
         let titleLabel = UILabel(frame: CGRect.zero)
         titleLabel.text = titleString
@@ -38,7 +40,7 @@ class VinesViewController: UIViewController {
         navigationController?.visibleViewController?.navigationItem.titleView = titleLabel
         navigationController?.navigationBar.tintColor = UIColor.init(red: 67/255.0, green: 83/255.0, blue: 96/255.0, alpha: 1.0)
         
-        let imageBack = UIImage.init(named: "ico-nav-arrowleft")
+        let imageBack = UIImage.init(named: "ico-nav-arrowleft2")
         let backButton = UIBarButtonItem.init(image: imageBack, style: .plain, target: viewController, action: #selector(backButtonDidPush))
         navigationController?.visibleViewController?.navigationItem.leftBarButtonItem = backButton
         

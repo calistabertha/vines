@@ -92,13 +92,21 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTS-0Y-x1E">
+                                        <rect key="frame" x="0.0" y="14" width="320" height="143"/>
+                                        <connections>
+                                            <action selector="openDetailButtonDidPush:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4at-wG-vaV"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Bur-C1-pGg" secondAttribute="trailing" constant="16" id="4to-Gh-tVL"/>
                                     <constraint firstAttribute="trailing" secondItem="3Hj-aX-Oe4" secondAttribute="trailing" constant="16" id="5KH-xa-VWF"/>
+                                    <constraint firstItem="CTS-0Y-x1E" firstAttribute="top" secondItem="10m-1u-fTm" secondAttribute="top" constant="14" id="G83-Db-RFt"/>
                                     <constraint firstItem="hgC-Ao-7Cj" firstAttribute="top" secondItem="10m-1u-fTm" secondAttribute="top" constant="14" id="GTg-Ow-Wol"/>
                                     <constraint firstAttribute="bottom" secondItem="Vuy-Qf-hs5" secondAttribute="bottom" constant="31" id="Jfl-hv-KfS"/>
+                                    <constraint firstAttribute="bottom" secondItem="CTS-0Y-x1E" secondAttribute="bottom" id="Jsw-fH-FU1"/>
                                     <constraint firstItem="Bur-C1-pGg" firstAttribute="top" secondItem="hgC-Ao-7Cj" secondAttribute="bottom" constant="4" id="PHQ-YG-QEV"/>
                                     <constraint firstItem="Vuy-Qf-hs5" firstAttribute="leading" secondItem="10m-1u-fTm" secondAttribute="leading" constant="16" id="Pq8-Ei-E2i"/>
                                     <constraint firstAttribute="trailing" secondItem="Vuy-Qf-hs5" secondAttribute="trailing" constant="16" id="TwI-sG-NuD"/>
@@ -107,7 +115,9 @@
                                     <constraint firstItem="hgC-Ao-7Cj" firstAttribute="leading" secondItem="10m-1u-fTm" secondAttribute="leading" constant="16" id="ajw-gD-ote"/>
                                     <constraint firstItem="Bur-C1-pGg" firstAttribute="leading" secondItem="10m-1u-fTm" secondAttribute="leading" constant="16" id="k2D-FQ-PSU"/>
                                     <constraint firstItem="Vuy-Qf-hs5" firstAttribute="top" secondItem="xyV-l2-PBm" secondAttribute="bottom" constant="4" id="kZB-Pi-bxN"/>
+                                    <constraint firstAttribute="trailing" secondItem="CTS-0Y-x1E" secondAttribute="trailing" id="qPR-cp-Xfi"/>
                                     <constraint firstItem="3Hj-aX-Oe4" firstAttribute="leading" secondItem="10m-1u-fTm" secondAttribute="leading" constant="16" id="ql2-7I-9pG"/>
+                                    <constraint firstItem="CTS-0Y-x1E" firstAttribute="leading" secondItem="10m-1u-fTm" secondAttribute="leading" id="xHn-xJ-qIG"/>
                                     <constraint firstItem="3Hj-aX-Oe4" firstAttribute="top" secondItem="Bur-C1-pGg" secondAttribute="bottom" constant="4" id="zoR-nO-A21"/>
                                 </constraints>
                             </view>
@@ -123,6 +133,9 @@
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nue-Hv-RW8">
                                         <rect key="frame" x="-0.5" y="-0.5" width="29" height="29"/>
+                                        <connections>
+                                            <action selector="callingButtonDidPush:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Res-u4-xKO"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -165,6 +178,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="btnCalling" destination="Nue-Hv-RW8" id="uPI-kX-e54"/>
+                <outlet property="btnDetail" destination="CTS-0Y-x1E" id="a8H-RL-u9p"/>
                 <outlet property="imgStore" destination="spu-dj-X1P" id="0VK-zz-hyG"/>
                 <outlet property="lblAddress" destination="3Hj-aX-Oe4" id="xdV-Gs-TTV"/>
                 <outlet property="lblStore" destination="Bur-C1-pGg" id="Y7a-OB-JfX"/>

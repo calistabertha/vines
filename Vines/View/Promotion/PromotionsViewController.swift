@@ -1,0 +1,82 @@
+//
+//  PromotionsViewController.swift
+//  Vines
+//
+//  Created by Calista Bertha on 27/12/18.
+//  Copyright © 2018 Calista Bertha. All rights reserved.
+//
+
+import UIKit
+
+class PromotionsViewController: VinesViewController {
+
+    @IBOutlet weak var tableView: UITableView!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        generateNavBarWithBackButton(titleString: "PROMOTIONS", viewController: self, isRightBarButton: false)
+        tableView.register(PromotionTableViewCell.nib, forCellReuseIdentifier: PromotionTableViewCell.identifier)
+        tableView.register(HeaderSectionStoreTableViewCell.nib, forCellReuseIdentifier: HeaderSectionStoreTableViewCell.identifier)
+        tableView.register(HeaderStoreTableViewCell.nib, forCellReuseIdentifier: HeaderStoreTableViewCell.identifier)
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+
+    }
+    
+    override func backButtonDidPush() {
+        navigationController?.popViewController(animated: true)
+    }
+}
+
+extension PromotionsViewController: UITableViewDelegate{
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        }
+        return 8
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0{
+            return 211
+        }
+        return 201
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return CGFloat.leastNormalMagnitude
+        }else{
+            return 40
+        }
+    }
+}
+
+extension PromotionsViewController: UITableViewDataSource{
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: HeaderSectionStoreTableViewCell.identifier) as! HeaderSectionStoreTableViewCell
+            cell.lblTitle.text = "PROMO"
+            return cell
+            
+        }
+        
+        return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            return HeaderStoreTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
+            
+        }else if indexPath.section == 1 {
+            return PromotionTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
+        }
+        
+        return UITableViewCell()
+    }
+}

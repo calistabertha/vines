@@ -19,7 +19,7 @@ class HeaderProductTableViewCell: UITableViewCell {
     @IBOutlet weak var lblType: UILabel!
     @IBOutlet weak var btnFavorite: UIButton!
     
-     var addToFavorite : ((UITableViewCell) -> Void)?
+     var addToWishlist : ((UITableViewCell) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,17 +32,31 @@ class HeaderProductTableViewCell: UITableViewCell {
     }
     
     @IBAction func favoriteButtonDidPush(_ sender: Any) {
-         addToFavorite?(self)
+         addToWishlist?(self)
     }
 }
 
 extension HeaderProductTableViewCell: TableViewCellProtocol {
     static func configure<T>(context: UIViewController, tableView: UITableView, indexPath: IndexPath, object: T) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HeaderProductTableViewCell.identifier, for: indexPath) as! HeaderProductTableViewCell
+        let attributeString = NSMutableAttributedString(string: cell.lblPriceBefore.text ?? "")
+        attributeString.addAttribute(NSAttributedStringKey.strikethroughStyle,
+                                     value: NSUnderlineStyle.styleSingle.rawValue,
+                                     range: NSMakeRange(0, attributeString.length))
+        cell.lblPriceBefore.attributedText = attributeString
         
-        cell.addToFavorite = {
+        if cell.btnFavorite.isSelected{
+            cell.btnFavorite.setImage(UIImage(named: "ico-buttonfavclicked"), for: .normal)
+            cell.btnFavorite.isSelected = false
+        }else {
+            cell.btnFavorite.setImage(UIImage(named: "ico-buttonfav"), for: .normal)
+            cell.btnFavorite.isSelected = true
+        }
+        
+        cell.addToWishlist = {
             (cells) in
             cell.btnFavorite.setImage(UIImage(named: "ico-buttonfavclicked"), for: .normal)
+            tableView.reloadData()
         }
         
         return cell

@@ -17,7 +17,10 @@ class AllStoreTableViewCell: UITableViewCell {
     @IBOutlet weak var viewCalling: UIView!
     @IBOutlet weak var btnCalling: UIButton!
     @IBOutlet weak var viewCard: UIView!
+    @IBOutlet weak var btnDetail: UIButton!
     
+    var openDetail : ((UITableViewCell) -> Void)?
+    var callingButton : ((UITableViewCell) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,6 +32,13 @@ class AllStoreTableViewCell: UITableViewCell {
 
     }
     
+    @IBAction func openDetailButtonDidPush(_ sender: Any) {
+        openDetail?(self)
+    }
+    
+    @IBAction func callingButtonDidPush(_ sender: Any) {
+        callingButton?(self)
+    }
 }
 
 extension AllStoreTableViewCell: TableViewCellProtocol {
@@ -44,6 +54,13 @@ extension AllStoreTableViewCell: TableViewCellProtocol {
         cell.viewCalling.layer.borderWidth = 2
         cell.viewCalling.layer.borderColor = UIColor(red: 125/255.0, green: 6/255.0, blue: 15/255.0, alpha: 1).cgColor
         cell.viewCard.backgroundColor = UIColor.white
+        
+        cell.callingButton = {
+            (cells) in
+            guard let number = URL(string: "tel://" + "087879347954") else { return }
+            UIApplication.shared.open(number)
+        }
+        
         return cell
     }
 }
