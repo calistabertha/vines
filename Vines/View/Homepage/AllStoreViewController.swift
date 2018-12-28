@@ -74,15 +74,17 @@ extension AllStoreViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.storeList.count
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
 }
 
 extension AllStoreViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: AllStoreTableViewCell.identifier, for: indexPath) as! AllStoreTableViewCell
-        cell.btnDetail.addTarget(self, action: #selector(openDetail), for: .touchUpInside)
-        
-        return cell
-        //return AllStoreTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: self.storeList[safe: indexPath.row])
+        let data = self.storeList[indexPath.row]
+//        cell.btnDetail.addTarget(self, action: #selector(openDetail), for: .touchUpInside)
+        return AllStoreTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: data)
     }
 
 }

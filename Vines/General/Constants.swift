@@ -23,6 +23,10 @@ struct Constants {
             static let list = "store/list"
             static let detail = "store/detail"
         }
+        
+        struct Promotion {
+            static let promotion = "promotions"
+        }
     
     }
 }

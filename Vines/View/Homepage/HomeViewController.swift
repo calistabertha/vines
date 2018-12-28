@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
+import iCarousel
 
 class HomeViewController: UIViewController {
     
@@ -16,7 +17,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var viewTransparantTop: UIView!
     @IBOutlet weak var viewTransparantBottom: UIView!
     @IBOutlet weak var viewSeeAllStore: UIView!
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var carouselView: iCarousel!
     @IBOutlet weak var viewSearch: UIView!
     @IBOutlet weak var viewBackground: UIView!
     @IBOutlet weak var viewHistory: UIView!
@@ -29,11 +30,15 @@ class HomeViewController: UIViewController {
     var tableDataSource: GMSAutocompleteTableDataSource?
     var locationManager:CLLocationManager?
     
+    // API Data
+    var promotionList: [PromotionModelData] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         self.view.addGestureRecognizer(tap)
         setupView()
+        setupCarousel()
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,6 +49,7 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        fetchPromotions()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -202,5 +208,79 @@ extension HomeViewController: ProfileSwipeDelegate{
     func dismissView(controller: ProfileSwipeViewController) {
         controller.willMove(toParentViewController: nil)
         controller.view.removeFromSuperview()
+    }
+}
+
+extension HomeViewController: iCarouselDelegate, iCarouselDataSource {
+    func setupCarousel() {
+        carouselView.type = .linear
+        carouselView.isPagingEnabled = false
+        carouselView.delegate = self
+        carouselView.dataSource = self
+        carouselView.bounces = false
+        carouselView.stopAtItemBoundary = true
+        
+        carouselView.backgroundColor = UIColor.clear
+        carouselView.reloadData()
+    }
+    
+    func numberOfItems(in carousel: iCarousel) -> Int {
+        return self.promotionList.count
+    }
+    
+    func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
+        let view: BannerView = BannerView.instantiateFromNib()
+        let data = self.promotionList[index]
+        let width = UIScreen.main.bounds.width / 2.2
+        view.frame = CGRect(x: 0, y: 0, width: width, height: self.carouselView.bounds.height)
+        view.backgroundColor = UIColor(white: 1, alpha: 0.0)
+        view.layer.cornerRadius = 8
+//        view.layer.masksToBounds = false
+        view.clipsToBounds = true
+        view.bannerImage.af_setImage(withURL: URL(string: data.image!)!, placeholderImage: UIImage(named: "placeholder")) { image in
+            if let img = image.value {
+                view.bannerImage.image = img
+            } else {
+                view.bannerImage.image = UIImage(named: "placeholder")
+            }
+        }
+        return view
+    }
+    
+    func carouselCurrentItemIndexDidChange(_ carousel: iCarousel) {
+//        self.pageControll.currentPage = carousel.currentItemIndex
+    }
+    
+    func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
+        let vc = PromotionsViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
+        switch (option) {
+        case .wrap:
+            return 0
+        case .spacing:
+            return value * 1.1
+        default:
+            return value
+        }
+    }
+}
+
+extension HomeViewController {
+    private func fetchPromotions() {
+        let params = [
+            "limit": 10,
+            ] as [String : Any]
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Promotion.promotion, param: params, method: HTTPMethodHelper.post) { (success, json) in
+            let data = PromotionModelBaseClass(json: json!)
+            if data.message == "success", let datas = data.data {
+                self.promotionList = datas
+                self.carouselView.reloadData()
+            } else {
+                print(data.displayMessage!)
+            }
+        }
     }
 }
