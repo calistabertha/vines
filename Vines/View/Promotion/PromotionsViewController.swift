@@ -55,6 +55,13 @@ extension PromotionsViewController: UITableViewDelegate{
             return 40
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            let vc = DetailPromoViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 extension PromotionsViewController: UITableViewDataSource{

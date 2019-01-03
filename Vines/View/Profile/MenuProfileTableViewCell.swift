@@ -52,6 +52,9 @@ extension MenuProfileTableViewCell: TableViewCellProtocol {
                 } else if indexPath.row == 2 {
                     let vc = PromotionsViewController()
                     context.navigationController?.pushViewController(vc, animated: true)
+                } else if indexPath.row == 5 {
+                    let vc = NewsViewController()
+                    context.navigationController?.pushViewController(vc, animated: true)
                 }
             }
             
