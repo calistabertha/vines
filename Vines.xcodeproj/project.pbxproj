@@ -9,8 +9,12 @@
 /* Begin PBXBuildFile section */
 		2E085705789B5C62F916976A /* Pods_VinesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1A5546BAFE8905F14AABB1 /* Pods_VinesUITests.framework */; };
 		3E7AC2B7C3588621C904ABBD /* Pods_Vines.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC392BF63EA86635D82EFDA1 /* Pods_Vines.framework */; };
+		9015139A21D614DE00BD836E /* PromotionModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9015139821D614DE00BD836E /* PromotionModelBaseClass.swift */; };
+		9015139B21D614DE00BD836E /* PromotionModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9015139921D614DE00BD836E /* PromotionModelData.swift */; };
 		907B67452189FB1600CFEDB1 /* RegisterModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907B67442189FB1600CFEDB1 /* RegisterModelBaseClass.swift */; };
 		907B67472189FD7100CFEDB1 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907B67462189FD7100CFEDB1 /* StringExtension.swift */; };
+		90905BFD21D611C400896D68 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90905BFB21D611C400896D68 /* BannerView.swift */; };
+		90905BFE21D611C400896D68 /* BannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90905BFC21D611C400896D68 /* BannerView.xib */; };
 		9097CBAD2189F3080053382D /* LoginModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9097CBAA2189F3080053382D /* LoginModelBaseClass.swift */; };
 		9097CBAE2189F3080053382D /* LoginModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9097CBAB2189F3080053382D /* LoginModelData.swift */; };
 		9097CBAF2189F3080053382D /* LoginModelUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9097CBAC2189F3080053382D /* LoginModelUserData.swift */; };
@@ -117,8 +121,12 @@
 		0F90E38478812A95B33C8CB0 /* Pods-Vines.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vines.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Vines/Pods-Vines.debug.xcconfig"; sourceTree = "<group>"; };
 		14114278F12DB4EE5EBFCAC1 /* Pods-VinesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VinesUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VinesUITests/Pods-VinesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		24CB8D9603A163B3DBBB0168 /* Pods-VinesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VinesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VinesTests/Pods-VinesTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9015139821D614DE00BD836E /* PromotionModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionModelBaseClass.swift; sourceTree = "<group>"; };
+		9015139921D614DE00BD836E /* PromotionModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionModelData.swift; sourceTree = "<group>"; };
 		907B67442189FB1600CFEDB1 /* RegisterModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterModelBaseClass.swift; sourceTree = "<group>"; };
 		907B67462189FD7100CFEDB1 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		90905BFB21D611C400896D68 /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
+		90905BFC21D611C400896D68 /* BannerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BannerView.xib; sourceTree = "<group>"; };
 		9097CBAA2189F3080053382D /* LoginModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModelBaseClass.swift; sourceTree = "<group>"; };
 		9097CBAB2189F3080053382D /* LoginModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModelData.swift; sourceTree = "<group>"; };
 		9097CBAC2189F3080053382D /* LoginModelUserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModelUserData.swift; sourceTree = "<group>"; };
@@ -265,6 +273,15 @@
 				CA1A5546BAFE8905F14AABB1 /* Pods_VinesUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9015139721D614DE00BD836E /* Promotion */ = {
+			isa = PBXGroup;
+			children = (
+				9015139821D614DE00BD836E /* PromotionModelBaseClass.swift */,
+				9015139921D614DE00BD836E /* PromotionModelData.swift */,
+			);
+			path = Promotion;
 			sourceTree = "<group>";
 		};
 		907B67432189FB1600CFEDB1 /* Register */ = {
@@ -466,6 +483,7 @@
 			isa = PBXGroup;
 			children = (
 				9097CBA92189F3080053382D /* Login */,
+				9015139721D614DE00BD836E /* Promotion */,
 				907B67432189FB1600CFEDB1 /* Register */,
 				90D4876021A6EC56005B5A7C /* StoreDetail */,
 				90D4875D21A6EC56005B5A7C /* StoreList */,
@@ -514,6 +532,8 @@
 				CC2AF82921BD21B1002BA448 /* AllStoreViewController.xib */,
 				CC64A6B5217CA946000743DE /* AllStoreTableViewCell.swift */,
 				CC64A6B6217CA946000743DE /* AllStoreTableViewCell.xib */,
+				90905BFB21D611C400896D68 /* BannerView.swift */,
+				90905BFC21D611C400896D68 /* BannerView.xib */,
 			);
 			path = Homepage;
 			sourceTree = "<group>";
@@ -683,6 +703,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90905BFE21D611C400896D68 /* BannerView.xib in Resources */,
 				CC64A6B8217CA946000743DE /* AllStoreTableViewCell.xib in Resources */,
 				CC8B4BC721B2B320001D0DBC /* MenuProfileTableViewCell.xib in Resources */,
 				CCE5227221D6235600F868DD /* NewsTableViewCell.xib in Resources */,
@@ -822,12 +843,14 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/iCarousel/iCarousel.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iCarousel.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -857,6 +880,7 @@
 				CC62C3FA21A5ACF700D2CA6F /* Modal.swift in Sources */,
 				CC2AF81021BD1A60002BA448 /* ForgotPasswordViewController.swift in Sources */,
 				CCD502D8216A01960070F457 /* Constants.swift in Sources */,
+                90905BFD21D611C400896D68 /* BannerView.swift in Sources */,
 				CCE5226921D6233A00F868DD /* NewsViewController.swift in Sources */,
 				CC2AF81121BD1A60002BA448 /* SignInViewController.swift in Sources */,
 				9097CBAF2189F3080053382D /* LoginModelUserData.swift in Sources */,
@@ -865,9 +889,11 @@
 				CC0131BD21D370EF00A5B883 /* WishlistViewController.swift in Sources */,
 				90D4876421A6EC56005B5A7C /* StoreListModelData.swift in Sources */,
 				CC070D0A21D4857A00E0ABE8 /* UIKit+Extension.swift in Sources */,
+				9015139A21D614DE00BD836E /* PromotionModelBaseClass.swift in Sources */,
 				CC81666E216A0692008FD617 /* UserDefaults+Extension.swift in Sources */,
 				CCE5226421D6202100F868DD /* PartyServiceViewController.swift in Sources */,
 				CC954BF6217B389D0017C5F4 /* VinesViewController.swift in Sources */,
+				9015139B21D614DE00BD836E /* PromotionModelData.swift in Sources */,
 				CC4CD36921C3E22600217626 /* HeaderProductTableViewCell.swift in Sources */,
 				CC16250D21D6353300E86AC4 /* WebViewTableViewCell.swift in Sources */,
 				9097CBAD2189F3080053382D /* LoginModelBaseClass.swift in Sources */,

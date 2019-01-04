@@ -13,6 +13,7 @@ target 'Vines' do
   pod ‘SwiftyJSON’, ‘~> 4.0’
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  pod 'iCarousel'
 
   target 'VinesTests' do
     inherit! :search_paths
