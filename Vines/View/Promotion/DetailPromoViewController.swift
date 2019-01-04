@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class DetailPromoViewController: VinesViewController {
 
@@ -17,14 +18,24 @@ class DetailPromoViewController: VinesViewController {
     @IBOutlet weak var btnMenu1: UIButton!
     @IBOutlet weak var btnMenu2: UIButton!
     @IBOutlet weak var lblDetail: UILabel!
+    @IBOutlet weak var imgPromo: UIImageView!
+    @IBOutlet weak var lblDescription: UILabel!
+    
+    var data: PromotionModelData?
     
     var isCopied = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       generateNavBarWithBackButton(titleString: "GET SPECIAL OFFER FROM VINES...", viewController: self, isRightBarButton: false)
+        generateNavBarWithBackButton(titleString: "GET SPECIAL OFFER FROM VINES...", viewController: self, isRightBarButton: false)
         btnMenu0.setTitleColor(UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), for: .normal)
         viewSeparator0.backgroundColor = UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setupView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,6 +46,21 @@ class DetailPromoViewController: VinesViewController {
     override func backButtonDidPush() {
         navigationController?.popViewController(animated: true)
     }
+    
+    func setupView() {
+        guard let data = data else { return }
+        imgPromo.af_setImage(withURL: URL(string: data.image ?? "")!, placeholderImage: UIImage(named: "placeholder")) { [weak self] image in
+            guard let ws = self else { return }
+            if let img = image.value {
+                ws.imgPromo.image = img
+            } else {
+                ws.imgPromo.image = UIImage(named: "placeholder")
+            }
+        }
+        
+        lblDescription.text = data.title
+        lblDetail.text = data.summary
+    }
 
     @IBAction func detailMenu0(_ sender: UIButton) {
         btnMenu0.setTitleColor(UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), for: .normal)
@@ -43,7 +69,7 @@ class DetailPromoViewController: VinesViewController {
         viewSeparator1.backgroundColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1)
         btnMenu2.setTitleColor(UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1), for: .normal)
         viewSeparator2.backgroundColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1)
-        lblDetail.text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        lblDetail.text = data?.summary
     }
     
     @IBAction func detailMenu1(_ sender: Any) {

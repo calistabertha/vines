@@ -18,6 +18,7 @@ class FeatureProductTableViewCell: UITableViewCell {
         }
     }
     internal var context: UIViewController?
+    var size: CGSize = CGSize(width: 0, height: 0)
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -73,6 +74,6 @@ extension FeatureProductTableViewCell: UICollectionViewDataSource {
 
 extension FeatureProductTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width/3, height: collectionView.frame.size.height)
+        return size
     }
 }

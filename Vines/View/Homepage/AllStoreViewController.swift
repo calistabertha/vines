@@ -83,8 +83,9 @@ extension AllStoreViewController: UITableViewDelegate {
 extension AllStoreViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let data = self.storeList[indexPath.row]
-//        cell.btnDetail.addTarget(self, action: #selector(openDetail), for: .touchUpInside)
-        return AllStoreTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: data)
+        let cell = AllStoreTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: data) as! AllStoreTableViewCell
+        cell.btnDetail.addTarget(self, action: #selector(openDetail), for: .touchUpInside)
+        return cell
     }
 
 }

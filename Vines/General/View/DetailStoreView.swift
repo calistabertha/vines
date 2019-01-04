@@ -7,7 +7,7 @@
 //
 
 import UIKit
-@objc protocol DetailStoreViewDelegate {
+@objc protocol DetailStoreViewDelegate: class {
     func closeButtonDidPush(_ view: DetailStoreView)
     func goShoppingButtonDidPush()
 }
@@ -30,7 +30,7 @@ class DetailStoreView: UIView, Modal {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var viewCalling: UIView!
     @IBOutlet weak var btnGoShopping: UIButton!
-    var delegate: DetailStoreViewDelegate?
+    weak var delegate: DetailStoreViewDelegate?
     
     private func setupView() {
         Bundle.main.loadNibNamed("DetailStoreView", owner: self, options: nil)
