@@ -43,7 +43,7 @@ extension PromotionsViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0{
-            return 211
+            return 0 //211
         }
         return 201
     }
@@ -52,7 +52,7 @@ extension PromotionsViewController: UITableViewDelegate{
         if section == 0 {
             return CGFloat.leastNormalMagnitude
         }else{
-            return 40
+            return 0 //40
         }
     }
     
@@ -65,21 +65,21 @@ extension PromotionsViewController: UITableViewDelegate{
 }
 
 extension PromotionsViewController: UITableViewDataSource{
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: HeaderSectionStoreTableViewCell.identifier) as! HeaderSectionStoreTableViewCell
-            cell.lblTitle.text = "PROMO"
-            return cell
-            
-        }
-        
-        return UIView()
-    }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        if section == 1 {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: HeaderSectionStoreTableViewCell.identifier) as! HeaderSectionStoreTableViewCell
+//            cell.lblTitle.text = "PROMO"
+//            return cell
+//
+//        }
+//
+//        return UIView()
+//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            return HeaderStoreTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
-            
+//            return HeaderStoreTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
+            return UITableViewCell()
         }else if indexPath.section == 1 {
             return PromotionTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
         }

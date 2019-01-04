@@ -25,7 +25,7 @@ class ProfileSwipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(MenuProfileTableViewCell.nib, forCellReuseIdentifier: MenuProfileTableViewCell.identifier)
-        
+        print("profile \(view.frame.origin.y)")
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy"
         let dateStr = formatter.string(from: NSDate() as Date)

@@ -20,12 +20,13 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var carouselView: iCarousel!
     @IBOutlet weak var viewSearch: UIView!
     @IBOutlet weak var viewBackground: UIView!
-    @IBOutlet weak var viewHistory: UIView!
+    @IBOutlet weak var viewMore: UIView!
     @IBOutlet weak var txtSearch: UITextField!{
         didSet{
             txtSearch.delegate = self
         }
     }
+    @IBOutlet weak var contentView: UIView!
     
     var tableDataSource: GMSAutocompleteTableDataSource?
     var locationManager:CLLocationManager?
@@ -39,6 +40,7 @@ class HomeViewController: UIViewController {
         self.view.addGestureRecognizer(tap)
         setupView()
         setupCarousel()
+        print("home \(view.frame.origin.y)")
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,7 +74,7 @@ class HomeViewController: UIViewController {
     }
     
     private func setupView() {
-        viewHistory.layer.cornerRadius = 10
+        viewMore.layer.cornerRadius = 10
         viewSeeAllStore.layer.cornerRadius = 15
         viewSearch.layer.cornerRadius = 5
         viewSearch.layer.borderColor = UIColor.black.cgColor
@@ -80,7 +82,7 @@ class HomeViewController: UIViewController {
         
         let topLayer = CAGradientLayer()
         topLayer.frame = self.viewTransparantTop.bounds;
-        topLayer.colors = [UIColor.white.withAlphaComponent(0.7).cgColor, UIColor.white.withAlphaComponent(0).cgColor ]
+        topLayer.colors = [UIColor.black.withAlphaComponent(1).cgColor, UIColor.white.withAlphaComponent(0.7).cgColor, UIColor.white.withAlphaComponent(0).cgColor]
         topLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
         topLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
         self.viewTransparantTop.layer.mask = topLayer
@@ -114,12 +116,11 @@ class HomeViewController: UIViewController {
     
     @IBAction func profileButtonDidPush(_ sender: Any) {
         let vc = ProfileSwipeViewController()
-        self.view.addSubview(vc.view)
+        contentView.addSubview(vc.view)
         self.addChildViewController(vc)
         vc.delegate = self
         vc.didMove(toParentViewController: self)
 
-        //navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func seeStoreButtonDidPush(_ sender: Any) {
@@ -128,6 +129,12 @@ class HomeViewController: UIViewController {
         vc.location = location
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @IBAction func moreButtonDidPush(_ sender: Any) {
+        let vc = PromotionsViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 
 extension HomeViewController: UITextFieldDelegate{
