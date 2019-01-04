@@ -23,11 +23,26 @@ class StoreViewController: VinesViewController {
     
     var storeName: String?
 
+    // Still dummy data
+    var featuredList: [Any] = []
+    // If you want to test responsive, you could change item count inside this below array.
+    // Hope everything is fine wkwk
+    var specialOfferList: [Any] = [0,0,0,0,0,0,0,0]
+    var productList: [Any] = [0,0,0,0,0]
+    
+    var collectionItemSize: CGSize = CGSize(width: 0, height: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         generateNavBarWithBackButton(titleString: storeName ?? "", viewController: self, isRightBarButton: false)
         setupView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        calculateSize()
+        // fetchData
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,6 +68,11 @@ class StoreViewController: VinesViewController {
         
     }
     
+    func calculateSize() {
+        let width = ((self.view.frame.width - 48) / 2) - 8
+        let height = width * 1.8
+        self.collectionItemSize = CGSize(width: width, height: height)
+    }
 }
 
 extension StoreViewController: UITableViewDelegate {
@@ -75,12 +95,12 @@ extension StoreViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0{
             return 211
-        }else{
-            if indexPath.row == 0 {
-                return 280
-            }else{
-                return 560
-            }
+        } else if indexPath.section == 1 {
+            return collectionItemSize.height
+        } else if indexPath.section == 2 {
+            return (collectionItemSize.height * CGFloat(halfCeil(specialOfferList.count)))
+        } else {
+            return (collectionItemSize.height * CGFloat(halfCeil(productList.count)))
         }
     }
 }
@@ -109,15 +129,18 @@ extension StoreViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             return HeaderStoreTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
-            
         }else if indexPath.section == 1 {
-              return FeatureProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
-            
+            let cell = FeatureProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "") as! FeatureProductTableViewCell
+            cell.size = collectionItemSize
+            return cell
         }else if indexPath.section == 2 {
-            return ProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
-            
+            let cell = ProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: specialOfferList) as! ProductTableViewCell
+            cell.size = collectionItemSize
+            return cell
         }else if indexPath.section == 3 {
-             return ProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
+            let cell = ProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: productList) as! ProductTableViewCell
+            cell.size = collectionItemSize
+            return cell
         }
         
         return UITableViewCell()

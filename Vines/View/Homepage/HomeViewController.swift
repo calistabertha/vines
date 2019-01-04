@@ -132,6 +132,7 @@ class HomeViewController: UIViewController {
     
     @IBAction func moreButtonDidPush(_ sender: Any) {
         let vc = PromotionsViewController()
+        vc.promotionList = self.promotionList
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -259,7 +260,8 @@ extension HomeViewController: iCarouselDelegate, iCarouselDataSource {
     }
     
     func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
-        let vc = PromotionsViewController()
+        let vc = DetailPromoViewController()
+        vc.data = self.promotionList[index]
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

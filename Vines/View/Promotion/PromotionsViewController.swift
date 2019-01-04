@@ -18,6 +18,8 @@ class PromotionsViewController: VinesViewController {
         tableView.register(HeaderSectionStoreTableViewCell.nib, forCellReuseIdentifier: HeaderSectionStoreTableViewCell.identifier)
         tableView.register(HeaderStoreTableViewCell.nib, forCellReuseIdentifier: HeaderStoreTableViewCell.identifier)
     }
+    
+    var promotionList: [PromotionModelData] = []
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -38,7 +40,7 @@ extension PromotionsViewController: UITableViewDelegate{
         if section == 0 {
             return 1
         }
-        return 8
+        return self.promotionList.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -80,8 +82,8 @@ extension PromotionsViewController: UITableViewDataSource{
         if indexPath.section == 0 {
 //            return HeaderStoreTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
             return UITableViewCell()
-        }else if indexPath.section == 1 {
-            return PromotionTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
+        } else if indexPath.section == 1 {
+            return PromotionTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: promotionList)
         }
         
         return UITableViewCell()

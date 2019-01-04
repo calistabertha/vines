@@ -22,6 +22,7 @@
 		90D4876421A6EC56005B5A7C /* StoreListModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4875F21A6EC56005B5A7C /* StoreListModelData.swift */; };
 		90D4876521A6EC56005B5A7C /* StoreDetailModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4876121A6EC56005B5A7C /* StoreDetailModelBaseClass.swift */; };
 		90D4876621A6EC56005B5A7C /* StoreDetailModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4876221A6EC56005B5A7C /* StoreDetailModelData.swift */; };
+		90E950C421DFC51800627E06 /* PublicFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E950C321DFC51800627E06 /* PublicFunction.swift */; };
 		B558C6006F461CCD6E69BDF8 /* Pods_VinesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15719DD66D0AE26349E7A63 /* Pods_VinesTests.framework */; };
 		CC0131BD21D370EF00A5B883 /* WishlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0131BB21D370EF00A5B883 /* WishlistViewController.swift */; };
 		CC0131BE21D370EF00A5B883 /* WishlistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC0131BC21D370EF00A5B883 /* WishlistViewController.xib */; };
@@ -134,6 +135,7 @@
 		90D4875F21A6EC56005B5A7C /* StoreListModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreListModelData.swift; sourceTree = "<group>"; };
 		90D4876121A6EC56005B5A7C /* StoreDetailModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailModelBaseClass.swift; sourceTree = "<group>"; };
 		90D4876221A6EC56005B5A7C /* StoreDetailModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailModelData.swift; sourceTree = "<group>"; };
+		90E950C321DFC51800627E06 /* PublicFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicFunction.swift; sourceTree = "<group>"; };
 		9BA2A0D10491F012CA590F83 /* Pods-Vines.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vines.release.xcconfig"; path = "Pods/Target Support Files/Pods-Vines/Pods-Vines.release.xcconfig"; sourceTree = "<group>"; };
 		A7217F70E7573C7489DCB90F /* Pods-VinesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VinesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VinesTests/Pods-VinesTests.release.xcconfig"; sourceTree = "<group>"; };
 		BE7012A6BB85A52BAEE7E640 /* Pods-VinesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VinesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VinesUITests/Pods-VinesUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -475,6 +477,7 @@
 				CC81666D216A0692008FD617 /* UserDefaults+Extension.swift */,
 				907B67462189FD7100CFEDB1 /* StringExtension.swift */,
 				CC070D0921D4857A00E0ABE8 /* UIKit+Extension.swift */,
+				90E950C321DFC51800627E06 /* PublicFunction.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -880,7 +883,7 @@
 				CC62C3FA21A5ACF700D2CA6F /* Modal.swift in Sources */,
 				CC2AF81021BD1A60002BA448 /* ForgotPasswordViewController.swift in Sources */,
 				CCD502D8216A01960070F457 /* Constants.swift in Sources */,
-                90905BFD21D611C400896D68 /* BannerView.swift in Sources */,
+				90905BFD21D611C400896D68 /* BannerView.swift in Sources */,
 				CCE5226921D6233A00F868DD /* NewsViewController.swift in Sources */,
 				CC2AF81121BD1A60002BA448 /* SignInViewController.swift in Sources */,
 				9097CBAF2189F3080053382D /* LoginModelUserData.swift in Sources */,
@@ -896,6 +899,7 @@
 				9015139B21D614DE00BD836E /* PromotionModelData.swift in Sources */,
 				CC4CD36921C3E22600217626 /* HeaderProductTableViewCell.swift in Sources */,
 				CC16250D21D6353300E86AC4 /* WebViewTableViewCell.swift in Sources */,
+				90E950C421DFC51800627E06 /* PublicFunction.swift in Sources */,
 				9097CBAD2189F3080053382D /* LoginModelBaseClass.swift in Sources */,
 				90D4876621A6EC56005B5A7C /* StoreDetailModelData.swift in Sources */,
 				CC816671216A06CE008FD617 /* ResponseModel.swift in Sources */,
