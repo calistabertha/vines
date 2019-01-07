@@ -20,3 +20,52 @@ extension UIColor {
         return image
     }
 }
+
+extension UIAlertController {
+    public static func yesOrNoAlert(_ vc: UIViewController,
+                                    title: String? = nil,
+                                    message: String? = nil,
+                                    okButtonTitle: String = "Ya",
+                                    noButtonTitle: String? = "Tidak",
+                                    no: VoidClosure? = nil,
+                                    yes: VoidClosure? = nil) {
+        
+        let alertVC: UIAlertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+        
+        if let noTitle = noButtonTitle {
+            alertVC.addAction(
+                UIAlertAction(
+                    title: noTitle,
+                    style: .default,
+                    handler: { _ in
+                        no?()
+                }
+                )
+            )
+        }
+        
+        alertVC.addAction(
+            UIAlertAction(
+                title: okButtonTitle,
+                style: .destructive,
+                handler: { _ in
+                    yes?()
+            }
+            )
+        )
+        
+        let alertWindow: UIWindow = UIWindow(frame: UIScreen.main.bounds)
+        alertWindow.rootViewController = UIViewController()
+        alertWindow.windowLevel = UIWindowLevelAlert + 1
+        alertWindow.makeKeyAndVisible()
+        alertWindow.rootViewController?.present(
+            alertVC,
+            animated: true,
+            completion: nil
+        )
+    }
+}
