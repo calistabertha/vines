@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class ProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imgProduct: UIImageView!
@@ -34,14 +35,28 @@ class ProductCollectionViewCell: UICollectionViewCell {
 extension ProductCollectionViewCell: CollectionViewCellProtocol{
     static func configure<T>(context: UIViewController, collectionView: UICollectionView, indexPath: IndexPath, object: T) -> UICollectionViewCell {
          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as! ProductCollectionViewCell
-        guard let data = object as? String else { return cell }
+        guard let data = object as? ProductListModelData else { return cell }
         
-        if data == "wishlist" {
+        // still wrong cz no wishlist value
+        if data.code == "wishlist" {
             cell.btnFavorite.setImage(UIImage(named: "ico-buttonfavclicked"), for: .normal)
             cell.btnFavorite.isSelected = true
             cell.lblAction.text = "BUY PRODUCT"
             cell.iconAction.image = UIImage(named: "ico-nav-arrow")
         }
+        
+        cell.imgProduct.af_setImage(withURL: URL(string: data.image!)!, placeholderImage: UIImage(named: "placeholder")) { image in
+            if let img = image.value {
+                cell.imgProduct.image = img
+            } else {
+                cell.imgProduct.image = UIImage(named: "placeholder")
+            }
+        }
+        
+        cell.lblName.text = data.name ?? ""
+        cell.lblType.text = data.categoryName ?? ""
+        cell.lblPrice1.text = String(data.discount ?? 0).asRupiah()
+        cell.lblPrice2.text = String(data.price ?? 0).asRupiah()
         
         cell.viewCart.layer.cornerRadius = 10
         return cell

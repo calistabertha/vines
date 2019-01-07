@@ -27,6 +27,12 @@ struct Constants {
         struct Promotion {
             static let promotion = "promotions"
         }
+        
+        struct Product {
+            static let list = "product/list"
+            static let favourite = "product/favourite"
+            static let similiar = "product/similiar"
+        }
     
     }
 }

@@ -24,11 +24,11 @@ class StoreViewController: VinesViewController {
     var storeName: String?
 
     // Still dummy data
-    var featuredList: [Any] = []
+    var favouriteList: [ProductListModelData] = []
     // If you want to test responsive, you could change item count inside this below array.
     // Hope everything is fine wkwk
-    var specialOfferList: [Any] = [0,0,0,0,0,0,0,0]
-    var productList: [Any] = [0,0,0,0,0]
+//    var specialOfferList: [Any] = [0,0,0,0,0,0,0,0,0]
+    var productList: [ProductListModelData] = []
     
     var collectionItemSize: CGSize = CGSize(width: 0, height: 0)
     
@@ -41,8 +41,10 @@ class StoreViewController: VinesViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        calculateSize()
+        collectionItemSize = calculateSize()
         // fetchData
+        fetchFavouriteList()
+        fetchProductList()
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,16 +70,43 @@ class StoreViewController: VinesViewController {
         
     }
     
-    func calculateSize() {
-        let width = ((self.view.frame.width - 48) / 2) - 8
-        let height = width * 1.8
-        self.collectionItemSize = CGSize(width: width, height: height)
+    func fetchFavouriteList() {
+        let params = [
+            "limit": 10,
+            ] as [String : Any]
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Product.favourite, param: params, method: HTTPMethodHelper.post) { (success, json) in
+            let data = ProductListModelBaseClass(json: json!)
+            if data.message == "Success", let datas = data.data {
+                self.favouriteList = datas
+                self.tableView.reloadData()
+            } else {
+                print(data.displayMessage!)
+            }
+        }
+    }
+    
+    func fetchProductList() {
+        let params = [
+            "store_id": 1,
+            "limit": 10,
+            "category_id": "",
+            "offset": 0
+            ] as [String : Any]
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Product.list, param: params, method: HTTPMethodHelper.post) { (success, json) in
+            let data = ProductListModelBaseClass(json: json!)
+            if data.message == "Success", let datas = data.data {
+                self.productList = datas
+                self.tableView.reloadData()
+            } else {
+                print(data.displayMessage!)
+            }
+        }
     }
 }
 
 extension StoreViewController: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -97,8 +126,6 @@ extension StoreViewController: UITableViewDelegate {
             return 211
         } else if indexPath.section == 1 {
             return collectionItemSize.height
-        } else if indexPath.section == 2 {
-            return (collectionItemSize.height * CGFloat(halfCeil(specialOfferList.count)))
         } else {
             return (collectionItemSize.height * CGFloat(halfCeil(productList.count)))
         }
@@ -109,17 +136,11 @@ extension StoreViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: HeaderSectionStoreTableViewCell.identifier) as! HeaderSectionStoreTableViewCell
-            cell.lblTitle.text = "FEATURED PRODUCT"
+            cell.lblTitle.text = "FAVOURITE PRODUCT"
             return cell
-            
-        }else if section == 2 {
+        } else if section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: HeaderSectionStoreTableViewCell.identifier) as! HeaderSectionStoreTableViewCell
-            cell.lblTitle.text = "SPECIAL OFFERS"
-            return cell
-            
-        }else if section == 3 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: HeaderSectionStoreTableViewCell.identifier) as! HeaderSectionStoreTableViewCell
-            cell.lblTitle.text = "PRODUCT"
+            cell.lblTitle.text = "ALL PRODUCT"
             return cell
         }
         
@@ -129,20 +150,15 @@ extension StoreViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             return HeaderStoreTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
-        }else if indexPath.section == 1 {
-            let cell = FeatureProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "") as! FeatureProductTableViewCell
+        } else if indexPath.section == 1 {
+            let cell = FeatureProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: favouriteList) as! FeatureProductTableViewCell
             cell.size = collectionItemSize
             return cell
-        }else if indexPath.section == 2 {
-            let cell = ProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: specialOfferList) as! ProductTableViewCell
-            cell.size = collectionItemSize
-            return cell
-        }else if indexPath.section == 3 {
+        } else if indexPath.section == 2 {
             let cell = ProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: productList) as! ProductTableViewCell
             cell.size = collectionItemSize
             return cell
         }
-        
         return UITableViewCell()
     }
 
