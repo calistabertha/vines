@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public func halfCeil(_ number: Int) -> Int {
     if number % 2 == 0 {
@@ -14,4 +15,10 @@ public func halfCeil(_ number: Int) -> Int {
     } else {
         return (number / 2) + 1
     }
+}
+
+public func calculateSize() -> CGSize {
+    let width = ((UIScreen.main.bounds.width - 48) / 2) - 8
+    let height = width * 1.9
+    return CGSize(width: width, height: height)
 }

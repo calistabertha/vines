@@ -19,10 +19,20 @@ class DetailProductViewController: VinesViewController {
     
     var titleText = ""
     
+    var similiarList: [ProductListModelData] = []
+    var product: ProductListModelData?
+    
+    var collectionItemSize: CGSize = CGSize(width: 0, height: 0)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         generateNavBarWithBackButton(titleString: titleText, viewController: self, isRightBarButton: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchSimiliarList()
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,6 +50,8 @@ class DetailProductViewController: VinesViewController {
         tableView.register(DescriptionTableViewCell.nib, forCellReuseIdentifier: DescriptionTableViewCell.identifier)
         tableView.register(HeaderSectionStoreTableViewCell.nib, forCellReuseIdentifier: HeaderSectionStoreTableViewCell.identifier)
         tableView.register(ProductTableViewCell.nib, forCellReuseIdentifier: ProductTableViewCell.identifier)
+        
+        collectionItemSize = calculateSize()
         
         btnAddItem.layer.cornerRadius = 5
         btnAddItem.layer.borderColor = UIColor.init(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).cgColor
@@ -64,6 +76,24 @@ class DetailProductViewController: VinesViewController {
         btnProduct.setTitleColor(UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), for: .normal)
     }
 
+    func fetchSimiliarList() {
+        let params = [
+            "category_id": 2,
+            "by_title": "",
+            "limit": 10,
+            "offset":0
+            ] as [String : Any]
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Product.similiar, param: params, method: HTTPMethodHelper.post) { (success, json) in
+            let data = ProductListModelBaseClass(json: json!)
+            if data.message == "Success", let datas = data.data {
+                self.similiarList = datas
+                self.tableView.reloadData()
+            } else {
+                print(data.displayMessage ?? "")
+            }
+        }
+    }
+    
 }
 
 extension DetailProductViewController: UITableViewDataSource{
@@ -78,11 +108,13 @@ extension DetailProductViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            return HeaderProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
+            return HeaderProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: product)
         case 1:
-            return DescriptionTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
+            return DescriptionTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: product)
         case 2:
-            return ProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
+            let cell = ProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: similiarList) as! ProductTableViewCell
+            cell.size = collectionItemSize
+            return cell
         default:
             return UITableViewCell()
         }
@@ -124,7 +156,7 @@ extension DetailProductViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 2 {
-            return 355
+            return (collectionItemSize.height * CGFloat(halfCeil(similiarList.count)))
         }
         return UITableViewAutomaticDimension
     }

@@ -18,6 +18,8 @@
 		9097CBAD2189F3080053382D /* LoginModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9097CBAA2189F3080053382D /* LoginModelBaseClass.swift */; };
 		9097CBAE2189F3080053382D /* LoginModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9097CBAB2189F3080053382D /* LoginModelData.swift */; };
 		9097CBAF2189F3080053382D /* LoginModelUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9097CBAC2189F3080053382D /* LoginModelUserData.swift */; };
+		90AB72AD21E0DB2B009B72AB /* ProductListModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AB72AB21E0DB2B009B72AB /* ProductListModelBaseClass.swift */; };
+		90AB72AE21E0DB2B009B72AB /* ProductListModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AB72AC21E0DB2B009B72AB /* ProductListModelData.swift */; };
 		90D4876321A6EC56005B5A7C /* StoreListModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4875E21A6EC56005B5A7C /* StoreListModelBaseClass.swift */; };
 		90D4876421A6EC56005B5A7C /* StoreListModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4875F21A6EC56005B5A7C /* StoreListModelData.swift */; };
 		90D4876521A6EC56005B5A7C /* StoreDetailModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4876121A6EC56005B5A7C /* StoreDetailModelBaseClass.swift */; };
@@ -131,6 +133,8 @@
 		9097CBAA2189F3080053382D /* LoginModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModelBaseClass.swift; sourceTree = "<group>"; };
 		9097CBAB2189F3080053382D /* LoginModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModelData.swift; sourceTree = "<group>"; };
 		9097CBAC2189F3080053382D /* LoginModelUserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModelUserData.swift; sourceTree = "<group>"; };
+		90AB72AB21E0DB2B009B72AB /* ProductListModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListModelBaseClass.swift; sourceTree = "<group>"; };
+		90AB72AC21E0DB2B009B72AB /* ProductListModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListModelData.swift; sourceTree = "<group>"; };
 		90D4875E21A6EC56005B5A7C /* StoreListModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreListModelBaseClass.swift; sourceTree = "<group>"; };
 		90D4875F21A6EC56005B5A7C /* StoreListModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreListModelData.swift; sourceTree = "<group>"; };
 		90D4876121A6EC56005B5A7C /* StoreDetailModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailModelBaseClass.swift; sourceTree = "<group>"; };
@@ -302,6 +306,15 @@
 				9097CBAC2189F3080053382D /* LoginModelUserData.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		90AB72AA21E0DB2B009B72AB /* ProductList */ = {
+			isa = PBXGroup;
+			children = (
+				90AB72AB21E0DB2B009B72AB /* ProductListModelBaseClass.swift */,
+				90AB72AC21E0DB2B009B72AB /* ProductListModelData.swift */,
+			);
+			path = ProductList;
 			sourceTree = "<group>";
 		};
 		90D4875D21A6EC56005B5A7C /* StoreList */ = {
@@ -486,6 +499,7 @@
 			isa = PBXGroup;
 			children = (
 				9097CBA92189F3080053382D /* Login */,
+				90AB72AA21E0DB2B009B72AB /* ProductList */,
 				9015139721D614DE00BD836E /* Promotion */,
 				907B67432189FB1600CFEDB1 /* Register */,
 				90D4876021A6EC56005B5A7C /* StoreDetail */,
@@ -912,7 +926,9 @@
 				CC2AF83721BD2E14002BA448 /* ProductTableViewCell.swift in Sources */,
 				CCE5226D21D6234600F868DD /* DetailNewsViewController.swift in Sources */,
 				CC2AF7F721BD1280002BA448 /* HeaderStoreTableViewCell.swift in Sources */,
+				90AB72AD21E0DB2B009B72AB /* ProductListModelBaseClass.swift in Sources */,
 				CC954BFD217B3F6C0017C5F4 /* BaseCellProtocol.swift in Sources */,
+				90AB72AE21E0DB2B009B72AB /* ProductListModelData.swift in Sources */,
 				907B67472189FD7100CFEDB1 /* StringExtension.swift in Sources */,
 				CC2512BB21C49E8E00B4F664 /* DescriptionTableViewCell.swift in Sources */,
 				CC64A6B7217CA946000743DE /* AllStoreTableViewCell.swift in Sources */,
