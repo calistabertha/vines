@@ -11,7 +11,13 @@ import Foundation
 struct Constants {
     
     struct ServicesAPI {
-        static let apiBaseURL =  "http://209.97.165.47:8081/"
+        static var apiBaseURL: String {
+            if userDefault().isDebug() {
+                return "http://209.97.165.47:8081/"
+            } else {
+                return "http://45.64.97.98:8081/"
+            }
+        }
         
         struct Authentication {
             static let login = "user/authentication"
