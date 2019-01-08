@@ -57,7 +57,7 @@ extension AllStoreTableViewCell: TableViewCellProtocol {
         
         cell.callingButton = {
             (cells) in
-            guard let number = URL(string: "tel://" + "087879347954") else { return }
+            guard let number = URL(string: "tel://" + data.phone!) else { return }
             UIApplication.shared.open(number)
         }
         

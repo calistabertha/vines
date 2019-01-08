@@ -21,7 +21,7 @@ class ProfileSwipeViewController: UIViewController {
     @IBOutlet weak var lblCopyright: UILabel!
     @IBOutlet weak var cardView: UIView!
     var delegate: ProfileSwipeDelegate?
-    
+    var promotionList: [PromotionModelData] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(MenuProfileTableViewCell.nib, forCellReuseIdentifier: MenuProfileTableViewCell.identifier)
@@ -59,6 +59,7 @@ extension ProfileSwipeViewController: UITableViewDelegate {
 
 extension ProfileSwipeViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return MenuProfileTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
+        return MenuProfileTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: promotionList)
     }
+
 }

@@ -38,11 +38,13 @@ extension MenuProfileTableViewCell: TableViewCellProtocol {
 //        }else{
             cell.imgMenu.image = UIImage(named: "ico-menu\(indexPath.row+1)")
 //        }
-        
         cell.lblMenu.text = cell.listMenu[indexPath.row]
+        guard let promotionList = object as? [PromotionModelData] else { return cell }
+        
         
         cell.selectRow = {
             (cells) in
+            
             
             if let ctx = context as? ProfileSwipeViewController {
                 ctx.delegate?.dismissView(controller: ctx)
@@ -51,6 +53,7 @@ extension MenuProfileTableViewCell: TableViewCellProtocol {
                     context.navigationController?.pushViewController(vc, animated: true)
                 } else if indexPath.row == 1 {
                     let vc = PromotionsViewController()
+                    vc.promotionList = promotionList
                     context.navigationController?.pushViewController(vc, animated: true)
                 }else if indexPath.row == 2 {
                     let vc = AllStoreViewController()

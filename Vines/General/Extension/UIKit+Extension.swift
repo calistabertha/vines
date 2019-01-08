@@ -21,6 +21,55 @@ extension UIColor {
     }
 }
 
+extension UIAlertController {
+    public static func yesOrNoAlert(_ vc: UIViewController,
+                                    title: String? = nil,
+                                    message: String? = nil,
+                                    okButtonTitle: String = "Yes",
+                                    noButtonTitle: String? = "No",
+                                    no: VoidClosure? = nil,
+                                    yes: VoidClosure? = nil) {
+        
+        let alertVC: UIAlertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+        
+        if let noTitle = noButtonTitle {
+            alertVC.addAction(
+                UIAlertAction(
+                    title: noTitle,
+                    style: .default,
+                    handler: { _ in
+                        no?()
+                }
+                )
+            )
+        }
+        
+        alertVC.addAction(
+            UIAlertAction(
+                title: okButtonTitle,
+                style: .destructive,
+                handler: { _ in
+                    yes?()
+            }
+            )
+        )
+        
+        let alertWindow: UIWindow = UIWindow(frame: UIScreen.main.bounds)
+        alertWindow.rootViewController = UIViewController()
+        alertWindow.windowLevel = UIWindowLevelAlert + 1
+        alertWindow.makeKeyAndVisible()
+        alertWindow.rootViewController?.present(
+            alertVC,
+            animated: true,
+            completion: nil
+        )
+    }
+}
+
 extension Date {
     func toMillis() -> Int64 {
         return Int64(self.timeIntervalSince1970 * 1000)
@@ -53,7 +102,7 @@ extension String {
         let dateStamp: TimeInterval = (date?.timeIntervalSince1970)!
         return dateStamp
     }
-  
+    
     public var isEmail: Bool {
         let dataDetector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
         
@@ -85,5 +134,9 @@ extension String {
         let components = calendar.dateComponents([.year, .month, .day, .hour], from: date ?? Date())
         return calendar.date(from: components) ?? Date()
     }
-    
 }
+
+extension Notification.Name {
+    static let promotion = Notification.Name("promotions")
+}
+

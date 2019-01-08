@@ -8,6 +8,13 @@
 
 import UIKit
 
+@objc protocol GeneralInfoTextFieldDelegate {
+    func textFieldDidBeginEditing(view: PersonalInfoTextField)
+    func textFieldShouldBeginEditing(view: PersonalInfoTextField)
+    func textFieldDidEndEditing(view: PersonalInfoTextField)
+    func textFieldShouldChangeCharacters(view: PersonalInfoTextField)
+}
+
 class GeneralInfoTextField: UIView, Modal {
 
     var backgroundView = UIView()
@@ -25,7 +32,7 @@ class GeneralInfoTextField: UIView, Modal {
     @IBOutlet weak var viewCard: UIView!
     @IBOutlet weak var textField: UITextField!
     @IBInspectable var nibName:String?
-    var delegate: PersonalInfoTextFieldDelegate?
+    var delegate: GeneralInfoTextFieldDelegate?
   
     private func setupView() {
         guard let view = loadViewFromNib() else { return }

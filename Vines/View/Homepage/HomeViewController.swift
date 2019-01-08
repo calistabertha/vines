@@ -26,10 +26,13 @@ class HomeViewController: UIViewController {
             txtSearch.delegate = self
         }
     }
+    @IBOutlet weak var imgLogo: UIImageView!
     @IBOutlet weak var contentView: UIView!
     
     var tableDataSource: GMSAutocompleteTableDataSource?
     var locationManager:CLLocationManager?
+    
+    var counter: Int = 0
     
     // API Data
     var promotionList: [PromotionModelData] = []
@@ -38,9 +41,12 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         self.view.addGestureRecognizer(tap)
+        let change = UITapGestureRecognizer(target: self, action: #selector(changeEnvironment))
+        imgLogo.addGestureRecognizer(change)
+        imgLogo.isUserInteractionEnabled = true
+        
         setupView()
         setupCarousel()
-        print("home \(view.frame.origin.y)")
     }
     
     override func didReceiveMemoryWarning() {
@@ -116,6 +122,7 @@ class HomeViewController: UIViewController {
     
     @IBAction func profileButtonDidPush(_ sender: Any) {
         let vc = ProfileSwipeViewController()
+        vc.promotionList = promotionList
         contentView.addSubview(vc.view)
         self.addChildViewController(vc)
         vc.delegate = self
@@ -132,9 +139,26 @@ class HomeViewController: UIViewController {
     
     @IBAction func moreButtonDidPush(_ sender: Any) {
         let vc = PromotionsViewController()
+        vc.promotionList = self.promotionList
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    @objc func changeEnvironment() {
+        print(userDefault().isDebug())
+        if counter >= 3 {
+            counter = 0
+            userDefault().changeEnvironment()
+            UIAlertController
+                .yesOrNoAlert(self,
+                              title: "Environment Changed to \(userDefault().isDebug() == true ? "Debug" : "Production")",
+                              message: nil,
+                              okButtonTitle: "OK",
+                              noButtonTitle: nil,
+                              no: nil,
+                              yes: nil)
+        }
+        counter += 1
+    }
 }
 
 extension HomeViewController: UITextFieldDelegate{
@@ -242,7 +266,6 @@ extension HomeViewController: iCarouselDelegate, iCarouselDataSource {
         view.frame = CGRect(x: 0, y: 0, width: width, height: self.carouselView.bounds.height)
         view.backgroundColor = UIColor(white: 1, alpha: 0.0)
         view.layer.cornerRadius = 8
-//        view.layer.masksToBounds = false
         view.clipsToBounds = true
         view.bannerImage.af_setImage(withURL: URL(string: data.image!)!, placeholderImage: UIImage(named: "placeholder")) { image in
             if let img = image.value {
@@ -254,12 +277,9 @@ extension HomeViewController: iCarouselDelegate, iCarouselDataSource {
         return view
     }
     
-    func carouselCurrentItemIndexDidChange(_ carousel: iCarousel) {
-//        self.pageControll.currentPage = carousel.currentItemIndex
-    }
-    
     func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
-        let vc = PromotionsViewController()
+        let vc = DetailPromoViewController()
+        vc.data = self.promotionList[index]
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

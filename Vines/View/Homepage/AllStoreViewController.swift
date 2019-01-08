@@ -20,6 +20,8 @@ class AllStoreViewController: VinesViewController {
     
     var location: CLLocation = CLLocation(latitude: 106.818477, longitude: -6.282391)
     var storeList:[StoreListModelData] = []
+    var stores: StoreListModelData?
+    var detail: DetailStoreView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,12 +63,17 @@ class AllStoreViewController: VinesViewController {
     
     override func backButtonDidPush() {
         navigationController?.popViewController(animated: true)
+        if detail != nil {
+            detail?.dismiss(animated: true)
+        }
     }
     
     @objc func openDetail() {
         let detailView = DetailStoreView.init(frame: view.frame)
+        detailView.setupView(data: stores!)
+        detail = detailView
         detailView.delegate = self
-        view.addSubview(detailView)
+        detailView.show(animated: true)
     }
 }
 
@@ -82,9 +89,11 @@ extension AllStoreViewController: UITableViewDelegate {
 
 extension AllStoreViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let data = self.storeList[indexPath.row]
-//        cell.btnDetail.addTarget(self, action: #selector(openDetail), for: .touchUpInside)
-        return AllStoreTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: data)
+        stores = self.storeList[indexPath.row]
+        
+        let cell = AllStoreTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: stores) as! AllStoreTableViewCell
+        cell.btnDetail.addTarget(self, action: #selector(openDetail), for: .touchUpInside)
+        return cell
     }
 
 }
@@ -94,7 +103,8 @@ extension AllStoreViewController: DetailStoreViewDelegate{
         view.dismiss(animated: true)
     }
     
-    func goShoppingButtonDidPush() {
+    func goShoppingButtonDidPush(_ view: DetailStoreView) {
+        view.dismiss(animated: true)
         let vc = StoreViewController()
         navigationController?.pushViewController(vc, animated: true)
     }

@@ -7,9 +7,9 @@
 //
 
 import UIKit
-@objc protocol DetailStoreViewDelegate {
+@objc protocol DetailStoreViewDelegate: class {
     func closeButtonDidPush(_ view: DetailStoreView)
-    func goShoppingButtonDidPush()
+    func goShoppingButtonDidPush(_ view: DetailStoreView)
 }
 
 class DetailStoreView: UIView, Modal {
@@ -25,19 +25,28 @@ class DetailStoreView: UIView, Modal {
         super.init(coder: aDecoder)
     }
     
+    @IBInspectable var nibName:String?{
+        return "DetailStoreView"
+    }
 
     @IBOutlet weak var btnClose: UIButton!
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var viewCalling: UIView!
     @IBOutlet weak var btnGoShopping: UIButton!
-    var delegate: DetailStoreViewDelegate?
+    @IBOutlet weak var imgStore: UIImageView!
+    @IBOutlet weak var lblStoreName: UILabel!
+    @IBOutlet weak var lblAddress: UILabel!
+    @IBOutlet weak var lblTimeOpen: UILabel!
+    
+    weak var delegate: DetailStoreViewDelegate?
     
     private func setupView() {
-        Bundle.main.loadNibNamed("DetailStoreView", owner: self, options: nil)
-        self.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        contentView.frame = self.bounds
-        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        self.addSubview(contentView)
+        guard let view = loadViewFromNib() else { return }
+        view.frame = bounds
+        view.autoresizingMask =
+            [.flexibleWidth, .flexibleHeight]
+        self.addSubview(view)
+        contentView = view
         layoutIfNeeded()
         
         btnClose.layer.cornerRadius = btnClose.frame.size.height / 2
@@ -47,11 +56,27 @@ class DetailStoreView: UIView, Modal {
         btnGoShopping.layer.cornerRadius = 5
     }
     
+    func setupView(data: StoreListModelData){
+        imgStore.af_setImage(withURL: URL(string: data.image!)!)
+        lblStoreName.text = data.name!
+        lblTimeOpen.text = data.open!
+        lblAddress.text = data.address!
+    }
+    
+    func loadViewFromNib() -> UIView! {
+        guard let nibName = nibName else { return nil }
+        let bundle = Bundle(for: type(of: self))
+        let nib = UINib(nibName: nibName, bundle: bundle)
+        return nib.instantiate(
+            withOwner: self,
+            options: nil).first as? UIView
+    }
+    
     @IBAction func closeButtonDidPush(_ sender: Any) {
         delegate?.closeButtonDidPush(self)
     }
     
     @IBAction func goShoppingButtonDidPush(_ sender: Any) {
-        delegate?.goShoppingButtonDidPush()
+        delegate?.goShoppingButtonDidPush(self)
     }
 }

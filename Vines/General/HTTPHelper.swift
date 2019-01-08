@@ -21,7 +21,7 @@ public enum HTTPMethodHelper: String {
     case connect = "CONNECT"
     
     func toHTTPMethod() -> HTTPMethod {
-        switch self {
+        switch self { 
         case .get:
             return HTTPMethod.get
         case .post:

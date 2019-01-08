@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class HeaderProductTableViewCell: UITableViewCell {
     @IBOutlet weak var imgProduct: UIImageView!
@@ -39,11 +40,26 @@ class HeaderProductTableViewCell: UITableViewCell {
 extension HeaderProductTableViewCell: TableViewCellProtocol {
     static func configure<T>(context: UIViewController, tableView: UITableView, indexPath: IndexPath, object: T) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HeaderProductTableViewCell.identifier, for: indexPath) as! HeaderProductTableViewCell
-        let attributeString = NSMutableAttributedString(string: cell.lblPriceBefore.text ?? "")
+        guard let data = object as? ProductListModelData else { return cell }
+        let attributeString = NSMutableAttributedString(string: String(data.price ?? 0).asRupiah())
         attributeString.addAttribute(NSAttributedStringKey.strikethroughStyle,
                                      value: NSUnderlineStyle.styleSingle.rawValue,
                                      range: NSMakeRange(0, attributeString.length))
         cell.lblPriceBefore.attributedText = attributeString
+        
+        cell.imgProduct.af_setImage(withURL: URL(string: data.image ?? "")!, placeholderImage: UIImage(named: "placeholder")) { [weak cell] image in
+            guard let ws = cell else { return }
+            if let img = image.value {
+                ws.imgProduct.image = img
+            } else {
+                ws.imgProduct.image = UIImage(named: "placeholder")
+            }
+        }
+        
+        cell.lblType.text = data.categoryName ?? ""
+        cell.lblName.text = data.name ?? ""
+        cell.lblPriceAfter.text = String(data.discount ?? 0).asRupiah()
+        cell.lblStock.text = "Only \(data.stock ?? 0) left in stock"
         
         if cell.btnFavorite.isSelected{
             cell.btnFavorite.setImage(UIImage(named: "ico-buttonfavclicked"), for: .normal)
