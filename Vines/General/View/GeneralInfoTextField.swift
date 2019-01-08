@@ -9,10 +9,10 @@
 import UIKit
 
 @objc protocol GeneralInfoTextFieldDelegate {
-    func textFieldDidBeginEditing(view: PersonalInfoTextField)
-    func textFieldShouldBeginEditing(view: PersonalInfoTextField)
-    func textFieldDidEndEditing(view: PersonalInfoTextField)
-    func textFieldShouldChangeCharacters(view: PersonalInfoTextField)
+    func textFieldDidBeginEditing(view: GeneralInfoTextField)
+    func textFieldShouldBeginEditing(view: GeneralInfoTextField)
+    func textFieldDidEndEditing(view: GeneralInfoTextField)
+    func textFieldShouldChangeCharacters(view: GeneralInfoTextField)
 }
 
 class GeneralInfoTextField: UIView, Modal {

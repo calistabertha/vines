@@ -156,6 +156,7 @@ class HomeViewController: UIViewController {
                               noButtonTitle: nil,
                               no: nil,
                               yes: nil)
+      
         }
         counter += 1
     }
