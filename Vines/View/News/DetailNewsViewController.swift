@@ -10,15 +10,13 @@ import UIKit
 
 class DetailNewsViewController: VinesViewController {
     @IBOutlet weak var imgNews: UIImageView!
-    @IBOutlet weak var tableView: UITableView!
     var titleNav: String?
     
+    @IBOutlet weak var webView: UIWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.register(WebViewTableViewCell.nib, forCellReuseIdentifier: WebViewTableViewCell.identifier)
         generateNavBarWithBackButton(titleString: titleNav ?? "", viewController: self, isRightBarButton: false)
-        
+        webView.loadHTMLString("The campaign is inspired by the Bacardi-owned brand’s “obsession with\r\n doing things twice to make them better” – a tribute to its \r\ndouble-ageing process.\r\nRunning until the end of 2019, the new television advert debuted in \r\nthe US yesterday (22 October) and will roll out across Spain, Puerto \r\nRico, the Dominican Republic and Lebanon, among other countries. It will\r\n also feature print, digital, social and out-of-home executions.\r\n<br><br>The campaign re-launch is part of Dewar’s wider strategy to drive \r\ngrowth across its entire portfolio, with a “renewed focus on \r\ninnovation”.\r\nThe brand will also focus on its Dewar’s 12, Dewar’s 15 and Dewar’s \r\n18 expressions, with the aim of doubling distribution in the next year.\r\nScottish actor Iain Glen serves as the narrator for the television \r\nspot, telling the tale of a man named Neville Neville who is dedicated \r\nto doing things twice.\r\n“Live True is a bold embodiment of Dewar’s as a brand,” said Adam Oakley, global vice president, Dewar’s.\r\n“<br><br>This campaign is just the beginning [of] robust global efforts to \r\nlift the veil off not just Dewar’s, but the Scotch whisky category as a \r\nwhole, showing the craftsmanship and approachability behind this storied\r\n spirit.”\r\n<span>Brian Cox, vice president of Dewar’s in North America, added: “This \r\nis the first globally integrated campaign in five years, and with that \r\nthe business is doubling down on Dewar’s by revamping the brand’s \r\nmerchandising programme, fuelling the growth of its premium marques, and\r\n reshaping its on-premise experiential and sampling strategy.”<br><br>(source: </span><a target=\"_blank\" rel=\"nofollow\" href=\"https://www.thespiritsbusiness.com/2018/10/dewars-invests-15m-in-live-true-campaign/\">https://www.thespiritsbusiness.com/2018/10/dewars-invests-15m-in-live-true-campaign/</a>)", baseURL: nil)
     }
     
     override func backButtonDidPush() {
@@ -30,20 +28,4 @@ class DetailNewsViewController: VinesViewController {
      
     }
   
-}
-
-extension DetailNewsViewController: UITableViewDelegate{
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-}
-
-extension DetailNewsViewController: UITableViewDataSource{
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return WebViewTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
-    }
 }

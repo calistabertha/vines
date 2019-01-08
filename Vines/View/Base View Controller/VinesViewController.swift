@@ -28,7 +28,7 @@ class VinesViewController: UIViewController {
         }
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.barTintColor = UIColor.white
-        navigationController?.navigationBar.setBackgroundImage(UIColor.clear.as1ptImage(), for: .default)
+        navigationController?.navigationBar.setBackgroundImage(UIColor.white.as1ptImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1).as1ptImage()
         UIApplication.shared.isStatusBarHidden = false
         let titleLabel = UILabel(frame: CGRect.zero)
