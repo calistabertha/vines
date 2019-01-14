@@ -35,7 +35,7 @@
                                     </constraints>
                                 </imageView>
                                 <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ryh-0U-8N8">
-                                    <rect key="frame" x="0.0" y="241" width="375" height="406"/>
+                                    <rect key="frame" x="24" y="247" width="327" height="400"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </webView>
                             </subviews>
@@ -44,10 +44,10 @@
                                 <constraint firstItem="kX0-gx-bYb" firstAttribute="top" secondItem="UQ1-uv-0hz" secondAttribute="top" id="OcO-lz-S3r"/>
                                 <constraint firstAttribute="trailing" secondItem="kX0-gx-bYb" secondAttribute="trailing" id="QlY-XS-ozx"/>
                                 <constraint firstAttribute="bottom" secondItem="Ryh-0U-8N8" secondAttribute="bottom" id="RVS-t5-abi"/>
-                                <constraint firstAttribute="trailing" secondItem="Ryh-0U-8N8" secondAttribute="trailing" id="Wff-z3-st1"/>
+                                <constraint firstAttribute="trailing" secondItem="Ryh-0U-8N8" secondAttribute="trailing" constant="24" id="Wff-z3-st1"/>
                                 <constraint firstItem="kX0-gx-bYb" firstAttribute="leading" secondItem="UQ1-uv-0hz" secondAttribute="leading" id="bNM-na-cX4"/>
-                                <constraint firstItem="Ryh-0U-8N8" firstAttribute="top" secondItem="kX0-gx-bYb" secondAttribute="bottom" id="ibE-ZJ-tdi"/>
-                                <constraint firstItem="Ryh-0U-8N8" firstAttribute="leading" secondItem="UQ1-uv-0hz" secondAttribute="leading" id="vzN-fh-N8T"/>
+                                <constraint firstItem="Ryh-0U-8N8" firstAttribute="top" secondItem="kX0-gx-bYb" secondAttribute="bottom" constant="6" id="ibE-ZJ-tdi"/>
+                                <constraint firstItem="Ryh-0U-8N8" firstAttribute="leading" secondItem="UQ1-uv-0hz" secondAttribute="leading" constant="24" id="vzN-fh-N8T"/>
                             </constraints>
                         </view>
                     </subviews>

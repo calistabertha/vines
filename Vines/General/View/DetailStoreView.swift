@@ -10,6 +10,7 @@ import UIKit
 @objc protocol DetailStoreViewDelegate: class {
     func closeButtonDidPush(_ view: DetailStoreView)
     func goShoppingButtonDidPush(_ view: DetailStoreView)
+    func callingButtonDidPush()
 }
 
 class DetailStoreView: UIView, Modal {
@@ -70,6 +71,10 @@ class DetailStoreView: UIView, Modal {
         return nib.instantiate(
             withOwner: self,
             options: nil).first as? UIView
+    }
+    
+    @IBAction func callingButtonDidPush(_ sender: Any) {
+        delegate?.callingButtonDidPush()
     }
     
     @IBAction func closeButtonDidPush(_ sender: Any) {
