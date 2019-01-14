@@ -68,13 +68,6 @@ class AllStoreViewController: VinesViewController {
         }
     }
     
-    @objc func openDetail() {
-        let detailView = DetailStoreView.init(frame: view.frame)
-        detailView.setupView(data: stores!)
-        detail = detailView
-        detailView.delegate = self
-        detailView.show(animated: true)
-    }
 }
 
 extension AllStoreViewController: UITableViewDelegate {
@@ -89,13 +82,32 @@ extension AllStoreViewController: UITableViewDelegate {
 
 extension AllStoreViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        stores = self.storeList[indexPath.row]
-        
-        let cell = AllStoreTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: stores) as! AllStoreTableViewCell
-        cell.btnDetail.addTarget(self, action: #selector(openDetail), for: .touchUpInside)
+        let cell = AllStoreTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: storeList[safe: indexPath.row]) as! AllStoreTableViewCell
+        cell.delegate = self
         return cell
     }
 
+}
+
+extension AllStoreViewController: DetailStoreDelegate {
+    func openDetail(store: StoreListModelData) {
+        let rect = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height + 52)
+        let detailView = DetailStoreView.init(frame: rect)
+        detailView.data = store
+        detailView.setupViewData()
+        detail = detailView
+        detailView.delegate = self
+        detailView.show(animated: true)
+    }
+    
+    func callingNumber(phoneNumber: String) {
+        guard let number = URL(string: "tel://" + phoneNumber) else { return }
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(number)
+        } else {
+            // Fallback on earlier versions
+        }
+    }
 }
 
 extension AllStoreViewController: DetailStoreViewDelegate{
@@ -106,6 +118,7 @@ extension AllStoreViewController: DetailStoreViewDelegate{
     func goShoppingButtonDidPush(_ view: DetailStoreView) {
         view.dismiss(animated: true)
         let vc = StoreViewController()
+        vc.storeId = view.data?.storeId ?? 0
         navigationController?.pushViewController(vc, animated: true)
     }
     

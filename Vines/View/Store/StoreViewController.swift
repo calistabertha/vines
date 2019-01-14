@@ -22,6 +22,7 @@ class StoreViewController: VinesViewController {
     @IBOutlet weak var viewCart: UIView!
     
     var storeName: String?
+    var storeId: Int = 0
 
     // Still dummy data
     var favouriteList: [ProductListModelData] = []
@@ -73,6 +74,7 @@ class StoreViewController: VinesViewController {
     func fetchFavouriteList() {
         let params = [
             "limit": 10,
+            "user_id": ""
             ] as [String : Any]
         HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Product.favourite, param: params, method: HTTPMethodHelper.post) { (success, json) in
             let data = ProductListModelBaseClass(json: json!)
@@ -80,14 +82,14 @@ class StoreViewController: VinesViewController {
                 self.favouriteList = datas
                 self.tableView.reloadData()
             } else {
-                print(data.displayMessage!)
+                print(data.displayMessage ?? "")
             }
         }
     }
     
     func fetchProductList() {
         let params = [
-            "store_id": 1,
+            "store_id": storeId,
             "limit": 10,
             "category_id": "",
             "offset": 0
@@ -98,7 +100,7 @@ class StoreViewController: VinesViewController {
                 self.productList = datas
                 self.tableView.reloadData()
             } else {
-                print(data.displayMessage!)
+                print(data.displayMessage ?? "")
             }
         }
     }

@@ -57,6 +57,10 @@ extension UserDefaults {
         userDefault().set(!isDebug(), forKey: "DEBUG")
     }
     
+    func setToProd() {
+        userDefault().set(false, forKey: "DEBUG")
+    }
+    
     func getToken() -> String {
         /*if let user = self.getUserProfile() {
          return user.userToken

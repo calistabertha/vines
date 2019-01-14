@@ -10,10 +10,12 @@
 		2E085705789B5C62F916976A /* Pods_VinesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1A5546BAFE8905F14AABB1 /* Pods_VinesUITests.framework */; };
 		3E7AC2B7C3588621C904ABBD /* Pods_Vines.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC392BF63EA86635D82EFDA1 /* Pods_Vines.framework */; };
 		900E2A3121E3C16600DB5D8C /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900E2A3021E3C16600DB5D8C /* Typealias.swift */; };
+		9011615C21ECCFC3003B2520 /* NewsModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9011615A21ECCFC3003B2520 /* NewsModelData.swift */; };
+		9011615D21ECCFC3003B2520 /* NewsModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9011615B21ECCFC3003B2520 /* NewsModelBaseClass.swift */; };
 		9015139A21D614DE00BD836E /* PromotionModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9015139821D614DE00BD836E /* PromotionModelBaseClass.swift */; };
 		9015139B21D614DE00BD836E /* PromotionModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9015139921D614DE00BD836E /* PromotionModelData.swift */; };
 		907B67452189FB1600CFEDB1 /* RegisterModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907B67442189FB1600CFEDB1 /* RegisterModelBaseClass.swift */; };
-		907B67472189FD7100CFEDB1 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907B67462189FD7100CFEDB1 /* StringExtension.swift */; };
+		907B67472189FD7100CFEDB1 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907B67462189FD7100CFEDB1 /* Extension.swift */; };
 		90905BFD21D611C400896D68 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90905BFB21D611C400896D68 /* BannerView.swift */; };
 		90905BFE21D611C400896D68 /* BannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90905BFC21D611C400896D68 /* BannerView.xib */; };
 		9097CBAD2189F3080053382D /* LoginModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9097CBAA2189F3080053382D /* LoginModelBaseClass.swift */; };
@@ -152,10 +154,12 @@
 		14114278F12DB4EE5EBFCAC1 /* Pods-VinesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VinesUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VinesUITests/Pods-VinesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		24CB8D9603A163B3DBBB0168 /* Pods-VinesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VinesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VinesTests/Pods-VinesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		900E2A3021E3C16600DB5D8C /* Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealias.swift; sourceTree = "<group>"; };
+		9011615A21ECCFC3003B2520 /* NewsModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsModelData.swift; sourceTree = "<group>"; };
+		9011615B21ECCFC3003B2520 /* NewsModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsModelBaseClass.swift; sourceTree = "<group>"; };
 		9015139821D614DE00BD836E /* PromotionModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionModelBaseClass.swift; sourceTree = "<group>"; };
 		9015139921D614DE00BD836E /* PromotionModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionModelData.swift; sourceTree = "<group>"; };
 		907B67442189FB1600CFEDB1 /* RegisterModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterModelBaseClass.swift; sourceTree = "<group>"; };
-		907B67462189FD7100CFEDB1 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		907B67462189FD7100CFEDB1 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		90905BFB21D611C400896D68 /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		90905BFC21D611C400896D68 /* BannerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BannerView.xib; sourceTree = "<group>"; };
 		9097CBAA2189F3080053382D /* LoginModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModelBaseClass.swift; sourceTree = "<group>"; };
@@ -334,6 +338,15 @@
 				CA1A5546BAFE8905F14AABB1 /* Pods_VinesUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9011615921ECCFC3003B2520 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				9011615A21ECCFC3003B2520 /* NewsModelData.swift */,
+				9011615B21ECCFC3003B2520 /* NewsModelBaseClass.swift */,
+			);
+			path = News;
 			sourceTree = "<group>";
 		};
 		9015139721D614DE00BD836E /* Promotion */ = {
@@ -557,7 +570,7 @@
 			isa = PBXGroup;
 			children = (
 				CC81666D216A0692008FD617 /* UserDefaults+Extension.swift */,
-				907B67462189FD7100CFEDB1 /* StringExtension.swift */,
+				907B67462189FD7100CFEDB1 /* Extension.swift */,
 				CC070D0921D4857A00E0ABE8 /* UIKit+Extension.swift */,
 				90E950C321DFC51800627E06 /* PublicFunction.swift */,
 				900E2A3021E3C16600DB5D8C /* Typealias.swift */,
@@ -569,6 +582,7 @@
 			isa = PBXGroup;
 			children = (
 				9097CBA92189F3080053382D /* Login */,
+				9011615921ECCFC3003B2520 /* News */,
 				90AB72AA21E0DB2B009B72AB /* ProductList */,
 				9015139721D614DE00BD836E /* Promotion */,
 				907B67432189FB1600CFEDB1 /* Register */,
@@ -1006,6 +1020,7 @@
 				CCE5227121D6235600F868DD /* NewsTableViewCell.swift in Sources */,
 				CC2AF81C21BD1D5F002BA448 /* HomeViewController.swift in Sources */,
 				90D4876521A6EC56005B5A7C /* StoreDetailModelBaseClass.swift in Sources */,
+				9011615D21ECCFC3003B2520 /* NewsModelBaseClass.swift in Sources */,
 				CC2AF82C21BD21B1002BA448 /* AllStoreViewController.swift in Sources */,
 				CC4CD36521C3E0AF00217626 /* DetailProductViewController.swift in Sources */,
 				CC62C3FA21A5ACF700D2CA6F /* Modal.swift in Sources */,
@@ -1019,6 +1034,7 @@
 				CC2AF83F21BD3489002BA448 /* ProductCollectionViewCell.swift in Sources */,
 				907B67452189FB1600CFEDB1 /* RegisterModelBaseClass.swift in Sources */,
 				CC0131BD21D370EF00A5B883 /* WishlistViewController.swift in Sources */,
+				9011615C21ECCFC3003B2520 /* NewsModelData.swift in Sources */,
 				CC191D5E21E1D01C00FBB1D4 /* EditProfileViewController.swift in Sources */,
 				90D4876421A6EC56005B5A7C /* StoreListModelData.swift in Sources */,
 				CC070D0A21D4857A00E0ABE8 /* UIKit+Extension.swift in Sources */,
@@ -1052,7 +1068,7 @@
 				90AB72AD21E0DB2B009B72AB /* ProductListModelBaseClass.swift in Sources */,
 				CC954BFD217B3F6C0017C5F4 /* BaseCellProtocol.swift in Sources */,
 				90AB72AE21E0DB2B009B72AB /* ProductListModelData.swift in Sources */,
-				907B67472189FD7100CFEDB1 /* StringExtension.swift in Sources */,
+				907B67472189FD7100CFEDB1 /* Extension.swift in Sources */,
 				CC2512BB21C49E8E00B4F664 /* DescriptionTableViewCell.swift in Sources */,
 				CC191D5921E0E4A400FBB1D4 /* LiquorSelectionTableViewCell.swift in Sources */,
 				CC64A6B7217CA946000743DE /* AllStoreTableViewCell.swift in Sources */,

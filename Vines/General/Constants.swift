@@ -13,9 +13,9 @@ struct Constants {
     struct ServicesAPI {
         static var apiBaseURL: String {
             if userDefault().isDebug() {
-                return "http://45.64.97.98:8081/"
-            } else {
                 return "http://209.97.165.47:8081/"
+            } else {
+                return "http://45.64.97.98:8081/"
             }
         }
         
@@ -40,5 +40,8 @@ struct Constants {
             static let similiar = "product/similiar"
         }
     
+        struct News {
+            static let news = "news"
+        }
     }
 }

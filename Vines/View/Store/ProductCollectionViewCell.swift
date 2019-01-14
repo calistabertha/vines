@@ -45,11 +45,12 @@ extension ProductCollectionViewCell: CollectionViewCellProtocol{
             cell.iconAction.image = UIImage(named: "ico-nav-arrow")
         }
         
-        cell.imgProduct.af_setImage(withURL: URL(string: data.image!)!, placeholderImage: UIImage(named: "placeholder")) { image in
+        cell.imgProduct.af_setImage(withURL: URL(string: data.image!)!, placeholderImage: UIImage(named: "placeholder")) { [weak cell] image in
+            guard let wc = cell else { return }
             if let img = image.value {
-                cell.imgProduct.image = img
+                wc.imgProduct.image = img
             } else {
-                cell.imgProduct.image = UIImage(named: "placeholder")
+                wc.imgProduct.image = UIImage(named: "placeholder")
             }
         }
         

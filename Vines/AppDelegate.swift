@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func setDefaultValue() {
-        userDefault().changeEnvironment()
+        userDefault().setToProd()
     }
 
 }
