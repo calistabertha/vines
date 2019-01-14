@@ -109,5 +109,13 @@ extension AllStoreViewController: DetailStoreViewDelegate{
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    func callingButtonDidPush() {
+        guard let number = URL(string: "tel://" + (stores?.phone)!) else { return }
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(number)
+        } else {
+            // Fallback on earlier versions
+        }
+    }
     
 }
