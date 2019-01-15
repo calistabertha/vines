@@ -18,6 +18,7 @@ class FeatureProductTableViewCell: UITableViewCell {
         }
     }
     internal var context: UIViewController?
+    var list: [ProductListModelData] = []
     var size: CGSize = CGSize(width: 0, height: 0)
     
     override func awakeFromNib() {
@@ -35,15 +36,10 @@ class FeatureProductTableViewCell: UITableViewCell {
 extension FeatureProductTableViewCell: TableViewCellProtocol {
     static func configure<T>(context: UIViewController, tableView: UITableView, indexPath: IndexPath, object: T) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FeatureProductTableViewCell.identifier, for: indexPath) as! FeatureProductTableViewCell
-        
+        guard let data = object as? [ProductListModelData] else { return cell }
         cell.context = context
-        print("context \(context)")
-        /*
-         guard let data = object as? FeedModel else { return cell }
-         
-         cell.similarData.append(data)
-         
-         */
+        cell.list = data
+        cell.collectionView.reloadData()
         return cell
     }
 }
@@ -51,6 +47,7 @@ extension FeatureProductTableViewCell: TableViewCellProtocol {
 extension FeatureProductTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = DetailProductViewController()
+        vc.product = list[indexPath.row]
         self.context?.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -58,14 +55,13 @@ extension FeatureProductTableViewCell: UICollectionViewDelegate {
 
 extension FeatureProductTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4 //data.count
+        return list.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-       // let data = similarData[indexPath.row]
-        
         if let ctx = self.context {
-            return FeatureProductCollectionViewCell.configure(context: ctx, collectionView: collectionView, indexPath: indexPath, object: "")
+            let data = list[indexPath.row]
+            return FeatureProductCollectionViewCell.configure(context: ctx, collectionView: collectionView, indexPath: indexPath, object: data)
         } else {
             return UICollectionViewCell()
         }

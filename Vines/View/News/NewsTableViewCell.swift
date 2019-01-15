@@ -28,11 +28,17 @@ class NewsTableViewCell: UITableViewCell {
 extension NewsTableViewCell: TableViewCellProtocol {
     static func configure<T>(context: UIViewController, tableView: UITableView, indexPath: IndexPath, object: T) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.identifier, for: indexPath) as! NewsTableViewCell
-        cell.viewReadMore.layer.cornerRadius = cell.viewReadMore.frame.height / 2
-        cell.lblTitle.text = cell.strings.uppercased()
-        if indexPath.row == 1 {
-            cell.lblTitle.text = "Palicierit, quide te nonte".uppercased()
+        guard let data = object as? [NewsModelData] else { return cell }
+        cell.lblTitle.text = data[indexPath.row].title?.htmlToString
+        cell.imgNews.af_setImage(withURL: URL(string: data[indexPath.row].image ?? "")!, placeholderImage: UIImage(named: "placeholder")) { [weak cell] image in
+            guard let ws = cell else { return }
+            if let img = image.value {
+                ws.imgNews.image = img
+            } else {
+                ws.imgNews.image = UIImage(named: "placeholder")
+            }
         }
+        cell.viewReadMore.layer.cornerRadius = cell.viewReadMore.frame.height / 2
         cell.lblTitle.sizeToFit()
         return cell
     }

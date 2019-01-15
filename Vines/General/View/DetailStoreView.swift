@@ -16,6 +16,7 @@ import UIKit
 class DetailStoreView: UIView, Modal {
     var backgroundView = UIView()
     var dialogView = UIView()
+    var data: StoreListModelData?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,11 +58,11 @@ class DetailStoreView: UIView, Modal {
         btnGoShopping.layer.cornerRadius = 5
     }
     
-    func setupView(data: StoreListModelData){
-        imgStore.af_setImage(withURL: URL(string: data.image!)!)
-        lblStoreName.text = data.name!
-        lblTimeOpen.text = data.open!
-        lblAddress.text = data.address!
+    func setupViewData() {
+        imgStore.af_setImage(withURL: URL(string: data?.image ?? "")!)
+        lblStoreName.text = data?.name ?? ""
+        lblTimeOpen.text = data?.open ?? ""
+        lblAddress.text = data?.address ?? ""
     }
     
     func loadViewFromNib() -> UIView! {

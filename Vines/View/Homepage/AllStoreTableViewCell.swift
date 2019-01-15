@@ -9,6 +9,11 @@
 import UIKit
 import AlamofireImage
 
+protocol DetailStoreDelegate: class {
+    func openDetail(store: StoreListModelData)
+    func callingNumber(phoneNumber: String)
+}
+
 class AllStoreTableViewCell: UITableViewCell {
     @IBOutlet weak var imgStore: UIImageView!
     @IBOutlet weak var lblStore: UILabel!
@@ -18,6 +23,9 @@ class AllStoreTableViewCell: UITableViewCell {
     @IBOutlet weak var btnCalling: UIButton!
     @IBOutlet weak var viewCard: UIView!
     @IBOutlet weak var btnDetail: UIButton!
+    
+    weak var delegate: DetailStoreDelegate?
+    var data: StoreListModelData?
     
     var openDetail : ((UITableViewCell) -> Void)?
     var callingButton : ((UITableViewCell) -> Void)?
@@ -33,37 +41,28 @@ class AllStoreTableViewCell: UITableViewCell {
     }
     
     @IBAction func openDetailButtonDidPush(_ sender: Any) {
-        openDetail?(self)
+        delegate?.openDetail(store: data!)
     }
     
     @IBAction func callingButtonDidPush(_ sender: Any) {
-        callingButton?(self)
+        delegate?.callingNumber(phoneNumber: data?.phone ?? "")
     }
 }
 
 extension AllStoreTableViewCell: TableViewCellProtocol {
     static func configure<T>(context: UIViewController, tableView: UITableView, indexPath: IndexPath, object: T) -> UITableViewCell {
-        let data = object as! StoreListModelData
+        let datas = object as! StoreListModelData
         let cell = tableView.dequeueReusableCell(withIdentifier: AllStoreTableViewCell.identifier, for: indexPath) as! AllStoreTableViewCell
-        cell.imgStore.af_setImage(withURL: URL(string: data.image!)!)
-        cell.lblStore.text = data.name!
-        cell.lblTime.text = data.open!
-        cell.lblAddress.text = data.address!
+        cell.data = datas
+        cell.imgStore.af_setImage(withURL: URL(string: datas.image!)!)
+        cell.lblStore.text = datas.name!
+        cell.lblTime.text = datas.open!
+        cell.lblAddress.text = datas.address!
         
         cell.viewCalling.layer.cornerRadius = cell.viewCalling.frame.width / 2
         cell.viewCalling.layer.borderWidth = 2
         cell.viewCalling.layer.borderColor = UIColor(red: 125/255.0, green: 6/255.0, blue: 15/255.0, alpha: 1).cgColor
         cell.viewCard.backgroundColor = UIColor.white
-        
-        cell.callingButton = {
-            (cells) in
-            guard let number = URL(string: "tel://" + data.phone!) else { return }
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(number)
-            } else {
-                // Fallback on earlier versions
-            }
-        }
         
         return cell
     }

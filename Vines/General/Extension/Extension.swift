@@ -8,6 +8,20 @@
 
 import Foundation
 
+extension Data {
+    public var htmlToAttributedString: NSAttributedString? {
+        do {
+            return try NSAttributedString(data: self, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
+        } catch {
+            print("error:", error)
+            return  nil
+        }
+    }
+    public var htmlToString: String {
+        return htmlToAttributedString?.string ?? ""
+    }
+}
+
 extension String {
     func isValidEmail() -> Bool {
         // here, `try!` will always succeed because the pattern is valid
@@ -38,6 +52,13 @@ extension String {
             result = formatted
         }
         return result
+    }
+    
+    public var htmlToAttributedString: NSAttributedString? {
+        return Data(utf8).htmlToAttributedString
+    }
+    public var htmlToString: String {
+        return htmlToAttributedString?.string ?? ""
     }
 }
 
