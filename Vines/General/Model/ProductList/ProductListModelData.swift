@@ -14,6 +14,10 @@ public final class ProductListModelData: NSCoding {
   private struct SerializationKeys {
     static let summary = "summary"
     static let productId = "product_id"
+    static let wishlistId = "wishlist_id"
+    static let storeId = "store_id"
+    static let storeName = "store_name"
+    static let isFavourite = "is_favorite"
     static let name = "name"
     static let datecreate = "datecreate"
     static let discount = "discount"
@@ -30,6 +34,10 @@ public final class ProductListModelData: NSCoding {
   // MARK: Properties
   public var summary: String?
   public var productId: Int?
+  public var wishlistId: Int?
+  public var storeId: Int?
+  public var storeName: String?
+  public var isFavourite: Bool?
   public var name: String?
   public var datecreate: String?
   public var discount: Int?
@@ -58,6 +66,10 @@ public final class ProductListModelData: NSCoding {
   public required init(json: JSON) {
     summary = json[SerializationKeys.summary].string
     productId = json[SerializationKeys.productId].int
+    wishlistId = json[SerializationKeys.wishlistId].int
+    storeId = json[SerializationKeys.storeId].int
+    storeName = json[SerializationKeys.storeName].string
+    isFavourite = json[SerializationKeys.isFavourite].bool
     name = json[SerializationKeys.name].string
     datecreate = json[SerializationKeys.datecreate].string
     discount = json[SerializationKeys.discount].int
@@ -78,6 +90,10 @@ public final class ProductListModelData: NSCoding {
     var dictionary: [String: Any] = [:]
     if let value = summary { dictionary[SerializationKeys.summary] = value }
     if let value = productId { dictionary[SerializationKeys.productId] = value }
+    if let value = wishlistId { dictionary[SerializationKeys.wishlistId] = value }
+    if let value = storeId { dictionary[SerializationKeys.storeId] = value }
+    if let value = storeName { dictionary[SerializationKeys.storeName] = value }
+    if let value = isFavourite { dictionary[SerializationKeys.isFavourite] = value }
     if let value = name { dictionary[SerializationKeys.name] = value }
     if let value = datecreate { dictionary[SerializationKeys.datecreate] = value }
     if let value = discount { dictionary[SerializationKeys.discount] = value }
@@ -96,6 +112,10 @@ public final class ProductListModelData: NSCoding {
   required public init(coder aDecoder: NSCoder) {
     self.summary = aDecoder.decodeObject(forKey: SerializationKeys.summary) as? String
     self.productId = aDecoder.decodeObject(forKey: SerializationKeys.productId) as? Int
+    self.wishlistId = aDecoder.decodeObject(forKey: SerializationKeys.wishlistId) as? Int
+    self.storeId = aDecoder.decodeObject(forKey: SerializationKeys.storeId) as? Int
+    self.storeName = aDecoder.decodeObject(forKey: SerializationKeys.storeName) as? String
+    self.isFavourite = aDecoder.decodeObject(forKey: SerializationKeys.isFavourite) as? Bool
     self.name = aDecoder.decodeObject(forKey: SerializationKeys.name) as? String
     self.datecreate = aDecoder.decodeObject(forKey: SerializationKeys.datecreate) as? String
     self.discount = aDecoder.decodeObject(forKey: SerializationKeys.discount) as? Int
@@ -111,6 +131,10 @@ public final class ProductListModelData: NSCoding {
 
   public func encode(with aCoder: NSCoder) {
     aCoder.encode(summary, forKey: SerializationKeys.summary)
+    aCoder.encode(storeId, forKey: SerializationKeys.storeId)
+    aCoder.encode(wishlistId, forKey: SerializationKeys.wishlistId)
+    aCoder.encode(storeName, forKey: SerializationKeys.storeName)
+    aCoder.encode(isFavourite, forKey: SerializationKeys.isFavourite)
     aCoder.encode(productId, forKey: SerializationKeys.productId)
     aCoder.encode(name, forKey: SerializationKeys.name)
     aCoder.encode(datecreate, forKey: SerializationKeys.datecreate)

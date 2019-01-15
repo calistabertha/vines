@@ -22,10 +22,20 @@ class WishlistViewController: VinesViewController {
     @IBOutlet weak var viewContinueShop: UIView!
     @IBOutlet weak var viewEmpty: UIView!
     
+    var list: [ProductListModelData] = []
+    var collectionItemSize: CGSize = CGSize(width: 0, height: 0)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         generateNavBarWithBackButton(titleString: "WISHLIST", viewController: self, isRightBarButton: false)
         viewContinueShop.layer.cornerRadius = viewContinueShop.frame.height / 2
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        collectionItemSize = calculateSize()
+        fetchWishlist()
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,6 +51,44 @@ class WishlistViewController: VinesViewController {
         
     }
     
+    func fetchWishlist() {
+        let params = [
+            "limit": 10,
+            "user_id": userDefault().getUserID(),
+            "offset": 0,
+            "token": userDefault().getToken()
+            ] as [String : Any]
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.wishlist, param: params, method: HTTPMethodHelper.post) { (success, json) in
+            let data = ProductListModelBaseClass(json: json!)
+            if data.message?.lowercased() == "success", let datas = data.data {
+                self.list = datas
+                self.collectionView.reloadData()
+                if self.list.count > 0 {
+                    self.viewEmpty.isHidden = true
+                }
+            } else {
+                print(data.displayMessage ?? "")
+            }
+        }
+    }
+    
+    func removeWishlist(_ product: ProductListModelData) {
+        let params = [
+            "user_id": userDefault().getUserID(),
+            "product_id": product.productId ?? 0,
+            "token": userDefault().getToken()
+            ] as [String: Any]
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.deleteWishlist, param: params, method: HTTPMethodHelper.post) { (success, json) in
+            let data = ProductListModelBaseClass(json: json ?? "")
+            if data.message?.lowercased() == "success" {
+                let index = self.list.index { $0.productId == product.productId } ?? 0
+                self.list.remove(at: index)
+                self.collectionView.reloadData()
+            } else {
+                print(data.displayMessage ?? "")
+            }
+        }
+    }
 }
 
 extension WishlistViewController: UICollectionViewDelegate {
@@ -53,11 +101,23 @@ extension WishlistViewController: UICollectionViewDelegate {
 
 extension WishlistViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return list.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return ProductCollectionViewCell.configure(context: self, collectionView: collectionView, indexPath: indexPath, object: "wishlist")
+        let data = list[indexPath.row]
+        let cell = ProductCollectionViewCell.configure(context: self, collectionView: collectionView, indexPath: indexPath, object: data) as! ProductCollectionViewCell
+        cell.isFromWishlist = true
+        cell.setupView()
+//        cell.addToCart = { [weak self] int in
+//            guard let ws = self else { return }
+//            ws.addToCart(int)
+//        }
+        cell.addToWishlist = { [weak self] data in
+            guard let ws = self else { return }
+            ws.removeWishlist(data)
+        }
+        return cell
        
     }
     
@@ -65,7 +125,7 @@ extension WishlistViewController: UICollectionViewDataSource {
 
 extension WishlistViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width/2 - 10, height: collectionView.frame.size.height/2 + 5)
+        return collectionItemSize
     }
 }
 

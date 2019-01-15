@@ -74,10 +74,10 @@ class StoreViewController: VinesViewController {
     func fetchFavouriteList() {
         let params = [
             "limit": 10,
-            "user_id": ""
+            "user_id": userDefault().getUserID()
             ] as [String : Any]
         HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Product.favourite, param: params, method: HTTPMethodHelper.post) { (success, json) in
-            let data = ProductListModelBaseClass(json: json!)
+            let data = ProductListModelBaseClass(json: json ?? "")
             if data.message == "Success", let datas = data.data {
                 self.favouriteList = datas
                 self.tableView.reloadData()
@@ -92,7 +92,8 @@ class StoreViewController: VinesViewController {
             "store_id": storeId,
             "limit": 10,
             "category_id": "",
-            "offset": 0
+            "offset": 0,
+            "user_id": userDefault().getUserID()
             ] as [String : Any]
         HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Product.list, param: params, method: HTTPMethodHelper.post) { (success, json) in
             let data = ProductListModelBaseClass(json: json ?? "")
@@ -101,6 +102,45 @@ class StoreViewController: VinesViewController {
                 self.tableView.reloadData()
             } else {
                 print(data.displayMessage ?? "")
+            }
+        }
+    }
+    
+    func addToWishlist(_ product: ProductListModelData) {
+        if product.isFavourite! {
+            let params = [
+                "user_id": userDefault().getUserID(),
+                "product_id": product.productId ?? 0,
+                "token": userDefault().getToken()
+                ] as [String: Any]
+            HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.deleteWishlist, param: params, method: HTTPMethodHelper.post) { (success, json) in
+                let data = ProductListModelBaseClass(json: json ?? "")
+                if data.message?.lowercased() == "success" {
+                    let index = self.productList.index { $0.productId == product.productId } ?? 0
+                    self.productList[index].isFavourite = !self.productList[index].isFavourite!
+//                    self.tableView.reloadSections(IndexSet(arrayLiteral: 2), with: .none)
+                    self.tableView.reloadData()
+                } else {
+                    print(data.displayMessage ?? "")
+                }
+            }
+        } else {
+            let params = [
+                "user_id": userDefault().getUserID(),
+                "product_id": product.productId ?? 0,
+                "store_id": storeId,
+                "token": userDefault().getToken()
+                ] as [String: Any]
+            HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.addWishlist, param: params, method: HTTPMethodHelper.post) { (success, json) in
+                let data = ProductListModelBaseClass(json: json ?? "")
+                if data.message?.lowercased() == "success" {
+                    let index = self.productList.index { $0.productId == product.productId } ?? 0
+                    self.productList[index].isFavourite = !self.productList[index].isFavourite!
+//                    self.tableView.reloadSections(IndexSet(arrayLiteral: 2), with: .none)
+                    self.tableView.reloadData()
+                } else {
+                    print(data.displayMessage ?? "")
+                }
             }
         }
     }
@@ -158,6 +198,14 @@ extension StoreViewController: UITableViewDataSource{
             return cell
         } else if indexPath.section == 2 {
             let cell = ProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: productList) as! ProductTableViewCell
+//            cell.addToCart = { [weak self] int in
+//                guard let ws = self else { return }
+//                ws.addToCart(int)
+//            }
+            cell.addToWishlist = { [weak self] product in
+                guard let ws = self else { return }
+                ws.addToWishlist(product)
+            }
             cell.size = collectionItemSize
             return cell
         }

@@ -22,6 +22,8 @@ class ProductTableViewCell: UITableViewCell {
     internal var context: UIViewController?
     var list: [ProductListModelData] = []
     var size: CGSize = CGSize(width: 0, height: 0)
+    var addToCart: IntClosure?
+    var addToWishlist: ProductClosure?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -63,7 +65,11 @@ extension ProductTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let ctx = self.context {
             let data = list[indexPath.row]
-            return ProductCollectionViewCell.configure(context: ctx, collectionView: collectionView, indexPath: indexPath, object: data)
+            let cell = ProductCollectionViewCell.configure(context: ctx, collectionView: collectionView, indexPath: indexPath, object: data) as! ProductCollectionViewCell
+            cell.setupView()
+            cell.addToCart = addToCart
+            cell.addToWishlist = addToWishlist
+            return cell
         } else {
             return UICollectionViewCell()
         }

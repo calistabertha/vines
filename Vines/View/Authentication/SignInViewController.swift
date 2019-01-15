@@ -72,7 +72,7 @@ class SignInViewController: UIViewController {
             "email": email,
             "password": password
         ]
-        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Authentication.login, param: params, method: HTTPMethodHelper.post) { (success, json) in
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.login, param: params, method: HTTPMethodHelper.post) { (success, json) in
             let data = LoginModelBaseClass(json: json!)
             if success {
                 let token = data.data?.token
@@ -82,7 +82,7 @@ class SignInViewController: UIViewController {
                 let vc = HomeViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {
-                print(data.displayMessage)
+                print(data.displayMessage ?? "")
             }
         }
     }
