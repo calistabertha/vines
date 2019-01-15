@@ -148,6 +148,8 @@ class HomeViewController: UIViewController {
         if counter >= 3 {
             counter = 0
             userDefault().changeEnvironment()
+            let delegate = UIApplication.shared.delegate as! AppDelegate
+            delegate.logout()
             UIAlertController
                 .yesOrNoAlert(self,
                               title: "Environment Changed to \(userDefault().isDebug() == true ? "Debug" : "Production")",
@@ -307,7 +309,7 @@ extension HomeViewController {
                 self.promotionList = datas
                 self.carouselView.reloadData()
             } else {
-                print(data.displayMessage!)
+                print(data.displayMessage ?? "")
             }
         }
     }

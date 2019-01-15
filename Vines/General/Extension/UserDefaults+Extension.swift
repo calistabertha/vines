@@ -15,53 +15,107 @@ public func userDefault() -> UserDefaults {
 extension UserDefaults {
     @objc public static let shared: UserDefaults = UserDefaults.standard
     
-    func setUserProfile(json: JSON) -> Void {
-        if let data = json.rawString() {
-            userDefault().setValue(data, forKey: "USER_PROFILE")
-        }
+    func commit() {
+        userDefault().synchronize()
+    }
+    
+    func saveObject(key:String ,value:AnyObject){
+        let data = NSKeyedArchiver.archivedData(withRootObject: value)
+        userDefault().set(data, forKey: key)
+        commit()
+    }
+    
+    func firstLaunch() {
+        userDefault().set(true, forKey: "FIRST_LAUNCH")
+        commit()
+    }
+    
+    func saveUser(user: LoginModelData) {
+        saveObject(key: "USER_DATA", value: user)
+        commit()
     }
     
     func setToken(token: String) {
-        userDefault().setValue(token, forKey: "USER_TOKEN")
+        userDefault().set(token, forKey: "USER_TOKEN")
+        commit()
     }
     
     func setUserID(userID: Int) {
-        userDefault().setValue(userID, forKey: "USER_ID")
+        userDefault().set(userID, forKey: "USER_ID")
+        commit()
     }
     
     func setApiKey(apiKey: String) {
-        userDefault().setValue(apiKey, forKey: "API_KEY")
+        userDefault().set(apiKey, forKey: "API_KEY")
+        commit()
     }
     
-    func getApiKey() -> String {
-        if let token = userDefault().value(forKey: "API_KEY") as? String {
-            return token
-        }
-        
-        return ""
+    func changeEnvironment() {
+        userDefault().set(!isDebug(), forKey: "DEBUG")
+        commit()
+    }
+    
+    func setToProd() {
+        userDefault().set(false, forKey: "DEBUG")
+        commit()
+    }
+    
+    func walthroughShowed(_ bool: Bool) {
+        userDefault().set(bool, forKey: "WALTHROUGH")
+    }
+    
+    func logout() {
+        userDefault().removeObject(forKey: "USER_DATA")
+        userDefault().removeObject(forKey: "USER_ID")
+        userDefault().removeObject(forKey: "USER_TOKEN")
+    }
+    
+    func isLoggedIn() -> Bool {
+        return getUserData() != nil
+    }
+    
+    func isAlreadyFirstLaunch() -> Bool {
+        return userDefault().bool(forKey: "FIRST_LAUNCH")
+    }
+    
+    func showWalthrough() -> Bool {
+        return userDefault().bool(forKey: "WALTHROUGH")
     }
     
     func isDebug() -> Bool {
         return userDefault().bool(forKey: "DEBUG")
     }
     
-    func changeEnvironment() {
-        userDefault().set(!isDebug(), forKey: "DEBUG")
+    func getApiKey() -> String {
+        if let apiKey = userDefault().value(forKey: "API_KEY") as? String {
+            return apiKey
+        }
+        return ""
     }
     
-    func setToProd() {
-        userDefault().set(false, forKey: "DEBUG")
+    func getObject(key:String)->AnyObject?{
+        if let data = userDefault().object(forKey: key) as? NSData {
+            let obj = NSKeyedUnarchiver.unarchiveObject(with: data as Data)!
+            return obj as AnyObject?
+        }
+        return nil
     }
     
     func getToken() -> String {
         if let token = userDefault().value(forKey: "USER_TOKEN") as? String {
             return token
         }
-        
         return ""
     }
     
     func getUserID() -> Int {
         return userDefault().integer(forKey: "USER_ID")
+    }
+    
+    func getUserData() -> LoginModelData? {
+        if let result = getObject(key: "USER_DATA") as? LoginModelData {
+            return result
+        }
+        return nil
     }
 }

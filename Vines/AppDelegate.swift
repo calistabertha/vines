@@ -17,16 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        setDefaultValue()
-        
-        let vc = HomeViewController()//SignInViewController()
-        let navigationVC = UINavigationController.init(rootViewController: vc)
-        window = UIWindow(frame: UIScreen.main.bounds);
-        window?.rootViewController = navigationVC
-        window?.makeKeyAndVisible();
-        
-        GMSServices.provideAPIKey("AIzaSyAHJfNPJUTy2uIrYBDhjWGp-bsFq7-k9KE")
-        GMSPlacesClient.provideAPIKey("AIzaSyAHJfNPJUTy2uIrYBDhjWGp-bsFq7-k9KE")
+        if !userDefault().isAlreadyFirstLaunch() {
+            setDefaultValue()
+        }
+        setGoogleMapsKey()
+        navigate()
         return true
     }
 
@@ -51,12 +46,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func setGoogleMapsKey() {
+        GMSServices.provideAPIKey("AIzaSyAHJfNPJUTy2uIrYBDhjWGp-bsFq7-k9KE")
+        GMSPlacesClient.provideAPIKey("AIzaSyAHJfNPJUTy2uIrYBDhjWGp-bsFq7-k9KE")
+    }
 
     func setDefaultValue() {
         userDefault().setToProd()
-        userDefault().setToken(token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Iml3YW5faW5mb3JAeWFob28uY28uaWQiLCJ1c2VyX2lkIjoyNCwiZXhwIjoxNTQ0Mzg0OTg5NDg2LCJpYXQiOjE1NDM3ODAxODl9.vTMCgXsEbltuOEp3zQdVLM4lJ__pzG5-vl_hjUcOrak")
-        userDefault().setUserID(userID: 24)
+        // set default do debug
+//        userDefault().changeEnvironment()
+        userDefault().setApiKey(apiKey: "bd9f1fcdc95abde54fdd46cf3fba93151d435a41")
+        userDefault().firstLaunch()
+    }
+    
+    func navigate() {
+        // walthrough doesnt exist yet
+        userDefault().walthroughShowed(false)
+        if userDefault().showWalthrough() {
+            // go to walthough
+            userDefault().walthroughShowed(false)
+        } else {
+            checkLogin()
+        }
+    }
+    
+    func checkLogin() {
+        var vc: UIViewController = UIViewController()
+        if userDefault().isLoggedIn() {
+            vc = HomeViewController()
+        } else {
+            vc = SignInViewController()
+        }
+        let navigationVC = UINavigationController.init(rootViewController: vc)
+        window = UIWindow(frame: UIScreen.main.bounds);
+        window?.rootViewController = navigationVC
+        window?.makeKeyAndVisible();
     }
 
+    func logout() {
+        userDefault().logout()
+        navigate()
+    }
 }
 
