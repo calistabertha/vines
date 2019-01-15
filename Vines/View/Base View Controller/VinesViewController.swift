@@ -20,6 +20,10 @@ class VinesViewController: UIViewController {
         
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
+    
     func generateNavBarWithBackButton(titleString: String, viewController: VinesViewController, isRightBarButton: Bool) {
         for view in navigationController?.navigationBar.subviews ?? [UIView]() {
             if view.tag == 100 {
@@ -30,7 +34,6 @@ class VinesViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.setBackgroundImage(UIColor.white.as1ptImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1).as1ptImage()
-        UIApplication.shared.isStatusBarHidden = false
         let titleLabel = UILabel(frame: CGRect.zero)
         titleLabel.text = titleString
         titleLabel.font = UIFont.init(name: "RobotoCondensed-Bold", size: 16.0)

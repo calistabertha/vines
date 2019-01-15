@@ -69,12 +69,12 @@ class SignUpViewController: VinesViewController {
             "latitude":"106.8694690"
         ]
         
-        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Authentication.register, param: params, method: HTTPMethodHelper.post) { (success, json) in
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.register, param: params, method: HTTPMethodHelper.post) { (success, json) in
             let data = RegisterModelBaseClass(json: json!)
             if success {
-                print(data.data)
+                print(data.data ?? "")
             } else {
-                print(data.data)
+                print(data.data ?? "")
             }
         }
     }

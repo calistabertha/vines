@@ -21,20 +21,12 @@ extension UserDefaults {
         }
     }
     
-    func removeUserProfile() -> Void {
-        userDefault().setValue(nil, forKey: "USER_PROFILE")
-    }
-    
-    func getUserProfile() -> UserModel? {
-        if let data = userDefault().value(forKey: "USER_PROFILE") as? String {
-            let jsonResult = JSON.init(parseJSON: data)
-            return UserModel(json: jsonResult)
-        }
-        return nil
-    }
-    
     func setToken(token: String) {
         userDefault().setValue(token, forKey: "USER_TOKEN")
+    }
+    
+    func setUserID(userID: Int) {
+        userDefault().setValue(userID, forKey: "USER_ID")
     }
     
     func setApiKey(apiKey: String) {
@@ -62,9 +54,6 @@ extension UserDefaults {
     }
     
     func getToken() -> String {
-        /*if let user = self.getUserProfile() {
-         return user.userToken
-         }*/
         if let token = userDefault().value(forKey: "USER_TOKEN") as? String {
             return token
         }
@@ -72,19 +61,7 @@ extension UserDefaults {
         return ""
     }
     
-    func getRefreshToken() -> String {
-        if let user = self.getUserProfile() {
-            return user.refreshToken
-        }
-        
-        return ""
-    }
-    
-    func getID() -> String {
-        if let user = self.getUserProfile() {
-            return user.id
-        }
-        
-        return ""
+    func getUserID() -> Int {
+        return userDefault().integer(forKey: "USER_ID")
     }
 }

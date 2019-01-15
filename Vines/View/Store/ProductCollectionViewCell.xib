@@ -189,6 +189,9 @@
                                     <constraint firstAttribute="height" constant="30" id="pUA-2F-onl"/>
                                 </constraints>
                                 <state key="normal" image="ico-buttonfav"/>
+                                <connections>
+                                    <action selector="favouriteButtonDidPush:" destination="gTV-IL-0wX" eventType="touchUpInside" id="gWM-fX-Vvl"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -235,7 +238,7 @@
     <resources>
         <image name="ico-buttonfav" width="31" height="31"/>
         <image name="ico-nav-cart" width="24" height="24"/>
-        <image name="img-label" width="34" height="33"/>
+        <image name="img-label" width="50" height="50"/>
         <image name="img-product1-rectangle" width="156" height="156"/>
     </resources>
 </document>
