@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,6 +29,7 @@
                 <outlet property="btnMenu0" destination="fTV-oq-uwA" id="z1f-NG-zex"/>
                 <outlet property="btnMenu1" destination="FFo-Ec-Xan" id="4Na-at-g0V"/>
                 <outlet property="btnMenu2" destination="s59-qG-DKW" id="Quc-Fu-pf2"/>
+                <outlet property="btnShop" destination="Y56-uS-Brx" id="uNI-iW-PZ4"/>
                 <outlet property="imgPromo" destination="jJG-Tc-dyF" id="zml-py-IfZ"/>
                 <outlet property="lblDescription" destination="ysV-9q-bkZ" id="74m-H0-IVA"/>
                 <outlet property="lblDetail" destination="z0y-GM-8UJ" id="Iok-6h-CZ3"/>
