@@ -130,6 +130,12 @@
 		CCE5226E21D6234600F868DD /* DetailNewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE5226C21D6234600F868DD /* DetailNewsViewController.xib */; };
 		CCE5227121D6235600F868DD /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE5226F21D6235600F868DD /* NewsTableViewCell.swift */; };
 		CCE5227221D6235600F868DD /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE5227021D6235600F868DD /* NewsTableViewCell.xib */; };
+		CCE6DE9821EDB4C5007CA850 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6DE9621EDB4C5007CA850 /* ProfileViewController.swift */; };
+		CCE6DE9921EDB4C5007CA850 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE6DE9721EDB4C5007CA850 /* ProfileViewController.xib */; };
+		CCE6DE9C21EDBF35007CA850 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6DE9A21EDBF35007CA850 /* ChangePasswordViewController.swift */; };
+		CCE6DE9D21EDBF35007CA850 /* ChangePasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE6DE9B21EDBF35007CA850 /* ChangePasswordViewController.xib */; };
+		CCE6DE9F21EDC68F007CA850 /* SuccessEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6DE9E21EDC68F007CA850 /* SuccessEditing.swift */; };
+		CCE6DEA121EDC696007CA850 /* SuccessEditing.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE6DEA021EDC696007CA850 /* SuccessEditing.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -286,6 +292,12 @@
 		CCE5226C21D6234600F868DD /* DetailNewsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailNewsViewController.xib; sourceTree = "<group>"; };
 		CCE5226F21D6235600F868DD /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		CCE5227021D6235600F868DD /* NewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
+		CCE6DE9621EDB4C5007CA850 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		CCE6DE9721EDB4C5007CA850 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		CCE6DE9A21EDBF35007CA850 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		CCE6DE9B21EDBF35007CA850 /* ChangePasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangePasswordViewController.xib; sourceTree = "<group>"; };
+		CCE6DE9E21EDC68F007CA850 /* SuccessEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessEditing.swift; sourceTree = "<group>"; };
+		CCE6DEA021EDC696007CA850 /* SuccessEditing.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuccessEditing.xib; sourceTree = "<group>"; };
 		EC392BF63EA86635D82EFDA1 /* Pods_Vines.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vines.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -428,8 +440,14 @@
 		CC191D5B21E1D00200FBB1D4 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				CCE6DE9621EDB4C5007CA850 /* ProfileViewController.swift */,
+				CCE6DE9721EDB4C5007CA850 /* ProfileViewController.xib */,
 				CC191D5C21E1D01C00FBB1D4 /* EditProfileViewController.swift */,
 				CC191D5D21E1D01C00FBB1D4 /* EditProfileViewController.xib */,
+				CCE6DE9A21EDBF35007CA850 /* ChangePasswordViewController.swift */,
+				CCE6DE9B21EDBF35007CA850 /* ChangePasswordViewController.xib */,
+				CCE6DE9E21EDC68F007CA850 /* SuccessEditing.swift */,
+				CCE6DEA021EDC696007CA850 /* SuccessEditing.xib */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -837,6 +855,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90905BFE21D611C400896D68 /* BannerView.xib in Resources */,
+				CCE6DE9D21EDBF35007CA850 /* ChangePasswordViewController.xib in Resources */,
 				CC64A6B8217CA946000743DE /* AllStoreTableViewCell.xib in Resources */,
 				CC8B4BC721B2B320001D0DBC /* MenuProfileTableViewCell.xib in Resources */,
 				CC191D5621E0DAA500FBB1D4 /* GeneralInformationTableViewCell.xib in Resources */,
@@ -851,6 +870,7 @@
 				CC070D0F21D48B7200E0ABE8 /* PromotionsViewController.xib in Resources */,
 				CC2C787021C26346006213EE /* HeaderSectionStoreTableViewCell.xib in Resources */,
 				CCD5A95721E38DA600DFC3D3 /* GeneralInfoTextField.xib in Resources */,
+				CCE6DEA121EDC696007CA850 /* SuccessEditing.xib in Resources */,
 				CC62C3F621A5ACA100D2CA6F /* DetailStoreView.xib in Resources */,
 				CCE5225C21D603D000F868DD /* DetailPromoViewController.xib in Resources */,
 				CC2AF83021BD2DDA002BA448 /* FeatureProductTableViewCell.xib in Resources */,
@@ -874,6 +894,7 @@
 				CC613FEC2160FADE002C24CB /* RobotoCondensed-Bold.ttf in Resources */,
 				CC2AF7F821BD1280002BA448 /* HeaderStoreTableViewCell.xib in Resources */,
 				CC613FF12160FDAD002C24CB /* Roboto-Regular.ttf in Resources */,
+				CCE6DE9921EDB4C5007CA850 /* ProfileViewController.xib in Resources */,
 				CC613FC32160D622002C24CB /* LaunchScreen.storyboard in Resources */,
 				CC613FC02160D622002C24CB /* Assets.xcassets in Resources */,
 				CC070D1321D48BC100E0ABE8 /* PromotionTableViewCell.xib in Resources */,
@@ -1038,14 +1059,17 @@
 				907B67452189FB1600CFEDB1 /* RegisterModelBaseClass.swift in Sources */,
 				CC0131BD21D370EF00A5B883 /* WishlistViewController.swift in Sources */,
 				9011615C21ECCFC3003B2520 /* NewsModelData.swift in Sources */,
+				CCE6DE9F21EDC68F007CA850 /* SuccessEditing.swift in Sources */,
 				CC191D5E21E1D01C00FBB1D4 /* EditProfileViewController.swift in Sources */,
 				90D4876421A6EC56005B5A7C /* StoreListModelData.swift in Sources */,
 				CC070D0A21D4857A00E0ABE8 /* UIKit+Extension.swift in Sources */,
 				9015139A21D614DE00BD836E /* PromotionModelBaseClass.swift in Sources */,
+				CCE6DE9821EDB4C5007CA850 /* ProfileViewController.swift in Sources */,
 				CC81666E216A0692008FD617 /* UserDefaults+Extension.swift in Sources */,
 				CCE5226421D6202100F868DD /* PartyServiceViewController.swift in Sources */,
 				900E2A3121E3C16600DB5D8C /* Typealias.swift in Sources */,
 				CC954BF6217B389D0017C5F4 /* VinesViewController.swift in Sources */,
+				CCE6DE9C21EDBF35007CA850 /* ChangePasswordViewController.swift in Sources */,
 				9015139B21D614DE00BD836E /* PromotionModelData.swift in Sources */,
 				CC4CD36921C3E22600217626 /* HeaderProductTableViewCell.swift in Sources */,
 				CCB5A82621DFA2B70055EE7A /* PersonalInformationTableViewCell.swift in Sources */,

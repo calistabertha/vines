@@ -28,6 +28,7 @@
                 <outlet property="lblPhone" destination="4r8-gS-hq5" id="XHJ-9p-rt2"/>
                 <outlet property="tableView" destination="va5-mG-hWv" id="I8L-Pi-XqP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewProfile" destination="ClQ-uM-e7W" id="e0E-hH-QJY"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

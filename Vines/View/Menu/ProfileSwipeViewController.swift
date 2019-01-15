@@ -20,6 +20,8 @@ class ProfileSwipeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lblCopyright: UILabel!
     @IBOutlet weak var cardView: UIView!
+    @IBOutlet weak var viewProfile: UIView!
+    
     var delegate: ProfileSwipeDelegate?
     var promotionList: [PromotionModelData] = []
     override func viewDidLoad() {
@@ -31,6 +33,7 @@ class ProfileSwipeViewController: UIViewController {
         let dateStr = formatter.string(from: NSDate() as Date)
         lblCopyright.text = "Copyright © \(dateStr) Vines. All rights reserved"
         imgProfile.layer.cornerRadius = imgProfile.layer.frame.height / 2
+        viewProfile.layer.cornerRadius = viewProfile.frame.height / 2
     }
     
     override func didReceiveMemoryWarning() {
@@ -38,7 +41,8 @@ class ProfileSwipeViewController: UIViewController {
     }
     
     @IBAction func openProfileButtonDidPush(_ sender: Any) {
-        print("open edit profile")
+        let vc = ProfileViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     @IBAction func dismissViewButtonDidPush(_ sender: Any) {

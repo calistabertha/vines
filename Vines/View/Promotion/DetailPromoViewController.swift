@@ -20,6 +20,7 @@ class DetailPromoViewController: VinesViewController {
     @IBOutlet weak var lblDetail: UILabel!
     @IBOutlet weak var imgPromo: UIImageView!
     @IBOutlet weak var lblDescription: UILabel!
+    @IBOutlet weak var btnShop: UIButton!
     
     var data: PromotionModelData?
     
@@ -30,6 +31,7 @@ class DetailPromoViewController: VinesViewController {
         generateNavBarWithBackButton(titleString: "GET SPECIAL OFFER FROM VINES...", viewController: self, isRightBarButton: false)
         btnMenu0.setTitleColor(UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), for: .normal)
         viewSeparator0.backgroundColor = UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1)
+        btnShop.layer.cornerRadius = 5
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,6 +62,12 @@ class DetailPromoViewController: VinesViewController {
         
         lblDescription.text = data.title
         lblDetail.text = data.summary
+      
+        if data.promotionCode != nil{
+            btnShop.setTitle("GET DISCOUNT CODE", for: .normal)
+        }else{
+            btnShop.setTitle("SHOP NOW", for: .normal)
+        }
     }
 
     @IBAction func detailMenu0(_ sender: UIButton) {
@@ -94,17 +102,25 @@ class DetailPromoViewController: VinesViewController {
     }
     
     @IBAction func promotionButtonDidPush(_ sender: UIButton) {
-        if isCopied{
-            print("shop now")
-            
-        }else{
+        if data?.promotionCode != nil || isCopied == false{
             let alert = UIAlertController(title: "Discount Code Copied", message: nil, preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                UIPasteboard.general.string = self.data?.promotionCode
                 sender.setTitle("SHOP NOW", for: .normal)
                 self.isCopied = true
             }))
             
             self.present(alert, animated: true, completion: nil)
+        }else{
+            print("shop now")
+            
+            /*
+             //PASTE KEYBOARD
+             if let myString = UIPasteboard.general.string {
+             myTextField.insertText(myString)
+             }
+             */
         }
+        
     }
 }
