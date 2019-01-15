@@ -73,14 +73,18 @@ class SignInViewController: UIViewController {
             "password": password
         ]
         HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.login, param: params, method: HTTPMethodHelper.post) { (success, json) in
-            let data = LoginModelBaseClass(json: json!)
+            let data = LoginModelBaseClass(json: json ?? "")
             if success {
-                let token = data.data?.token
-                
-                UserDefaults.standard.setToken(token: token!)
-                
-                let vc = HomeViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
+                if let token = data.data?.token, let datas = data.data, let id = data.data?.userData?[0].userId {
+                    userDefault().setToken(token: token)
+                    userDefault().saveUser(user: datas)
+                    userDefault().setUserID(userID: id)
+                    
+                    let vc = HomeViewController()
+                    self.navigationController?.pushViewController(vc, animated: true)
+                } else {
+                    print("error login")
+                }
             } else {
                 print(data.displayMessage ?? "")
             }

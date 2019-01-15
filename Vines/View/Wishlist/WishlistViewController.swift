@@ -59,7 +59,7 @@ class WishlistViewController: VinesViewController {
             "token": userDefault().getToken()
             ] as [String : Any]
         HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.wishlist, param: params, method: HTTPMethodHelper.post) { (success, json) in
-            let data = ProductListModelBaseClass(json: json!)
+            let data = ProductListModelBaseClass(json: json ?? "")
             if data.message?.lowercased() == "success", let datas = data.data {
                 self.list = datas
                 self.collectionView.reloadData()

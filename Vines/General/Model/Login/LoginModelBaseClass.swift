@@ -1,8 +1,8 @@
 //
 //  LoginModelBaseClass.swift
 //
-//  Created by Patrick Marshall on 31/10/18
-//  Copyright (c) Bukalapak. All rights reserved.
+//  Created by Patrick Marshall on 15/01/19
+//  Copyright (c) . All rights reserved.
 //
 
 import Foundation

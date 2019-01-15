@@ -1,14 +1,14 @@
 //
 //  LoginModelData.swift
 //
-//  Created by Patrick Marshall on 31/10/18
-//  Copyright (c) Bukalapak. All rights reserved.
+//  Created by Patrick Marshall on 15/01/19
+//  Copyright (c) . All rights reserved.
 //
 
 import Foundation
 import SwiftyJSON
 
-public final class LoginModelData: NSCoding {
+public final class LoginModelData: NSObject, NSCoding {
 
   // MARK: Declaration for string constants to be used to decode and also serialize.
   private struct SerializationKeys {

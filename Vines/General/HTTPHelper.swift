@@ -64,20 +64,13 @@ class HTTPHelper {
     }
     
     func requestAPI(url: String, param: [String:Any], method: HTTPMethodHelper, completion: @escaping(_ success: Bool, _ data: JSON?) -> Void) {
-        
-        /*let token = UserDefaults.standard.getToken()
-         let header = [
-         "Access-Token" : token
-         ]*/
-        
-//        let token = UserDefaults.standard.getToken()
-        let token = "bd9f1fcdc95abde54fdd46cf3fba93151d435a41"
+        let token = userDefault().getApiKey()
         var urls: URL?
         var urlRequest: URLRequest?
         urls = try? (Constants.ServicesAPI.apiBaseURL + url).asURL()
         urlRequest = URLRequest(url: urls!)
         urlRequest?.httpMethod = method.rawValue
-        urlRequest = try? JSONEncoding.default.encode(urlRequest!, with: param as! Parameters)
+        urlRequest = try? JSONEncoding.default.encode(urlRequest!, with: param)
         
         urlRequest?.addValue(token, forHTTPHeaderField: "apikey")
         
