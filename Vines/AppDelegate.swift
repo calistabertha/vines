@@ -54,6 +54,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func setDefaultValue() {
         userDefault().setToProd()
+        userDefault().setToken(token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Iml3YW5faW5mb3JAeWFob28uY28uaWQiLCJ1c2VyX2lkIjoyNCwiZXhwIjoxNTQ0Mzg0OTg5NDg2LCJpYXQiOjE1NDM3ODAxODl9.vTMCgXsEbltuOEp3zQdVLM4lJ__pzG5-vl_hjUcOrak")
+        userDefault().setUserID(userID: 24)
     }
 
 }

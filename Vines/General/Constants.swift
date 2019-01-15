@@ -19,10 +19,13 @@ struct Constants {
             }
         }
         
-        struct Authentication {
+        struct User {
             static let login = "user/authentication"
             static let register = "user/register"
             static let updatePassword = "user/update_password"
+            static let wishlist = "user/wishlist"
+            static let addWishlist = "user/add_wishlist"
+            static let deleteWishlist = "user/delete_wishlist"
         }
         
         struct Store {
@@ -41,7 +44,7 @@ struct Constants {
         }
     
         struct News {
-            static let news = "news"
+            static let list = "news"
         }
     }
 }

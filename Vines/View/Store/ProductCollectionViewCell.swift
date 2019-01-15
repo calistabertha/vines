@@ -21,8 +21,21 @@ class ProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lblAction: UILabel!
     @IBOutlet weak var iconAction: UIImageView!
     
+    var addToWishlist: ProductClosure?
+    var addToCart: IntClosure?
+    var data: ProductListModelData?
+    var isFromWishlist: Bool = false
+    
     
     @IBAction func cartButtonDidPush(_ sender: Any) {
+        if let addToCart = addToCart, let productId = data?.productId {
+            addToCart(productId)
+        }
+    }
+    @IBAction func favouriteButtonDidPush(_ sender: Any) {
+        if let addToWishlist = addToWishlist, let data = data {
+            addToWishlist(data)
+        }
     }
     
     override func awakeFromNib() {
@@ -37,14 +50,6 @@ extension ProductCollectionViewCell: CollectionViewCellProtocol{
          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as! ProductCollectionViewCell
         guard let data = object as? ProductListModelData else { return cell }
         
-        // still wrong cz no wishlist value
-        if data.code == "wishlist" {
-            cell.btnFavorite.setImage(UIImage(named: "ico-buttonfavclicked"), for: .normal)
-            cell.btnFavorite.isSelected = true
-            cell.lblAction.text = "BUY PRODUCT"
-            cell.iconAction.image = UIImage(named: "ico-nav-arrow")
-        }
-        
         cell.imgProduct.af_setImage(withURL: URL(string: data.image!)!, placeholderImage: UIImage(named: "placeholder")) { [weak cell] image in
             guard let wc = cell else { return }
             if let img = image.value {
@@ -54,6 +59,7 @@ extension ProductCollectionViewCell: CollectionViewCellProtocol{
             }
         }
         
+        cell.data = data
         cell.lblName.text = data.name ?? ""
         cell.lblType.text = data.categoryName ?? ""
         cell.lblPrice1.text = String(data.discount ?? 0).asRupiah()
@@ -63,5 +69,24 @@ extension ProductCollectionViewCell: CollectionViewCellProtocol{
         return cell
     }
     
-    
+    func setupView() {
+        if isFromWishlist {
+            btnFavorite.setImage(UIImage(named: "ico-buttonfavclicked"), for: .normal)
+            btnFavorite.isSelected = true
+            lblAction.text = "BUY PRODUCT"
+            iconAction.image = UIImage(named: "ico-nav-arrow")
+        } else {
+            if data?.isFavourite ?? false {
+                btnFavorite.setImage(UIImage(named: "ico-buttonfavclicked"), for: .normal)
+                btnFavorite.isSelected = true
+                lblAction.text = "BUY PRODUCT"
+                iconAction.image = UIImage(named: "ico-nav-arrow")
+            } else {
+                btnFavorite.setImage(UIImage(named: "ico-buttonfav"), for: .normal)
+                btnFavorite.isSelected = false
+                lblAction.text = "BUY PRODUCT"
+                iconAction.image = UIImage(named: "ico-nav-arrow")
+            }
+        }
+    }
 }

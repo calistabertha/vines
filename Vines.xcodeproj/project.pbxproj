@@ -815,13 +815,16 @@
 				TargetAttributes = {
 					CC613FB42160D621002C24CB = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 					};
 					CC613FC82160D622002C24CB = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 						TestTargetID = CC613FB42160D621002C24CB;
 					};
 					CC613FD32160D622002C24CB = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 						TestTargetID = CC613FB42160D621002C24CB;
 					};
 				};

@@ -41,7 +41,7 @@ class NewsViewController: VinesViewController {
             "limit": "10",
             "offset": "0"
             ] as [String : Any]
-        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.News.news, param: params, method: HTTPMethodHelper.post) { (success, json) in
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.News.list, param: params, method: HTTPMethodHelper.post) { (success, json) in
             let data = NewsModelBaseClass(json: json!)
             if data.message == "success" {
                 self.newsList = data.data!

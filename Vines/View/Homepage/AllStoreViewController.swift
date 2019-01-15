@@ -51,8 +51,8 @@ class AllStoreViewController: VinesViewController {
             "latitude": "-6.2732980" //self.location.coordinate.latitude
             ] as [String : Any]
         HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Store.list, param: params, method: HTTPMethodHelper.post) { (success, json) in
-            let data = StoreListModelBaseClass(json: json!)
-            if data.message == "success" {
+            let data = StoreListModelBaseClass(json: json ?? "")
+            if data.message?.lowercased() == "success" {
                 self.storeList = data.data!
                 self.tableView.reloadData()
             } else {
