@@ -71,6 +71,11 @@ class StoreViewController: VinesViewController {
         
     }
     
+    @IBAction func cartButtonDidPush(_ sender: Any) {
+        let vc = ShoppingCartViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func fetchFavouriteList() {
         let params = [
             "limit": 10,

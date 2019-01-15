@@ -98,6 +98,12 @@
 		CC8B4BC721B2B320001D0DBC /* MenuProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC8B4BC521B2B320001D0DBC /* MenuProfileTableViewCell.xib */; };
 		CC954BF6217B389D0017C5F4 /* VinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC954BF5217B389D0017C5F4 /* VinesViewController.swift */; };
 		CC954BFD217B3F6C0017C5F4 /* BaseCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC954BFC217B3F6C0017C5F4 /* BaseCellProtocol.swift */; };
+		CCAF350521EDEDD9003EFADA /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF350321EDEDD9003EFADA /* ShoppingCartViewController.swift */; };
+		CCAF350621EDEDD9003EFADA /* ShoppingCartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCAF350421EDEDD9003EFADA /* ShoppingCartViewController.xib */; };
+		CCAF350921EDEE1A003EFADA /* CartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF350721EDEE1A003EFADA /* CartTableViewCell.swift */; };
+		CCAF350A21EDEE1A003EFADA /* CartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCAF350821EDEE1A003EFADA /* CartTableViewCell.xib */; };
+		CCAF350D21EDF1F7003EFADA /* TotalCartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF350B21EDF1F7003EFADA /* TotalCartTableViewCell.swift */; };
+		CCAF350E21EDF1F7003EFADA /* TotalCartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCAF350C21EDF1F7003EFADA /* TotalCartTableViewCell.xib */; };
 		CCB5A82621DFA2B70055EE7A /* PersonalInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB5A82421DFA2B70055EE7A /* PersonalInformationTableViewCell.swift */; };
 		CCB5A82721DFA2B70055EE7A /* PersonalInformationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCB5A82521DFA2B70055EE7A /* PersonalInformationTableViewCell.xib */; };
 		CCB5A82B21DFA5620055EE7A /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB5A82921DFA5620055EE7A /* SupportViewController.swift */; };
@@ -259,6 +265,12 @@
 		CC8B4BC521B2B320001D0DBC /* MenuProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuProfileTableViewCell.xib; sourceTree = "<group>"; };
 		CC954BF5217B389D0017C5F4 /* VinesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VinesViewController.swift; sourceTree = "<group>"; };
 		CC954BFC217B3F6C0017C5F4 /* BaseCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCellProtocol.swift; sourceTree = "<group>"; };
+		CCAF350321EDEDD9003EFADA /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
+		CCAF350421EDEDD9003EFADA /* ShoppingCartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShoppingCartViewController.xib; sourceTree = "<group>"; };
+		CCAF350721EDEE1A003EFADA /* CartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewCell.swift; sourceTree = "<group>"; };
+		CCAF350821EDEE1A003EFADA /* CartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartTableViewCell.xib; sourceTree = "<group>"; };
+		CCAF350B21EDF1F7003EFADA /* TotalCartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalCartTableViewCell.swift; sourceTree = "<group>"; };
+		CCAF350C21EDF1F7003EFADA /* TotalCartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TotalCartTableViewCell.xib; sourceTree = "<group>"; };
 		CCB5A82421DFA2B70055EE7A /* PersonalInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInformationTableViewCell.swift; sourceTree = "<group>"; };
 		CCB5A82521DFA2B70055EE7A /* PersonalInformationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalInformationTableViewCell.xib; sourceTree = "<group>"; };
 		CCB5A82921DFA5620055EE7A /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
@@ -615,6 +627,7 @@
 		CC816674216A0780008FD617 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CCAF350221EDE693003EFADA /* Shopping Cart */,
 				CC191D5B21E1D00200FBB1D4 /* Profile */,
 				CCB5A82821DFA5460055EE7A /* Support */,
 				CCE5226621D6232E00F868DD /* News */,
@@ -676,6 +689,19 @@
 				CC954BF5217B389D0017C5F4 /* VinesViewController.swift */,
 			);
 			path = "Base View Controller";
+			sourceTree = "<group>";
+		};
+		CCAF350221EDE693003EFADA /* Shopping Cart */ = {
+			isa = PBXGroup;
+			children = (
+				CCAF350321EDEDD9003EFADA /* ShoppingCartViewController.swift */,
+				CCAF350421EDEDD9003EFADA /* ShoppingCartViewController.xib */,
+				CCAF350721EDEE1A003EFADA /* CartTableViewCell.swift */,
+				CCAF350821EDEE1A003EFADA /* CartTableViewCell.xib */,
+				CCAF350B21EDF1F7003EFADA /* TotalCartTableViewCell.swift */,
+				CCAF350C21EDF1F7003EFADA /* TotalCartTableViewCell.xib */,
+			);
+			path = "Shopping Cart";
 			sourceTree = "<group>";
 		};
 		CCB5A82821DFA5460055EE7A /* Support */ = {
@@ -881,16 +907,19 @@
 				CCD814A221E3116A005D4C52 /* FooterButtonTableViewCell.xib in Resources */,
 				CCD814E821E357E9005D4C52 /* LiquorOptionTableViewCell.xib in Resources */,
 				CCE5226E21D6234600F868DD /* DetailNewsViewController.xib in Resources */,
+				CCAF350A21EDEE1A003EFADA /* CartTableViewCell.xib in Resources */,
 				CC613FF32160FF93002C24CB /* Roboto-Italic.ttf in Resources */,
 				CC191D5A21E0E4A400FBB1D4 /* LiquorSelectionTableViewCell.xib in Resources */,
 				CCB5A83021DFA5D00055EE7A /* SupportTableViewCell.xib in Resources */,
 				CC2AF81B21BD1D5F002BA448 /* HomeViewController.xib in Resources */,
+				CCAF350E21EDF1F7003EFADA /* TotalCartTableViewCell.xib in Resources */,
 				CCB5A83421DFADD70055EE7A /* ContactUsViewController.xib in Resources */,
 				CCB5A82721DFA2B70055EE7A /* PersonalInformationTableViewCell.xib in Resources */,
 				CC2AF82821BD21A7002BA448 /* ProfileSwipeViewController.xib in Resources */,
 				CCD814E421E352A8005D4C52 /* SummaryPersonalInfoTableViewCell.xib in Resources */,
 				CC2AF83821BD2E14002BA448 /* ProductTableViewCell.xib in Resources */,
 				CCD5A95521E38D9900DFC3D3 /* PersonalInfoTextField.xib in Resources */,
+				CCAF350621EDEDD9003EFADA /* ShoppingCartViewController.xib in Resources */,
 				CC613FEC2160FADE002C24CB /* RobotoCondensed-Bold.ttf in Resources */,
 				CC2AF7F821BD1280002BA448 /* HeaderStoreTableViewCell.xib in Resources */,
 				CC613FF12160FDAD002C24CB /* Roboto-Regular.ttf in Resources */,
@@ -1053,6 +1082,8 @@
 				CCD502D8216A01960070F457 /* Constants.swift in Sources */,
 				90905BFD21D611C400896D68 /* BannerView.swift in Sources */,
 				CCE5226921D6233A00F868DD /* NewsViewController.swift in Sources */,
+				CCAF350521EDEDD9003EFADA /* ShoppingCartViewController.swift in Sources */,
+				CCAF350D21EDF1F7003EFADA /* TotalCartTableViewCell.swift in Sources */,
 				CC2AF81121BD1A60002BA448 /* SignInViewController.swift in Sources */,
 				9097CBAF2189F3080053382D /* LoginModelUserData.swift in Sources */,
 				CC2AF83F21BD3489002BA448 /* ProductCollectionViewCell.swift in Sources */,
@@ -1087,6 +1118,7 @@
 				CCD814DF21E3515D005D4C52 /* SummaryPartyViewController.swift in Sources */,
 				CC62C3F721A5ACA100D2CA6F /* DetailStoreView.swift in Sources */,
 				90D4876321A6EC56005B5A7C /* StoreListModelBaseClass.swift in Sources */,
+				CCAF350921EDEE1A003EFADA /* CartTableViewCell.swift in Sources */,
 				CC2AF81321BD1A60002BA448 /* SignUpViewController.swift in Sources */,
 				CC2AF83721BD2E14002BA448 /* ProductTableViewCell.swift in Sources */,
 				CCE5226D21D6234600F868DD /* DetailNewsViewController.swift in Sources */,
