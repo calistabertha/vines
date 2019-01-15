@@ -302,7 +302,7 @@ extension HomeViewController {
             "limit": 10,
             ] as [String : Any]
         HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Promotion.promotion, param: params, method: HTTPMethodHelper.post) { (success, json) in
-            let data = PromotionModelBaseClass(json: json!)
+            let data = PromotionModelBaseClass(json: json ?? "")
             if data.message == "success", let datas = data.data {
                 self.promotionList = datas
                 self.carouselView.reloadData()
