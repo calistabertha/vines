@@ -137,7 +137,8 @@ extension UserDefaults {
         return userDefault().integer(forKey: "USER_ID")
     }
     
-    func getCart() -> [ProductListModelData] 09        guard let cartList = userDefault().array(forKey: "CART_LIST") as? [ProductListModelData] else { return [] }
+    func getCart() -> [ProductListModelData] {
+    guard let cartList = userDefault().array(forKey: "CART_LIST") as? [ProductListModelData] else { return [] }
         return cartList
     }
     
