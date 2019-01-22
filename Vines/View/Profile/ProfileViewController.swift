@@ -7,15 +7,19 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class ProfileViewController: VinesViewController {
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblEmailAddress: UILabel!
     @IBOutlet weak var lblPhoneNumber: UILabel!
+    @IBOutlet weak var lblPoints: UILabel!
     @IBOutlet weak var btnEdit: UIButton!
     @IBOutlet weak var viewPoints: UIView!
     @IBOutlet weak var viewOrder: UIView!
+    
+    var userData: LoginModelUserData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +28,27 @@ class ProfileViewController: VinesViewController {
         viewPoints.layer.cornerRadius = viewPoints.frame.height / 2
         btnEdit.layer.cornerRadius = btnEdit.frame.height / 2
         imgProfile.layer.cornerRadius = imgProfile.frame.height / 2
+        imgProfile.clipsToBounds = true
+        imgProfile.contentMode = .scaleAspectFill
+        setupProfile()
+    }
+    
+    func setupProfile() {
+        guard let data = userDefault().getUserData()?.userData?[safe: 0] else { return }
+        userData = data
+        
+        imgProfile.af_setImage(withURL: URL(string: userData?.foto ?? "")!, placeholderImage: UIImage(named: "placeholder")) { [weak self] image in
+            guard let ws = self else { return }
+            if let img = image.value {
+                ws.imgProfile.image = img
+            } else {
+                ws.imgProfile.image = UIImage(named: "placeholder")
+            }
+        }
+        lblName.text = userData?.fullname ?? ""
+        lblEmailAddress.text = userData?.email ?? ""
+        lblPoints.text = "\(userData?.point ?? 0) points"
+//        lblPhoneNumber.text = userData.
         
     }
 

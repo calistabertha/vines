@@ -11,11 +11,18 @@ import UIKit
 class SupportViewController: VinesViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    var termsData: String?
+    var privacyData: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        fetchPrivacyPolicy()
+        fetchTermsConditions()
+        
         generateNavBarWithBackButton(titleString: "SUPPORT", viewController: self, isRightBarButton: false)
         tableView.register(SupportTableViewCell.nib, forCellReuseIdentifier: SupportTableViewCell.identifier)
-      
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,6 +31,32 @@ class SupportViewController: VinesViewController {
     
     override func backButtonDidPush() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    func fetchTermsConditions() {
+        let params = [:] as [String : Any]
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.News.terms, param: params, method: HTTPMethodHelper.post) { (success, json) in
+            let data = StaticPageModelBaseClass(json: json ?? "")
+            if data.message?.lowercased() == "success", let datas = data.data?[safe: 0]?.descriptionValue {
+                self.termsData = datas
+                self.tableView.reloadData()
+            } else {
+                print(data.displayMessage ?? "")
+            }
+        }
+    }
+    
+    func fetchPrivacyPolicy() {
+        let params = [:] as [String : Any]
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.News.privacy, param: params, method: HTTPMethodHelper.post) { (success, json) in
+            let data = StaticPageModelBaseClass(json: json ?? "")
+            if data.message?.lowercased() == "success", let datas = data.data?[safe: 0]?.descriptionValue {
+                self.privacyData = datas
+                self.tableView.reloadData()
+            } else {
+                print(data.displayMessage ?? "")
+            }
+        }
     }
 }
 
@@ -48,12 +81,16 @@ extension SupportViewController: UITableViewDelegate{
             let vc = ContactUsViewController()
             navigationController?.pushViewController(vc, animated: true)
         }else if indexPath.row == 1 {
+            guard let data = privacyData else { return }
             let vc = StaticPageViewController()
             vc.titleString = "PRIVACY POLICY"
+            vc.staticPage = data
             navigationController?.pushViewController(vc, animated: true)
         }else if indexPath.row == 2 {
+            guard let data = termsData else { return }
             let vc = StaticPageViewController()
             vc.titleString = "TERM & CONDITION"
+            vc.staticPage = data
             navigationController?.pushViewController(vc, animated: true)
         }
     }
