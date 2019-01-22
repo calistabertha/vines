@@ -29,6 +29,8 @@
 		90D4876421A6EC56005B5A7C /* StoreListModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4875F21A6EC56005B5A7C /* StoreListModelData.swift */; };
 		90D4876521A6EC56005B5A7C /* StoreDetailModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4876121A6EC56005B5A7C /* StoreDetailModelBaseClass.swift */; };
 		90D4876621A6EC56005B5A7C /* StoreDetailModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4876221A6EC56005B5A7C /* StoreDetailModelData.swift */; };
+		90DF855A21F7087800838007 /* StaticPageModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DF855821F7087700838007 /* StaticPageModelBaseClass.swift */; };
+		90DF855B21F7087800838007 /* StaticPageModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DF855921F7087700838007 /* StaticPageModelData.swift */; };
 		90E950C421DFC51800627E06 /* PublicFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E950C321DFC51800627E06 /* PublicFunction.swift */; };
 		B558C6006F461CCD6E69BDF8 /* Pods_VinesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15719DD66D0AE26349E7A63 /* Pods_VinesTests.framework */; };
 		CC0131BD21D370EF00A5B883 /* WishlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0131BB21D370EF00A5B883 /* WishlistViewController.swift */; };
@@ -187,6 +189,8 @@
 		90D4875F21A6EC56005B5A7C /* StoreListModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreListModelData.swift; sourceTree = "<group>"; };
 		90D4876121A6EC56005B5A7C /* StoreDetailModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailModelBaseClass.swift; sourceTree = "<group>"; };
 		90D4876221A6EC56005B5A7C /* StoreDetailModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailModelData.swift; sourceTree = "<group>"; };
+		90DF855821F7087700838007 /* StaticPageModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticPageModelBaseClass.swift; sourceTree = "<group>"; };
+		90DF855921F7087700838007 /* StaticPageModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticPageModelData.swift; sourceTree = "<group>"; };
 		90E950C321DFC51800627E06 /* PublicFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicFunction.swift; sourceTree = "<group>"; };
 		9BA2A0D10491F012CA590F83 /* Pods-Vines.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vines.release.xcconfig"; path = "Pods/Target Support Files/Pods-Vines/Pods-Vines.release.xcconfig"; sourceTree = "<group>"; };
 		A7217F70E7573C7489DCB90F /* Pods-VinesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VinesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VinesTests/Pods-VinesTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -440,6 +444,15 @@
 			path = StoreDetail;
 			sourceTree = "<group>";
 		};
+		90DF855721F7087700838007 /* StaticPage */ = {
+			isa = PBXGroup;
+			children = (
+				90DF855821F7087700838007 /* StaticPageModelBaseClass.swift */,
+				90DF855921F7087700838007 /* StaticPageModelData.swift */,
+			);
+			path = StaticPage;
+			sourceTree = "<group>";
+		};
 		CC0131BA21D370D900A5B883 /* Wishlist */ = {
 			isa = PBXGroup;
 			children = (
@@ -624,6 +637,7 @@
 		CC81666F216A06B6008FD617 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				90DF855721F7087700838007 /* StaticPage */,
 				9097CBA92189F3080053382D /* Login */,
 				9011615921ECCFC3003B2520 /* News */,
 				90AB72AA21E0DB2B009B72AB /* ProductList */,
@@ -1121,6 +1135,7 @@
 				CC4CD36921C3E22600217626 /* HeaderProductTableViewCell.swift in Sources */,
 				CCB5A82621DFA2B70055EE7A /* PersonalInformationTableViewCell.swift in Sources */,
 				90E950C421DFC51800627E06 /* PublicFunction.swift in Sources */,
+				90DF855B21F7087800838007 /* StaticPageModelData.swift in Sources */,
 				CC191D5521E0DAA500FBB1D4 /* GeneralInformationTableViewCell.swift in Sources */,
 				9097CBAD2189F3080053382D /* LoginModelBaseClass.swift in Sources */,
 				CCD814E321E352A8005D4C52 /* SummaryPersonalInfoTableViewCell.swift in Sources */,
@@ -1147,6 +1162,7 @@
 				CC2512BB21C49E8E00B4F664 /* DescriptionTableViewCell.swift in Sources */,
 				CC191D5921E0E4A400FBB1D4 /* LiquorSelectionTableViewCell.swift in Sources */,
 				CC64A6B7217CA946000743DE /* AllStoreTableViewCell.swift in Sources */,
+				90DF855A21F7087800838007 /* StaticPageModelBaseClass.swift in Sources */,
 				CC2AF82721BD21A7002BA448 /* ProfileSwipeViewController.swift in Sources */,
 				CCB5A82F21DFA5D00055EE7A /* SupportTableViewCell.swift in Sources */,
 				CCD502DA216A02670070F457 /* HTTPHelper.swift in Sources */,

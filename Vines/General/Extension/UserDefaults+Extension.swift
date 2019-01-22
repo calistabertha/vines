@@ -138,7 +138,7 @@ extension UserDefaults {
     }
     
     func getCart() -> [ProductListModelData] {
-    guard let cartList = userDefault().array(forKey: "CART_LIST") as? [ProductListModelData] else { return [] }
+        guard let cartList = userDefault().array(forKey: "CART_LIST") as? [ProductListModelData] else { return [] }
         return cartList
     }
     
@@ -147,5 +147,12 @@ extension UserDefaults {
             return result
         }
         return nil
+    }
+    
+    func getEmailUser() -> String {
+        if let email = getUserData()?.userData?[safe: 0]?.email {
+            return email
+        }
+        return ""
     }
 }

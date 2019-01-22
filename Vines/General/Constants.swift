@@ -45,6 +45,8 @@ struct Constants {
     
         struct News {
             static let list = "news"
+            static let terms = "term_conditions"
+            static let privacy = "privacy_policy"
         }
     }
 }
