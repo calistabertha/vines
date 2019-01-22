@@ -37,7 +37,7 @@ extension ShoppingCartViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 3
+            return 1
         }
         return 1
     }

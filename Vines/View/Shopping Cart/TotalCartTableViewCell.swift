@@ -36,7 +36,9 @@ extension TotalCartTableViewCell: TableViewCellProtocol{
         cell.btnPayment.layer.cornerRadius = 5
         cell.payment = {
             (cells) in
-            print("bayar")
+            guard let ctx = context as? ShoppingCartViewController else {return}
+            let vc = DataCustomerViewController() //ParentCheckoutViewController()
+            ctx.navigationController?.pushViewController(vc, animated: true)
         }
         return cell
     }

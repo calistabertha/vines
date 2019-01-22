@@ -56,7 +56,7 @@ class AllStoreViewController: VinesViewController {
                 self.storeList = data.data!
                 self.tableView.reloadData()
             } else {
-                print(data.displayMessage!)
+                print(data.displayMessage ?? "")
             }
         }
     }
@@ -122,8 +122,8 @@ extension AllStoreViewController: DetailStoreViewDelegate{
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func callingButtonDidPush() {
-        guard let number = URL(string: "tel://" + (stores?.phone)!) else { return }
+    func callingButtonDidPush(phoneNumber: String) {
+        guard let number = URL(string: "tel://" + phoneNumber) else { return }
         if #available(iOS 10.0, *) {
             UIApplication.shared.open(number)
         } else {

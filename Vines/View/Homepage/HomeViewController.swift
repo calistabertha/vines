@@ -13,6 +13,12 @@ import iCarousel
 
 class HomeViewController: UIViewController {
     
+    struct State {
+        let name: String
+        let long: CLLocationDegrees
+        let lat: CLLocationDegrees
+    }
+    
     @IBOutlet weak var viewMaps: GMSMapView!
     @IBOutlet weak var viewTransparantTop: UIView!
     @IBOutlet weak var viewTransparantBottom: UIView!
@@ -33,9 +39,15 @@ class HomeViewController: UIViewController {
     var locationManager:CLLocationManager?
     
     var counter: Int = 0
+    let states = [
+        State(name: "Alaska", long: -152.404419, lat: 61.370716),
+        State(name: "Alabama", long: -86.791130, lat: 32.806671),
+        // the other 51 states here...
+    ]
     
     // API Data
     var promotionList: [PromotionModelData] = []
+    var markerDict: [String: GMSMarker] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +56,7 @@ class HomeViewController: UIViewController {
         let change = UITapGestureRecognizer(target: self, action: #selector(changeEnvironment))
         imgLogo.addGestureRecognizer(change)
         imgLogo.isUserInteractionEnabled = true
-        
+
         setupView()
         setupCarousel()
     }
@@ -102,17 +114,27 @@ class HomeViewController: UIViewController {
         
         let camera = GMSCameraPosition.camera(withLatitude: -11.0, longitude: 13.0, zoom: 6)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        mapView.isMyLocationEnabled = true
+//        mapView.isMyLocationEnabled = true
+//
+//        self.viewMaps.camera = camera
+//        self.viewMaps = mapView
+//
+//        let marker = GMSMarker()
+//        marker.position = CLLocationCoordinate2DMake(-33.86, 151.20)
+//        marker.title = "title"
+//        marker.snippet = "snippet"
+//        marker.icon = UIImage(named: "ico-PinPoint")
+//        marker.map = mapView
         
-        self.viewMaps.camera = camera
-        self.viewMaps = mapView
-        
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2DMake(-33.86, 151.20)
-        marker.title = "title"
-        marker.snippet = "snippet"
-        marker.icon = UIImage(named: "ico-PinPoint")
-        marker.map = mapView
+        for state in states {
+            let state_marker = GMSMarker()
+            state_marker.position = CLLocationCoordinate2D(latitude: state.lat, longitude: state.long)
+            state_marker.title = state.name
+            state_marker.snippet = "Hey, this is \(state.name)"
+            state_marker.map = mapView
+            state_marker.icon = UIImage(named: "ico-PinPoint")
+            markerDict[state.name] = state_marker
+        }
     }
     
     @objc func hideKeyboard() {
