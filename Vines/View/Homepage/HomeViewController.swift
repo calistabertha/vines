@@ -146,18 +146,20 @@ class HomeViewController: UIViewController {
     @objc func changeEnvironment() {
         print(userDefault().isDebug())
         if counter >= 3 {
-            counter = 0
-            userDefault().changeEnvironment()
-            let delegate = UIApplication.shared.delegate as! AppDelegate
-            delegate.logout()
-            UIAlertController
-                .yesOrNoAlert(self,
-                              title: "Environment Changed to \(userDefault().isDebug() == true ? "Debug" : "Production")",
-                              message: nil,
-                              okButtonTitle: "OK",
-                              noButtonTitle: nil,
-                              no: nil,
-                              yes: nil)
+            let vc = SuperSecretViewController()
+            navigationController?.pushViewController(vc, animated: true)
+//            counter = 0
+//            userDefault().changeEnvironment()
+//            let delegate = UIApplication.shared.delegate as! AppDelegate
+//            delegate.logout()
+//            UIAlertController
+//                .yesOrNoAlert(self,
+//                              title: "Environment Changed to \(userDefault().isDebug() == true ? "Debug" : "Production")",
+//                              message: nil,
+//                              okButtonTitle: "OK",
+//                              noButtonTitle: nil,
+//                              no: nil,
+//                              yes: nil)
       
         }
         counter += 1

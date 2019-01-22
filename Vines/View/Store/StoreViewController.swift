@@ -121,8 +121,10 @@ class StoreViewController: VinesViewController {
             HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.deleteWishlist, param: params, method: HTTPMethodHelper.post) { (success, json) in
                 let data = ProductListModelBaseClass(json: json ?? "")
                 if data.message?.lowercased() == "success" {
-                    let index = self.productList.index { $0.productId == product.productId } ?? 0
-                    self.productList[index].isFavourite = !self.productList[index].isFavourite!
+                    let index: Int? = self.productList.index { $0.productId == product.productId }
+                    if index != 0 {
+                        self.productList[index!].isFavourite = !self.productList[index!].isFavourite!
+                    }
 //                    self.tableView.reloadSections(IndexSet(arrayLiteral: 2), with: .none)
                     self.tableView.reloadData()
                 } else {
@@ -139,8 +141,10 @@ class StoreViewController: VinesViewController {
             HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.addWishlist, param: params, method: HTTPMethodHelper.post) { (success, json) in
                 let data = ProductListModelBaseClass(json: json ?? "")
                 if data.message?.lowercased() == "success" {
-                    let index = self.productList.index { $0.productId == product.productId } ?? 0
-                    self.productList[index].isFavourite = !self.productList[index].isFavourite!
+                    let index: Int? = self.productList.index { $0.productId == product.productId }
+                    if index != 0 {
+                        self.productList[index!].isFavourite = !self.productList[index!].isFavourite!
+                    }
 //                    self.tableView.reloadSections(IndexSet(arrayLiteral: 2), with: .none)
                     self.tableView.reloadData()
                 } else {
