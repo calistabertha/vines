@@ -14,6 +14,8 @@
 		9011615D21ECCFC3003B2520 /* NewsModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9011615B21ECCFC3003B2520 /* NewsModelBaseClass.swift */; };
 		9015139A21D614DE00BD836E /* PromotionModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9015139821D614DE00BD836E /* PromotionModelBaseClass.swift */; };
 		9015139B21D614DE00BD836E /* PromotionModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9015139921D614DE00BD836E /* PromotionModelData.swift */; };
+		9055595121F0B8F500C2E74E /* SuperSecretViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9055594F21F0B8F500C2E74E /* SuperSecretViewController.swift */; };
+		9055595221F0B8F500C2E74E /* SuperSecretViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9055595021F0B8F500C2E74E /* SuperSecretViewController.xib */; };
 		907B67452189FB1600CFEDB1 /* RegisterModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907B67442189FB1600CFEDB1 /* RegisterModelBaseClass.swift */; };
 		907B67472189FD7100CFEDB1 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907B67462189FD7100CFEDB1 /* Extension.swift */; };
 		90905BFD21D611C400896D68 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90905BFB21D611C400896D68 /* BannerView.swift */; };
@@ -170,6 +172,8 @@
 		9011615B21ECCFC3003B2520 /* NewsModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsModelBaseClass.swift; sourceTree = "<group>"; };
 		9015139821D614DE00BD836E /* PromotionModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionModelBaseClass.swift; sourceTree = "<group>"; };
 		9015139921D614DE00BD836E /* PromotionModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionModelData.swift; sourceTree = "<group>"; };
+		9055594F21F0B8F500C2E74E /* SuperSecretViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSecretViewController.swift; sourceTree = "<group>"; };
+		9055595021F0B8F500C2E74E /* SuperSecretViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuperSecretViewController.xib; sourceTree = "<group>"; };
 		907B67442189FB1600CFEDB1 /* RegisterModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterModelBaseClass.swift; sourceTree = "<group>"; };
 		907B67462189FD7100CFEDB1 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		90905BFB21D611C400896D68 /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
@@ -380,6 +384,15 @@
 				9015139921D614DE00BD836E /* PromotionModelData.swift */,
 			);
 			path = Promotion;
+			sourceTree = "<group>";
+		};
+		9055594A21F0B81D00C2E74E /* Super Secret Page */ = {
+			isa = PBXGroup;
+			children = (
+				9055594F21F0B8F500C2E74E /* SuperSecretViewController.swift */,
+				9055595021F0B8F500C2E74E /* SuperSecretViewController.xib */,
+			);
+			path = "Super Secret Page";
 			sourceTree = "<group>";
 		};
 		907B67432189FB1600CFEDB1 /* Register */ = {
@@ -627,6 +640,7 @@
 		CC816674216A0780008FD617 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9055594A21F0B81D00C2E74E /* Super Secret Page */,
 				CCAF350221EDE693003EFADA /* Shopping Cart */,
 				CC191D5B21E1D00200FBB1D4 /* Profile */,
 				CCB5A82821DFA5460055EE7A /* Support */,
@@ -898,6 +912,7 @@
 				CCD5A95721E38DA600DFC3D3 /* GeneralInfoTextField.xib in Resources */,
 				CCE6DEA121EDC696007CA850 /* SuccessEditing.xib in Resources */,
 				CC62C3F621A5ACA100D2CA6F /* DetailStoreView.xib in Resources */,
+				9055595221F0B8F500C2E74E /* SuperSecretViewController.xib in Resources */,
 				CCE5225C21D603D000F868DD /* DetailPromoViewController.xib in Resources */,
 				CC2AF83021BD2DDA002BA448 /* FeatureProductTableViewCell.xib in Resources */,
 				CC2AF80721BD1A52002BA448 /* StoreViewController.xib in Resources */,
@@ -1102,6 +1117,7 @@
 				CC954BF6217B389D0017C5F4 /* VinesViewController.swift in Sources */,
 				CCE6DE9C21EDBF35007CA850 /* ChangePasswordViewController.swift in Sources */,
 				9015139B21D614DE00BD836E /* PromotionModelData.swift in Sources */,
+				9055595121F0B8F500C2E74E /* SuperSecretViewController.swift in Sources */,
 				CC4CD36921C3E22600217626 /* HeaderProductTableViewCell.swift in Sources */,
 				CCB5A82621DFA2B70055EE7A /* PersonalInformationTableViewCell.swift in Sources */,
 				90E950C421DFC51800627E06 /* PublicFunction.swift in Sources */,
@@ -1313,7 +1329,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vineswine.Vines;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Vines Development";
+				PROVISIONING_PROFILE_SPECIFIER = DEV;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1335,7 +1351,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vineswine.Vines;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Vines Distribution";
+				PROVISIONING_PROFILE_SPECIFIER = "APP PROD";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

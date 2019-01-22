@@ -81,8 +81,10 @@ class WishlistViewController: VinesViewController {
         HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.deleteWishlist, param: params, method: HTTPMethodHelper.post) { (success, json) in
             let data = ProductListModelBaseClass(json: json ?? "")
             if data.message?.lowercased() == "success" {
-                let index = self.list.index { $0.productId == product.productId } ?? 0
-                self.list.remove(at: index)
+                let index: Int? = self.list.index { $0.productId == product.productId }
+                if index != nil {
+                    self.list.remove(at: index!)
+                }
                 self.collectionView.reloadData()
             } else {
                 print(data.displayMessage ?? "")

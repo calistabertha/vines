@@ -8,7 +8,7 @@
 import Foundation
 import SwiftyJSON
 
-public final class ProductListModelData: NSCoding {
+public final class ProductListModelData: NSObject, NSCoding {
 
   // MARK: Declaration for string constants to be used to decode and also serialize.
   private struct SerializationKeys {
