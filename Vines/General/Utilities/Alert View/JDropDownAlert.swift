@@ -89,7 +89,7 @@ open class JDropDownAlert: UIButton {
         setTitleDefaults()
         setMessageDefaults()
         setImageDefaults()
-        self.backgroundColor = UIColor.lightRed()
+        self.backgroundColor = UIColor.black
         self.addTarget(self, action: #selector(viewDidTap), for: .touchUpInside)
     }
     

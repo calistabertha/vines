@@ -96,6 +96,10 @@
 		CC64A6B7217CA946000743DE /* AllStoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64A6B5217CA946000743DE /* AllStoreTableViewCell.swift */; };
 		CC64A6B8217CA946000743DE /* AllStoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC64A6B6217CA946000743DE /* AllStoreTableViewCell.xib */; };
 		CC74E40821F9A22300D771F2 /* JDropDownAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC74E40721F9A22300D771F2 /* JDropDownAlert.swift */; };
+		CC74E40D21F9A9DF00D771F2 /* WalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC74E40B21F9A9DF00D771F2 /* WalkthroughViewController.swift */; };
+		CC74E40E21F9A9DF00D771F2 /* WalkthroughViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC74E40C21F9A9DF00D771F2 /* WalkthroughViewController.xib */; };
+		CC74E41021F9AB1A00D771F2 /* Slide.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC74E40F21F9AB1A00D771F2 /* Slide.swift */; };
+		CC74E41221F9AB2400D771F2 /* Slide.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC74E41121F9AB2400D771F2 /* Slide.xib */; };
 		CC81666E216A0692008FD617 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC81666D216A0692008FD617 /* UserDefaults+Extension.swift */; };
 		CC816671216A06CE008FD617 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC816670216A06CE008FD617 /* ResponseModel.swift */; };
 		CC816673216A06F3008FD617 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC816672216A06F3008FD617 /* UserModel.swift */; };
@@ -296,6 +300,10 @@
 		CC64A6B5217CA946000743DE /* AllStoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStoreTableViewCell.swift; sourceTree = "<group>"; };
 		CC64A6B6217CA946000743DE /* AllStoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllStoreTableViewCell.xib; sourceTree = "<group>"; };
 		CC74E40721F9A22300D771F2 /* JDropDownAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDropDownAlert.swift; sourceTree = "<group>"; };
+		CC74E40B21F9A9DF00D771F2 /* WalkthroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughViewController.swift; sourceTree = "<group>"; };
+		CC74E40C21F9A9DF00D771F2 /* WalkthroughViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalkthroughViewController.xib; sourceTree = "<group>"; };
+		CC74E40F21F9AB1A00D771F2 /* Slide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slide.swift; sourceTree = "<group>"; };
+		CC74E41121F9AB2400D771F2 /* Slide.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Slide.xib; sourceTree = "<group>"; };
 		CC81666D216A0692008FD617 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		CC816670216A06CE008FD617 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		CC816672216A06F3008FD617 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -685,6 +693,17 @@
 			path = "Alert View";
 			sourceTree = "<group>";
 		};
+		CC74E40A21F9A9B500D771F2 /* Walkthrough */ = {
+			isa = PBXGroup;
+			children = (
+				CC74E40B21F9A9DF00D771F2 /* WalkthroughViewController.swift */,
+				CC74E40C21F9A9DF00D771F2 /* WalkthroughViewController.xib */,
+				CC74E40F21F9AB1A00D771F2 /* Slide.swift */,
+				CC74E41121F9AB2400D771F2 /* Slide.xib */,
+			);
+			path = Walkthrough;
+			sourceTree = "<group>";
+		};
 		CC81666C216A0662008FD617 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -717,6 +736,7 @@
 		CC816674216A0780008FD617 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CC74E40A21F9A9B500D771F2 /* Walkthrough */,
 				CCCE53CD21F0BBE6000760D1 /* Checkout */,
 				9055594A21F0B81D00C2E74E /* Super Secret Page */,
 				CCAF350221EDE693003EFADA /* Shopping Cart */,
@@ -1039,12 +1059,14 @@
 				CCB6699821F35FBE007FAD74 /* ListOrderTableViewCell.xib in Resources */,
 				CC2AF80721BD1A52002BA448 /* StoreViewController.xib in Resources */,
 				CC613FF02160FDAD002C24CB /* Roboto-Bold.ttf in Resources */,
+				CC74E40E21F9A9DF00D771F2 /* WalkthroughViewController.xib in Resources */,
 				CC2512BC21C49E8E00B4F664 /* DescriptionTableViewCell.xib in Resources */,
 				CCB5A82C21DFA5620055EE7A /* SupportViewController.xib in Resources */,
 				CCCE53D121F0BDB0000760D1 /* ParentCheckoutViewController.xib in Resources */,
 				CCD814A221E3116A005D4C52 /* FooterButtonTableViewCell.xib in Resources */,
 				CCD814E821E357E9005D4C52 /* LiquorOptionTableViewCell.xib in Resources */,
 				CCB6699421F35F78007FAD74 /* OrderSummaryViewController.xib in Resources */,
+				CC74E41221F9AB2400D771F2 /* Slide.xib in Resources */,
 				CCE5226E21D6234600F868DD /* DetailNewsViewController.xib in Resources */,
 				CCAF350A21EDEE1A003EFADA /* CartTableViewCell.xib in Resources */,
 				CC613FF32160FF93002C24CB /* Roboto-Italic.ttf in Resources */,
@@ -1227,6 +1249,7 @@
 				CC4CD36521C3E0AF00217626 /* DetailProductViewController.swift in Sources */,
 				CC62C3FA21A5ACF700D2CA6F /* Modal.swift in Sources */,
 				CCD814A121E3116A005D4C52 /* FooterButtonTableViewCell.swift in Sources */,
+				CC74E40D21F9A9DF00D771F2 /* WalkthroughViewController.swift in Sources */,
 				CC2AF81021BD1A60002BA448 /* ForgotPasswordViewController.swift in Sources */,
 				CCD502D8216A01960070F457 /* Constants.swift in Sources */,
 				90905BFD21D611C400896D68 /* BannerView.swift in Sources */,
@@ -1259,6 +1282,7 @@
 				CCC2E65621F33851000879C6 /* PickupTableViewCell.swift in Sources */,
 				9055595121F0B8F500C2E74E /* SuperSecretViewController.swift in Sources */,
 				CC4CD36921C3E22600217626 /* HeaderProductTableViewCell.swift in Sources */,
+				CC74E41021F9AB1A00D771F2 /* Slide.swift in Sources */,
 				CCB5A82621DFA2B70055EE7A /* PersonalInformationTableViewCell.swift in Sources */,
 				90E950C421DFC51800627E06 /* PublicFunction.swift in Sources */,
 				90DF855B21F7087800838007 /* StaticPageModelData.swift in Sources */,
@@ -1475,7 +1499,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vineswine.Vines.aa;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vineswine.Vines.aabkk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -1497,7 +1521,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vineswine.Vines.aa;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vineswine.Vines.aabkk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
