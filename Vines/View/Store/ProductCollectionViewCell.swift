@@ -20,6 +20,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var viewCart: UIView!
     @IBOutlet weak var lblAction: UILabel!
     @IBOutlet weak var iconAction: UIImageView!
+    @IBOutlet weak var lblDiscount: UILabel!
     
     var addToWishlist: ProductClosure?
     var addToCart: IntClosure?
@@ -64,6 +65,12 @@ extension ProductCollectionViewCell: CollectionViewCellProtocol{
         cell.lblType.text = data.categoryName ?? ""
         cell.lblPrice1.text = String(data.discount ?? 0).asRupiah()
         cell.lblPrice2.text = String(data.price ?? 0).asRupiah()
+        if data.discount == 0 {
+            cell.viewDiscount.isHidden = true
+        }else {
+            cell.viewDiscount.isHidden = false
+            cell.lblDiscount.text = String(data.discount ?? 0).asRupiah()
+        }
         
         cell.viewCart.layer.cornerRadius = 10
         return cell

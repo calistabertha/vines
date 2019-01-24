@@ -7,9 +7,18 @@
 //
 
 import SwiftyJSON
+import UIKit
 
 public func userDefault() -> UserDefaults {
     return UserDefaults.shared
+}
+
+class Products: NSObject {
+    let product: [ProductListModelData]
+    
+    init(product: [ProductListModelData]) {
+        self.product = product
+    }
 }
 
 extension UserDefaults {
@@ -63,6 +72,22 @@ extension UserDefaults {
     func walthroughShowed(_ bool: Bool) {
         userDefault().set(bool, forKey: "WALTHROUGH")
     }
+
+    func addToCart(product: ProductListModelData) {
+        var list = getCart()
+        list.append(product)
+        let json = JSON(list)
+        print(json)
+//        saveObject(key: "CART_LIST", value: products)
+    }
+    
+    func removeCart(productId: Int) {
+        var list = getCart()
+        let index: Int? = list.index { $0.productId == productId }
+        if index != nil {
+            list.remove(at: index!)
+        }
+    }
     
     func logout() {
         userDefault().removeObject(forKey: "USER_DATA")
@@ -112,10 +137,22 @@ extension UserDefaults {
         return userDefault().integer(forKey: "USER_ID")
     }
     
+    func getCart() -> [ProductListModelData] {
+        guard let cartList = userDefault().array(forKey: "CART_LIST") as? [ProductListModelData] else { return [] }
+        return cartList
+    }
+    
     func getUserData() -> LoginModelData? {
         if let result = getObject(key: "USER_DATA") as? LoginModelData {
             return result
         }
         return nil
+    }
+    
+    func getEmailUser() -> String {
+        if let email = getUserData()?.userData?[safe: 0]?.email {
+            return email
+        }
+        return ""
     }
 }

@@ -36,9 +36,11 @@ class PaymentMethodViewController: UIViewController {
     }
     
     @IBAction func editPersonalInfoButtonDidPush(_ sender: Any) {
+        NotificationCenter.default.post(name: .dataCustomer, object: nil)
     }
    
     @IBAction func editShippingButtonDidPush(_ sender: Any) {
+        NotificationCenter.default.post(name: .orderSummary, object: nil)
     }
     
     @IBAction func payNowButtonDidPush(_ sender: Any) {

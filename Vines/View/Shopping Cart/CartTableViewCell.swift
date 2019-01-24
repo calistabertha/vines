@@ -21,6 +21,8 @@ class CartTableViewCell: UITableViewCell {
     var minus : ((UITableViewCell) -> Void)?
     var plus : ((UITableViewCell) -> Void)?
     
+    private var testCount = 1
+    
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -67,18 +69,25 @@ extension CartTableViewCell: TableViewCellProtocol{
         
         cell.minus = {
             (cells) in
-            if cell.lblCount.text == "1" {
+            if cell.testCount == 1 {
                 cell.btnMinus.alpha = 0.5
                 cell.btnMinus.isUserInteractionEnabled = false
-            }else{
-                cell.btnMinus.alpha = 1
-                cell.btnMinus.isUserInteractionEnabled = true
+                return
             }
+            
+            cell.testCount -= 1
+            cell.lblCount.text = "\(cell.testCount)"
         }
         
         cell.plus = {
             (cells) in
+            if cell.testCount > 1 {
+                cell.btnMinus.alpha = 1
+                cell.btnMinus.isUserInteractionEnabled = true
+            }
             
+            cell.testCount += 1
+            cell.lblCount.text = "\(cell.testCount)"
         }
         return cell
     }

@@ -29,6 +29,8 @@ class OrderSummaryViewController: UIViewController {
     }
     
     @IBAction func nextButtonDidPush(_ sender: Any) {
+        NotificationCenter.default.post(name: .paymentMethod, object: nil)
+
     }
 }
 

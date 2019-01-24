@@ -17,6 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ParentCheckoutViewController" customModule="Vines" customModuleProvider="target">
             <connections>
+                <outlet property="iconNext" destination="V9Q-mu-mp9" id="1kC-v1-KBa"/>
                 <outlet property="lblCustomer" destination="8td-D7-yaC" id="sND-Zr-m4E"/>
                 <outlet property="lblPayment" destination="dNL-9N-R9q" id="Mz9-Y1-aQj"/>
                 <outlet property="lblSummary" destination="Uiu-42-zzF" id="3TW-ui-3RL"/>

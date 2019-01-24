@@ -14,6 +14,8 @@
 		9011615D21ECCFC3003B2520 /* NewsModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9011615B21ECCFC3003B2520 /* NewsModelBaseClass.swift */; };
 		9015139A21D614DE00BD836E /* PromotionModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9015139821D614DE00BD836E /* PromotionModelBaseClass.swift */; };
 		9015139B21D614DE00BD836E /* PromotionModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9015139921D614DE00BD836E /* PromotionModelData.swift */; };
+		9055595121F0B8F500C2E74E /* SuperSecretViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9055594F21F0B8F500C2E74E /* SuperSecretViewController.swift */; };
+		9055595221F0B8F500C2E74E /* SuperSecretViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9055595021F0B8F500C2E74E /* SuperSecretViewController.xib */; };
 		907B67452189FB1600CFEDB1 /* RegisterModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907B67442189FB1600CFEDB1 /* RegisterModelBaseClass.swift */; };
 		907B67472189FD7100CFEDB1 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907B67462189FD7100CFEDB1 /* Extension.swift */; };
 		90905BFD21D611C400896D68 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90905BFB21D611C400896D68 /* BannerView.swift */; };
@@ -27,6 +29,8 @@
 		90D4876421A6EC56005B5A7C /* StoreListModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4875F21A6EC56005B5A7C /* StoreListModelData.swift */; };
 		90D4876521A6EC56005B5A7C /* StoreDetailModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4876121A6EC56005B5A7C /* StoreDetailModelBaseClass.swift */; };
 		90D4876621A6EC56005B5A7C /* StoreDetailModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4876221A6EC56005B5A7C /* StoreDetailModelData.swift */; };
+		90DF855A21F7087800838007 /* StaticPageModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DF855821F7087700838007 /* StaticPageModelBaseClass.swift */; };
+		90DF855B21F7087800838007 /* StaticPageModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DF855921F7087700838007 /* StaticPageModelData.swift */; };
 		90E950C421DFC51800627E06 /* PublicFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E950C321DFC51800627E06 /* PublicFunction.swift */; };
 		B558C6006F461CCD6E69BDF8 /* Pods_VinesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15719DD66D0AE26349E7A63 /* Pods_VinesTests.framework */; };
 		CC0131BD21D370EF00A5B883 /* WishlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0131BB21D370EF00A5B883 /* WishlistViewController.swift */; };
@@ -91,6 +95,7 @@
 		CC62C3FA21A5ACF700D2CA6F /* Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C3F921A5ACF700D2CA6F /* Modal.swift */; };
 		CC64A6B7217CA946000743DE /* AllStoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64A6B5217CA946000743DE /* AllStoreTableViewCell.swift */; };
 		CC64A6B8217CA946000743DE /* AllStoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC64A6B6217CA946000743DE /* AllStoreTableViewCell.xib */; };
+		CC74E40821F9A22300D771F2 /* JDropDownAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC74E40721F9A22300D771F2 /* JDropDownAlert.swift */; };
 		CC81666E216A0692008FD617 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC81666D216A0692008FD617 /* UserDefaults+Extension.swift */; };
 		CC816671216A06CE008FD617 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC816670216A06CE008FD617 /* ResponseModel.swift */; };
 		CC816673216A06F3008FD617 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC816672216A06F3008FD617 /* UserModel.swift */; };
@@ -198,6 +203,8 @@
 		9011615B21ECCFC3003B2520 /* NewsModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsModelBaseClass.swift; sourceTree = "<group>"; };
 		9015139821D614DE00BD836E /* PromotionModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionModelBaseClass.swift; sourceTree = "<group>"; };
 		9015139921D614DE00BD836E /* PromotionModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionModelData.swift; sourceTree = "<group>"; };
+		9055594F21F0B8F500C2E74E /* SuperSecretViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSecretViewController.swift; sourceTree = "<group>"; };
+		9055595021F0B8F500C2E74E /* SuperSecretViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuperSecretViewController.xib; sourceTree = "<group>"; };
 		907B67442189FB1600CFEDB1 /* RegisterModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterModelBaseClass.swift; sourceTree = "<group>"; };
 		907B67462189FD7100CFEDB1 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		90905BFB21D611C400896D68 /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
@@ -211,6 +218,8 @@
 		90D4875F21A6EC56005B5A7C /* StoreListModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreListModelData.swift; sourceTree = "<group>"; };
 		90D4876121A6EC56005B5A7C /* StoreDetailModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailModelBaseClass.swift; sourceTree = "<group>"; };
 		90D4876221A6EC56005B5A7C /* StoreDetailModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailModelData.swift; sourceTree = "<group>"; };
+		90DF855821F7087700838007 /* StaticPageModelBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticPageModelBaseClass.swift; sourceTree = "<group>"; };
+		90DF855921F7087700838007 /* StaticPageModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticPageModelData.swift; sourceTree = "<group>"; };
 		90E950C321DFC51800627E06 /* PublicFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicFunction.swift; sourceTree = "<group>"; };
 		9BA2A0D10491F012CA590F83 /* Pods-Vines.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vines.release.xcconfig"; path = "Pods/Target Support Files/Pods-Vines/Pods-Vines.release.xcconfig"; sourceTree = "<group>"; };
 		A7217F70E7573C7489DCB90F /* Pods-VinesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VinesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VinesTests/Pods-VinesTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -286,6 +295,7 @@
 		CC62C3F921A5ACF700D2CA6F /* Modal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modal.swift; sourceTree = "<group>"; };
 		CC64A6B5217CA946000743DE /* AllStoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStoreTableViewCell.swift; sourceTree = "<group>"; };
 		CC64A6B6217CA946000743DE /* AllStoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllStoreTableViewCell.xib; sourceTree = "<group>"; };
+		CC74E40721F9A22300D771F2 /* JDropDownAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDropDownAlert.swift; sourceTree = "<group>"; };
 		CC81666D216A0692008FD617 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		CC816670216A06CE008FD617 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		CC816672216A06F3008FD617 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -438,6 +448,15 @@
 			path = Promotion;
 			sourceTree = "<group>";
 		};
+		9055594A21F0B81D00C2E74E /* Super Secret Page */ = {
+			isa = PBXGroup;
+			children = (
+				9055594F21F0B8F500C2E74E /* SuperSecretViewController.swift */,
+				9055595021F0B8F500C2E74E /* SuperSecretViewController.xib */,
+			);
+			path = "Super Secret Page";
+			sourceTree = "<group>";
+		};
 		907B67432189FB1600CFEDB1 /* Register */ = {
 			isa = PBXGroup;
 			children = (
@@ -481,6 +500,15 @@
 				90D4876221A6EC56005B5A7C /* StoreDetailModelData.swift */,
 			);
 			path = StoreDetail;
+			sourceTree = "<group>";
+		};
+		90DF855721F7087700838007 /* StaticPage */ = {
+			isa = PBXGroup;
+			children = (
+				90DF855821F7087700838007 /* StaticPageModelBaseClass.swift */,
+				90DF855921F7087700838007 /* StaticPageModelData.swift */,
+			);
+			path = StaticPage;
 			sourceTree = "<group>";
 		};
 		CC0131BA21D370D900A5B883 /* Wishlist */ = {
@@ -613,6 +641,7 @@
 				CC954BFC217B3F6C0017C5F4 /* BaseCellProtocol.swift */,
 				CC613FED2160FD92002C24CB /* Font */,
 				CC62C3F821A5ACF700D2CA6F /* Modal */,
+				CC74E40621F9A21100D771F2 /* Alert View */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -648,6 +677,14 @@
 			path = Modal;
 			sourceTree = "<group>";
 		};
+		CC74E40621F9A21100D771F2 /* Alert View */ = {
+			isa = PBXGroup;
+			children = (
+				CC74E40721F9A22300D771F2 /* JDropDownAlert.swift */,
+			);
+			path = "Alert View";
+			sourceTree = "<group>";
+		};
 		CC81666C216A0662008FD617 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -663,6 +700,7 @@
 		CC81666F216A06B6008FD617 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				90DF855721F7087700838007 /* StaticPage */,
 				9097CBA92189F3080053382D /* Login */,
 				9011615921ECCFC3003B2520 /* News */,
 				90AB72AA21E0DB2B009B72AB /* ProductList */,
@@ -680,6 +718,7 @@
 			isa = PBXGroup;
 			children = (
 				CCCE53CD21F0BBE6000760D1 /* Checkout */,
+				9055594A21F0B81D00C2E74E /* Super Secret Page */,
 				CCAF350221EDE693003EFADA /* Shopping Cart */,
 				CC191D5B21E1D00200FBB1D4 /* Profile */,
 				CCB5A82821DFA5460055EE7A /* Support */,
@@ -994,6 +1033,7 @@
 				CC2C787021C26346006213EE /* HeaderSectionStoreTableViewCell.xib in Resources */,
 				CCE6DEA121EDC696007CA850 /* SuccessEditing.xib in Resources */,
 				CC62C3F621A5ACA100D2CA6F /* DetailStoreView.xib in Resources */,
+				9055595221F0B8F500C2E74E /* SuperSecretViewController.xib in Resources */,
 				CCE5225C21D603D000F868DD /* DetailPromoViewController.xib in Resources */,
 				CC2AF83021BD2DDA002BA448 /* FeatureProductTableViewCell.xib in Resources */,
 				CCB6699821F35FBE007FAD74 /* ListOrderTableViewCell.xib in Resources */,
@@ -1195,6 +1235,7 @@
 				CCC7893721F576ED004A82A3 /* ApplyDiscountTableViewCell.swift in Sources */,
 				CCAF350521EDEDD9003EFADA /* ShoppingCartViewController.swift in Sources */,
 				CCAF350D21EDF1F7003EFADA /* TotalCartTableViewCell.swift in Sources */,
+				CC74E40821F9A22300D771F2 /* JDropDownAlert.swift in Sources */,
 				CC2AF81121BD1A60002BA448 /* SignInViewController.swift in Sources */,
 				9097CBAF2189F3080053382D /* LoginModelUserData.swift in Sources */,
 				CC2AF83F21BD3489002BA448 /* ProductCollectionViewCell.swift in Sources */,
@@ -1216,9 +1257,11 @@
 				CCE6DE9C21EDBF35007CA850 /* ChangePasswordViewController.swift in Sources */,
 				9015139B21D614DE00BD836E /* PromotionModelData.swift in Sources */,
 				CCC2E65621F33851000879C6 /* PickupTableViewCell.swift in Sources */,
+				9055595121F0B8F500C2E74E /* SuperSecretViewController.swift in Sources */,
 				CC4CD36921C3E22600217626 /* HeaderProductTableViewCell.swift in Sources */,
 				CCB5A82621DFA2B70055EE7A /* PersonalInformationTableViewCell.swift in Sources */,
 				90E950C421DFC51800627E06 /* PublicFunction.swift in Sources */,
+				90DF855B21F7087800838007 /* StaticPageModelData.swift in Sources */,
 				CC191D5521E0DAA500FBB1D4 /* GeneralInformationTableViewCell.swift in Sources */,
 				CCC7894321F60DD4004A82A3 /* ShowInfoTableViewCell.swift in Sources */,
 				9097CBAD2189F3080053382D /* LoginModelBaseClass.swift in Sources */,
@@ -1250,6 +1293,7 @@
 				CCB6699721F35FBE007FAD74 /* ListOrderTableViewCell.swift in Sources */,
 				CC191D5921E0E4A400FBB1D4 /* LiquorSelectionTableViewCell.swift in Sources */,
 				CC64A6B7217CA946000743DE /* AllStoreTableViewCell.swift in Sources */,
+				90DF855A21F7087800838007 /* StaticPageModelBaseClass.swift in Sources */,
 				CC2AF82721BD21A7002BA448 /* ProfileSwipeViewController.swift in Sources */,
 				CCC2E64E21F2D3BC000879C6 /* ShippingMethodTableViewCell.swift in Sources */,
 				CCB5A82F21DFA5D00055EE7A /* SupportTableViewCell.swift in Sources */,
@@ -1423,17 +1467,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 3PKXDRS3N3;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 359QWPV76V;
 				INFOPLIST_FILE = Vines/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vineswine.Vines;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vineswine.Vines.aa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Vines Development";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1444,18 +1488,18 @@
 			baseConfigurationReference = 9BA2A0D10491F012CA590F83 /* Pods-Vines.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 3PKXDRS3N3;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 359QWPV76V;
 				INFOPLIST_FILE = Vines/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vineswine.Vines;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vineswine.Vines.aa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Vines Distribution";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

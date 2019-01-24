@@ -12,14 +12,11 @@ import GooglePlaces
 import iCarousel
 
 class HomeViewController: UIViewController {
-    
-    struct State {
-        let name: String
-        let long: CLLocationDegrees
-        let lat: CLLocationDegrees
+    @IBOutlet weak var viewMaps: GMSMapView! {
+        didSet {
+            viewMaps.isMyLocationEnabled = true
+        }
     }
-    
-    @IBOutlet weak var viewMaps: GMSMapView!
     @IBOutlet weak var viewTransparantTop: UIView!
     @IBOutlet weak var viewTransparantBottom: UIView!
     @IBOutlet weak var viewSeeAllStore: UIView!
@@ -34,20 +31,19 @@ class HomeViewController: UIViewController {
     }
     @IBOutlet weak var imgLogo: UIImageView!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var viewUserLoc: UIView!
     
     var tableDataSource: GMSAutocompleteTableDataSource?
     var locationManager:CLLocationManager?
     
     var counter: Int = 0
-    let states = [
-        State(name: "Alaska", long: -152.404419, lat: 61.370716),
-        State(name: "Alabama", long: -86.791130, lat: 32.806671),
-        // the other 51 states here...
-    ]
-    
+   
     // API Data
     var promotionList: [PromotionModelData] = []
     var markerDict: [String: GMSMarker] = [:]
+    var locations: CLLocation?
+    var latitude = ""
+    var longitude = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +52,7 @@ class HomeViewController: UIViewController {
         let change = UITapGestureRecognizer(target: self, action: #selector(changeEnvironment))
         imgLogo.addGestureRecognizer(change)
         imgLogo.isUserInteractionEnabled = true
-
+        viewUserLoc.layer.cornerRadius = viewUserLoc.layer.frame.height / 2
         setupView()
         setupCarousel()
     }
@@ -78,17 +74,11 @@ class HomeViewController: UIViewController {
     
     private func setupLocation() {
         locationManager = CLLocationManager()
-        // Ask for Authorisation from the User.
-        self.locationManager?.requestAlwaysAuthorization()
-        
-        // For use in foreground
-        self.locationManager?.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager?.delegate = self
-            locationManager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager?.startUpdatingLocation()
-        }
+        locationManager?.delegate = self
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.distanceFilter = 50
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.startUpdatingLocation()
     }
     
     private func setupView() {
@@ -111,29 +101,38 @@ class HomeViewController: UIViewController {
         botomLayer.startPoint = CGPoint(x: 0.0, y: 1.0)
         botomLayer.endPoint = CGPoint(x: 0.0, y: 0.0)
         self.viewTransparantBottom.layer.mask = botomLayer
-        
-        let camera = GMSCameraPosition.camera(withLatitude: -11.0, longitude: 13.0, zoom: 6)
-        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-//        mapView.isMyLocationEnabled = true
-//
-//        self.viewMaps.camera = camera
-//        self.viewMaps = mapView
-//
-//        let marker = GMSMarker()
-//        marker.position = CLLocationCoordinate2DMake(-33.86, 151.20)
-//        marker.title = "title"
-//        marker.snippet = "snippet"
-//        marker.icon = UIImage(named: "ico-PinPoint")
-//        marker.map = mapView
-        
-        for state in states {
-            let state_marker = GMSMarker()
-            state_marker.position = CLLocationCoordinate2D(latitude: state.lat, longitude: state.long)
-            state_marker.title = state.name
-            state_marker.snippet = "Hey, this is \(state.name)"
-            state_marker.map = mapView
-            state_marker.icon = UIImage(named: "ico-PinPoint")
-            markerDict[state.name] = state_marker
+    }
+    
+    private func fetchStore(latitude: String, longitude: String) {
+        let params = [
+            "longitude": longitude,
+            "latitude": latitude
+            ] as [String : Any]
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Store.list, param: params, method: HTTPMethodHelper.post) { [weak self] (success, json) in
+            guard let `self` = self else { return }
+            let data = StoreListModelBaseClass(json: json ?? "")
+            if data.message?.lowercased() == "success" {
+                guard let markers = data.data else { return }
+                print(">>> \(markers.count)")
+                for marker in markers {
+                    guard let markerLatitude = marker.latitude,
+                        let markerLongitude = marker.longitude else { return }
+                    
+                    let memberLatitude = CLLocationDegrees(markerLatitude)
+                    let memberLongitude = CLLocationDegrees(markerLongitude)
+                    let memberCoordinate2D = CLLocationCoordinate2D(latitude: memberLatitude, longitude: memberLongitude)
+                    
+                    let pinPlaceholder = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+                    pinPlaceholder.image = UIImage(named: "ico-PinPoint")
+                    
+                    let marker = GMSMarker(position: memberCoordinate2D)
+                    marker.iconView = pinPlaceholder
+                    marker.title = marker.snippet
+                    marker.map = self.viewMaps
+                }
+            } else {
+                print(data.displayMessage ?? "")
+            }
         }
     }
     
@@ -145,6 +144,12 @@ class HomeViewController: UIViewController {
     @IBAction func profileButtonDidPush(_ sender: Any) {
         let vc = ProfileSwipeViewController()
         vc.promotionList = promotionList
+        
+        let transition = CATransition()
+        transition.duration = 0.2
+        transition.type = kCATransitionMoveIn
+        transition.subtype = kCATransitionFromLeft
+        contentView.layer.add(transition, forKey: kCATransition)
         contentView.addSubview(vc.view)
         self.addChildViewController(vc)
         vc.delegate = self
@@ -165,21 +170,28 @@ class HomeViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBAction func userLocationButtonDidPush(_ sender: Any) {
+        guard let locationCoordinate = locations?.coordinate else {return}
+        self.viewMaps.animate(to: GMSCameraPosition(target: locationCoordinate, zoom: 15, bearing: 0, viewingAngle: 0))
+    }
+    
     @objc func changeEnvironment() {
         print(userDefault().isDebug())
         if counter >= 3 {
-            counter = 0
-            userDefault().changeEnvironment()
-            let delegate = UIApplication.shared.delegate as! AppDelegate
-            delegate.logout()
-            UIAlertController
-                .yesOrNoAlert(self,
-                              title: "Environment Changed to \(userDefault().isDebug() == true ? "Debug" : "Production")",
-                              message: nil,
-                              okButtonTitle: "OK",
-                              noButtonTitle: nil,
-                              no: nil,
-                              yes: nil)
+            let vc = SuperSecretViewController()
+            navigationController?.pushViewController(vc, animated: true)
+//            counter = 0
+//            userDefault().changeEnvironment()
+//            let delegate = UIApplication.shared.delegate as! AppDelegate
+//            delegate.logout()
+//            UIAlertController
+//                .yesOrNoAlert(self,
+//                              title: "Environment Changed to \(userDefault().isDebug() == true ? "Debug" : "Production")",
+//                              message: nil,
+//                              okButtonTitle: "OK",
+//                              noButtonTitle: nil,
+//                              no: nil,
+//                              yes: nil)
       
         }
         counter += 1
@@ -207,34 +219,16 @@ extension HomeViewController: UITextFieldDelegate{
 
 extension HomeViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        self.locations = location
+        latitude = String(location.coordinate.latitude)
+        longitude = String(location.coordinate.longitude)
         
-        let location = locations.last
-        
-        let camera = GMSCameraPosition.camera(withLatitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude, zoom: 14)
-        
-        // Animate still not working.
-        self.viewMaps?.camera = camera
-        self.viewMaps?.animate(to: camera)
-        
-        //Finally stop updating location otherwise it will come again and again in this delegate
+        self.viewMaps.animate(to: GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0))
+        self.fetchStore(latitude: latitude, longitude: longitude)
         self.locationManager?.stopUpdatingLocation()
     }
 }
-
-//extension HomeViewController: GMSMapViewDelegate{
-//    func mapViewDidFinishTileRendering(_ mapView: GMSMapView) {
-//        let location = mapView.myLocation
-//        let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude:(location?.coordinate.longitude)!, zoom:14)
-//        mapView.animate(to: camera)
-//
-//        let marker = GMSMarker()
-//        marker.position = CLLocationCoordinate2DMake((location?.coordinate.latitude)!, (location?.coordinate.longitude)!)
-//        marker.title = "title"
-//        marker.snippet = "snippet"
-//        marker.icon = UIImage(named: "ico-PinPoint")
-//        marker.map = mapView
-//    }
-//}
 
 extension HomeViewController: GMSAutocompleteViewControllerDelegate {
     
@@ -248,8 +242,6 @@ extension HomeViewController: GMSAutocompleteViewControllerDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
-        // TODO: handle the error.
-        //        print("Error: \(error.description)")
         self.dismiss(animated: true, completion: nil)
     }
     

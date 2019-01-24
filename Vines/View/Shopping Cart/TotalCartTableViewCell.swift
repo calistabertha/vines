@@ -37,7 +37,7 @@ extension TotalCartTableViewCell: TableViewCellProtocol{
         cell.payment = {
             (cells) in
             guard let ctx = context as? ShoppingCartViewController else {return}
-            let vc = DataCustomerViewController() //ParentCheckoutViewController()
+            let vc = ParentCheckoutViewController()
             ctx.navigationController?.pushViewController(vc, animated: true)
         }
         return cell

@@ -227,6 +227,7 @@
                 <outlet property="iconAction" destination="Ae0-C2-89t" id="wAj-GQ-gpl"/>
                 <outlet property="imgProduct" destination="IOi-sf-Ttn" id="BpB-GH-Ekh"/>
                 <outlet property="lblAction" destination="656-in-yYX" id="SPc-yN-GbE"/>
+                <outlet property="lblDiscount" destination="JIi-Mt-Suk" id="aXa-eN-kXR"/>
                 <outlet property="lblName" destination="80R-1i-4DF" id="ipm-tb-asa"/>
                 <outlet property="lblPrice1" destination="UVc-Tr-QQG" id="99E-RG-f3N"/>
                 <outlet property="lblPrice2" destination="4i5-ET-5G1" id="LCf-4A-Omk"/>

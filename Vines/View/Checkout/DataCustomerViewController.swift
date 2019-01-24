@@ -23,7 +23,6 @@ class DataCustomerViewController: UIViewController {
         btnNext.layer.cornerRadius = 5
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         self.tableView.addGestureRecognizer(tap)
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,8 +52,8 @@ class DataCustomerViewController: UIViewController {
     }
     
     @IBAction func nextButtonDidPush(_ sender: Any) {
-        let vc = OrderSummaryViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        NotificationCenter.default.post(name: .orderSummary, object: nil)
+        print("nananananannanananaan")
     }
 }
 

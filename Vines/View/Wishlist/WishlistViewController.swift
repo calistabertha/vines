@@ -19,6 +19,7 @@ class WishlistViewController: VinesViewController {
         }
     }
     
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var viewContinueShop: UIView!
     @IBOutlet weak var viewEmpty: UIView!
     
@@ -33,7 +34,7 @@ class WishlistViewController: VinesViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        spinner.startAnimating()
         collectionItemSize = calculateSize()
         fetchWishlist()
     }
@@ -65,10 +66,14 @@ class WishlistViewController: VinesViewController {
                 self.collectionView.reloadData()
                 if self.list.count > 0 {
                     self.viewEmpty.isHidden = true
+                }else {
+                    self.viewEmpty.isHidden = false
                 }
             } else {
                 print(data.displayMessage ?? "")
             }
+            self.spinner.stopAnimating()
+            self.spinner.isHidden = true
         }
     }
     
@@ -81,8 +86,10 @@ class WishlistViewController: VinesViewController {
         HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.deleteWishlist, param: params, method: HTTPMethodHelper.post) { (success, json) in
             let data = ProductListModelBaseClass(json: json ?? "")
             if data.message?.lowercased() == "success" {
-                let index = self.list.index { $0.productId == product.productId } ?? 0
-                self.list.remove(at: index)
+                let index: Int? = self.list.index { $0.productId == product.productId }
+                if index != nil {
+                    self.list.remove(at: index!)
+                }
                 self.collectionView.reloadData()
             } else {
                 print(data.displayMessage ?? "")

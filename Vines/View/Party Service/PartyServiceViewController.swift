@@ -181,6 +181,16 @@ extension PartyServiceViewController: UITableViewDataSource{
             return UITableViewCell()
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 2 {
+            if indexPath.row == 3 {
+                print("solve")
+                let alert = JDropDownAlert()
+                alert.alertWith("Success", message: "", topLabelColor: UIColor.black, messageLabelColor: UIColor.white, backgroundColor: UIColor.green, image: nil)
+            }
+        }
+    }
 }
 extension PartyServiceViewController: UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {

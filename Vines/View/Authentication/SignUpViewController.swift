@@ -26,6 +26,8 @@ class SignUpViewController: VinesViewController {
     @IBOutlet weak var txtConfirmPassword: UITextField!
     @IBOutlet weak var txtPhoneNumber: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var imgProfile: UIImageView!
+    @IBOutlet weak var viewProfile: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +40,15 @@ class SignUpViewController: VinesViewController {
     }
     
     private func setupView() {
+        viewUploadPicture.layer.cornerRadius = viewUploadPicture.frame.height / 2
+        viewProfile.layer.cornerRadius = viewProfile.frame.width / 2
         btnSignUp.layer.cornerRadius = 5
         generateNavBarWithBackButton(titleString: "", viewController: self, isRightBarButton: false)
+        NotificationCenter .default .addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter .default .addObserver(self, selector: #selector(keyboardDidHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        self.view.addGestureRecognizer(tap)
     }
     
     override func backButtonDidPush() {
@@ -47,7 +56,52 @@ class SignUpViewController: VinesViewController {
         
     }
     
+    @objc func hideKeyboard() {
+        self.view.endEditing(true)
+        
+    }
+    
+    @objc func keyboardDidShow(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let keyboardHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size.height {
+                scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardHeight, 0)
+                scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, keyboardHeight, 0)
+                
+            }
+        }
+    }
+    
+    @objc func keyboardDidHide(notification: NSNotification) {
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
+    }
+    
+    
     @IBAction func uploadPictureButtonDidPush(_ sender: Any) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: {
+            (action) in
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera){
+                let imagePicker = UIImagePickerController()
+                imagePicker.delegate = self
+                imagePicker.sourceType = .camera
+                imagePicker.allowsEditing = true
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Choose Photo", style: .default, handler: {
+            (action) in
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
+                let imagePicker = UIImagePickerController()
+                imagePicker.delegate = self
+                imagePicker.sourceType = .photoLibrary
+                imagePicker.allowsEditing = true
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    
     }
     
     @IBAction func showPasswordButtonDidPush(_ sender: Any) {
@@ -79,5 +133,45 @@ class SignUpViewController: VinesViewController {
         }
     }
     @IBAction func signInButtonDidPush(_ sender: Any) {
+         navigationController?.popViewController(animated: true)
+    }
+}
+
+extension SignUpViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
+extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        picker.dismiss(animated: true, completion: nil)
+        
+        self.imgProfile.image = image
+        
+//        if let img = image {
+//            ProfileController.shared.uploadImage(images: img, completion: { (success, code, message, result) in
+//                if success {
+//                    let alert = JDropDownAlert()
+//                    alert.alertWith("Success", message: message, topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor.black, image: nil)
+//
+//                }else{
+//                    if code == HTTPCode.failure {
+//                        let alert = JDropDownAlert()
+//                        alert.alertWith("Failed", message: message, topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor.black, image: nil)
+//                        print("Berhasil konek ke server tapi failure")
+//                    } else {
+//                        let alert = JDropDownAlert()
+//                        alert.alertWith("Please Check Your Connection", message: nil, topLabelColor:
+//                            UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor.red, image: nil)
+//                        print("Gagal koneksi ke internet atau response yg diterima tidak sesuai")
+//                    }
+//
+//
+//                }
+//            })
+//        }
     }
 }

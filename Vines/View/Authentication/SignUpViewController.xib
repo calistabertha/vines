@@ -24,6 +24,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController" customModule="Vines" customModuleProvider="target">
             <connections>
                 <outlet property="btnSignUp" destination="372-X1-qyq" id="d6r-qc-zuH"/>
+                <outlet property="imgProfile" destination="Wgg-QH-bsq" id="DKz-ww-8td"/>
                 <outlet property="scrollView" destination="v1f-c4-udi" id="jkU-rc-3cx"/>
                 <outlet property="txtConfirmPassword" destination="qdK-nu-1B4" id="uiZ-u4-ooo"/>
                 <outlet property="txtEmail" destination="ceC-7U-Fzc" id="7FJ-9T-ofS"/>
@@ -32,6 +33,7 @@
                 <outlet property="txtPassword" destination="FOd-ZS-XhJ" id="yxc-Fh-oYg"/>
                 <outlet property="txtPhoneNumber" destination="pfZ-xX-tJj" id="2tw-0n-ARf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewProfile" destination="fai-S2-08q" id="baw-tm-faG"/>
                 <outlet property="viewUploadPicture" destination="0lx-VD-g7e" id="PAV-Hc-HTg"/>
             </connections>
         </placeholder>
@@ -68,9 +70,18 @@
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fai-S2-08q">
                                     <rect key="frame" x="24" y="116" width="56" height="56"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wgg-QH-bsq">
+                                            <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
+                                        </imageView>
+                                    </subviews>
                                     <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
+                                        <constraint firstItem="Wgg-QH-bsq" firstAttribute="top" secondItem="fai-S2-08q" secondAttribute="top" id="4W5-NB-PQX"/>
+                                        <constraint firstAttribute="trailing" secondItem="Wgg-QH-bsq" secondAttribute="trailing" id="5qw-5F-6hX"/>
                                         <constraint firstAttribute="width" constant="56" id="Ji0-aJ-uaE"/>
+                                        <constraint firstItem="Wgg-QH-bsq" firstAttribute="leading" secondItem="fai-S2-08q" secondAttribute="leading" id="ThI-OK-AZY"/>
+                                        <constraint firstAttribute="bottom" secondItem="Wgg-QH-bsq" secondAttribute="bottom" id="nrH-Bj-CgH"/>
                                         <constraint firstAttribute="height" constant="56" id="rPv-TS-LS3"/>
                                     </constraints>
                                 </view>
@@ -113,6 +124,9 @@
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="6DI-QW-db8"/>
+                                    </connections>
                                 </textField>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n5n-uy-W8p">
                                     <rect key="frame" x="196" y="200" width="155" height="30"/>
@@ -122,6 +136,9 @@
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="1sa-yl-xeG"/>
+                                    </connections>
                                 </textField>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qe4-lL-XUq">
                                     <rect key="frame" x="24" y="229" width="155" height="1"/>
@@ -145,6 +162,9 @@
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="rGV-vc-bAK"/>
+                                    </connections>
                                 </textField>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="njR-yV-HIn">
                                     <rect key="frame" x="24" y="289" width="327" height="1"/>
@@ -161,6 +181,9 @@
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="TgV-LZ-U7X"/>
+                                    </connections>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MW3-Hs-Nam">
                                     <rect key="frame" x="321" y="320" width="30" height="30"/>
@@ -187,6 +210,9 @@
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="k1s-xO-6mm"/>
+                                    </connections>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEG-Qn-Exe">
                                     <rect key="frame" x="321" y="380" width="30" height="30"/>

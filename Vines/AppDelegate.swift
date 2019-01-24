@@ -48,8 +48,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func setGoogleMapsKey() {
-        GMSServices.provideAPIKey("AIzaSyAHJfNPJUTy2uIrYBDhjWGp-bsFq7-k9KE")
-        GMSPlacesClient.provideAPIKey("AIzaSyAHJfNPJUTy2uIrYBDhjWGp-bsFq7-k9KE")
+        GMSServices.provideAPIKey("AIzaSyA-ThAMwdk-eESEOZl7PRH54lfXZo9kdk0")  //AIzaSyAHJfNPJUTy2uIrYBDhjWGp-bsFq7-k9KE
+        GMSPlacesClient.provideAPIKey("AIzaSyA-ThAMwdk-eESEOZl7PRH54lfXZo9kdk0")  //AIzaSyAHJfNPJUTy2uIrYBDhjWGp-bsFq7-k9KE
     }
 
     func setDefaultValue() {

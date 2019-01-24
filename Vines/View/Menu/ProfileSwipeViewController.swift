@@ -24,6 +24,8 @@ class ProfileSwipeViewController: UIViewController {
     
     var delegate: ProfileSwipeDelegate?
     var promotionList: [PromotionModelData] = []
+    var userData: LoginModelUserData?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(MenuProfileTableViewCell.nib, forCellReuseIdentifier: MenuProfileTableViewCell.identifier)
@@ -33,14 +35,36 @@ class ProfileSwipeViewController: UIViewController {
         let dateStr = formatter.string(from: NSDate() as Date)
         lblCopyright.text = "Copyright © \(dateStr) Vines. All rights reserved"
         imgProfile.layer.cornerRadius = imgProfile.layer.frame.height / 2
+        imgProfile.clipsToBounds = true
+        imgProfile.contentMode = .scaleAspectFill
         viewProfile.layer.cornerRadius = viewProfile.frame.height / 2
+        setupProfile()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    func setupProfile() {
+        guard let data = userDefault().getUserData()?.userData?[safe: 0] else { return }
+        userData = data
+        
+        imgProfile.af_setImage(withURL: URL(string: userData?.foto ?? "")!, placeholderImage: UIImage(named: "placeholder")) { [weak self] image in
+            guard let ws = self else { return }
+            if let img = image.value {
+                ws.imgProfile.image = img
+            } else {
+                ws.imgProfile.image = UIImage(named: "placeholder")
+            }
+        }
+        lblFullname.text = "HI, \(userData?.fullname?.uppercased() ?? "")"
+        lblEmail.text = userData?.email ?? ""
+//        lblPhoneNumber.text = userData.
+        
+    }
+    
     @IBAction func openProfileButtonDidPush(_ sender: Any) {
+        delegate?.dismissView(controller: self)
         let vc = ProfileViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
