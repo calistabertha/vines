@@ -19,6 +19,7 @@ class WishlistViewController: VinesViewController {
         }
     }
     
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var viewContinueShop: UIView!
     @IBOutlet weak var viewEmpty: UIView!
     
@@ -33,7 +34,7 @@ class WishlistViewController: VinesViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        spinner.startAnimating()
         collectionItemSize = calculateSize()
         fetchWishlist()
     }
@@ -65,10 +66,14 @@ class WishlistViewController: VinesViewController {
                 self.collectionView.reloadData()
                 if self.list.count > 0 {
                     self.viewEmpty.isHidden = true
+                }else {
+                    self.viewEmpty.isHidden = false
                 }
             } else {
                 print(data.displayMessage ?? "")
             }
+            self.spinner.stopAnimating()
+            self.spinner.isHidden = true
         }
     }
     

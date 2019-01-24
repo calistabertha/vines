@@ -63,6 +63,7 @@ class ProfileViewController: VinesViewController {
     
     @IBAction func editButtonDidPush(_ sender: Any) {
         let vc = EditProfileViewController()
+        vc.userData = userData
         navigationController?.pushViewController(vc, animated: true)
     }
     

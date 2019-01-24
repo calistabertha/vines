@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,6 +29,7 @@
                 <outlet property="viewSeeAllStore" destination="DDV-VU-Ysk" id="MGx-6P-gYV"/>
                 <outlet property="viewTransparantBottom" destination="qrL-WX-Ycv" id="jgX-9D-q1t"/>
                 <outlet property="viewTransparantTop" destination="EaM-3E-raK" id="8Qs-ra-abD"/>
+                <outlet property="viewUserLoc" destination="wQv-VC-aM2" id="VGH-Kb-UIS"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -82,6 +83,27 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="232" id="OjV-us-2H8"/>
                                 <constraint firstAttribute="width" constant="575" id="urr-ad-pAn"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wQv-VC-aM2">
+                            <rect key="frame" x="327" y="367" width="32" height="32"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3cJ-wQ-9iD">
+                                    <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                    <state key="normal" image="ico-nav-crosshair"/>
+                                    <connections>
+                                        <action selector="userLocationButtonDidPush:" destination="-1" eventType="touchUpInside" id="2sD-e1-OOc"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="3cJ-wQ-9iD" secondAttribute="trailing" id="9YM-mZ-wIB"/>
+                                <constraint firstAttribute="width" constant="32" id="BCu-DR-Myl"/>
+                                <constraint firstItem="3cJ-wQ-9iD" firstAttribute="leading" secondItem="wQv-VC-aM2" secondAttribute="leading" id="JYl-Y7-Ijd"/>
+                                <constraint firstAttribute="bottom" secondItem="3cJ-wQ-9iD" secondAttribute="bottom" id="WGv-sr-qga"/>
+                                <constraint firstItem="3cJ-wQ-9iD" firstAttribute="top" secondItem="wQv-VC-aM2" secondAttribute="top" id="wvO-BC-HbH"/>
+                                <constraint firstAttribute="height" constant="32" id="yC0-LM-xda"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e6J-vf-aT4">
@@ -223,9 +245,11 @@
                         <constraint firstItem="hNA-Oz-XBW" firstAttribute="leading" secondItem="IIg-1a-Oso" secondAttribute="leading" id="Peh-x5-5yP"/>
                         <constraint firstAttribute="trailing" secondItem="e6J-vf-aT4" secondAttribute="trailing" id="QEV-75-ppS"/>
                         <constraint firstAttribute="trailing" secondItem="AOH-1P-SWo" secondAttribute="trailing" id="Qkj-PC-EIF"/>
+                        <constraint firstItem="qrL-WX-Ycv" firstAttribute="top" secondItem="wQv-VC-aM2" secondAttribute="bottom" constant="16" id="YAj-aR-Xqo"/>
                         <constraint firstAttribute="trailing" secondItem="icj-Kk-9xD" secondAttribute="trailing" constant="24" id="dFl-l2-Kq8"/>
                         <constraint firstItem="x8M-as-iv1" firstAttribute="top" secondItem="IIg-1a-Oso" secondAttribute="top" constant="24" id="e8L-jq-xMd"/>
                         <constraint firstItem="e6J-vf-aT4" firstAttribute="top" secondItem="qrL-WX-Ycv" secondAttribute="top" constant="19" id="e8o-Xw-e7N"/>
+                        <constraint firstAttribute="trailing" secondItem="wQv-VC-aM2" secondAttribute="trailing" constant="16" id="fUR-2f-bD7"/>
                         <constraint firstItem="Q1G-67-IZX" firstAttribute="top" secondItem="IIg-1a-Oso" secondAttribute="top" constant="5" id="geR-xB-XMf"/>
                         <constraint firstItem="hNA-Oz-XBW" firstAttribute="top" secondItem="IIg-1a-Oso" secondAttribute="top" id="ggJ-ej-sjm"/>
                         <constraint firstAttribute="bottom" secondItem="hNA-Oz-XBW" secondAttribute="bottom" id="j2V-wu-zeb"/>
@@ -252,6 +276,7 @@
     </objects>
     <resources>
         <image name="ico-nav-arrowright" width="12" height="12"/>
+        <image name="ico-nav-crosshair" width="20" height="20"/>
         <image name="ico-nav-menubar" width="16" height="19"/>
         <image name="ico-nav-search" width="13" height="12"/>
         <image name="img-logomark-red" width="81" height="16"/>

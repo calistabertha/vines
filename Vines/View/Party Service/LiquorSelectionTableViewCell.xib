@@ -16,9 +16,6 @@
         <array key="Roboto-Italic.ttf">
             <string>Roboto-Italic</string>
         </array>
-        <array key="Roboto-Regular.ttf">
-            <string>Roboto-Regular</string>
-        </array>
         <array key="RobotoCondensed-Bold.ttf">
             <string>RobotoCondensed-Bold</string>
         </array>
@@ -153,14 +150,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CaR-co-vv6">
                                 <rect key="frame" x="0.0" y="150" width="320" height="48"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WF3-qX-kHG">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WF3-qX-kHG">
                                         <rect key="frame" x="32" y="12" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="Jeb-zu-gML"/>
                                             <constraint firstAttribute="height" constant="24" id="idr-91-4DM"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
-                                        <state key="normal" title="-"/>
+                                        <state key="normal" image="ico-nav-minus"/>
                                         <connections>
                                             <action selector="minButtonDidPush:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Rec-aA-mli"/>
                                         </connections>
@@ -183,15 +179,14 @@
                                             <constraint firstAttribute="width" constant="32" id="m99-Eu-BUI"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeg-Y3-MbN">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeg-Y3-MbN">
                                         <rect key="frame" x="108" y="12" width="24" height="24"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="Tte-Mp-49Q"/>
                                             <constraint firstAttribute="height" constant="24" id="Upe-7E-g4o"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
-                                        <state key="normal" title="+">
+                                        <state key="normal" image="ico-nav-plus">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -274,6 +269,8 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="ico-nav-minus" width="32" height="32"/>
+        <image name="ico-nav-plus" width="32" height="32"/>
         <image name="img-label" width="50" height="50"/>
     </resources>
 </document>

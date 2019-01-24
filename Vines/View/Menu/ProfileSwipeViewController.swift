@@ -64,6 +64,7 @@ class ProfileSwipeViewController: UIViewController {
     }
     
     @IBAction func openProfileButtonDidPush(_ sender: Any) {
+        delegate?.dismissView(controller: self)
         let vc = ProfileViewController()
         navigationController?.pushViewController(vc, animated: true)
     }

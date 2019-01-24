@@ -56,7 +56,7 @@ class AllStoreViewController: VinesViewController {
                 self.storeList = data.data!
                 self.tableView.reloadData()
             } else {
-                print(data.displayMessage!)
+                print(data.displayMessage ?? "")
             }
         }
     }
@@ -91,7 +91,9 @@ extension AllStoreViewController: UITableViewDataSource{
 
 extension AllStoreViewController: DetailStoreDelegate {
     func openDetail(store: StoreListModelData) {
-        let rect = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height + 52)
+        guard let navigationHeight = navigationController?.navigationBar.frame.height else { return }
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        let rect = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height + statusBarHeight + navigationHeight)
         let detailView = DetailStoreView.init(frame: rect)
         detailView.data = store
         detailView.setupViewData()
@@ -122,8 +124,8 @@ extension AllStoreViewController: DetailStoreViewDelegate{
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func callingButtonDidPush() {
-        guard let number = URL(string: "tel://" + (stores?.phone)!) else { return }
+    func callingButtonDidPush(phoneNumber: String) {
+        guard let number = URL(string: "tel://" + phoneNumber) else { return }
         if #available(iOS 10.0, *) {
             UIApplication.shared.open(number)
         } else {

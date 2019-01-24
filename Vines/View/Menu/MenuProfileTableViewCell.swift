@@ -14,7 +14,7 @@ class MenuProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var lblMenu: UILabel!
     var selectRow : ((UITableViewCell) -> Void)?
     
-    var listMenu = ["Wishlist", "Promotions", "Store", "Party Services", "News", "Support", "About"]
+    var listMenu = ["Wishlist", "Promotions", "Outlet", "Vines Bar", "News", "Support", "About"]
     override func awakeFromNib() {
         super.awakeFromNib()
     }

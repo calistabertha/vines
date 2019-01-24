@@ -44,17 +44,18 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FgC-L5-wCK">
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FgC-L5-wCK">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s66-4e-7fV">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s66-4e-7fV">
                             <rect key="frame" x="324" y="52" width="35" height="35"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="35" id="A6H-8M-sTq"/>
                                 <constraint firstAttribute="width" constant="35" id="TCT-Ge-p8y"/>
                             </constraints>
-                            <state key="normal" title="X">
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <state key="normal" image="ico-nav-close">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
@@ -238,5 +239,6 @@
     </objects>
     <resources>
         <image name="ico-nav-call" width="15" height="15"/>
+        <image name="ico-nav-close" width="8" height="8"/>
     </resources>
 </document>

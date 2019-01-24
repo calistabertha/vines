@@ -37,8 +37,8 @@ extension FooterButtonTableViewCell: TableViewCellProtocol {
         cell.solveParty = {
              (cells) in
               if let ctx = context as? PartyServiceViewController {
-                let vc = SummaryPartyViewController()
-                ctx.navigationController?.pushViewController(vc, animated: true)
+//                let vc = SummaryPartyViewController()
+//                ctx.navigationController?.pushViewController(vc, animated: true)
                 print("solve party")
             }
           
