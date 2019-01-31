@@ -21,7 +21,10 @@ class AllOrderViewController: VinesViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var delegate: AllOderDelegate?
-    var orderList: [OrderModelData] = []
+    var recentOrderList: [OrderModelData] = []
+    var historyOrderList: [OrderModelData] = []
+    
+    var isRecentOrder: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,13 +46,19 @@ class AllOrderViewController: VinesViewController {
             "token": userDefault().getToken()
             
             ] as [String : Any]
-        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Order.list, param: params, method: HTTPMethodHelper.post) { (success, json) in
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Order.list, param: params, method: HTTPMethodHelper.post) { [weak self] (success, json) in
             let data = OrderModelBaseClass(json: json ?? "")
             if data.message == "success" {
-                self.orderList = data.data!
-                self.tableView.reloadData()
+                for item in data.data ?? [] {
+                    if item.paymentStatus == "Waiting Payment" {
+                        self?.recentOrderList.append(item)
+                    } else {
+                        self?.historyOrderList.append(item)
+                    }
+                }
+                self?.tableView.reloadData()
             } else {
-                print(data.displayMessage!)
+                print(data.displayMessage ?? "")
             }
         }
     }
@@ -59,6 +68,8 @@ class AllOrderViewController: VinesViewController {
     }
 
     @IBAction func recentOrderButtonDidPush(_ sender: Any) {
+        isRecentOrder = true
+        tableView.reloadData()
         btnRecent.setTitleColor(UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), for: .normal)
         separatorRecent.backgroundColor = UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1)
         btnHistory.setTitleColor(UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1), for: .normal)
@@ -66,6 +77,8 @@ class AllOrderViewController: VinesViewController {
     }
     
     @IBAction func historyOrderButtonDidPush(_ sender: Any) {
+        isRecentOrder = false
+        tableView.reloadData()
         btnHistory.setTitleColor(UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), for: .normal)
         separatorHistory.backgroundColor = UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1)
         btnRecent.setTitleColor(UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1), for: .normal)
@@ -75,17 +88,36 @@ class AllOrderViewController: VinesViewController {
 
 extension AllOrderViewController: UITableViewDelegate{
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orderList.count
+        if section == 0 {
+            if isRecentOrder {
+                return recentOrderList.count
+            } else {
+                return 0
+            }
+        } else {
+            if isRecentOrder {
+                return 0
+            } else {
+                return historyOrderList.count
+            }
+        }
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
 }
 
 extension AllOrderViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return OrderTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: orderList)
+        if indexPath.section == 0 {
+            return OrderTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: recentOrderList)
+        } else {
+            return OrderTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: historyOrderList)
+        }
     }
 }
