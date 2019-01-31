@@ -103,7 +103,7 @@ extension UserDefaults {
         return userDefault().bool(forKey: "FIRST_LAUNCH")
     }
     
-    func showWalthrough() -> Bool {
+    func walthroughShowed() -> Bool {
         return userDefault().bool(forKey: "WALTHROUGH")
     }
     

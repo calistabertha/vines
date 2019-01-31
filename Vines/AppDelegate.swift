@@ -62,10 +62,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func navigate() {
         // walthrough doesnt exist yet
-        userDefault().walthroughShowed(false)
-        if userDefault().showWalthrough() {
-            // go to walthough
-            userDefault().walthroughShowed(false)
+//        userDefault().walthroughShowed(false)
+        if !userDefault().walthroughShowed() {
+            userDefault().walthroughShowed(true)
+            
+            let vc = WalkthroughViewController()
+            let navigationVC = UINavigationController.init(rootViewController: vc)
+            window = UIWindow(frame: UIScreen.main.bounds);
+            window?.rootViewController = navigationVC
+            window?.makeKeyAndVisible();
         } else {
             checkLogin()
         }

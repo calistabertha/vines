@@ -70,7 +70,8 @@ class WalkthroughViewController: UIViewController {
     }
     
     @IBAction func shopNow(_ sender: Any) {
-        print("shop now")
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.checkLogin()
     }
 }
 
