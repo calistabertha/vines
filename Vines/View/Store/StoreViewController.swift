@@ -35,7 +35,7 @@ class StoreViewController: VinesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        generateNavBarWithBackButton(titleString: storeName ?? "", viewController: self, isRightBarButton: false)
+        generateNavBarWithBackButton(titleString: storeName ?? "", viewController: self, isRightBarButton: false, isNavbarColor: true)
         setupView()
     }
     

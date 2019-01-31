@@ -28,7 +28,7 @@ class DetailPromoViewController: VinesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        generateNavBarWithBackButton(titleString: "GET SPECIAL OFFER FROM VINES...", viewController: self, isRightBarButton: false)
+        generateNavBarWithBackButton(titleString: "GET SPECIAL OFFER FROM VINES...", viewController: self, isRightBarButton: false, isNavbarColor: false)
         btnMenu0.setTitleColor(UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), for: .normal)
         viewSeparator0.backgroundColor = UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1)
         btnShop.layer.cornerRadius = 5

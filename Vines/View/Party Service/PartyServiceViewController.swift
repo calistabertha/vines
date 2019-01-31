@@ -15,7 +15,7 @@ class PartyServiceViewController: VinesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        generateNavBarWithBackButton(titleString: "PARTY SERVICE", viewController: self, isRightBarButton: false)
+        generateNavBarWithBackButton(titleString: "PARTY SERVICE", viewController: self, isRightBarButton: false, isNavbarColor: true)
         tableView.register(HeaderSectionStoreTableViewCell.nib, forCellReuseIdentifier: HeaderSectionStoreTableViewCell.identifier)
         tableView.register(PersonalInformationTableViewCell.nib, forCellReuseIdentifier: PersonalInformationTableViewCell.identifier)
         tableView.register(GeneralInformationTableViewCell.nib, forCellReuseIdentifier: GeneralInformationTableViewCell.identifier)
@@ -186,8 +186,25 @@ extension PartyServiceViewController: UITableViewDataSource{
         if indexPath.section == 2 {
             if indexPath.row == 3 {
                 print("solve")
-                let alert = JDropDownAlert()
-                alert.alertWith("Success", message: "", topLabelColor: UIColor.black, messageLabelColor: UIColor.white, backgroundColor: UIColor.green, image: nil)
+                let params = [
+                    "first_name": "jamblang",
+                    "last_name": "ada di pohon",
+                    "email": "jamblang@yahoo.com",
+                    "phone": "081245677876",
+                    "location": "jakarta",
+                    "budget": "1000000",
+                    "person": "10",
+                    "date_party": "2019-02-20",
+                    "category": "Wine"
+                    ] as [String : Any]
+                
+                HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Party.submit, param: params, method: HTTPMethodHelper.post) { (success, json) in
+                    if success {
+                        let alert = JDropDownAlert()
+                        alert.alertWith("Success", message: "We will solve your party", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 76/255, green: 188/255, blue: 30/255, alpha: 1), image: nil)
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }
             }
         }
     }
@@ -198,10 +215,8 @@ extension PartyServiceViewController: UITextFieldDelegate{
             let picker = UIDatePicker()
             picker.addTarget(self, action: #selector(birthdateChanged(_:)), for: UIControlEvents.valueChanged)
             let calendar = Calendar.current
-            var comps = DateComponents()
-            let maxDate = calendar.date(byAdding: comps, to: Date())
-            comps.year = 2009
-            picker.maximumDate = maxDate
+            let backDate = calendar.date(byAdding: .year, value: 0, to: Date())
+            picker.minimumDate = backDate!
             picker.datePickerMode = .date
             textField.inputView = picker
         }

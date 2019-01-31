@@ -13,7 +13,7 @@ class PromotionsViewController: VinesViewController {
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        generateNavBarWithBackButton(titleString: "PROMOTIONS", viewController: self, isRightBarButton: false)
+        generateNavBarWithBackButton(titleString: "PROMOTIONS", viewController: self, isRightBarButton: false, isNavbarColor: true)
         tableView.register(PromotionTableViewCell.nib, forCellReuseIdentifier: PromotionTableViewCell.identifier)
         tableView.register(HeaderSectionStoreTableViewCell.nib, forCellReuseIdentifier: HeaderSectionStoreTableViewCell.identifier)
         tableView.register(HeaderStoreTableViewCell.nib, forCellReuseIdentifier: HeaderStoreTableViewCell.identifier)

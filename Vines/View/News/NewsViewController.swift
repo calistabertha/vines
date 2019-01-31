@@ -18,7 +18,7 @@ class NewsViewController: VinesViewController {
         super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.register(NewsTableViewCell.nib, forCellReuseIdentifier: NewsTableViewCell.identifier)
-        generateNavBarWithBackButton(titleString: "NEWS", viewController: self, isRightBarButton: false)
+        generateNavBarWithBackButton(titleString: "NEWS", viewController: self, isRightBarButton: false, isNavbarColor: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -16,7 +16,7 @@ class ChangePasswordViewController: VinesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        generateNavBarWithBackButton(titleString: "CHANGE PASSWORD", viewController: self, isRightBarButton: false)
+        generateNavBarWithBackButton(titleString: "CHANGE PASSWORD", viewController: self, isRightBarButton: false, isNavbarColor: true)
         btnSave.layer.cornerRadius = 5
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         self.view.addGestureRecognizer(tap)
@@ -38,21 +38,16 @@ class ChangePasswordViewController: VinesViewController {
     
     @IBAction func saveButtonDidPush(_ sender: Any) {
         if (txtOldPassword.text?.isEmpty)! || (txtNewPassword.text?.isEmpty)! || (txtRetypeNewPassword.text?.isEmpty)!{
-            // TODO: pake alert banner
-            print("Tidak boleh ada text yang kosong")
+            let alert = JDropDownAlert()
+            alert.alertWith("Oopss..", message: "Please fill in your password  ", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor.red, image: nil)
         } else if txtNewPassword.text != txtRetypeNewPassword.text {
-            print("Konfirmasi password baru tidak sama")
+            let alert = JDropDownAlert()
+            alert.alertWith("Oopss..", message: "Your password doesn't match", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor.red, image: nil)
 //        } else if old password not correct { }
         } else {
             guard let newPassword = txtNewPassword.text else { return }
             submitChangePassword(newPassword: newPassword)
         }
-        
-//        let rect = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height + 52)
-//        let succesEditing = SuccessEditing.init(frame: rect)
-//        succesEditing.delegate = self
-//        succesEditing.successType(type: .password)
-//        succesEditing.show(animated: true)
     }
     
     func submitChangePassword(newPassword: String) {
@@ -65,8 +60,11 @@ class ChangePasswordViewController: VinesViewController {
             guard let ws = self else { return }
             let data = ProductListModelBaseClass(json: json ?? "")
             if data.message?.lowercased() == "success" {
-                // TODO: User banner to inform
-                ws.navigationController?.popViewController(animated: true)
+                let rect = CGRect(x: 0, y: 0, width: ws.view.frame.width, height: ws.view.frame.height + 52)
+                let succesEditing = SuccessEditing.init(frame: rect)
+                succesEditing.delegate = self
+                succesEditing.successType(type: .password)
+                succesEditing.show(animated: true)
             } else {
                 print(data.displayMessage ?? "")
             }

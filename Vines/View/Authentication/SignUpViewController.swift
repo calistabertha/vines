@@ -43,7 +43,7 @@ class SignUpViewController: VinesViewController {
         viewUploadPicture.layer.cornerRadius = viewUploadPicture.frame.height / 2
         viewProfile.layer.cornerRadius = viewProfile.frame.width / 2
         btnSignUp.layer.cornerRadius = 5
-        generateNavBarWithBackButton(titleString: "", viewController: self, isRightBarButton: false)
+        generateNavBarWithBackButton(titleString: "", viewController: self, isRightBarButton: false, isNavbarColor: false)
         NotificationCenter .default .addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter .default .addObserver(self, selector: #selector(keyboardDidHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
         
@@ -150,6 +150,17 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
         picker.dismiss(animated: true, completion: nil)
         
         self.imgProfile.image = image
+        guard let img = image else { return }
+        if let imageJPEG = UIImageJPEGRepresentation(img,0.5){
+            HTTPHelper.shared.requestMultipart(imageJPEG, url: Constants.ServicesAPI.User.register, ids: "") { (success, json) in
+                let data = RegisterModelBaseClass(json: json!)
+                if success {
+                    print(data.data ?? "")
+                } else {
+                    print(data.data ?? "")
+                }
+            }
+        }
         
 //        if let img = image {
 //            ProfileController.shared.uploadImage(images: img, completion: { (success, code, message, result) in

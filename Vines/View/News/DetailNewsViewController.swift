@@ -17,7 +17,7 @@ class DetailNewsViewController: VinesViewController {
     @IBOutlet weak var webView: UIWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        generateNavBarWithBackButton(titleString: titleNav ?? "", viewController: self, isRightBarButton: false)
+        generateNavBarWithBackButton(titleString: titleNav ?? "", viewController: self, isRightBarButton: false, isNavbarColor: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

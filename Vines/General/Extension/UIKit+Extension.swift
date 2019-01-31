@@ -134,6 +134,17 @@ extension String {
         let components = calendar.dateComponents([.year, .month, .day, .hour], from: date ?? Date())
         return calendar.date(from: components) ?? Date()
     }
+    
+    func getDateString(formatString: String? = "dd MMMM yyyy") -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        guard let date = formatter.date(from:self) else {
+            return ""
+        }
+        formatter.dateFormat = formatString
+        return formatter.string(from: date)
+    }
+
 }
 
 extension Notification.Name {

@@ -24,7 +24,7 @@ class VinesViewController: UIViewController {
         return false
     }
     
-    func generateNavBarWithBackButton(titleString: String, viewController: VinesViewController, isRightBarButton: Bool) {
+    func generateNavBarWithBackButton(titleString: String, viewController: VinesViewController, isRightBarButton: Bool, isNavbarColor: Bool) {
         for view in navigationController?.navigationBar.subviews ?? [UIView]() {
             if view.tag == 100 {
                 view.removeFromSuperview()
@@ -33,7 +33,12 @@ class VinesViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.setBackgroundImage(UIColor.white.as1ptImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1).as1ptImage()
+        if isNavbarColor{
+            navigationController?.navigationBar.shadowImage = UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1).as1ptImage()
+        }else {
+            navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
+        }
+        
         let titleLabel = UILabel(frame: CGRect.zero)
         titleLabel.text = titleString
         titleLabel.font = UIFont.init(name: "RobotoCondensed-Bold", size: 16.0)

@@ -16,7 +16,7 @@ class StaticPageViewController: VinesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        generateNavBarWithBackButton(titleString: titleString ?? "" , viewController: self, isRightBarButton: false)
+        generateNavBarWithBackButton(titleString: titleString ?? "" , viewController: self, isRightBarButton: false, isNavbarColor: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

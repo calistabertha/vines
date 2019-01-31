@@ -21,7 +21,7 @@ class SupportViewController: VinesViewController {
         fetchPrivacyPolicy()
         fetchTermsConditions()
         
-        generateNavBarWithBackButton(titleString: "SUPPORT", viewController: self, isRightBarButton: false)
+        generateNavBarWithBackButton(titleString: "SUPPORT", viewController: self, isRightBarButton: false, isNavbarColor: true)
         tableView.register(SupportTableViewCell.nib, forCellReuseIdentifier: SupportTableViewCell.identifier)
     }
 

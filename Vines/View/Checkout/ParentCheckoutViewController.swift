@@ -37,7 +37,7 @@ class ParentCheckoutViewController: VinesViewController {
         let vc = DataCustomerViewController()
         vc.view.frame = viewContainer.bounds
         viewContainer.addSubview(vc.view)
-        generateNavBarWithBackButton(titleString: "CHECKOUT", viewController: self, isRightBarButton: false)
+        generateNavBarWithBackButton(titleString: "CHECKOUT", viewController: self, isRightBarButton: false, isNavbarColor: true)
         
         lblSummary.textColor = UIColor.lightGray
         lblPayment.textColor = UIColor.lightGray

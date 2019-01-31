@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class EditProfileViewController: VinesViewController {
 
@@ -26,9 +27,10 @@ class EditProfileViewController: VinesViewController {
      var userData: LoginModelUserData?
     override func viewDidLoad() {
         super.viewDidLoad()
-        generateNavBarWithBackButton(titleString: "EDIT PROFILE", viewController: self, isRightBarButton: false)
+        generateNavBarWithBackButton(titleString: "EDIT PROFILE", viewController: self, isRightBarButton: false, isNavbarColor: true)
         btnSave.layer.cornerRadius = 5
         viewUpload.layer.cornerRadius = viewUpload.frame.height / 2
+        imgProfile.layer.cornerRadius = imgProfile.frame.height / 2
         setupProfile()
         
         NotificationCenter .default .addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -60,10 +62,17 @@ class EditProfileViewController: VinesViewController {
             txtLastName.text = lastName.capitalized
         }
         txtEmailAddress.text = userData?.email ?? ""
-        imgProfile.af_setImage(withURL: URL(string: userData?.foto ?? "")!, placeholderImage: UIImage(named: "placeholder")) { [weak self] image in
+        
+        let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
+            size: imgProfile.frame.size,
+            radius: 70.0
+        )
+        imgProfile.af_setImage(withURL: URL(string: userData?.foto ?? "")!, placeholderImage: UIImage(named: "placeholder"), filter: filter)
+            { [weak self] image in
             guard let ws = self else { return }
             if let img = image.value {
                 ws.imgProfile.image = img
+                
             } else {
                 ws.imgProfile.image = UIImage(named: "placeholder")
             }
@@ -84,8 +93,6 @@ class EditProfileViewController: VinesViewController {
         
         dateFormatter.dateFormat = "yyyy"
         txtYear.text = dateFormatter.string(from: date!)
-        print("biirrth \(birth.getBithdateString())")
-      //  birthdate = birth.getBithdateString()
         tableView.reloadData()
         
     }
@@ -94,7 +101,6 @@ class EditProfileViewController: VinesViewController {
         if let userInfo = notification.userInfo {
             if let keyboardHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size.height {
                 tableView.contentInset = UIEdgeInsetsMake(0, 0, keyboardHeight, 0)
-                //scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, keyboardHeight, 0)
                 
             }
         }
@@ -112,6 +118,30 @@ class EditProfileViewController: VinesViewController {
     }
     
     @IBAction func uploadPictureButtonDidPush(_ sender: Any) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: {
+            (action) in
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera){
+                let imagePicker = UIImagePickerController()
+                imagePicker.delegate = self
+                imagePicker.sourceType = .camera
+                imagePicker.allowsEditing = true
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Choose Photo", style: .default, handler: {
+            (action) in
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
+                let imagePicker = UIImagePickerController()
+                imagePicker.delegate = self
+                imagePicker.sourceType = .photoLibrary
+                imagePicker.allowsEditing = true
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func dateOfBirthButtonDidPush(_ sender: UIButton) {
@@ -137,11 +167,8 @@ extension EditProfileViewController: UITextFieldDelegate{
             picker.datePickerMode = .date
             
             let calendar = Calendar.current
-            var comps = DateComponents()
-            let maxDate = calendar.date(byAdding: comps, to: Date())
-            comps.year = 2009
-            picker.maximumDate = maxDate
-      
+            let backDate = calendar.date(byAdding: .year, value: -10, to: Date())
+            picker.maximumDate = backDate!
             txtDay.inputView = picker
             txtMonth.inputView = picker
             txtYear.inputView = picker
@@ -160,4 +187,12 @@ extension EditProfileViewController: SuccessEditingViewDelegate{
         view.dismiss(animated: true)
     }
 
+}
+
+extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        picker.dismiss(animated: true, completion: nil)
+        self.imgProfile.image = image
+    }
 }

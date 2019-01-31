@@ -20,7 +20,7 @@ class ContactUsViewController: VinesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        generateNavBarWithBackButton(titleString: "CONTACT US", viewController: self, isRightBarButton: false)
+        generateNavBarWithBackButton(titleString: "CONTACT US", viewController: self, isRightBarButton: false, isNavbarColor: true)
         btnSendMessage.layer.cornerRadius = 5
         
         NotificationCenter .default .addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)

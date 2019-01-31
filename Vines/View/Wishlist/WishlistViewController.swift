@@ -28,7 +28,7 @@ class WishlistViewController: VinesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        generateNavBarWithBackButton(titleString: "WISHLIST", viewController: self, isRightBarButton: false)
+        generateNavBarWithBackButton(titleString: "WISHLIST", viewController: self, isRightBarButton: false, isNavbarColor: true)
         viewContinueShop.layer.cornerRadius = viewContinueShop.frame.height / 2
     }
     
