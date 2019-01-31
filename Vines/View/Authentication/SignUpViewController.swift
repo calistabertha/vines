@@ -116,7 +116,7 @@ class SignUpViewController: VinesViewController {
         let params = [
             "fullname": self.txtFirstName.text! + self.txtLastName.text!,
             "email": self.txtEmail.text!,
-            "password": self.txtPhoneNumber.text!,
+            "password": self.txtPassword.text!,
             "phone": self.txtPhoneNumber.text!,
             "token_id":"12345jjkkllasdffnnnnnnnnnnnnnnn",
             "longitude":"-6.2732980",
