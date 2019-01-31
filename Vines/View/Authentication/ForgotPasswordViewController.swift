@@ -32,7 +32,7 @@ class ForgotPasswordViewController: VinesViewController {
     
     private func setupView() {
         btnReset.layer.cornerRadius = 5
-        generateNavBarWithBackButton(titleString: "", viewController: self, isRightBarButton: false)
+        generateNavBarWithBackButton(titleString: "", viewController: self, isRightBarButton: false, isNavbarColor: false)
     }
     
     override func backButtonDidPush() {

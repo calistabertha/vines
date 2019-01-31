@@ -11,11 +11,23 @@ import UIKit
 class PartyServiceViewController: VinesViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var txtFirstname: UITextField!
+    @IBOutlet weak var txtLastname: UITextField!
+    @IBOutlet weak var txtEmailAddress: UITextField!
+    @IBOutlet weak var txtPhoneNumber: UITextField!
+    @IBOutlet weak var txtPartyTheme: UITextField!
+    @IBOutlet weak var txtLocations: UITextField!
+    @IBOutlet weak var txtBudget: UITextField!
+    @IBOutlet weak var txtAttendess: UITextField!
+    
+    @IBOutlet weak var txtDate: UITextField!
+    
+    
     var birthdate: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        generateNavBarWithBackButton(titleString: "PARTY SERVICE", viewController: self, isRightBarButton: false)
+        generateNavBarWithBackButton(titleString: "PARTY SERVICE", viewController: self, isRightBarButton: false, isNavbarColor: true)
         tableView.register(HeaderSectionStoreTableViewCell.nib, forCellReuseIdentifier: HeaderSectionStoreTableViewCell.identifier)
         tableView.register(PersonalInformationTableViewCell.nib, forCellReuseIdentifier: PersonalInformationTableViewCell.identifier)
         tableView.register(GeneralInformationTableViewCell.nib, forCellReuseIdentifier: GeneralInformationTableViewCell.identifier)
@@ -35,7 +47,6 @@ class PartyServiceViewController: VinesViewController {
         if let userInfo = notification.userInfo {
             if let keyboardHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size.height {
                 tableView.contentInset = UIEdgeInsetsMake(0, 0, keyboardHeight, 0)
-                
             }
         }
     }
@@ -46,164 +57,53 @@ class PartyServiceViewController: VinesViewController {
     
     @objc func birthdateChanged(_ sender: UIDatePicker) {
         let birth = sender.date.getStringDate()
-        birthdate = birth.getBithdateString()
+        txtDate.text = birth.getBithdateString()
         tableView.reloadData()
     }
     
     override func backButtonDidPush() {
         navigationController?.popViewController(animated: true)
     }
-}
-
-extension PartyServiceViewController: UITableViewDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
-    }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 3
-        case 1:
-            return 5
-        case 2:
-            return 4
-        default:
-            return 0
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-
-            return 44
+    @IBAction func solvePartyButtonDidPush(_ sender: Any) {
+        print("solve")
+        guard let fname = txtFirstname.text else {return}
+        guard let lname = txtLastname.text else {return}
+        guard let email = txtEmailAddress.text else {return}
+        guard let phone = txtPhoneNumber.text else {return}
+        guard let location = txtLastname.text else {return}
+        let params = [
+            "first_name": fname,
+            "last_name": lname,
+            "email": "jamblang@yahoo.com",
+            "phone": "081245677876",
+            "location": "jakarta",
+            "budget": "1000000",
+            "person": "10",
+            "date_party": "2019-02-20",
+            "category": "Wine"
+            ] as [String : Any]
         
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 3{
-            return 36
-        }else{
-            return 56
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Party.submit, param: params, method: HTTPMethodHelper.post) { (success, json) in
+            if success {
+                let alert = JDropDownAlert()
+                alert.alertWith("Success", message: "We will solve your party", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 76/255, green: 188/255, blue: 30/255, alpha: 1), image: nil)
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
 }
 
-extension PartyServiceViewController: UITableViewDataSource{
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell = tableView.dequeueReusableCell(withIdentifier: HeaderSectionStoreTableViewCell.identifier) as! HeaderSectionStoreTableViewCell
-        cell.backgroundColor = UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 1)
-        switch section {
-        case 0:
-            cell.lblTitle.text = "PERSONAL INFORMATION"
-            return cell
-        case 1:
-            cell.lblTitle.text = "PARTY INFORMATION"
-            return cell
-        case 2:
-            cell.lblTitle.text = "LIQUOR SELECTION"
-            return cell
-        default:
-            return UIView()
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
-            switch indexPath.row{
-            case 0:
-                return GeneralInformationTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
-            case 1:
-                let cell = tableView.dequeueReusableCell(withIdentifier: PersonalInformationTableViewCell.identifier, for: indexPath) as! PersonalInformationTableViewCell
-                cell.textField.placeholder = "Email Address"
-                cell.textField.keyboardType = .emailAddress
-                cell.textField.delegate = self
-                return cell
-            case 2:
-                let cell = tableView.dequeueReusableCell(withIdentifier: PersonalInformationTableViewCell.identifier, for: indexPath) as! PersonalInformationTableViewCell
-                cell.textField.placeholder = "Phone Number"
-                cell.textField.keyboardType = .phonePad
-                cell.textField.delegate = self
-                return cell
-            default:
-                return UITableViewCell()
-            }
-        case 1:
-            switch indexPath.row{
-            case 0:
-                let cell = tableView.dequeueReusableCell(withIdentifier: PersonalInformationTableViewCell.identifier, for: indexPath) as! PersonalInformationTableViewCell
-                cell.textField.placeholder = "Party Theme"
-                cell.textField.delegate = self
-                return cell
-            case 1:
-                let cell = tableView.dequeueReusableCell(withIdentifier: PersonalInformationTableViewCell.identifier, for: indexPath) as! PersonalInformationTableViewCell
-                cell.textField.placeholder = "Locations"
-                cell.textField.delegate = self
-                return cell
-            case 2:
-                let cell = tableView.dequeueReusableCell(withIdentifier: PersonalInformationTableViewCell.identifier, for: indexPath) as! PersonalInformationTableViewCell
-                cell.textField.placeholder = "Budget on this party (Rp)"
-                cell.textField.delegate = self
-                return cell
-            case 3:
-                let cell = tableView.dequeueReusableCell(withIdentifier: PersonalInformationTableViewCell.identifier, for: indexPath) as! PersonalInformationTableViewCell
-                cell.textField.placeholder = "Attendance"
-                cell.textField.delegate = self
-                return cell
-            case 4:
-                let cell = tableView.dequeueReusableCell(withIdentifier: PersonalInformationTableViewCell.identifier, for: indexPath) as! PersonalInformationTableViewCell
-                if birthdate == nil {
-                    cell.textField.placeholder = "Date"
-                }else {
-                    cell.textField.text = birthdate
-                }
-                
-                cell.textField.delegate = self
-                cell.textField.tag = 10
-                return cell
-            default:
-                return UITableViewCell()
-            }
-        case 2:
-            switch indexPath.row{
-            case 0:
-                return LiquorOptionTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
-            case 1:
-                return LiquorOptionTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
-            case 2:
-                return LiquorOptionTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
-            case 3:
-                return FooterButtonTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
-            default:
-                return UITableViewCell()
-            }
-        default:
-            return UITableViewCell()
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 2 {
-            if indexPath.row == 3 {
-                print("solve")
-                let alert = JDropDownAlert()
-                alert.alertWith("Success", message: "", topLabelColor: UIColor.black, messageLabelColor: UIColor.white, backgroundColor: UIColor.green, image: nil)
-            }
-        }
-    }
-}
 extension PartyServiceViewController: UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField.tag == 10 {
+        if textField == txtDate {
             let picker = UIDatePicker()
             picker.addTarget(self, action: #selector(birthdateChanged(_:)), for: UIControlEvents.valueChanged)
             let calendar = Calendar.current
-            var comps = DateComponents()
-            let maxDate = calendar.date(byAdding: comps, to: Date())
-            comps.year = 2009
-            picker.maximumDate = maxDate
+            let backDate = calendar.date(byAdding: .year, value: 0, to: Date())
+            picker.minimumDate = backDate!
             picker.datePickerMode = .date
-            textField.inputView = picker
+            txtDate.inputView = picker
         }
     }
     

@@ -40,7 +40,7 @@ class AllStoreViewController: VinesViewController {
     }
     
     private func setupView() {
-        generateNavBarWithBackButton(titleString: "ALL STORE", viewController: self, isRightBarButton: false)
+        generateNavBarWithBackButton(titleString: "ALL STORE", viewController: self, isRightBarButton: false, isNavbarColor: true)
         viewDropDown.layer.cornerRadius = viewDropDown.frame.width / 2
         tableView.rowHeight = UITableViewAutomaticDimension
     }

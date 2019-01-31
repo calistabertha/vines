@@ -165,7 +165,7 @@ class HTTPHelper {
         ]
         
         Alamofire.upload(multipartFormData: { (multipartFormData) in
-            multipartFormData.append(file, withName: "profile_picture", fileName: "user_avatar.jpg", mimeType: "image/jpeg")
+            multipartFormData.append(file, withName: "image", fileName: "user_avatar.jpg", mimeType: "image/jpeg")
             //multipartFormData.append(ids.data(using: String.Encoding.utf8, allowLossyConversion: false)!, withName: "id_user")
         }, usingThreshold: SessionManager.multipartFormDataEncodingMemoryThreshold,
            to: url,

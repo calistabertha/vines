@@ -23,7 +23,7 @@ class ProfileViewController: VinesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        generateNavBarWithBackButton(titleString: "PROFILE", viewController: self, isRightBarButton: false)
+        generateNavBarWithBackButton(titleString: "PROFILE", viewController: self, isRightBarButton: false, isNavbarColor: true)
         viewOrder.layer.cornerRadius = viewOrder.frame.height / 2
         viewPoints.layer.cornerRadius = viewPoints.frame.height / 2
         btnEdit.layer.cornerRadius = btnEdit.frame.height / 2
@@ -71,14 +71,13 @@ class ProfileViewController: VinesViewController {
     }
     
     @IBAction func orderButtonDidPush(_ sender: Any) {
+        let vc = AllOrderViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func changePasswordButtonDidPush(_ sender: Any) {
         let vc = ChangePasswordViewController()
         navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    @IBAction func supportButtonDidPush(_ sender: Any) {
     }
     
     @IBAction func rateApplicationButtonDidPush(_ sender: Any) {

@@ -27,7 +27,7 @@ class DetailProductViewController: VinesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        generateNavBarWithBackButton(titleString: titleText, viewController: self, isRightBarButton: true)
+        generateNavBarWithBackButton(titleString: titleText, viewController: self, isRightBarButton: true, isNavbarColor: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

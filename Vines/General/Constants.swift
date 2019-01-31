@@ -48,5 +48,13 @@ struct Constants {
             static let terms = "term_conditions"
             static let privacy = "privacy_policy"
         }
+        
+        struct Order {
+            static let list = "user/current_order"
+        }
+        
+        struct Party {
+            static let submit = "party_service"
+        }
     }
 }

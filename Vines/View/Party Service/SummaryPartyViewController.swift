@@ -13,7 +13,7 @@ class SummaryPartyViewController: VinesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        generateNavBarWithBackButton(titleString: "PARTY SERVICE", viewController: self, isRightBarButton: false)
+        generateNavBarWithBackButton(titleString: "PARTY SERVICE", viewController: self, isRightBarButton: false, isNavbarColor: true)
         tableView.register(SummaryPersonalInfoTableViewCell.nib, forCellReuseIdentifier: SummaryPersonalInfoTableViewCell.identifier)
         tableView.register(LiquorSelectionTableViewCell.nib, forCellReuseIdentifier: LiquorSelectionTableViewCell.identifier)
         tableView.register(HeaderSectionStoreTableViewCell.nib, forCellReuseIdentifier: HeaderSectionStoreTableViewCell.identifier)

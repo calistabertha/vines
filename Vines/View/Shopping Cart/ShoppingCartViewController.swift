@@ -14,7 +14,7 @@ class ShoppingCartViewController: VinesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        generateNavBarWithBackButton(titleString: "SHOPPING CART", viewController: self, isRightBarButton: false)
+        generateNavBarWithBackButton(titleString: "SHOPPING CART", viewController: self, isRightBarButton: false, isNavbarColor: true)
         tableView.register(CartTableViewCell.nib, forCellReuseIdentifier: CartTableViewCell.identifier)
         tableView.register(TotalCartTableViewCell.nib, forCellReuseIdentifier: TotalCartTableViewCell.identifier)
     }
