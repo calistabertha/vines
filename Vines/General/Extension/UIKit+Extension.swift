@@ -144,6 +144,16 @@ extension String {
         formatter.dateFormat = formatString
         return formatter.string(from: date)
     }
+    
+    func getDateFormat(formatString: String? = "yyyy-MM-dd") -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMMM yyyy"
+        guard let date = formatter.date(from:self) else {
+            return ""
+        }
+        formatter.dateFormat = formatString
+        return formatter.string(from: date)
+    }
 
 }
 

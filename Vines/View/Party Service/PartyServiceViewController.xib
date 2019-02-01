@@ -24,6 +24,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PartyServiceViewController" customModule="Vines" customModuleProvider="target">
             <connections>
+                <outlet property="btnSolveParty" destination="bSM-ds-Nav" id="6N7-xR-J0H"/>
+                <outlet property="imgCheckBoxBeer" destination="NZh-CY-OPA" id="ssa-PR-QeV"/>
+                <outlet property="imgCheckBoxSpirits" destination="sIB-mN-2Sc" id="7zy-pc-BLb"/>
+                <outlet property="imgCheckBoxWine" destination="nYH-5U-hwg" id="T0x-nU-n2x"/>
                 <outlet property="tableView" destination="qZi-hr-yWo" id="LNC-4y-3HQ"/>
                 <outlet property="txtAttendess" destination="MQ7-ma-Udu" id="ljI-vb-z8Z"/>
                 <outlet property="txtBudget" destination="cOr-Gj-Ujj" id="H78-29-9Gd"/>
@@ -360,6 +364,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CYR-Pz-xXv">
                                         <rect key="frame" x="0.0" y="0.0" width="327" height="34.5"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="wineButtonDidPush:" destination="-1" eventType="touchUpInside" id="y8f-sS-dTY"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -398,6 +405,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="864-mb-EVS">
                                         <rect key="frame" x="0.0" y="0.0" width="327" height="34.5"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="beerButtonDidPush:" destination="-1" eventType="touchUpInside" id="Cmo-9g-GgR"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -436,6 +446,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEz-Kn-tAc">
                                         <rect key="frame" x="0.0" y="0.0" width="327" height="34.5"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="spiritsButtonDidPush:" destination="-1" eventType="touchUpInside" id="UzZ-qQ-9U1"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -451,7 +464,7 @@
                                     <constraint firstAttribute="trailing" secondItem="PEz-Kn-tAc" secondAttribute="trailing" id="zdW-jl-zaD"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bSM-ds-Nav">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bSM-ds-Nav">
                                 <rect key="frame" x="16" y="750" width="343" height="44"/>
                                 <color key="backgroundColor" red="0.70196078429999997" green="0.62352941179999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
