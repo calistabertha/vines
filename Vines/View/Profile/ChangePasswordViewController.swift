@@ -39,10 +39,10 @@ class ChangePasswordViewController: VinesViewController {
     @IBAction func saveButtonDidPush(_ sender: Any) {
         if (txtOldPassword.text?.isEmpty)! || (txtNewPassword.text?.isEmpty)! || (txtRetypeNewPassword.text?.isEmpty)!{
             let alert = JDropDownAlert()
-            alert.alertWith("Oopss..", message: "Please fill in your password  ", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor.red, image: nil)
+            alert.alertWith("Oopss..", message: "Please fill in your password  ", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
         } else if txtNewPassword.text != txtRetypeNewPassword.text {
             let alert = JDropDownAlert()
-            alert.alertWith("Oopss..", message: "Your password doesn't match", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor.red, image: nil)
+            alert.alertWith("Oopss..", message: "Your password doesn't match", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
 //        } else if old password not correct { }
         } else {
             guard let newPassword = txtNewPassword.text else { return }

@@ -19,11 +19,14 @@ class PartyServiceViewController: VinesViewController {
     @IBOutlet weak var txtLocations: UITextField!
     @IBOutlet weak var txtBudget: UITextField!
     @IBOutlet weak var txtAttendess: UITextField!
-    
     @IBOutlet weak var txtDate: UITextField!
+    @IBOutlet weak var btnSolveParty: UIButton!
+    @IBOutlet weak var imgCheckBoxWine: UIImageView!
+    @IBOutlet weak var imgCheckBoxBeer: UIImageView!
+    @IBOutlet weak var imgCheckBoxSpirits: UIImageView!
     
     
-    var birthdate: String?
+    var category: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +39,7 @@ class PartyServiceViewController: VinesViewController {
         
         NotificationCenter .default .addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter .default .addObserver(self, selector: #selector(keyboardDidHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
+        btnSolveParty.layer.cornerRadius = 5
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,22 +70,33 @@ class PartyServiceViewController: VinesViewController {
     }
     
     @IBAction func solvePartyButtonDidPush(_ sender: Any) {
-        print("solve")
+        var stri: String = ""
+        for item in category {
+            if item == category.first {
+                stri = item
+            } else {
+                stri += ", \(item)"
+            }
+        }
         guard let fname = txtFirstname.text else {return}
         guard let lname = txtLastname.text else {return}
         guard let email = txtEmailAddress.text else {return}
         guard let phone = txtPhoneNumber.text else {return}
-        guard let location = txtLastname.text else {return}
+        guard let location = txtLocations.text else {return}
+        guard let budget = txtBudget.text else {return}
+        guard let attendes = txtAttendess.text else {return}
+        guard let date = txtDate.text?.getDateFormat() else {return}
+       
         let params = [
             "first_name": fname,
             "last_name": lname,
-            "email": "jamblang@yahoo.com",
-            "phone": "081245677876",
-            "location": "jakarta",
-            "budget": "1000000",
-            "person": "10",
-            "date_party": "2019-02-20",
-            "category": "Wine"
+            "email": email,
+            "phone": phone,
+            "location": location,
+            "budget": budget,
+            "person": attendes,
+            "date_party": date,
+            "category": stri
             ] as [String : Any]
         
         HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Party.submit, param: params, method: HTTPMethodHelper.post) { (success, json) in
@@ -89,7 +104,48 @@ class PartyServiceViewController: VinesViewController {
                 let alert = JDropDownAlert()
                 alert.alertWith("Success", message: "We will solve your party", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 76/255, green: 188/255, blue: 30/255, alpha: 1), image: nil)
                 self.navigationController?.popViewController(animated: true)
+            }else{
+                let alert = JDropDownAlert()
+                alert.alertWith("Oopss..", message: "Please fill all field", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
             }
+        }
+    }
+    
+    @IBAction func wineButtonDidPush(_ sender: UIButton) {
+        if sender.isSelected{
+            imgCheckBoxWine.image = UIImage(named: "ico-checkbox-inactive")
+            category.remove(at: category.count-1)
+            sender.isSelected = false
+        }else {
+            imgCheckBoxWine.image = UIImage(named: "ico-checkbox-active")
+            category.append("Wine")
+            sender.isSelected = true
+        }
+        print("category \(category)")
+    }
+    
+    @IBAction func beerButtonDidPush(_ sender: UIButton) {
+        if sender.isSelected{
+            imgCheckBoxBeer.image = UIImage(named: "ico-checkbox-inactive")
+            category.remove(at: category.count-1)
+            sender.isSelected = false
+        }else {
+            imgCheckBoxBeer.image = UIImage(named: "ico-checkbox-active")
+            category.append("Beer")
+            sender.isSelected = true
+        }
+        print("category \(category)")
+    }
+    
+    @IBAction func spiritsButtonDidPush(_ sender: UIButton) {
+        if sender.isSelected{
+            imgCheckBoxSpirits.image = UIImage(named: "ico-checkbox-inactive")
+            category.remove(at: category.count-1)
+            sender.isSelected = false
+        }else {
+            imgCheckBoxSpirits.image = UIImage(named: "ico-checkbox-active")
+            category.append("Spirits")
+            sender.isSelected = true
         }
     }
 }
