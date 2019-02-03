@@ -56,5 +56,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Camera may includes take photo, sounds and icon badges. These can be configured in Settings.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Choose photos can be configured in Settings.</string>
 </dict>
 </plist>

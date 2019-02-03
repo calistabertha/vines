@@ -19,6 +19,7 @@ class AllOrderViewController: VinesViewController {
     @IBOutlet weak var separatorRecent: UIView!
     @IBOutlet weak var separatorHistory: UIView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     var delegate: AllOderDelegate?
     var recentOrderList: [OrderModelData] = []
@@ -28,6 +29,7 @@ class AllOrderViewController: VinesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        spinner.startAnimating()
         fetchOrder()
         tableView.register(OrderTableViewCell.nib, forCellReuseIdentifier: OrderTableViewCell.identifier)
         generateNavBarWithBackButton(titleString: "ALL ORDERS", viewController: self, isRightBarButton: false, isNavbarColor: false)
@@ -56,6 +58,8 @@ class AllOrderViewController: VinesViewController {
                         self?.historyOrderList.append(item)
                     }
                 }
+                self?.spinner.stopAnimating()
+                self?.spinner.isHidden = true
                 self?.tableView.reloadData()
             } else {
                 print(data.displayMessage ?? "")
