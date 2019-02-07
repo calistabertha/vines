@@ -78,13 +78,13 @@ class DetailProductViewController: VinesViewController {
 
     func fetchSimiliarList() {
         let params = [
-            "category_id": 2,
+            "category_id": product?.categoryId ?? 0,
             "by_title": "",
             "limit": 10,
             "offset":0
             ] as [String : Any]
         HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Product.similiar, param: params, method: HTTPMethodHelper.post) { (success, json) in
-            let data = ProductListModelBaseClass(json: json!)
+            let data = ProductListModelBaseClass(json: json ?? "")
             if data.message == "Success", let datas = data.data {
                 self.similiarList = datas
                 self.tableView.reloadData()

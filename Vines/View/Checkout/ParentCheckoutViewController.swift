@@ -14,6 +14,7 @@ class ParentCheckoutViewController: VinesViewController {
     @IBOutlet weak var lblPayment: UILabel!
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var iconNext: UIImageView!
+    var storeName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +36,11 @@ class ParentCheckoutViewController: VinesViewController {
         }
         
         let vc = DataCustomerViewController()
+        vc.vinesStore = storeName ?? ""
         vc.view.frame = viewContainer.bounds
+        self.addChildViewController(vc)
         viewContainer.addSubview(vc.view)
+        vc.didMove(toParentViewController: self)
         generateNavBarWithBackButton(titleString: "CHECKOUT", viewController: self, isRightBarButton: false, isNavbarColor: true)
         
         lblSummary.textColor = UIColor.lightGray
@@ -60,7 +64,9 @@ class ParentCheckoutViewController: VinesViewController {
     @objc private func getOrderSummary(_ notification: NSNotification) {
         let vc = OrderSummaryViewController()
         vc.view.frame = viewContainer.bounds
+        self.addChildViewController(vc)
         viewContainer.addSubview(vc.view)
+        vc.didMove(toParentViewController: self)
         lblSummary.textColor = UIColor.black
         lblPayment.textColor = UIColor.lightGray
         iconNext.image = UIImage(named: "ico-nav-chevronr")
@@ -69,7 +75,9 @@ class ParentCheckoutViewController: VinesViewController {
     @objc private func getPaymentMethod(_ notification: NSNotification) {
         let vc = PaymentMethodViewController()
         vc.view.frame = viewContainer.bounds
+        self.addChildViewController(vc)
         viewContainer.addSubview(vc.view)
+        vc.didMove(toParentViewController: self)
         lblPayment.textColor = UIColor.black
     }
     

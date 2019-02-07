@@ -26,6 +26,10 @@ struct Constants {
             static let wishlist = "user/wishlist"
             static let addWishlist = "user/add_wishlist"
             static let deleteWishlist = "user/delete_wishlist"
+            static let addCart = "order/temporary"
+            static let deleteCart = "delete_temporary"
+            static let orderCode = "get_ordercode"
+            static let listCart = "list_temporary"
         }
         
         struct Store {

@@ -72,7 +72,17 @@ extension UserDefaults {
     func walthroughShowed(_ bool: Bool) {
         userDefault().set(bool, forKey: "WALTHROUGH")
     }
-
+    
+    func setOrderCode(code: String) {
+        userDefault().set(code, forKey: "ORDER_CODE")
+        commit()
+    }
+    
+    func setUserCheckout(code: String) {
+        userDefault().set(code, forKey: "USER_CHECKOUT")
+        commit()
+    }
+    
     func addToCart(product: ProductListModelData) {
         var list = getCart()
         list.append(product)
@@ -93,6 +103,7 @@ extension UserDefaults {
         userDefault().removeObject(forKey: "USER_DATA")
         userDefault().removeObject(forKey: "USER_ID")
         userDefault().removeObject(forKey: "USER_TOKEN")
+        UserDefaults().removeObject(forKey: "ORDER_CODE")
     }
     
     func isLoggedIn() -> Bool {
@@ -152,6 +163,20 @@ extension UserDefaults {
     func getEmailUser() -> String {
         if let email = getUserData()?.userData?[safe: 0]?.email {
             return email
+        }
+        return ""
+    }
+    
+    func getOrderCode() -> String {
+        if let code = userDefault().value(forKey: "ORDER_CODE") as? String {
+            return code
+        }
+        return ""
+    }
+    
+    func getUserCheckout() -> String {
+        if let user = userDefault().value(forKey: "USER_CHECKOUT") as? String {
+            return user
         }
         return ""
     }

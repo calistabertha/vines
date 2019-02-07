@@ -22,7 +22,7 @@ class ProductTableViewCell: UITableViewCell {
     internal var context: UIViewController?
     var list: [ProductListModelData] = []
     var size: CGSize = CGSize(width: 0, height: 0)
-    var addToCart: IntClosure?
+    var addToCart: ProductClosure?
     var addToWishlist: ProductClosure?
     
     override func awakeFromNib() {

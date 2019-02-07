@@ -23,14 +23,14 @@ class ProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lblDiscount: UILabel!
     
     var addToWishlist: ProductClosure?
-    var addToCart: IntClosure?
+    var addToCart: ProductClosure?
     var data: ProductListModelData?
     var isFromWishlist: Bool = false
     
     
     @IBAction func cartButtonDidPush(_ sender: Any) {
-        if let addToCart = addToCart, let productId = data?.productId {
-            addToCart(productId)
+        if let addToCart = addToCart, let data = data {
+            addToCart(data)
         }
     }
     @IBAction func favouriteButtonDidPush(_ sender: Any) {

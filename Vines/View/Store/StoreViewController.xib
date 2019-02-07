@@ -39,6 +39,9 @@
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="JgG-b6-CbX"/>
+                                    </connections>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6k-JE-hZe">
                                     <rect key="frame" x="323" y="0.0" width="40" height="40"/>

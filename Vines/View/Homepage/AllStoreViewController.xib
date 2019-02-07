@@ -20,6 +20,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AllStoreViewController" customModule="Vines" customModuleProvider="target">
             <connections>
+                <outlet property="spinner" destination="RSJ-AV-ehE" id="QzZ-My-2ZV"/>
                 <outlet property="tableView" destination="BrK-B3-7mV" id="3LR-4b-ZPf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewDropDown" destination="acl-eZ-ZnO" id="vZd-lc-5Ns"/>
@@ -95,10 +96,16 @@
                                 <outlet property="delegate" destination="-1" id="1LT-x3-3TP"/>
                             </connections>
                         </tableView>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="RSJ-AV-ehE">
+                            <rect key="frame" x="169" y="305" width="37" height="37"/>
+                            <color key="color" red="0.49019607840000001" green="0.023529411760000001" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </activityIndicatorView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="BrK-B3-7mV" firstAttribute="top" secondItem="12F-Z1-LLi" secondAttribute="bottom" constant="17" id="88u-HG-c8M"/>
+                        <constraint firstItem="RSJ-AV-ehE" firstAttribute="centerY" secondItem="ecZ-YE-kuh" secondAttribute="centerY" id="BZO-Bk-MAK"/>
+                        <constraint firstItem="RSJ-AV-ehE" firstAttribute="centerX" secondItem="ecZ-YE-kuh" secondAttribute="centerX" id="CAY-Dq-aEn"/>
                         <constraint firstItem="BrK-B3-7mV" firstAttribute="top" secondItem="12F-Z1-LLi" secondAttribute="bottom" constant="17" id="LTv-zX-Fap"/>
                         <constraint firstAttribute="bottom" secondItem="BrK-B3-7mV" secondAttribute="bottom" id="O3a-a8-j3L"/>
                         <constraint firstAttribute="trailing" secondItem="12F-Z1-LLi" secondAttribute="trailing" id="cqF-Qi-UVQ"/>

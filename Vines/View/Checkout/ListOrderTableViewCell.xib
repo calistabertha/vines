@@ -20,15 +20,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="ListOrderTableViewCell" customModule="Vines" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="237"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="72" id="KGk-i7-Jjw" customClass="ListOrderTableViewCell" customModule="Vines" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="236.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="71.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ToM-dT-Ryf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="236.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="70.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LIST ORDER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="we8-sJ-eZ2">
                                 <rect key="frame" x="24" y="19" width="72" height="18"/>
@@ -48,8 +48,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YuI-5G-pfr">
+                                <rect key="frame" x="24" y="69" width="272" height="0.0"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NmP-Hb-FOD">
+                                        <rect key="frame" x="0.0" y="0.0" width="272" height="0.0"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" id="i5K-SI-y3g"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="NmP-Hb-FOD" secondAttribute="trailing" id="0r8-Cq-td4"/>
+                                    <constraint firstItem="NmP-Hb-FOD" firstAttribute="top" secondItem="YuI-5G-pfr" secondAttribute="top" id="SZ5-B9-F1X"/>
+                                    <constraint firstAttribute="bottom" secondItem="NmP-Hb-FOD" secondAttribute="bottom" id="YBf-8f-XCI"/>
+                                    <constraint firstItem="NmP-Hb-FOD" firstAttribute="leading" secondItem="YuI-5G-pfr" secondAttribute="leading" id="n6C-sp-uqv"/>
+                                </constraints>
+                            </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8M2-0t-Ivc">
-                                <rect key="frame" x="0.0" y="235.5" width="320" height="1"/>
+                                <rect key="frame" x="0.0" y="69.5" width="320" height="1"/>
                                 <color key="backgroundColor" red="0.49019607840000001" green="0.023529411760000001" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="uwt-GU-OEj"/>
@@ -60,11 +78,15 @@
                         <constraints>
                             <constraint firstItem="XQ3-kc-M0h" firstAttribute="leading" secondItem="ToM-dT-Ryf" secondAttribute="leading" constant="24" id="8Dn-F3-19x"/>
                             <constraint firstItem="XQ3-kc-M0h" firstAttribute="top" secondItem="we8-sJ-eZ2" secondAttribute="bottom" constant="15" id="BI6-YC-Dab"/>
+                            <constraint firstItem="YuI-5G-pfr" firstAttribute="leading" secondItem="ToM-dT-Ryf" secondAttribute="leading" constant="24" id="DSw-sw-3G5"/>
                             <constraint firstAttribute="trailing" secondItem="8M2-0t-Ivc" secondAttribute="trailing" id="I4A-2n-TMi"/>
+                            <constraint firstItem="8M2-0t-Ivc" firstAttribute="top" secondItem="YuI-5G-pfr" secondAttribute="bottom" constant="0.5" id="Rhd-UW-rCO"/>
+                            <constraint firstItem="YuI-5G-pfr" firstAttribute="top" secondItem="XQ3-kc-M0h" secondAttribute="bottom" id="Ut7-ZJ-o9b"/>
                             <constraint firstAttribute="bottom" secondItem="8M2-0t-Ivc" secondAttribute="bottom" id="YSb-Er-drQ"/>
                             <constraint firstItem="we8-sJ-eZ2" firstAttribute="top" secondItem="ToM-dT-Ryf" secondAttribute="top" constant="19" id="cIr-KM-XMq"/>
                             <constraint firstItem="8M2-0t-Ivc" firstAttribute="leading" secondItem="ToM-dT-Ryf" secondAttribute="leading" id="hKT-Rn-Z2d"/>
                             <constraint firstItem="we8-sJ-eZ2" firstAttribute="leading" secondItem="ToM-dT-Ryf" secondAttribute="leading" constant="24" id="qKg-DT-byY"/>
+                            <constraint firstAttribute="trailing" secondItem="YuI-5G-pfr" secondAttribute="trailing" constant="24" id="yo8-MJ-ftY"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -76,6 +98,10 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="stackView" destination="YuI-5G-pfr" id="hkS-VZ-e5D"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="-29"/>
         </tableViewCell>
     </objects>
 </document>

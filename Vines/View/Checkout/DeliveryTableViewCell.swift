@@ -35,21 +35,7 @@ class DeliveryTableViewCell: UITableViewCell {
 extension DeliveryTableViewCell: TableViewCellProtocol{
     static func configure<T>(context: UIViewController, tableView: UITableView, indexPath: IndexPath, object: T) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DeliveryTableViewCell.identifier, for: indexPath) as! DeliveryTableViewCell
-        cell.textView.setContentOffset(CGPoint.zero, animated: false)
-        
-        cell.backSelected = {
-            (cells) in
-            cell.delegate?.backButtonDidPush()
-        }
         return cell
     }
 }
 
-extension DeliveryTableViewCell: UITextViewDelegate{
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "Your Address"
-            textView.textColor = UIColor.lightGray
-        }
-    }
-}

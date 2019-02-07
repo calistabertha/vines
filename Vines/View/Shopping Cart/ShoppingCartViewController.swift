@@ -10,10 +10,13 @@ import UIKit
 
 class ShoppingCartViewController: VinesViewController {
     @IBOutlet weak var tableView: UITableView!
+    var cartList: [CartModelData] = []
+    var countPrice: [Int] = []
+    var storeName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        fetchCartList()
         generateNavBarWithBackButton(titleString: "SHOPPING CART", viewController: self, isRightBarButton: false, isNavbarColor: true)
         tableView.register(CartTableViewCell.nib, forCellReuseIdentifier: CartTableViewCell.identifier)
         tableView.register(TotalCartTableViewCell.nib, forCellReuseIdentifier: TotalCartTableViewCell.identifier)
@@ -28,6 +31,28 @@ class ShoppingCartViewController: VinesViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    func fetchCartList() {
+        let params = [
+            "token": userDefault().getToken(),
+            "user_id": userDefault().getUserID(),
+            "order_code": userDefault().getOrderCode()
+            ] as [String : Any]
+        
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.listCart, param: params, method: HTTPMethodHelper.post) { (success, json) in
+            let data = CartModelBaseClass(json: json ?? "")
+            if data.message == "success", let datas = data.data {
+                self.cartList = datas
+                self.tableView.reloadData()
+                
+                for item in data.data ?? [] {
+                    self.countPrice.append(item.price ?? 0)
+                }
+            } else {
+                print(data.displayMessage ?? "")
+            }
+        }
+    }
+    
 }
 
 extension ShoppingCartViewController: UITableViewDelegate {
@@ -37,7 +62,7 @@ extension ShoppingCartViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 1
+            return cartList.count
         }
         return 1
     }
@@ -54,9 +79,9 @@ extension ShoppingCartViewController: UITableViewDelegate {
 extension ShoppingCartViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            return CartTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
+            return CartTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: cartList[indexPath.row])
         } else if indexPath.section == 1 {
-            return TotalCartTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
+            return TotalCartTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: countPrice)
         }
         return UITableViewCell()
     }

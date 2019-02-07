@@ -11,7 +11,7 @@ import UIKit
 class OrderSummaryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnNext: UIButton!
-    
+    var cartList: [CartModelData] = []
     var isCodeApplied = false
     
     override func viewDidLoad() {
@@ -21,11 +21,31 @@ class OrderSummaryViewController: UIViewController {
         tableView.register(ApplyDiscountTableViewCell.nib, forCellReuseIdentifier: ApplyDiscountTableViewCell.identifier)
         tableView.register(SummaryTableViewCell.nib, forCellReuseIdentifier: SummaryTableViewCell.identifier)
         btnNext.layer.cornerRadius = 5
+        fetchCartList()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
      
+    }
+    
+    func fetchCartList() {
+        let params = [
+            "token": userDefault().getToken(),
+            "user_id": userDefault().getUserID(),
+            "order_code": userDefault().getOrderCode()
+            ] as [String : Any]
+        
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.listCart, param: params, method: HTTPMethodHelper.post) { (success, json) in
+            let data = CartModelBaseClass(json: json ?? "")
+            if data.message == "success", let datas = data.data {
+                self.cartList = datas
+                self.tableView.reloadData()
+                
+            } else {
+                print(data.displayMessage ?? "")
+            }
+        }
     }
     
     @IBAction func nextButtonDidPush(_ sender: Any) {
@@ -45,7 +65,7 @@ extension OrderSummaryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return 237
+            return UITableViewAutomaticDimension
         } else if indexPath.row == 1 {
             if isCodeApplied {
                 return 194
@@ -64,6 +84,7 @@ extension OrderSummaryViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: ListOrderTableViewCell.identifier, for: indexPath) as! ListOrderTableViewCell
+            cell.setupOrderList(list: cartList)
             return cell
         }else if indexPath.row == 1 {
             if isCodeApplied{

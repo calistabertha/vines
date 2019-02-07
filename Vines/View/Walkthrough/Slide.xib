@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,7 +32,10 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oci-Bz-Xn5">
-                            <rect key="frame" x="63" y="52" width="249" height="502"/>
+                            <rect key="frame" x="63" y="82" width="249" height="498"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="oci-Bz-Xn5" secondAttribute="height" multiplier="1:2" id="ASA-5h-Ytm"/>
+                            </constraints>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6W5-wH-fJm">
                             <rect key="frame" x="0.0" y="417" width="375" height="250"/>
@@ -70,15 +74,14 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="Hj5-Kj-U7t" secondAttribute="trailing" id="9Sr-w7-PlY"/>
-                        <constraint firstAttribute="bottom" secondItem="oci-Bz-Xn5" secondAttribute="bottom" constant="113" id="E52-df-ZhW"/>
-                        <constraint firstItem="oci-Bz-Xn5" firstAttribute="top" secondItem="Ozt-Z7-zJy" secondAttribute="top" constant="52" id="Fme-0n-mh6"/>
+                        <constraint firstItem="oci-Bz-Xn5" firstAttribute="top" secondItem="Ozt-Z7-zJy" secondAttribute="top" constant="82" id="Fme-0n-mh6"/>
                         <constraint firstItem="6W5-wH-fJm" firstAttribute="leading" secondItem="Ozt-Z7-zJy" secondAttribute="leading" id="TFd-LR-yqT"/>
                         <constraint firstAttribute="trailing" secondItem="6W5-wH-fJm" secondAttribute="trailing" id="TWK-JJ-VMX"/>
-                        <constraint firstAttribute="trailing" secondItem="oci-Bz-Xn5" secondAttribute="trailing" constant="63" id="X1J-0e-o17"/>
                         <constraint firstAttribute="bottom" secondItem="Hj5-Kj-U7t" secondAttribute="bottom" id="cWn-IT-ShD"/>
                         <constraint firstAttribute="bottom" secondItem="6W5-wH-fJm" secondAttribute="bottom" id="gNP-V5-eGm"/>
-                        <constraint firstItem="oci-Bz-Xn5" firstAttribute="leading" secondItem="Ozt-Z7-zJy" secondAttribute="leading" constant="63" id="kuB-yM-unp"/>
                         <constraint firstItem="Hj5-Kj-U7t" firstAttribute="top" secondItem="Ozt-Z7-zJy" secondAttribute="top" id="qid-5V-6ph"/>
+                        <constraint firstItem="oci-Bz-Xn5" firstAttribute="leading" secondItem="Ozt-Z7-zJy" secondAttribute="leading" constant="63" id="uT2-Yb-KCo"/>
+                        <constraint firstAttribute="trailing" secondItem="oci-Bz-Xn5" secondAttribute="trailing" constant="63" id="wY0-7f-rV5"/>
                         <constraint firstItem="Hj5-Kj-U7t" firstAttribute="leading" secondItem="Ozt-Z7-zJy" secondAttribute="leading" id="xDo-G7-y7h"/>
                     </constraints>
                 </view>

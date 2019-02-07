@@ -125,14 +125,24 @@
                                                     <constraint firstAttribute="width" constant="8" id="dkF-pm-LaN"/>
                                                 </constraints>
                                             </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R6J-mN-saI">
+                                                <rect key="frame" x="0.0" y="0.0" width="101" height="20"/>
+                                                <connections>
+                                                    <action selector="addToCart:" destination="gTV-IL-0wX" eventType="touchUpInside" id="yrn-6q-fNa"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.70196078429999997" green="0.62352941179999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="348-M2-VBC"/>
                                             <constraint firstItem="UkO-G1-Y1o" firstAttribute="leading" secondItem="vLl-CC-1Me" secondAttribute="leading" constant="10" id="4N4-Ja-e33"/>
+                                            <constraint firstItem="R6J-mN-saI" firstAttribute="top" secondItem="vLl-CC-1Me" secondAttribute="top" id="5WS-5k-RA4"/>
+                                            <constraint firstAttribute="trailing" secondItem="R6J-mN-saI" secondAttribute="trailing" id="7ZS-W4-xsV"/>
                                             <constraint firstItem="iai-lI-sk0" firstAttribute="centerY" secondItem="vLl-CC-1Me" secondAttribute="centerY" id="H3m-vY-Zsw"/>
                                             <constraint firstAttribute="trailing" secondItem="iai-lI-sk0" secondAttribute="trailing" constant="10" id="P4p-f8-v1f"/>
+                                            <constraint firstAttribute="bottom" secondItem="R6J-mN-saI" secondAttribute="bottom" id="PxD-hT-Qog"/>
                                             <constraint firstItem="UkO-G1-Y1o" firstAttribute="centerY" secondItem="vLl-CC-1Me" secondAttribute="centerY" id="ltk-n1-9KZ"/>
+                                            <constraint firstItem="R6J-mN-saI" firstAttribute="leading" secondItem="vLl-CC-1Me" secondAttribute="leading" id="qX0-DB-Qet"/>
                                         </constraints>
                                     </view>
                                 </subviews>

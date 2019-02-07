@@ -18,6 +18,8 @@ class AllStoreViewController: VinesViewController {
         }
     }
     
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
     var location: CLLocation = CLLocation(latitude: 106.818477, longitude: -6.282391)
     var storeList:[StoreListModelData] = []
     var stores: StoreListModelData?
@@ -25,6 +27,7 @@ class AllStoreViewController: VinesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        spinner.startAnimating()
         setupView()
     }
     
@@ -55,6 +58,8 @@ class AllStoreViewController: VinesViewController {
             if data.message?.lowercased() == "success" {
                 self.storeList = data.data!
                 self.tableView.reloadData()
+                self.spinner.stopAnimating()
+                self.spinner.isHidden = true
             } else {
                 print(data.displayMessage ?? "")
             }
@@ -121,6 +126,7 @@ extension AllStoreViewController: DetailStoreViewDelegate{
         view.dismiss(animated: true)
         let vc = StoreViewController()
         vc.storeId = view.data?.storeId ?? 0
+        vc.storeName = view.data?.name ?? ""
         navigationController?.pushViewController(vc, animated: true)
     }
     
