@@ -7,20 +7,6 @@
 //
 
 import Foundation
-/*
- "user_id": 21,
- "order_code": "ECOM_9tUtVyAeBo",
- "category_id": 12,
- "product_id": 51,
- "price": 100000,
- "code_product": "S001-0032",
- "size": "SL123",
- "jumlah_order": 2,
- "name": "Absolut Pears",
- "summary": "A pear variant for the Swedish vodka behemoth and style icon. Try it with a drop of fresh lemon juice, sugar syrup and ice.",
- "category_name": "Vodka",
- "image": "https://vines-indonesia.com/assets/images/product/cakk1aENPf.jpg"
- */
 import SwiftyJSON
 
 public final class CartModelData: NSCoding {

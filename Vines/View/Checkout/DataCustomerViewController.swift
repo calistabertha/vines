@@ -36,31 +36,14 @@ class DataCustomerViewController: UIViewController {
 
     }
     
-    func showKeyboard() {
-        NotificationCenter .default .addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter .default .addObserver(self, selector: #selector(keyboardDidHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
-    }
-    
     @objc func hideKeyboard() {
         tableView.reloadData()
-        print("\(fname) \(lname) \(phoneNumber)")
         self.view.endEditing(true)
     }
     
-    @objc func keyboardDidShow(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let keyboardHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size.height {
-                tableView.contentInset = UIEdgeInsetsMake(0, 0, keyboardHeight, 0)
-            }
-        }
-    }
-    
-    @objc func keyboardDidHide(notification: NSNotification) {
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
-    }
     
     @IBAction func nextButtonDidPush(_ sender: Any) {
-        if (fname  == "" && lname == "" && deliverLocation == "") || (fname  == "" && lname == "" && vinesStore == ""){
+        if (fname  == "call" && lname == "dev" && deliverLocation == "") || (fname  == "" && lname == "" && vinesStore == ""){
             let alert = JDropDownAlert()
             alert.alertWith("Oopss..", message: "Please complete all field", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
             return
@@ -149,13 +132,12 @@ extension DataCustomerViewController: UITableViewDataSource{
                     let cell = tableView.dequeueReusableCell(withIdentifier: DeliveryTableViewCell.identifier, for: indexPath) as! DeliveryTableViewCell
                     let point = CGPoint(x: 0, y: cell.textView.frame.height)
                     cell.textView.setContentOffset(point, animated: false)
-                    cell.textView.delegate = self
+                   // cell.textView.delegate = self
                     if cell.textView.text.isEmpty {
                         cell.textView.text = "Your Address"
                         cell.textView.textColor = UIColor.lightGray
                     }
                     cell.btnBack.layer.cornerRadius = cell.btnBack.frame.height / 2
-                    cell.textView.delegate = self
                     cell.backSelected = {
                         (cells) in
                         self.isShipping = true
@@ -181,10 +163,6 @@ extension DataCustomerViewController: UITableViewDataSource{
 }
 
 extension DataCustomerViewController: UITextFieldDelegate{
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.showKeyboard()
-    }
-    
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.tag == 10 {
             lname = textField.text ?? ""
@@ -200,12 +178,5 @@ extension DataCustomerViewController: UITextFieldDelegate{
         print("\(fname) \(lname) \(phoneNumber)")
         textField.resignFirstResponder()
         return true
-    }
-}
-
-extension DataCustomerViewController: UITextViewDelegate{
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        textView.text = ""
-        self.showKeyboard()
     }
 }

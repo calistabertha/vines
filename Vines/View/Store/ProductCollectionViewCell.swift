@@ -26,17 +26,20 @@ class ProductCollectionViewCell: UICollectionViewCell {
     var addToCart: ProductClosure?
     var data: ProductListModelData?
     var isFromWishlist: Bool = false
-    
+    var addCart:((UICollectionViewCell) -> Void)?
+    var addWishlist:((UICollectionViewCell) -> Void)?
     
     @IBAction func cartButtonDidPush(_ sender: Any) {
-        if let addToCart = addToCart, let data = data {
-            addToCart(data)
-        }
+//        if let addToCart = addToCart, let data = data {
+//            addToCart(data)
+//        }
+        addCart?(self)
     }
     @IBAction func favouriteButtonDidPush(_ sender: Any) {
-        if let addToWishlist = addToWishlist, let data = data {
-            addToWishlist(data)
-        }
+//        if let addToWishlist = addToWishlist, let data = data {
+//            addToWishlist(data)
+//        }
+        addWishlist?(self)
     }
     
     override func awakeFromNib() {
@@ -50,6 +53,7 @@ extension ProductCollectionViewCell: CollectionViewCellProtocol{
     static func configure<T>(context: UIViewController, collectionView: UICollectionView, indexPath: IndexPath, object: T) -> UICollectionViewCell {
          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as! ProductCollectionViewCell
         guard let data = object as? ProductListModelData else { return cell }
+        guard let ctx = context as? StoreViewController else {return cell}
         
         cell.imgProduct.af_setImage(withURL: URL(string: data.image!)!, placeholderImage: UIImage(named: "placeholder")) { [weak cell] image in
             guard let wc = cell else { return }
@@ -63,7 +67,8 @@ extension ProductCollectionViewCell: CollectionViewCellProtocol{
         cell.data = data
         cell.lblName.text = data.name ?? ""
         cell.lblType.text = data.categoryName ?? ""
-        cell.lblPrice1.text = String(data.discount ?? 0).asRupiah()
+        //cell.lblPrice1.text = String(data.discount ?? 0).asRupiah()
+        cell.lblPrice1.isHidden = true
         cell.lblPrice2.text = String(data.price ?? 0).asRupiah()
         if data.discount == 0 {
             cell.viewDiscount.isHidden = true
@@ -73,6 +78,16 @@ extension ProductCollectionViewCell: CollectionViewCellProtocol{
         }
         
         cell.viewCart.layer.cornerRadius = 10
+        cell.addCart = {
+            (cells) in
+            ctx.addToCart(data, isBuyProduct: true)
+        }
+        
+        cell.addWishlist = {
+            (cells) in
+             ctx.addToWishlist(data)
+        }
+        
         return cell
     }
     

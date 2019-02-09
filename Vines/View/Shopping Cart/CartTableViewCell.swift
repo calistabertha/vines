@@ -21,7 +21,7 @@ class CartTableViewCell: UITableViewCell {
     var minus : ((UITableViewCell) -> Void)?
     var plus : ((UITableViewCell) -> Void)?
     
-    private var testCount = 1
+    public var testCount = 1
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,7 +50,7 @@ class CartTableViewCell: UITableViewCell {
 extension CartTableViewCell: TableViewCellProtocol{
     static func configure<T>(context: UIViewController, tableView: UITableView, indexPath: IndexPath, object: T) -> UITableViewCell {
           let cell = tableView.dequeueReusableCell(withIdentifier: CartTableViewCell.identifier, for: indexPath) as! CartTableViewCell
-        guard let data = object as? CartModelData else { return cell }
+        guard let data = object as? ProductListModelData else { return cell }
          let ctx = context as? ShoppingCartViewController
         cell.lblType.text = data.categoryName ?? ""
         cell.imgProduct.af_setImage(withURL: URL(string: data.image!)!, placeholderImage: UIImage(named: "placeholder")) { [weak cell] image in
@@ -70,28 +70,34 @@ extension CartTableViewCell: TableViewCellProtocol{
         
         cell.delete = {
             (cells) in
-            let params = [
-                "token": userDefault().getToken(),
-                "product_id": data.productID ?? 0,
-                "order_code": userDefault().getOrderCode()
-                ] as [String : Any]
-            
-            HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.deleteCart, param: params, method: HTTPMethodHelper.post) { (success, json) in
-             
-                if json!["message"] == "success" {
-                    let alert = JDropDownAlert()
-                    alert.alertWith("Success", message: "Remove from cart", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 76/255, green: 188/255, blue: 30/255, alpha: 1), image: nil)
-                    UIView.animate(withDuration: 0.3, delay: 0.5, options: .curveEaseInOut, animations: {
-                        cell.center = CGPoint(x: -(cell.frame.width), y: (cell.frame.height)/2)
-                    }, completion: { (finished) in
-                        ctx?.cartList.remove(at: indexPath.row)
-                       ctx?.countPrice.remove(at: indexPath.row)
-                        tableView.reloadData()
-                    })
-                } else {
-                    print(json!["display_message"] )
-                }
-            }
+            guard let indexOfModel = ctx?.productCartList.index(where: { (datas: ProductListModelData) -> Bool in
+                return datas.productId == data.productId
+            }) else { return }
+            ctx?.productCartList.remove(at: indexOfModel)
+            ctx?.delegate?.removeItem(at: indexOfModel)
+            tableView.reloadData()
+//            let params = [
+//                "token": userDefault().getToken(),
+//                "product_id": data.productID ?? 0,
+//                "order_code": userDefault().getOrderCode()
+//                ] as [String : Any]
+//
+//            HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.deleteCart, param: params, method: HTTPMethodHelper.post) { (success, json) in
+//
+//                if json!["message"] == "success" {
+//                    let alert = JDropDownAlert()
+//                    alert.alertWith("Success", message: "Remove from cart", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 76/255, green: 188/255, blue: 30/255, alpha: 1), image: nil)
+//                    UIView.animate(withDuration: 0.3, delay: 0.5, options: .curveEaseInOut, animations: {
+//                        cell.center = CGPoint(x: -(cell.frame.width), y: (cell.frame.height)/2)
+//                    }, completion: { (finished) in
+//                        ctx?.cartList.remove(at: indexPath.row)
+//                       ctx?.countPrice.remove(at: indexPath.row)
+//                        tableView.reloadData()
+//                    })
+//                } else {
+//                    print(json!["display_message"] )
+//                }
+//            }
       
         }
         
@@ -107,8 +113,31 @@ extension CartTableViewCell: TableViewCellProtocol{
             cell.lblCount.text = "\(cell.testCount)"
             let price = cell.testCount * data.price!
             cell.lblPrice.text = String(price).asRupiah()
-            ctx?.countPrice.append(-data.price!)
+//            ctx?.countPrice.append(-data.price!)
             tableView.reloadData()
+            
+            
+            //update jumlah order
+            guard let indexOfModel = ctx?.productCartList.index(where: { (datas: ProductListModelData) -> Bool in
+                return datas.productId == data.productId
+            }) else { return }
+            ctx?.productCartList[indexOfModel].quantity = cell.testCount
+            tableView.reloadData()
+            
+            // Tambahin di method saat nambahin item ke cart
+            /*
+             var contohArray: [CartModelData] = []
+             let productItem = ctx?.cartList.first(where: { (datas: CartModelData) -> Bool in
+             return datas.productID == 0
+             })
+             
+             if let item = productItem {
+             contohArray.append(item)
+             } else {
+             print("You have been added this item to your cart")
+             }
+             
+             */
         }
         
         cell.plus = {
@@ -122,7 +151,14 @@ extension CartTableViewCell: TableViewCellProtocol{
             cell.lblCount.text = "\(cell.testCount)"
             let price = cell.testCount * data.price!
             cell.lblPrice.text = String(price).asRupiah()
-            ctx?.countPrice.append(data.price!)
+//            ctx?.countPrice.append(data.price!)
+            tableView.reloadData()
+            
+            //update jumlahnya
+            guard let indexOfModel = ctx?.productCartList.index(where: { (datas: ProductListModelData) -> Bool in
+                return datas.productId == data.productId
+            }) else { return }
+            ctx?.productCartList[indexOfModel].quantity = cell.testCount
             tableView.reloadData()
         }
         return cell

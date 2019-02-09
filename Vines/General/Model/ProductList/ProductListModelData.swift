@@ -29,26 +29,29 @@ public final class ProductListModelData: NSObject, NSCoding {
     static let price = "price"
     static let subRegion = "sub_region"
     static let code = "code"
+    static let size = "size"
   }
 
   // MARK: Properties
-  public var summary: String?
-  public var productId: Int?
-  public var wishlistId: Int?
-  public var storeId: Int?
-  public var storeName: String?
-  public var isFavourite: Bool?
-  public var name: String?
-  public var datecreate: String?
-  public var discount: Int?
-  public var abv: String?
-  public var image: String?
-  public var categoryId: Int?
-  public var categoryName: String?
-  public var stock: Int?
-  public var price: Int?
-  public var subRegion: String?
-  public var code: String?
+    public var summary: String?
+    public var productId: Int?
+    public var wishlistId: Int?
+    public var storeId: Int?
+    public var storeName: String?
+    public var isFavourite: Bool?
+    public var name: String?
+    public var datecreate: String?
+    public var discount: Int?
+    public var abv: Int?
+    public var image: String?
+    public var categoryId: Int?
+    public var categoryName: String?
+    public var stock: Int?
+    public var price: Int?
+    public var subRegion: String?
+    public var code: String?
+    public var size : [SizeModelData]?
+    public var quantity: Int = 1
 
 
   // MARK: SwiftyJSON Initializers
@@ -73,7 +76,7 @@ public final class ProductListModelData: NSObject, NSCoding {
     name = json[SerializationKeys.name].string
     datecreate = json[SerializationKeys.datecreate].string
     discount = json[SerializationKeys.discount].int
-    abv = json[SerializationKeys.abv].string
+    abv = json[SerializationKeys.abv].int
     image = json[SerializationKeys.image].string
     categoryId = json[SerializationKeys.categoryId].int
     categoryName = json[SerializationKeys.categoryName].string
@@ -81,6 +84,9 @@ public final class ProductListModelData: NSObject, NSCoding {
     price = json[SerializationKeys.price].int
     subRegion = json[SerializationKeys.subRegion].string
     code = json[SerializationKeys.code].string
+    if let items = json[SerializationKeys.size].array {
+        size = items.map { SizeModelData(json: $0) }
+    }
   }
 
   /// Generates description of the object in the form of a NSDictionary.
@@ -105,6 +111,7 @@ public final class ProductListModelData: NSObject, NSCoding {
     if let value = price { dictionary[SerializationKeys.price] = value }
     if let value = subRegion { dictionary[SerializationKeys.subRegion] = value }
     if let value = code { dictionary[SerializationKeys.code] = value }
+    if let value = size { dictionary[SerializationKeys.size] = value.map { $0.dictionaryRepresentation() } }
     return dictionary
   }
 
@@ -119,7 +126,7 @@ public final class ProductListModelData: NSObject, NSCoding {
     self.name = aDecoder.decodeObject(forKey: SerializationKeys.name) as? String
     self.datecreate = aDecoder.decodeObject(forKey: SerializationKeys.datecreate) as? String
     self.discount = aDecoder.decodeObject(forKey: SerializationKeys.discount) as? Int
-    self.abv = aDecoder.decodeObject(forKey: SerializationKeys.abv) as? String
+    self.abv = aDecoder.decodeObject(forKey: SerializationKeys.abv) as? Int
     self.image = aDecoder.decodeObject(forKey: SerializationKeys.image) as? String
     self.categoryId = aDecoder.decodeObject(forKey: SerializationKeys.categoryId) as? Int
     self.categoryName = aDecoder.decodeObject(forKey: SerializationKeys.categoryName) as? String
@@ -127,6 +134,7 @@ public final class ProductListModelData: NSObject, NSCoding {
     self.price = aDecoder.decodeObject(forKey: SerializationKeys.price) as? Int
     self.subRegion = aDecoder.decodeObject(forKey: SerializationKeys.subRegion) as? String
     self.code = aDecoder.decodeObject(forKey: SerializationKeys.code) as? String
+    self.size = aDecoder.decodeObject(forKey: SerializationKeys.size) as? [SizeModelData]
   }
 
   public func encode(with aCoder: NSCoder) {
@@ -147,6 +155,7 @@ public final class ProductListModelData: NSObject, NSCoding {
     aCoder.encode(price, forKey: SerializationKeys.price)
     aCoder.encode(subRegion, forKey: SerializationKeys.subRegion)
     aCoder.encode(code, forKey: SerializationKeys.code)
+    aCoder.encode(size, forKey: SerializationKeys.size)
   }
 
 }

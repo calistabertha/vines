@@ -56,17 +56,14 @@ extension FeatureProductCollectionViewCell : CollectionViewCellProtocol{
             cell.viewDiscount.isHidden = true
         }else {
             cell.viewDiscount.isHidden = false
-            cell.lblDiscount.text = String(data.discount ?? 0).asRupiah()
+            cell.lblDiscount.text = "\(data.discount ?? 0) %"
         }
         
         guard let ctx = context as? StoreViewController else {return cell}
         cell.addToCart = {
             (cells) in
-            if userDefault().getOrderCode() == "" {
-                ctx.getOderCode(data)
-            }else {
-                ctx.addToCart(data)
-            }
+            ctx.addToCart(data, isBuyProduct: false)
+            
         }
         
         return cell

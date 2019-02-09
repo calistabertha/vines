@@ -14,7 +14,7 @@ target 'Vines' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'iCarousel'
-
+  pod 'IQKeyboardManagerSwift', '~> 5.0.0'
   target 'VinesTests' do
     inherit! :search_paths
     # Pods for testing

@@ -36,27 +36,12 @@ class PartyServiceViewController: VinesViewController {
         tableView.register(GeneralInformationTableViewCell.nib, forCellReuseIdentifier: GeneralInformationTableViewCell.identifier)
         tableView.register(LiquorOptionTableViewCell.nib, forCellReuseIdentifier: LiquorOptionTableViewCell.identifier)
         tableView.register(FooterButtonTableViewCell.nib, forCellReuseIdentifier: FooterButtonTableViewCell.identifier)
-        
-        NotificationCenter .default .addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter .default .addObserver(self, selector: #selector(keyboardDidHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
         btnSolveParty.layer.cornerRadius = 5
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
-    }
-    
-    @objc func keyboardDidShow(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let keyboardHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size.height {
-                tableView.contentInset = UIEdgeInsetsMake(0, 0, keyboardHeight, 0)
-            }
-        }
-    }
-    
-    @objc func keyboardDidHide(notification: NSNotification) {
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
     }
     
     @objc func birthdateChanged(_ sender: UIDatePicker) {

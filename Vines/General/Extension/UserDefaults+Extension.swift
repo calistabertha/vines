@@ -103,7 +103,7 @@ extension UserDefaults {
         userDefault().removeObject(forKey: "USER_DATA")
         userDefault().removeObject(forKey: "USER_ID")
         userDefault().removeObject(forKey: "USER_TOKEN")
-        UserDefaults().removeObject(forKey: "ORDER_CODE")
+        userDefault().removeObject(forKey: "ORDER_CODE")
     }
     
     func isLoggedIn() -> Bool {

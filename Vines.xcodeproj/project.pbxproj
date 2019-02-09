@@ -119,6 +119,7 @@
 		CCAF350A21EDEE1A003EFADA /* CartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCAF350821EDEE1A003EFADA /* CartTableViewCell.xib */; };
 		CCAF350D21EDF1F7003EFADA /* TotalCartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF350B21EDF1F7003EFADA /* TotalCartTableViewCell.swift */; };
 		CCAF350E21EDF1F7003EFADA /* TotalCartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCAF350C21EDF1F7003EFADA /* TotalCartTableViewCell.xib */; };
+		CCB1A42D220EE84800A8D65D /* SizeModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB1A42C220EE84800A8D65D /* SizeModelData.swift */; };
 		CCB5A82621DFA2B70055EE7A /* PersonalInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB5A82421DFA2B70055EE7A /* PersonalInformationTableViewCell.swift */; };
 		CCB5A82721DFA2B70055EE7A /* PersonalInformationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCB5A82521DFA2B70055EE7A /* PersonalInformationTableViewCell.xib */; };
 		CCB5A82B21DFA5620055EE7A /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB5A82921DFA5620055EE7A /* SupportViewController.swift */; };
@@ -333,6 +334,7 @@
 		CCAF350821EDEE1A003EFADA /* CartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartTableViewCell.xib; sourceTree = "<group>"; };
 		CCAF350B21EDF1F7003EFADA /* TotalCartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalCartTableViewCell.swift; sourceTree = "<group>"; };
 		CCAF350C21EDF1F7003EFADA /* TotalCartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TotalCartTableViewCell.xib; sourceTree = "<group>"; };
+		CCB1A42C220EE84800A8D65D /* SizeModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeModelData.swift; sourceTree = "<group>"; };
 		CCB5A82421DFA2B70055EE7A /* PersonalInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInformationTableViewCell.swift; sourceTree = "<group>"; };
 		CCB5A82521DFA2B70055EE7A /* PersonalInformationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalInformationTableViewCell.xib; sourceTree = "<group>"; };
 		CCB5A82921DFA5620055EE7A /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
@@ -508,6 +510,7 @@
 			children = (
 				90AB72AB21E0DB2B009B72AB /* ProductListModelBaseClass.swift */,
 				90AB72AC21E0DB2B009B72AB /* ProductListModelData.swift */,
+				CCB1A42C220EE84800A8D65D /* SizeModelData.swift */,
 			);
 			path = ProductList;
 			sourceTree = "<group>";
@@ -1255,6 +1258,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Vines/Pods-Vines-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/iCarousel/iCarousel.framework",
 			);
@@ -1262,6 +1266,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iCarousel.framework",
 			);
@@ -1277,6 +1282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCB1A42D220EE84800A8D65D /* SizeModelData.swift in Sources */,
 				CC816673216A06F3008FD617 /* UserModel.swift in Sources */,
 				CCE5225B21D603D000F868DD /* DetailPromoViewController.swift in Sources */,
 				CCB5A82B21DFA5620055EE7A /* SupportViewController.swift in Sources */,

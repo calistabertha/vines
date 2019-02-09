@@ -91,6 +91,52 @@ class HTTPHelper {
         }
     }
     
+    /*
+     * Use when upload file to server (JPG)
+     */
+    func requestFormData(url: String, param: [String : Any], method: HTTPMethodHelper, completion: @escaping(_ success: Bool, _ statusCode: Int, _ data: JSON?) -> Void){
+        
+       //let token = userDefault().getApiKey()
+        
+        let header = [
+            "Content-Type": "application/x-www-form-urlencoded",
+            "apikey": "bd9f1fcdc95abde54fdd46cf3fba93151d435a41"
+        ]
+        
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            for (key, value) in param {
+                if value is String {
+                    multipartFormData.append((value as! String).data(using: .utf8)!, withName: key)
+                } else {
+                    multipartFormData.append((value as! Data), withName: key, fileName: "images.jpg", mimeType: "image/jpeg")
+                }
+            }
+        }, usingThreshold: SessionManager.multipartFormDataEncodingMemoryThreshold,
+           to: Constants.ServicesAPI.apiBaseURL + url,
+           method: method.toHTTPMethod(),
+           headers: header) { (encodingResult) in
+            switch encodingResult {
+            case .success(let upload, _, _):
+                upload.responseJSON { response in
+                    print(response)
+                    if let responHeader = response.response?.statusCode {
+                        if responHeader >= 400 {
+                            completion(false, responHeader, nil)
+                        } else {
+                            if let json = response.result.value {
+                                let data = JSON(json)
+                                completion(true, responHeader, data)
+                            }
+                        }
+                    }
+                }
+            case .failure(let encodingError):
+                print(encodingError)
+                completion(false, 400, nil)
+            }
+        }
+    }
+    
     fileprivate func requestHandler(response: DataResponse<Any>, url: String, param: Parameters?, method: HTTPMethodHelper, completion: @escaping(_ success: Bool, _ data: JSON?) -> Void) {
         if let data = response.result.value {
             let json = JSON(data)

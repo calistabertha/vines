@@ -73,6 +73,27 @@ class AllStoreViewController: VinesViewController {
         }
     }
     
+    func getOderCode(_ view: DetailStoreView) {
+        let params = [
+            "user_id": userDefault().getUserID(),
+            "token": userDefault().getToken()
+            ]as [String: Any]
+        
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.orderCode, param: params, method: HTTPMethodHelper.post) { (success, json) in
+            if json!["message"] == "success" {
+                userDefault().setOrderCode(code: json!["data"][0]["order_code"].stringValue)
+                view.dismiss(animated: true)
+                let vc = StoreViewController()
+                vc.storeId = view.data?.storeId ?? 0
+                vc.storeName = view.data?.name ?? ""
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else {
+                let alert = JDropDownAlert()
+                alert.alertWith("Oopss..", message: "Please check your connection", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
+            }
+        }
+    }
+    
 }
 
 extension AllStoreViewController: UITableViewDelegate {
@@ -123,11 +144,7 @@ extension AllStoreViewController: DetailStoreViewDelegate{
     }
     
     func goShoppingButtonDidPush(_ view: DetailStoreView) {
-        view.dismiss(animated: true)
-        let vc = StoreViewController()
-        vc.storeId = view.data?.storeId ?? 0
-        vc.storeName = view.data?.name ?? ""
-        navigationController?.pushViewController(vc, animated: true)
+       getOderCode(view)
     }
     
     func callingButtonDidPush(phoneNumber: String) {

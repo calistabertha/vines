@@ -15,6 +15,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var viewMaps: GMSMapView! {
         didSet {
             viewMaps.isMyLocationEnabled = true
+            viewMaps.delegate = self
         }
     }
     @IBOutlet weak var viewTransparantTop: UIView!
@@ -35,6 +36,7 @@ class HomeViewController: UIViewController {
     
     var tableDataSource: GMSAutocompleteTableDataSource?
     var locationManager:CLLocationManager?
+    let profileSwipeVC = ProfileSwipeViewController()
     
     var counter: Int = 0
    
@@ -55,6 +57,7 @@ class HomeViewController: UIViewController {
         viewUserLoc.layer.cornerRadius = viewUserLoc.layer.frame.height / 2
         setupView()
         setupCarousel()
+        setupLeftMenu()
     }
     
     override func didReceiveMemoryWarning() {
@@ -103,6 +106,14 @@ class HomeViewController: UIViewController {
         self.viewTransparantBottom.layer.mask = botomLayer
     }
     
+    private func setupLeftMenu() {
+        profileSwipeVC.delegate = self
+        profileSwipeVC.view.frame = CGRect(x: -UIScreen.main.bounds.maxX, y: 0, width: contentView.bounds.width, height: contentView.bounds.height)
+        contentView.addSubview(profileSwipeVC.view)
+        self.addChildViewController(profileSwipeVC)
+        profileSwipeVC.didMove(toParentViewController: self)
+    }
+    
     private func fetchStore(latitude: String, longitude: String) {
         let params = [
             "longitude": longitude,
@@ -113,7 +124,6 @@ class HomeViewController: UIViewController {
             let data = StoreListModelBaseClass(json: json ?? "")
             if data.message?.lowercased() == "success" {
                 guard let markers = data.data else { return }
-                print(">>> \(markers.count)")
                 for marker in markers {
                     guard let markerLatitude = marker.latitude,
                         let markerLongitude = marker.longitude else { return }
@@ -125,10 +135,11 @@ class HomeViewController: UIViewController {
                     let pinPlaceholder = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
                     pinPlaceholder.image = UIImage(named: "ico-PinPoint")
                     
-                    let marker = GMSMarker(position: memberCoordinate2D)
-                    marker.iconView = pinPlaceholder
-                    marker.title = marker.snippet
-                    marker.map = self.viewMaps
+                    let gmsMarker = GMSMarker(position: memberCoordinate2D)
+                    gmsMarker.userData = marker
+                    gmsMarker.iconView = pinPlaceholder
+                    gmsMarker.title = marker.name
+                    gmsMarker.map = self.viewMaps
                 }
             } else {
                 print(data.displayMessage ?? "")
@@ -142,19 +153,9 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func profileButtonDidPush(_ sender: Any) {
-        let vc = ProfileSwipeViewController()
-        vc.promotionList = promotionList
-        
-        let transition = CATransition()
-        transition.duration = 0.2
-        transition.type = kCATransitionMoveIn
-        transition.subtype = kCATransitionFromLeft
-        contentView.layer.add(transition, forKey: kCATransition)
-        contentView.addSubview(vc.view)
-        self.addChildViewController(vc)
-        vc.delegate = self
-        vc.didMove(toParentViewController: self)
-
+        UIView.animate(withDuration: 0.25) {
+            self.profileSwipeVC.view.frame = CGRect(x: 0, y: 0, width: self.contentView.bounds.width, height: self.contentView.bounds.height)
+        }
     }
     
     @IBAction func seeStoreButtonDidPush(_ sender: Any) {
@@ -195,6 +196,26 @@ class HomeViewController: UIViewController {
       
         }
         counter += 1
+    }
+    
+    func getOderCode(storeData: StoreListModelData) {
+        let params = [
+            "user_id": userDefault().getUserID(),
+            "token": userDefault().getToken()
+            ]as [String: Any]
+        
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.orderCode, param: params, method: HTTPMethodHelper.post) { (success, json) in
+            if json!["message"] == "success" {
+                userDefault().setOrderCode(code: json!["data"][0]["order_code"].stringValue)
+                let vc = StoreViewController()
+                vc.storeId = storeData.storeId ?? 0
+                vc.storeName = storeData.name ?? ""
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else {
+                let alert = JDropDownAlert()
+                alert.alertWith("Oopss..", message: "Please check your connection", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
+            }
+        }
     }
 }
 
@@ -254,8 +275,9 @@ extension HomeViewController: GMSAutocompleteViewControllerDelegate {
 
 extension HomeViewController: ProfileSwipeDelegate{
     func dismissView(controller: ProfileSwipeViewController) {
-        controller.willMove(toParentViewController: nil)
-        controller.view.removeFromSuperview()
+        UIView.animate(withDuration: 0.25) {
+            self.profileSwipeVC.view.frame = CGRect(x: -UIScreen.main.bounds.maxX, y: 0, width: self.contentView.bounds.width, height: self.contentView.bounds.height)
+        }
     }
 }
 
@@ -310,6 +332,20 @@ extension HomeViewController: iCarouselDelegate, iCarouselDataSource {
             return value
         }
     }
+}
+
+extension HomeViewController: GMSMapViewDelegate {
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+        guard let storeData = marker.userData as? StoreListModelData else { return }
+        getOderCode(storeData: storeData)
+    }
+    
+//    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+//        let vc = DetailPromoViewController()
+//        vc.data = self.promotionList[1]
+//        self.navigationController?.pushViewController(vc, animated: true)
+//        return true
+//    }
 }
 
 extension HomeViewController {

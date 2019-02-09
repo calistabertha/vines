@@ -29,6 +29,36 @@ class OrderSummaryViewController: UIViewController {
      
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        let serialQueue = DispatchQueue(label: "atc-serial-queue")
+        
+        serialQueue.sync {
+            for productData in cartList {
+                let params = [
+                    "order_code": userDefault().getOrderCode(),
+                    "token": userDefault().getToken(),
+                    "product_id": productData.productID ?? 0
+                  
+                    ] as [String: Any]
+                
+                HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.deleteCart, param: params, method: HTTPMethodHelper.post) { (success, json) in
+                    let data = CartModelBaseClass(json: json ?? "")
+                    if data.message?.lowercased() == "success" {
+                        
+                    } else {
+                        let alert = JDropDownAlert()
+                        alert.alertWith("Oopss..", message: data.displayMessage, topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
+                        print(data.displayMessage ?? "")
+                    }
+                }
+            }
+        }
+        
+        serialQueue.sync {
+            print("delete cart done")
+        }
+    }
+    
     func fetchCartList() {
         let params = [
             "token": userDefault().getToken(),
@@ -96,9 +126,17 @@ extension OrderSummaryViewController: UITableViewDataSource{
             }
         }else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableViewCell.identifier, for: indexPath) as! SummaryTableViewCell
+            let subtotal = cartList
+                .map { (productData: CartModelData) -> Int in
+                    guard let price = productData.price, let quantity = productData.jumlahOrder else { return 0 }
+                    return quantity * price
+                }
+                .reduce(0, +)
+            let totalPrice = subtotal - 100000
+            cell.lblSubtotal.text = String(subtotal).asRupiah()
+            cell.lblTotal.text = String(totalPrice).asRupiah()
             return cell
         }
         return UITableViewCell()
-        
     }
 }

@@ -23,9 +23,6 @@ class ContactUsViewController: VinesViewController {
         generateNavBarWithBackButton(titleString: "CONTACT US", viewController: self, isRightBarButton: false, isNavbarColor: true)
         btnSendMessage.layer.cornerRadius = 5
         
-        NotificationCenter .default .addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter .default .addObserver(self, selector: #selector(keyboardDidHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         self.viewHideKeyboard.addGestureRecognizer(tap)
         self.viewHideKeyboard.isHidden = true
@@ -38,22 +35,6 @@ class ContactUsViewController: VinesViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
-    }
-    
-    @objc func keyboardDidShow(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let keyboardHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size.height {
-                scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardHeight, 0)
-                scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, keyboardHeight, 0)
-                
-                self.btnSendMessage.frame = CGRect(x: 0, y: (self.btnSendMessage.frame.origin.y + keyboardHeight), width: self.btnSendMessage.frame.width, height: self.btnSendMessage.frame.height)
-
-            }
-        }
-    }
-    
-    @objc func keyboardDidHide(notification: NSNotification) {
-          scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
     }
     
     @objc func hideKeyboard() {

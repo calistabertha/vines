@@ -15,6 +15,7 @@ class ParentCheckoutViewController: VinesViewController {
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var iconNext: UIImageView!
     var storeName: String?
+    var storeID: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +76,7 @@ class ParentCheckoutViewController: VinesViewController {
     @objc private func getPaymentMethod(_ notification: NSNotification) {
         let vc = PaymentMethodViewController()
         vc.view.frame = viewContainer.bounds
+        vc.storeID = storeID
         self.addChildViewController(vc)
         viewContainer.addSubview(vc.view)
         vc.didMove(toParentViewController: self)
