@@ -161,6 +161,5 @@ extension Notification.Name {
     static let dataCustomer = Notification.Name("data_customer")
     static let orderSummary = Notification.Name("order_summary")
     static let paymentMethod = Notification.Name("payment_method")
-    
 }
 

@@ -33,9 +33,6 @@ class EditProfileViewController: VinesViewController {
         imgProfile.layer.cornerRadius = imgProfile.frame.height / 2
         setupProfile()
         
-        NotificationCenter .default .addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter .default .addObserver(self, selector: #selector(keyboardDidHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         self.view.addGestureRecognizer(tap)
         
@@ -95,19 +92,6 @@ class EditProfileViewController: VinesViewController {
         txtYear.text = dateFormatter.string(from: date!)
         tableView.reloadData()
         
-    }
-    
-    @objc func keyboardDidShow(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let keyboardHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size.height {
-                tableView.contentInset = UIEdgeInsetsMake(0, 0, keyboardHeight, 0)
-                
-            }
-        }
-    }
-    
-    @objc func keyboardDidHide(notification: NSNotification) {
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
     }
     
     override func backButtonDidPush() {
@@ -194,5 +178,6 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
         let image = info[UIImagePickerControllerOriginalImage] as? UIImage
         picker.dismiss(animated: true, completion: nil)
         self.imgProfile.image = image
+        //image to data
     }
 }

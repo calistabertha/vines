@@ -17,11 +17,16 @@ class FeatureProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var viewDiscount: UIView!
     @IBOutlet weak var lblDiscount: UILabel!
     
+    var addToCart : ((UICollectionViewCell) -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
 
     }
-
+    @IBAction func addToCart(_ sender: Any) {
+        addToCart?(self)
+    }
+    
 }
 
 extension FeatureProductCollectionViewCell : CollectionViewCellProtocol{
@@ -47,8 +52,19 @@ extension FeatureProductCollectionViewCell : CollectionViewCellProtocol{
         
         cell.lblName.text = data.name?.uppercased() ?? ""
         cell.lblType.text = data.categoryName ?? ""
-//        cell.lblDiscount.text = String(data.discount ?? 0).asRupiah()
-//        cell.lbl.text = String(data.price ?? 0).asRupiah()
+        if data.discount == 0 {
+            cell.viewDiscount.isHidden = true
+        }else {
+            cell.viewDiscount.isHidden = false
+            cell.lblDiscount.text = "\(data.discount ?? 0) %"
+        }
+        
+        guard let ctx = context as? StoreViewController else {return cell}
+        cell.addToCart = {
+            (cells) in
+            ctx.addToCart(data, isBuyProduct: false)
+            
+        }
         
         return cell
     }

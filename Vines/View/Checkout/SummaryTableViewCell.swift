@@ -9,7 +9,11 @@
 import UIKit
 
 class SummaryTableViewCell: UITableViewCell {
-
+    var cartList: [CartModelData] = []
+    
+    @IBOutlet weak var lblTotal: UILabel!
+    @IBOutlet weak var lblSubtotal: UILabel!
+    @IBOutlet weak var lblDiscount: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
       
@@ -25,7 +29,7 @@ class SummaryTableViewCell: UITableViewCell {
 extension SummaryTableViewCell: TableViewCellProtocol{
     static func configure<T>(context: UIViewController, tableView: UITableView, indexPath: IndexPath, object: T) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableViewCell.identifier, for: indexPath) as! SummaryTableViewCell
-        
+       
         return cell
     }
 }

@@ -150,6 +150,11 @@
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="lblDiscount" destination="9oa-FT-X1J" id="2Jo-sw-hjT"/>
+                <outlet property="lblSubtotal" destination="FG2-kw-OSh" id="ZrR-88-2fb"/>
+                <outlet property="lblTotal" destination="3ro-YM-1WZ" id="dbS-yS-7rH"/>
+            </connections>
             <point key="canvasLocation" x="34" y="83.5"/>
         </tableViewCell>
     </objects>

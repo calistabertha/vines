@@ -24,12 +24,10 @@ class StoreViewController: VinesViewController {
     var storeName: String?
     var storeId: Int = 0
 
-    // Still dummy data
     var favouriteList: [ProductListModelData] = []
-    // If you want to test responsive, you could change item count inside this below array.
-    // Hope everything is fine wkwk
-//    var specialOfferList: [Any] = [0,0,0,0,0,0,0,0,0]
     var productList: [ProductListModelData] = []
+    
+    var cartList: [ProductListModelData] = []
     
     var collectionItemSize: CGSize = CGSize(width: 0, height: 0)
     
@@ -43,7 +41,6 @@ class StoreViewController: VinesViewController {
         super.viewWillAppear(animated)
         
         collectionItemSize = calculateSize()
-        // fetchData
         fetchFavouriteList()
         fetchProductList()
     }
@@ -54,11 +51,11 @@ class StoreViewController: VinesViewController {
     }
     
     override func backButtonDidPush() {
+        userDefault().removeObject(forKey: "ORDER_CODE")
         navigationController?.popViewController(animated: true)
     }
     
     func setupView() {
-        //tableView.rowHeight = UITableViewAutomaticDimension
         tableView.register(HeaderStoreTableViewCell.nib, forCellReuseIdentifier: HeaderStoreTableViewCell.identifier)
         tableView.register(FeatureProductTableViewCell.nib, forCellReuseIdentifier: FeatureProductTableViewCell.identifier)
         tableView.register(ProductTableViewCell.nib, forCellReuseIdentifier: ProductTableViewCell.identifier)
@@ -68,18 +65,22 @@ class StoreViewController: VinesViewController {
     }
     
     @IBAction func searchButtonDidPush(_ sender: Any) {
-        
+        fetchProductList()
     }
     
     @IBAction func cartButtonDidPush(_ sender: Any) {
         let vc = ShoppingCartViewController()
+        vc.storeName = storeName
+        vc.productCartList = cartList
+        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
     
     func fetchFavouriteList() {
         let params = [
             "limit": 10,
-            "user_id": userDefault().getUserID()
+            "user_id": userDefault().getUserID(),
+            "keyword": txtSearch.text ?? ""
             ] as [String : Any]
         HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Product.favourite, param: params, method: HTTPMethodHelper.post) { (success, json) in
             let data = ProductListModelBaseClass(json: json ?? "")
@@ -98,7 +99,8 @@ class StoreViewController: VinesViewController {
             "limit": 10,
             "category_id": "",
             "offset": 0,
-            "user_id": userDefault().getUserID()
+            "user_id": userDefault().getUserID(),
+            "keyword": txtSearch.text ?? ""
             ] as [String : Any]
         HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Product.list, param: params, method: HTTPMethodHelper.post) { (success, json) in
             let data = ProductListModelBaseClass(json: json ?? "")
@@ -125,7 +127,6 @@ class StoreViewController: VinesViewController {
                     if index != 0 {
                         self.productList[index!].isFavourite = !self.productList[index!].isFavourite!
                     }
-//                    self.tableView.reloadSections(IndexSet(arrayLiteral: 2), with: .none)
                     self.tableView.reloadData()
                 } else {
                     print(data.displayMessage ?? "")
@@ -145,13 +146,74 @@ class StoreViewController: VinesViewController {
                     if index != 0 {
                         self.productList[index!].isFavourite = !self.productList[index!].isFavourite!
                     }
-//                    self.tableView.reloadSections(IndexSet(arrayLiteral: 2), with: .none)
+                    
                     self.tableView.reloadData()
                 } else {
                     print(data.displayMessage ?? "")
                 }
             }
         }
+    }
+    
+    func addToCart(_ product: ProductListModelData, isBuyProduct: Bool) {
+        if isBuyProduct {
+            guard let _ = cartList.first(where: { $0.productId == product.productId }) else {
+                cartList.append(product)
+                let vc = ShoppingCartViewController()
+                vc.storeName = storeName
+                vc.storeID = storeId
+                vc.productCartList = cartList
+                vc.delegate = self
+                navigationController?.pushViewController(vc, animated: true)
+                return
+            }
+        }else{
+            guard let _ = cartList.first(where: { $0.productId == product.productId }) else {
+                cartList.append(product)
+                let alert = JDropDownAlert()
+                alert.alertWith("Success", message: "Success add to cart", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 76/255, green: 188/255, blue: 30/255, alpha: 1), image: nil)
+                return
+            }
+            
+            let alert = JDropDownAlert()
+            alert.alertWith("Product exist", message: "Product already added to cart", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
+            
+        }
+        
+       
+//        let params = [
+//            "user_id": userDefault().getUserID(),
+//            "order_code": userDefault().getOrderCode(),
+//            "token": userDefault().getToken(),
+//            "list_order": [[
+//                "product_id": product.productId ?? 0,
+//                "category_id": product.categoryId ?? 0,
+//                "price": product.price ?? 0,
+//                "code_product": product.code ?? "",
+//                "size": "",
+//                "discount": product.discount ?? 0,
+//                "jumlah_order": 1
+//                ]]
+//            ] as [String: Any]
+//
+//        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.addCart, param: params, method: HTTPMethodHelper.post) { (success, json) in
+//            let data = CartModelBaseClass(json: json ?? "")
+//            if data.message?.lowercased() == "success" {
+//                if isBuyProduct{
+//                    let vc = ShoppingCartViewController()
+//                    vc.storeName = self.storeName
+//                    self.navigationController?.pushViewController(vc, animated: true)
+//                }else{
+//                    let alert = JDropDownAlert()
+//                    alert.alertWith("Success", message: "Success add to cart", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 76/255, green: 188/255, blue: 30/255, alpha: 1), image: nil)
+//                }
+//
+//            } else {
+//                let alert = JDropDownAlert()
+//                alert.alertWith("Oopss..", message: data.displayMessage, topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
+//                print(data.displayMessage ?? "")
+//            }
+//        }
     }
 }
 
@@ -207,14 +269,6 @@ extension StoreViewController: UITableViewDataSource{
             return cell
         } else if indexPath.section == 2 {
             let cell = ProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: productList) as! ProductTableViewCell
-//            cell.addToCart = { [weak self] int in
-//                guard let ws = self else { return }
-//                ws.addToCart(int)
-//            }
-            cell.addToWishlist = { [weak self] product in
-                guard let ws = self else { return }
-                ws.addToWishlist(product)
-            }
             cell.size = collectionItemSize
             return cell
         }
@@ -223,3 +277,16 @@ extension StoreViewController: UITableViewDataSource{
 
 }
 
+extension StoreViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        fetchProductList()
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
+extension StoreViewController: ShoppingCartDelegate {
+    func removeItem(at index: Int) {
+        cartList.remove(at: index)
+    }
+}

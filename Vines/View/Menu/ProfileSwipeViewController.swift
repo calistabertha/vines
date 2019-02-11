@@ -29,7 +29,6 @@ class ProfileSwipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(MenuProfileTableViewCell.nib, forCellReuseIdentifier: MenuProfileTableViewCell.identifier)
-        print("profile \(view.frame.origin.y)")
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy"
         let dateStr = formatter.string(from: NSDate() as Date)
@@ -76,7 +75,7 @@ class ProfileSwipeViewController: UIViewController {
 }
 extension ProfileSwipeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return 6
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

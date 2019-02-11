@@ -172,6 +172,7 @@
                                     <constraint firstItem="4i5-ET-5G1" firstAttribute="leading" secondItem="8g9-Ex-1VS" secondAttribute="leading" constant="16" id="vDL-Bz-5hp"/>
                                     <constraint firstItem="80R-1i-4DF" firstAttribute="leading" secondItem="8g9-Ex-1VS" secondAttribute="leading" constant="16" id="vLN-WJ-XHm"/>
                                     <constraint firstItem="cS5-Hm-kjG" firstAttribute="leading" secondItem="jth-jd-omU" secondAttribute="leading" id="wEj-ti-m8A"/>
+                                    <constraint firstAttribute="trailing" secondItem="jth-jd-omU" secondAttribute="trailing" constant="42" id="xSy-rM-G4r"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8wl-nS-USA">

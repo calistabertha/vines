@@ -44,8 +44,6 @@ class SignUpViewController: VinesViewController {
         viewProfile.layer.cornerRadius = viewProfile.frame.width / 2
         btnSignUp.layer.cornerRadius = 5
         generateNavBarWithBackButton(titleString: "", viewController: self, isRightBarButton: false, isNavbarColor: false)
-        NotificationCenter .default .addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter .default .addObserver(self, selector: #selector(keyboardDidHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         self.view.addGestureRecognizer(tap)
@@ -60,21 +58,6 @@ class SignUpViewController: VinesViewController {
         self.view.endEditing(true)
         
     }
-    
-    @objc func keyboardDidShow(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let keyboardHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size.height {
-                scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardHeight, 0)
-                scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, keyboardHeight, 0)
-                
-            }
-        }
-    }
-    
-    @objc func keyboardDidHide(notification: NSNotification) {
-        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
-    }
-    
     
     @IBAction func uploadPictureButtonDidPush(_ sender: Any) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -113,24 +96,39 @@ class SignUpViewController: VinesViewController {
     }
     
     @IBAction func signUpButtonDidPush(_ sender: Any) {
-        let params = [
-            "fullname": self.txtFirstName.text! + self.txtLastName.text!,
-            "email": self.txtEmail.text!,
-            "password": self.txtPassword.text!,
-            "phone": self.txtPhoneNumber.text!,
-            "token_id":"12345jjkkllasdffnnnnnnnnnnnnnnn",
-            "longitude":"-6.2732980",
-            "latitude":"106.8694690"
-        ]
-        
-        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.register, param: params, method: HTTPMethodHelper.post) { (success, json) in
-            let data = RegisterModelBaseClass(json: json!)
-            if success {
-                print(data.data ?? "")
-            } else {
-                print(data.data ?? "")
+        if let imageData = UIImageJPEGRepresentation(self.imgProfile.image ?? UIImage(named: "placeholderProfile")!, 0.5) {
+            let params = [
+                "fullname": self.txtFirstName.text! + self.txtLastName.text!,
+                "email": self.txtEmail.text!,
+                "password": self.txtPassword.text!,
+                "phone": self.txtPhoneNumber.text!,
+                "image": imageData,
+                "token_id":"12345jjkkllasdffnnnnnnnnnnnnnnn",
+                "longitude":"-6.2732980",
+                "latitude":"106.8694690"
+            ] as [String : Any]
+            
+            HTTPHelper.shared.requestFormData(url: Constants.ServicesAPI.User.register, param: params, method: .post) { (success, code, json) in
+                let data = RegisterModelBaseClass(json: json ?? "")
+                if success {
+                    print(data.data ?? "")
+                } else {
+                    print(data.data ?? "")
+                }
             }
         }
+        
+        
+//
+//        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.register, param: params, method: HTTPMethodHelper.post) { (success, json) in
+//            let data = RegisterModelBaseClass(json: json!)
+//            if success {
+//                print(data.data ?? "")
+//            } else {
+//                print(data.data ?? "")
+//            }
+//        }
+       
     }
     @IBAction func signInButtonDidPush(_ sender: Any) {
          navigationController?.popViewController(animated: true)
@@ -150,17 +148,7 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
         picker.dismiss(animated: true, completion: nil)
         
         self.imgProfile.image = image
-        guard let img = image else { return }
-        if let imageJPEG = UIImageJPEGRepresentation(img,0.5){
-            HTTPHelper.shared.requestMultipart(imageJPEG, url: Constants.ServicesAPI.User.register, ids: "") { (success, json) in
-                let data = RegisterModelBaseClass(json: json!)
-                if success {
-                    print(data.data ?? "")
-                } else {
-                    print(data.data ?? "")
-                }
-            }
-        }
+
         
 //        if let img = image {
 //            ProfileController.shared.uploadImage(images: img, completion: { (success, code, message, result) in

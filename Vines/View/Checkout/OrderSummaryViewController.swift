@@ -11,7 +11,7 @@ import UIKit
 class OrderSummaryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnNext: UIButton!
-    
+    var cartList: [CartModelData] = []
     var isCodeApplied = false
     
     override func viewDidLoad() {
@@ -21,11 +21,61 @@ class OrderSummaryViewController: UIViewController {
         tableView.register(ApplyDiscountTableViewCell.nib, forCellReuseIdentifier: ApplyDiscountTableViewCell.identifier)
         tableView.register(SummaryTableViewCell.nib, forCellReuseIdentifier: SummaryTableViewCell.identifier)
         btnNext.layer.cornerRadius = 5
+        fetchCartList()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
      
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        let serialQueue = DispatchQueue(label: "atc-serial-queue")
+        
+        serialQueue.sync {
+            for productData in cartList {
+                let params = [
+                    "order_code": userDefault().getOrderCode(),
+                    "token": userDefault().getToken(),
+                    "product_id": productData.productID ?? 0
+                  
+                    ] as [String: Any]
+                
+                HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.deleteCart, param: params, method: HTTPMethodHelper.post) { (success, json) in
+                    let data = CartModelBaseClass(json: json ?? "")
+                    if data.message?.lowercased() == "success" {
+                        
+                    } else {
+                        let alert = JDropDownAlert()
+                        alert.alertWith("Oopss..", message: data.displayMessage, topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
+                        print(data.displayMessage ?? "")
+                    }
+                }
+            }
+        }
+        
+        serialQueue.sync {
+            print("delete cart done")
+        }
+    }
+    
+    func fetchCartList() {
+        let params = [
+            "token": userDefault().getToken(),
+            "user_id": userDefault().getUserID(),
+            "order_code": userDefault().getOrderCode()
+            ] as [String : Any]
+        
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.listCart, param: params, method: HTTPMethodHelper.post) { (success, json) in
+            let data = CartModelBaseClass(json: json ?? "")
+            if data.message == "success", let datas = data.data {
+                self.cartList = datas
+                self.tableView.reloadData()
+                
+            } else {
+                print(data.displayMessage ?? "")
+            }
+        }
     }
     
     @IBAction func nextButtonDidPush(_ sender: Any) {
@@ -45,7 +95,7 @@ extension OrderSummaryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return 237
+            return UITableViewAutomaticDimension
         } else if indexPath.row == 1 {
             if isCodeApplied {
                 return 194
@@ -64,6 +114,7 @@ extension OrderSummaryViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: ListOrderTableViewCell.identifier, for: indexPath) as! ListOrderTableViewCell
+            cell.setupOrderList(list: cartList)
             return cell
         }else if indexPath.row == 1 {
             if isCodeApplied{
@@ -75,9 +126,17 @@ extension OrderSummaryViewController: UITableViewDataSource{
             }
         }else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableViewCell.identifier, for: indexPath) as! SummaryTableViewCell
+            let subtotal = cartList
+                .map { (productData: CartModelData) -> Int in
+                    guard let price = productData.price, let quantity = productData.jumlahOrder else { return 0 }
+                    return quantity * price
+                }
+                .reduce(0, +)
+            let totalPrice = subtotal - 100000
+            cell.lblSubtotal.text = String(subtotal).asRupiah()
+            cell.lblTotal.text = String(totalPrice).asRupiah()
             return cell
         }
         return UITableViewCell()
-        
     }
 }

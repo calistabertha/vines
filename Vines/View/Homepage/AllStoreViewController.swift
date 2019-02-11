@@ -18,6 +18,8 @@ class AllStoreViewController: VinesViewController {
         }
     }
     
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
     var location: CLLocation = CLLocation(latitude: 106.818477, longitude: -6.282391)
     var storeList:[StoreListModelData] = []
     var stores: StoreListModelData?
@@ -25,6 +27,7 @@ class AllStoreViewController: VinesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        spinner.startAnimating()
         setupView()
     }
     
@@ -55,6 +58,8 @@ class AllStoreViewController: VinesViewController {
             if data.message?.lowercased() == "success" {
                 self.storeList = data.data!
                 self.tableView.reloadData()
+                self.spinner.stopAnimating()
+                self.spinner.isHidden = true
             } else {
                 print(data.displayMessage ?? "")
             }
@@ -65,6 +70,27 @@ class AllStoreViewController: VinesViewController {
         navigationController?.popViewController(animated: true)
         if detail != nil {
             detail?.dismiss(animated: true)
+        }
+    }
+    
+    func getOderCode(_ view: DetailStoreView) {
+        let params = [
+            "user_id": userDefault().getUserID(),
+            "token": userDefault().getToken()
+            ]as [String: Any]
+        
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.orderCode, param: params, method: HTTPMethodHelper.post) { (success, json) in
+            if json!["message"] == "success" {
+                userDefault().setOrderCode(code: json!["data"][0]["order_code"].stringValue)
+                view.dismiss(animated: true)
+                let vc = StoreViewController()
+                vc.storeId = view.data?.storeId ?? 0
+                vc.storeName = view.data?.name ?? ""
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else {
+                let alert = JDropDownAlert()
+                alert.alertWith("Oopss..", message: "Please check your connection", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
+            }
         }
     }
     
@@ -118,10 +144,7 @@ extension AllStoreViewController: DetailStoreViewDelegate{
     }
     
     func goShoppingButtonDidPush(_ view: DetailStoreView) {
-        view.dismiss(animated: true)
-        let vc = StoreViewController()
-        vc.storeId = view.data?.storeId ?? 0
-        navigationController?.pushViewController(vc, animated: true)
+       getOderCode(view)
     }
     
     func callingButtonDidPush(phoneNumber: String) {

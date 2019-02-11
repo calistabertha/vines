@@ -35,8 +35,8 @@ extension DescriptionTableViewCell: TableViewCellProtocol {
         cell.lblDescription.text = data.summary ?? "-"
         cell.lblCountry.text = data.subRegion ?? "-"
         cell.lblCategory.text = data.categoryName ?? "-"
-        cell.lblABV.text = data.abv ?? "-"
-        cell.lblSize.text = data.name ?? "-"
+        cell.lblABV.text = String(data.abv ?? 0)
+        cell.lblSize.text = data.size?[0].name ?? "-"
         return cell
     }
 }

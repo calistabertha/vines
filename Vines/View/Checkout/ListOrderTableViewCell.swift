@@ -10,6 +10,7 @@ import UIKit
 
 class ListOrderTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var stackView: UIStackView!
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -18,6 +19,25 @@ class ListOrderTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
+    }
+    
+    func setupOrderList(list: [CartModelData]) {
+        stackView.subviews.forEach { (view) in
+            view.removeFromSuperview()
+        }
+        
+        for (index, list) in list.enumerated() {
+            let view = ListOrder()
+            view.translatesAutoresizingMaskIntoConstraints = false
+            stackView.addArrangedSubview(view)
+            view.clipsToBounds = true
+            view.heightAnchor.constraint(equalToConstant: 37).isActive = true
+            
+            view.lblName.text = list.name
+            view.lblTotal.text = "\(list.jumlahOrder ?? 0)" + " pcs"
+            view.lblPrice.text = String(list.price ?? 0).asRupiah()
+          
+        }
     }
     
 }
