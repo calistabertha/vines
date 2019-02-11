@@ -18,11 +18,13 @@ class DetailProductViewController: VinesViewController {
     @IBOutlet weak var btnProduct: UIButton!
     
     var titleText = ""
-    
     var similiarList: [ProductListModelData] = []
-    var product: ProductListModelData?
+    var storeID: Int?
     var detail: ProductListModelData?
-    
+    var size: String?
+    var product: ProductListModelData?
+    var cartList: [ProductListModelData] = []
+    var storeName: String?
     
     var collectionItemSize: CGSize = CGSize(width: 0, height: 0)
     
@@ -49,6 +51,9 @@ class DetailProductViewController: VinesViewController {
     
     override func cartButtonDidPush() {
         let vc = ShoppingCartViewController()
+        vc.storeName = storeName
+        vc.productCartList = cartList
+       // vc.delegate = self
         navigationController?.pushViewController(vc, animated: false)
     }
     
@@ -89,7 +94,7 @@ class DetailProductViewController: VinesViewController {
 
     func fetchSimiliarList() {
         let params = [
-            "category_id": product?.categoryId ?? 0,
+            "category_id": detail?.categoryId ?? 0,
             "by_title": "",
             "limit": 10,
             "offset":0
@@ -107,14 +112,14 @@ class DetailProductViewController: VinesViewController {
     
     func fetchDetail (){
         let params = [
-            "product_id": product?.productId,
-            "store_id": product?.storeId
+            "product_id": product?.productId ?? 0,
+            "store_id": storeID ?? 0
             ] as [String: Any]
-        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Product.list, param: params, method: HTTPMethodHelper.post) { (success, json) in
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Product.detail, param: params, method: HTTPMethodHelper.post) { (success, json) in
+             self.size = json!["data"][0]["size"][0]["name"].stringValue
             let data = ProductListModelBaseClass(json: json ?? "")
-            if data.message?.lowercased() == "success" {
-                detail = data.data
-                
+            if data.message == "success", let datas = data.data {
+                self.detail = datas[0]
                 self.tableView.reloadData()
             } else {
                 print(data.displayMessage ?? "")
@@ -123,37 +128,57 @@ class DetailProductViewController: VinesViewController {
     }
     
     func addToCart() {
-        let params = [
-            "user_id": userDefault().getUserID(),
-            "order_code": userDefault().getOrderCode(),
-            "token": userDefault().getToken(),
-            "list_order": [[
-                "product_id": product?.productId ?? 0,
-                "category_id": product?.categoryId ?? 0,
-                "price": product?.price ?? 0,
-                "code_product": product?.code ?? "",
-                "size": "",
-                "discount": product?.discount ?? 0,
-                "jumlah_order": 1
-                ]]
-            ] as [String: Any]
-        
-        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.addCart, param: params, method: HTTPMethodHelper.post) { (success, json) in
-            let data = CartModelBaseClass(json: json ?? "")
-            if data.message?.lowercased() == "success" {
-                self.viewButton.isHidden = false
-                self.btnProduct.layer.cornerRadius = 5
-                self.btnProduct.layer.borderWidth = 1
-                self.btnProduct.layer.borderColor = UIColor.init(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).cgColor
-                self.btnProduct.setTitle("ADDED", for: .normal)
-                self.btnProduct.setTitleColor(UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), for: .normal)
-                
-            } else {
-                let alert = JDropDownAlert()
-                alert.alertWith("Oopss..", message: data.displayMessage, topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
-                print(data.displayMessage ?? "")
-            }
+        guard let _ = cartList.first(where: { $0.productId == detail?.productId }) else {
+            cartList.append(detail!)
+            let alert = JDropDownAlert()
+            alert.alertWith("Success", message: "Success add to cart", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 76/255, green: 188/255, blue: 30/255, alpha: 1), image: nil)
+            self.viewButton.isHidden = false
+            self.btnProduct.layer.cornerRadius = 5
+            self.btnProduct.layer.borderWidth = 1
+            self.btnProduct.layer.borderColor = UIColor.init(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).cgColor
+            self.btnProduct.setTitle("ADDED", for: .normal)
+            self.btnProduct.setTitleColor(UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), for: .normal)
+            return
         }
+        
+        self.viewButton.isHidden = false
+        self.btnProduct.layer.cornerRadius = 5
+        self.btnProduct.layer.borderWidth = 1
+        self.btnProduct.layer.borderColor = UIColor.init(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).cgColor
+        self.btnProduct.setTitle("ADDED", for: .normal)
+        self.btnProduct.setTitleColor(UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), for: .normal)
+        
+//        let params = [
+//            "user_id": userDefault().getUserID(),
+//            "order_code": userDefault().getOrderCode(),
+//            "token": userDefault().getToken(),
+//            "list_order": [[
+//                "product_id": detail?.productId ?? 0,
+//                "category_id": detail?.categoryId ?? 0,
+//                "price": detail?.price ?? 0,
+//                "code_product": detail?.code ?? "",
+//                "size": "",
+//                "discount": detail?.discount ?? 0,
+//                "jumlah_order": 1
+//                ]]
+//            ] as [String: Any]
+//
+//        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.addCart, param: params, method: HTTPMethodHelper.post) { (success, json) in
+//            let data = CartModelBaseClass(json: json ?? "")
+//            if data.message?.lowercased() == "success" {
+//                self.viewButton.isHidden = false
+//                self.btnProduct.layer.cornerRadius = 5
+//                self.btnProduct.layer.borderWidth = 1
+//                self.btnProduct.layer.borderColor = UIColor.init(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).cgColor
+//                self.btnProduct.setTitle("ADDED", for: .normal)
+//                self.btnProduct.setTitleColor(UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), for: .normal)
+//
+//            } else {
+//                let alert = JDropDownAlert()
+//                alert.alertWith("Oopss..", message: data.displayMessage, topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
+//                print(data.displayMessage ?? "")
+//            }
+//        }
     }
     
 }
@@ -172,7 +197,13 @@ extension DetailProductViewController: UITableViewDataSource{
         case 0:
             return HeaderProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: product)
         case 1:
-            return DescriptionTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: product)
+            let cell = tableView.dequeueReusableCell(withIdentifier: DescriptionTableViewCell.identifier, for: indexPath) as! DescriptionTableViewCell
+            cell.lblDescription.text = detail?.summary ?? "-"
+            cell.lblCountry.text = detail?.subRegion ?? "-"
+            cell.lblCategory.text = detail?.categoryName ?? "-"
+            cell.lblABV.text = String(detail?.abv ?? 0)
+            cell.lblSize.text = self.size ?? "-"
+            return cell
         case 2:
             let cell = ProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: similiarList) as! ProductTableViewCell
             cell.size = collectionItemSize

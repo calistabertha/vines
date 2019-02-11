@@ -45,6 +45,7 @@ struct Constants {
             static let list = "product/list"
             static let favourite = "product/favourite"
             static let similiar = "product/similiar"
+            static let detail = "product/detail"
         }
     
         struct News {
