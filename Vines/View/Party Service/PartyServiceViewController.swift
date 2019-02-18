@@ -31,11 +31,6 @@ class PartyServiceViewController: VinesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         generateNavBarWithBackButton(titleString: "PARTY SERVICE", viewController: self, isRightBarButton: false, isNavbarColor: true)
-        tableView.register(HeaderSectionStoreTableViewCell.nib, forCellReuseIdentifier: HeaderSectionStoreTableViewCell.identifier)
-        tableView.register(PersonalInformationTableViewCell.nib, forCellReuseIdentifier: PersonalInformationTableViewCell.identifier)
-        tableView.register(GeneralInformationTableViewCell.nib, forCellReuseIdentifier: GeneralInformationTableViewCell.identifier)
-        tableView.register(LiquorOptionTableViewCell.nib, forCellReuseIdentifier: LiquorOptionTableViewCell.identifier)
-        tableView.register(FooterButtonTableViewCell.nib, forCellReuseIdentifier: FooterButtonTableViewCell.identifier)
         btnSolveParty.layer.cornerRadius = 5
     }
 

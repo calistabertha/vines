@@ -86,6 +86,7 @@ class AllStoreViewController: VinesViewController {
                 let vc = StoreViewController()
                 vc.storeId = view.data?.storeId ?? 0
                 vc.storeName = view.data?.name ?? ""
+                vc.urlImgStore = view.data?.image ?? ""
                 self.navigationController?.pushViewController(vc, animated: true)
             }else {
                 let alert = JDropDownAlert()

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -37,13 +37,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="311.5"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="spu-dj-X1P">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="155"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="155" id="w9G-cv-Jjd"/>
+                                    <constraint firstAttribute="width" secondItem="spu-dj-X1P" secondAttribute="height" multiplier="2:1" id="KhR-fA-und"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="10m-1u-fTm">
-                                <rect key="frame" x="0.0" y="155" width="320" height="156.5"/>
+                                <rect key="frame" x="0.0" y="160" width="320" height="151.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vines Store" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgC-Ao-7Cj">
                                         <rect key="frame" x="16" y="14" width="100" height="12"/>
@@ -65,7 +65,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jl. Boulevard Raya, RT.13/RW.18, Klp. Gading Tim., Klp. Gading, Kota Jkt Utara, Daerah Khusus Ibukota Jakarta" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Hj-aX-Oe4">
-                                        <rect key="frame" x="16" y="56" width="288" height="28.5"/>
+                                        <rect key="frame" x="16" y="56" width="288" height="23.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="3sR-vM-scV"/>
                                         </constraints>
@@ -74,7 +74,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opening Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xyV-l2-PBm">
-                                        <rect key="frame" x="16" y="94.5" width="100" height="12"/>
+                                        <rect key="frame" x="16" y="89.5" width="100" height="12"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="12" id="a0D-qG-E6Z"/>
                                             <constraint firstAttribute="width" constant="100" id="cWV-TU-eFJ"/>
@@ -84,7 +84,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00 - 22.00 (Today)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vuy-Qf-hs5">
-                                        <rect key="frame" x="16" y="110.5" width="288" height="15"/>
+                                        <rect key="frame" x="16" y="105.5" width="288" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="e4F-gu-SID"/>
                                         </constraints>
@@ -111,6 +111,13 @@
                                     <constraint firstItem="3Hj-aX-Oe4" firstAttribute="top" secondItem="Bur-C1-pGg" secondAttribute="bottom" constant="4" id="zoR-nO-A21"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9d-YO-7yc">
+                                <rect key="frame" x="0.0" y="299.5" width="320" height="12"/>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="aqz-e6-XuA"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTS-0Y-x1E">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="311.5"/>
                                 <connections>
@@ -118,7 +125,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ma-di-ZUs">
-                                <rect key="frame" x="276" y="141" width="29" height="29"/>
+                                <rect key="frame" x="276" y="146" width="29" height="29"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico-nav-call" translatesAutoresizingMaskIntoConstraints="NO" id="lXa-Er-C6y">
                                         <rect key="frame" x="7" y="7" width="15" height="15"/>
@@ -128,7 +135,7 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nue-Hv-RW8">
-                                        <rect key="frame" x="-0.5" y="-0.5" width="29" height="29"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="29" height="29"/>
                                         <connections>
                                             <action selector="callingButtonDidPush:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Res-u4-xKO"/>
                                         </connections>
@@ -153,7 +160,10 @@
                             <constraint firstAttribute="bottom" secondItem="CTS-0Y-x1E" secondAttribute="bottom" id="2b6-A2-UUc"/>
                             <constraint firstAttribute="trailing" secondItem="8ma-di-ZUs" secondAttribute="trailing" constant="15" id="EVW-dw-Fga"/>
                             <constraint firstItem="spu-dj-X1P" firstAttribute="top" secondItem="yeN-mh-KDU" secondAttribute="top" id="Fng-Yc-9fM"/>
+                            <constraint firstItem="b9d-YO-7yc" firstAttribute="leading" secondItem="yeN-mh-KDU" secondAttribute="leading" id="Fpo-v5-aPP"/>
                             <constraint firstAttribute="bottom" secondItem="10m-1u-fTm" secondAttribute="bottom" id="GaQ-zo-yRj"/>
+                            <constraint firstAttribute="bottom" secondItem="b9d-YO-7yc" secondAttribute="bottom" id="SvA-Yj-S4U"/>
+                            <constraint firstAttribute="trailing" secondItem="b9d-YO-7yc" secondAttribute="trailing" id="U65-Mv-xCp"/>
                             <constraint firstItem="10m-1u-fTm" firstAttribute="top" secondItem="spu-dj-X1P" secondAttribute="bottom" id="Xgp-G5-Ivb"/>
                             <constraint firstItem="8ma-di-ZUs" firstAttribute="bottom" secondItem="spu-dj-X1P" secondAttribute="bottom" constant="15" id="aKe-6j-X8q"/>
                             <constraint firstAttribute="trailing" secondItem="spu-dj-X1P" secondAttribute="trailing" id="hpD-SV-GQC"/>

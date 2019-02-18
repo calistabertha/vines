@@ -39,6 +39,7 @@ class DetailStoreView: UIView, Modal {
     @IBOutlet weak var lblStoreName: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var lblTimeOpen: UILabel!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     weak var delegate: DetailStoreViewDelegate?
     
@@ -56,6 +57,7 @@ class DetailStoreView: UIView, Modal {
         viewCalling.layer.borderWidth = 2
         viewCalling.layer.borderColor = UIColor(red: 125/255.0, green: 6/255.0, blue: 15/255.0, alpha: 1).cgColor
         btnGoShopping.layer.cornerRadius = 5
+        spinner.isHidden = true
     }
     
     func setupViewData() {
@@ -82,7 +84,10 @@ class DetailStoreView: UIView, Modal {
         delegate?.closeButtonDidPush(self)
     }
     
-    @IBAction func goShoppingButtonDidPush(_ sender: Any) {
+    @IBAction func goShoppingButtonDidPush(_ sender: UIButton) {
+        sender.setTitle("", for: .normal)
+        self.spinner.isHidden = false
+        self.spinner.startAnimating()
         delegate?.goShoppingButtonDidPush(self)
     }
 }

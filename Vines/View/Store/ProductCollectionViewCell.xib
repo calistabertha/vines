@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,10 +27,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ProductCollectionViewCell" customModule="Vines" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="156" height="306"/>
+            <rect key="frame" x="0.0" y="0.0" width="156" height="316"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="156" height="306"/>
+                <rect key="frame" x="0.0" y="0.0" width="156" height="316"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gTs-Gv-e1r">
@@ -151,6 +151,10 @@
                                             <action selector="cartButtonDidPush:" destination="gTV-IL-0wX" eventType="touchUpInside" id="maq-Dm-T1f"/>
                                         </connections>
                                     </button>
+                                    <view alpha="0.55000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqk-iF-YGR">
+                                        <rect key="frame" x="0.0" y="64" width="156" height="86"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -159,16 +163,20 @@
                                     <constraint firstItem="G1v-Us-Lcj" firstAttribute="top" secondItem="8g9-Ex-1VS" secondAttribute="top" constant="16" id="CQh-wU-Ldc"/>
                                     <constraint firstItem="UVc-Tr-QQG" firstAttribute="top" secondItem="80R-1i-4DF" secondAttribute="bottom" constant="10" id="CqM-7s-drz"/>
                                     <constraint firstAttribute="trailing" secondItem="4i5-ET-5G1" secondAttribute="trailing" constant="16" id="EM5-eW-FdJ"/>
+                                    <constraint firstItem="aqk-iF-YGR" firstAttribute="leading" secondItem="8g9-Ex-1VS" secondAttribute="leading" id="LAQ-dm-2Ew"/>
                                     <constraint firstItem="jth-jd-omU" firstAttribute="leading" secondItem="8g9-Ex-1VS" secondAttribute="leading" constant="16" id="MQa-ZU-Lc2"/>
                                     <constraint firstItem="4i5-ET-5G1" firstAttribute="top" secondItem="UVc-Tr-QQG" secondAttribute="bottom" constant="4" id="PPD-Un-dC2"/>
                                     <constraint firstAttribute="trailing" secondItem="UVc-Tr-QQG" secondAttribute="trailing" constant="16" id="R1g-Pv-rl2"/>
                                     <constraint firstItem="G1v-Us-Lcj" firstAttribute="leading" secondItem="8g9-Ex-1VS" secondAttribute="leading" constant="16" id="RlY-W0-Un9"/>
                                     <constraint firstAttribute="trailing" secondItem="G1v-Us-Lcj" secondAttribute="trailing" constant="16" id="aWy-sO-uLv"/>
+                                    <constraint firstItem="aqk-iF-YGR" firstAttribute="top" secondItem="80R-1i-4DF" secondAttribute="bottom" id="dK3-yW-QAl"/>
+                                    <constraint firstAttribute="trailing" secondItem="aqk-iF-YGR" secondAttribute="trailing" id="gBH-Tq-vp2"/>
                                     <constraint firstItem="cS5-Hm-kjG" firstAttribute="top" secondItem="jth-jd-omU" secondAttribute="top" id="giR-h0-IrW"/>
                                     <constraint firstItem="80R-1i-4DF" firstAttribute="top" secondItem="G1v-Us-Lcj" secondAttribute="bottom" constant="4" id="nwh-XP-GbK"/>
                                     <constraint firstItem="cS5-Hm-kjG" firstAttribute="bottom" secondItem="jth-jd-omU" secondAttribute="bottom" id="tax-iD-ZsW"/>
                                     <constraint firstItem="UVc-Tr-QQG" firstAttribute="leading" secondItem="8g9-Ex-1VS" secondAttribute="leading" constant="16" id="tmf-Xf-t7M"/>
                                     <constraint firstAttribute="trailing" secondItem="80R-1i-4DF" secondAttribute="trailing" constant="16" id="uLS-DI-8ff"/>
+                                    <constraint firstAttribute="bottom" secondItem="aqk-iF-YGR" secondAttribute="bottom" id="v58-ts-uLN"/>
                                     <constraint firstItem="4i5-ET-5G1" firstAttribute="leading" secondItem="8g9-Ex-1VS" secondAttribute="leading" constant="16" id="vDL-Bz-5hp"/>
                                     <constraint firstItem="80R-1i-4DF" firstAttribute="leading" secondItem="8g9-Ex-1VS" secondAttribute="leading" constant="16" id="vLN-WJ-XHm"/>
                                     <constraint firstItem="cS5-Hm-kjG" firstAttribute="leading" secondItem="jth-jd-omU" secondAttribute="leading" id="wEj-ti-m8A"/>
@@ -218,7 +226,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="gTs-Gv-e1r" secondAttribute="trailing" id="ez1-Z9-G8O"/>
                 <constraint firstItem="gTs-Gv-e1r" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="jFK-ME-xr3"/>
-                <constraint firstAttribute="bottom" secondItem="gTs-Gv-e1r" secondAttribute="bottom" id="sGA-G9-fZY"/>
+                <constraint firstAttribute="bottom" secondItem="gTs-Gv-e1r" secondAttribute="bottom" constant="10" id="sGA-G9-fZY"/>
                 <constraint firstItem="gTs-Gv-e1r" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="tGG-fR-VF7"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -235,8 +243,9 @@
                 <outlet property="lblType" destination="G1v-Us-Lcj" id="nk8-gD-xr5"/>
                 <outlet property="viewCart" destination="jth-jd-omU" id="tEA-Xw-VZr"/>
                 <outlet property="viewDiscount" destination="ZLf-pb-jvy" id="BBy-EN-Pty"/>
+                <outlet property="viewOutOfStock" destination="aqk-iF-YGR" id="z5O-NZ-v64"/>
             </connections>
-            <point key="canvasLocation" x="35" y="67"/>
+            <point key="canvasLocation" x="33.600000000000001" y="66.566716641679164"/>
         </collectionViewCell>
     </objects>
     <resources>

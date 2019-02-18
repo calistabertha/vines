@@ -83,4 +83,25 @@ class ProfileViewController: VinesViewController {
     @IBAction func rateApplicationButtonDidPush(_ sender: Any) {
     }
     
+    @IBAction func logoutButtonDidPush(_ sender: Any) {
+        let alert = UIAlertController(title: nil, message: "Do you want to logout?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in
+         userDefault().logout()
+            if let bundle = Bundle.main.bundleIdentifier {
+                UserDefaults.standard.removePersistentDomain(forName: bundle)
+            }
+            
+            let vc = SignInViewController()
+            self.present(vc, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.cancel, handler: nil))
+        
+
+        self.present(alert, animated: true, completion: nil )
+        
+        
+        
+    }
 }

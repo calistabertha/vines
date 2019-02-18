@@ -31,7 +31,8 @@ class HeaderStoreTableViewCell: UITableViewCell {
 extension HeaderStoreTableViewCell: TableViewCellProtocol {
     static func configure<T>(context: UIViewController, tableView: UITableView, indexPath: IndexPath, object: T) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HeaderStoreTableViewCell.identifier, for: indexPath) as! HeaderStoreTableViewCell
-        
+        guard let data = object as? String else {return cell}
+        cell.imgHeader.af_setImage(withURL: URL(string: data)!)
         
         return cell
     }

@@ -33,6 +33,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var imgLogo: UIImageView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var viewUserLoc: UIView!
+    @IBOutlet weak var viewAnnouncement: UIView!
     
     var tableDataSource: GMSAutocompleteTableDataSource?
     var locationManager:CLLocationManager?
@@ -90,6 +91,12 @@ class HomeViewController: UIViewController {
         viewSearch.layer.cornerRadius = 5
         viewSearch.layer.borderColor = UIColor.black.cgColor
         viewSearch.layer.borderWidth = 1
+        
+        viewAnnouncement.layer.cornerRadius = 4
+        viewAnnouncement.layer.shadowColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.3).cgColor
+        viewAnnouncement.layer.shadowOpacity = 0.3
+        viewAnnouncement.layer.shadowOffset = CGSize(width: 0, height: 1)
+        viewAnnouncement.layer.shadowRadius = 1
         
         let topLayer = CAGradientLayer()
         topLayer.frame = self.viewTransparantTop.bounds;
@@ -175,6 +182,13 @@ class HomeViewController: UIViewController {
         guard let locationCoordinate = locations?.coordinate else {return}
         self.viewMaps.animate(to: GMSCameraPosition(target: locationCoordinate, zoom: 15, bearing: 0, viewingAngle: 0))
     }
+
+    @IBAction func dismissButtonDidPush(_ sender: Any) {
+        UIView.animate(withDuration: 0.4, delay: 0.8, options: .curveEaseOut, animations: {
+            self.viewAnnouncement.isHidden = true
+        }, completion: nil)
+ 
+    }
     
     @objc func changeEnvironment() {
         print(userDefault().isDebug())
@@ -210,6 +224,7 @@ class HomeViewController: UIViewController {
                 let vc = StoreViewController()
                 vc.storeId = storeData.storeId ?? 0
                 vc.storeName = storeData.name ?? ""
+                vc.urlImgStore = storeData.image ?? ""
                 self.navigationController?.pushViewController(vc, animated: true)
             }else {
                 let alert = JDropDownAlert()

@@ -24,6 +24,8 @@ class SignInViewController: UIViewController {
         }
     }
     @IBOutlet weak var btnSignIn: UIButton!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -40,6 +42,7 @@ class SignInViewController: UIViewController {
     }
     
     private func setupView() {
+        spinner.isHidden = true
         btnSignIn.layer.cornerRadius = 5
     }
     
@@ -48,6 +51,8 @@ class SignInViewController: UIViewController {
             if !email.isValidEmail() {
                 print("Email not valid")
             } else {
+                spinner.isHidden = false
+                spinner.startAnimating()
                 callAPILogin(email: email, password: password)
             }
         }
@@ -86,8 +91,12 @@ class SignInViewController: UIViewController {
                     print("error login")
                 }
             } else {
-                print(data.displayMessage ?? "")
+                let alert = JDropDownAlert()
+                alert.alertWith("Oopss..", message: data.displayMessage, topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
+                
             }
+            self.spinner.isHidden = true
+            self.spinner.stopAnimating()
         }
     }
 }

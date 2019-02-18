@@ -19,6 +19,6 @@ public func halfCeil(_ number: Int) -> Int {
 
 public func calculateSize() -> CGSize {
     let width = ((UIScreen.main.bounds.width - 18) / 2) - 20
-    let height = width * 1.9
+    let height = width * 2
     return CGSize(width: width, height: height)
 }
