@@ -48,7 +48,7 @@ class ProfileViewController: VinesViewController {
         lblName.text = userData?.fullname ?? ""
         lblEmailAddress.text = userData?.email ?? ""
         lblPoints.text = "\(userData?.point ?? 0) points"
-//        lblPhoneNumber.text = userData.
+        lblPhoneNumber.text = userData?.phone ?? ""
         
     }
 

@@ -60,6 +60,7 @@ struct Constants {
         
         struct Party {
             static let submit = "party_service"
+            static let package = "select_package"
         }
     }
 }

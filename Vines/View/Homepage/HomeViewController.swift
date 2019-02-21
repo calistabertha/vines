@@ -288,7 +288,7 @@ extension HomeViewController: GMSAutocompleteViewControllerDelegate {
     }
 }
 
-extension HomeViewController: ProfileSwipeDelegate{
+extension HomeViewController: MenuSwipeDelegate{
     func dismissView(controller: ProfileSwipeViewController) {
         UIView.animate(withDuration: 0.25) {
             self.profileSwipeVC.view.frame = CGRect(x: -UIScreen.main.bounds.maxX, y: 0, width: self.contentView.bounds.width, height: self.contentView.bounds.height)

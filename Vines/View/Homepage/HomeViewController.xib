@@ -55,9 +55,10 @@
                             <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EaM-3E-raK">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
+                            <rect key="frame" x="0.0" y="0.0" width="455" height="65"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstAttribute="width" secondItem="EaM-3E-raK" secondAttribute="height" multiplier="7:1" id="Z50-aN-6KG"/>
                                 <constraint firstAttribute="height" constant="65" id="ncP-SV-oUH"/>
                             </constraints>
                         </view>
@@ -265,7 +266,6 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="Etc-sv-8ka" firstAttribute="leading" secondItem="IIg-1a-Oso" secondAttribute="leading" id="03P-Xp-HXt"/>
-                        <constraint firstAttribute="trailing" secondItem="EaM-3E-raK" secondAttribute="trailing" id="0Df-Qu-i5K"/>
                         <constraint firstItem="icj-Kk-9xD" firstAttribute="leading" secondItem="IIg-1a-Oso" secondAttribute="leading" constant="24" id="5kY-ki-inP"/>
                         <constraint firstAttribute="bottom" secondItem="DDV-VU-Ysk" secondAttribute="bottom" constant="32" id="71e-F1-X14"/>
                         <constraint firstItem="qzh-Ip-RLP" firstAttribute="top" secondItem="icj-Kk-9xD" secondAttribute="top" id="7N5-cK-oAv"/>

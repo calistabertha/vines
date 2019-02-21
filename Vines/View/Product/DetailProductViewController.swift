@@ -224,7 +224,7 @@ extension DetailProductViewController: UITableViewDelegate{
             return cell
             
         }else if section == 2 {
-            cell.lblTitle.text = "SIMILIAR PRODUCT"
+            cell.lblTitle.text = "SIMILAR PRODUCT"
             return cell
             
         }
