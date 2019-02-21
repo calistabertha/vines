@@ -19,6 +19,7 @@ class OrderSummaryViewController: UIViewController {
         tableView.register(ListOrderTableViewCell.nib, forCellReuseIdentifier: ListOrderTableViewCell.identifier)
         tableView.register(DiscountCodeTableViewCell.nib, forCellReuseIdentifier: DiscountCodeTableViewCell.identifier)
         tableView.register(ApplyDiscountTableViewCell.nib, forCellReuseIdentifier: ApplyDiscountTableViewCell.identifier)
+        tableView.register(DeliveryTableViewCell.nib, forCellReuseIdentifier: DeliveryTableViewCell.identifier)
         tableView.register(SummaryTableViewCell.nib, forCellReuseIdentifier: SummaryTableViewCell.identifier)
         btnNext.layer.cornerRadius = 5
         fetchCartList()
@@ -90,7 +91,7 @@ extension OrderSummaryViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -103,6 +104,8 @@ extension OrderSummaryViewController: UITableViewDelegate {
                 return 163
             }
         }else if indexPath.row == 2 {
+            return 208
+        }else if indexPath.row == 3 {
             return 215
         }
         
@@ -125,6 +128,14 @@ extension OrderSummaryViewController: UITableViewDataSource{
                 return cell
             }
         }else if indexPath.row == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: DeliveryTableViewCell.identifier, for: indexPath) as! DeliveryTableViewCell
+            if cell.textView.text.isEmpty {
+                cell.textView.text = "Your Address"
+                cell.textView.textColor = UIColor.lightGray
+            }
+            return cell
+        }
+        else if indexPath.row == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableViewCell.identifier, for: indexPath) as! SummaryTableViewCell
             let subtotal = cartList
                 .map { (productData: CartModelData) -> Int in

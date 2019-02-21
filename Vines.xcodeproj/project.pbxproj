@@ -42,8 +42,6 @@
 		CC070D1321D48BC100E0ABE8 /* PromotionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC070D1121D48BC100E0ABE8 /* PromotionTableViewCell.xib */; };
 		CC191D5121E0461400FBB1D4 /* StaticPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC191D4F21E0461400FBB1D4 /* StaticPageViewController.swift */; };
 		CC191D5221E0461400FBB1D4 /* StaticPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC191D5021E0461400FBB1D4 /* StaticPageViewController.xib */; };
-		CC191D5521E0DAA500FBB1D4 /* GeneralInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC191D5321E0DAA400FBB1D4 /* GeneralInformationTableViewCell.swift */; };
-		CC191D5621E0DAA500FBB1D4 /* GeneralInformationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC191D5421E0DAA500FBB1D4 /* GeneralInformationTableViewCell.xib */; };
 		CC191D5921E0E4A400FBB1D4 /* LiquorSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC191D5721E0E4A400FBB1D4 /* LiquorSelectionTableViewCell.swift */; };
 		CC191D5A21E0E4A400FBB1D4 /* LiquorSelectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC191D5821E0E4A400FBB1D4 /* LiquorSelectionTableViewCell.xib */; };
 		CC191D5E21E1D01C00FBB1D4 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC191D5C21E1D01C00FBB1D4 /* EditProfileViewController.swift */; };
@@ -120,8 +118,6 @@
 		CCAF350D21EDF1F7003EFADA /* TotalCartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF350B21EDF1F7003EFADA /* TotalCartTableViewCell.swift */; };
 		CCAF350E21EDF1F7003EFADA /* TotalCartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCAF350C21EDF1F7003EFADA /* TotalCartTableViewCell.xib */; };
 		CCB1A42D220EE84800A8D65D /* SizeModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB1A42C220EE84800A8D65D /* SizeModelData.swift */; };
-		CCB5A82621DFA2B70055EE7A /* PersonalInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB5A82421DFA2B70055EE7A /* PersonalInformationTableViewCell.swift */; };
-		CCB5A82721DFA2B70055EE7A /* PersonalInformationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCB5A82521DFA2B70055EE7A /* PersonalInformationTableViewCell.xib */; };
 		CCB5A82B21DFA5620055EE7A /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB5A82921DFA5620055EE7A /* SupportViewController.swift */; };
 		CCB5A82C21DFA5620055EE7A /* SupportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCB5A82A21DFA5620055EE7A /* SupportViewController.xib */; };
 		CCB5A82F21DFA5D00055EE7A /* SupportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB5A82D21DFA5D00055EE7A /* SupportTableViewCell.swift */; };
@@ -164,14 +160,10 @@
 		CCCE53D121F0BDB0000760D1 /* ParentCheckoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCCE53CF21F0BDB0000760D1 /* ParentCheckoutViewController.xib */; };
 		CCD502D8216A01960070F457 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD502D7216A01960070F457 /* Constants.swift */; };
 		CCD502DA216A02670070F457 /* HTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD502D9216A02670070F457 /* HTTPHelper.swift */; };
-		CCD814A121E3116A005D4C52 /* FooterButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD8149F21E3116A005D4C52 /* FooterButtonTableViewCell.swift */; };
-		CCD814A221E3116A005D4C52 /* FooterButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCD814A021E3116A005D4C52 /* FooterButtonTableViewCell.xib */; };
 		CCD814DF21E3515D005D4C52 /* SummaryPartyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD814DD21E3515D005D4C52 /* SummaryPartyViewController.swift */; };
 		CCD814E021E3515D005D4C52 /* SummaryPartyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCD814DE21E3515D005D4C52 /* SummaryPartyViewController.xib */; };
 		CCD814E321E352A8005D4C52 /* SummaryPersonalInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD814E121E352A8005D4C52 /* SummaryPersonalInfoTableViewCell.swift */; };
 		CCD814E421E352A8005D4C52 /* SummaryPersonalInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCD814E221E352A8005D4C52 /* SummaryPersonalInfoTableViewCell.xib */; };
-		CCD814E721E357E9005D4C52 /* LiquorOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD814E521E357E9005D4C52 /* LiquorOptionTableViewCell.swift */; };
-		CCD814E821E357E9005D4C52 /* LiquorOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCD814E621E357E9005D4C52 /* LiquorOptionTableViewCell.xib */; };
 		CCDBA8EC2209B8AF007FACCC /* ListOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDBA8EB2209B8AF007FACCC /* ListOrder.swift */; };
 		CCDBA8EE2209B8BA007FACCC /* ListOrder.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCDBA8ED2209B8BA007FACCC /* ListOrder.xib */; };
 		CCE5225B21D603D000F868DD /* DetailPromoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE5225921D603D000F868DD /* DetailPromoViewController.swift */; };
@@ -190,6 +182,8 @@
 		CCE6DE9D21EDBF35007CA850 /* ChangePasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE6DE9B21EDBF35007CA850 /* ChangePasswordViewController.xib */; };
 		CCE6DE9F21EDC68F007CA850 /* SuccessEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6DE9E21EDC68F007CA850 /* SuccessEditing.swift */; };
 		CCE6DEA121EDC696007CA850 /* SuccessEditing.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE6DEA021EDC696007CA850 /* SuccessEditing.xib */; };
+		CCFE6E4F221AA7440038CCA9 /* PartyModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE6E4E221AA7430038CCA9 /* PartyModelBaseClass.swift */; };
+		CCFE6E51221AA8380038CCA9 /* PartyModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE6E50221AA8380038CCA9 /* PartyModelData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -250,8 +244,6 @@
 		CC070D1121D48BC100E0ABE8 /* PromotionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PromotionTableViewCell.xib; sourceTree = "<group>"; };
 		CC191D4F21E0461400FBB1D4 /* StaticPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticPageViewController.swift; sourceTree = "<group>"; };
 		CC191D5021E0461400FBB1D4 /* StaticPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StaticPageViewController.xib; sourceTree = "<group>"; };
-		CC191D5321E0DAA400FBB1D4 /* GeneralInformationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralInformationTableViewCell.swift; sourceTree = "<group>"; };
-		CC191D5421E0DAA500FBB1D4 /* GeneralInformationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralInformationTableViewCell.xib; sourceTree = "<group>"; };
 		CC191D5721E0E4A400FBB1D4 /* LiquorSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquorSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		CC191D5821E0E4A400FBB1D4 /* LiquorSelectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LiquorSelectionTableViewCell.xib; sourceTree = "<group>"; };
 		CC191D5C21E1D01C00FBB1D4 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -335,8 +327,6 @@
 		CCAF350B21EDF1F7003EFADA /* TotalCartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalCartTableViewCell.swift; sourceTree = "<group>"; };
 		CCAF350C21EDF1F7003EFADA /* TotalCartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TotalCartTableViewCell.xib; sourceTree = "<group>"; };
 		CCB1A42C220EE84800A8D65D /* SizeModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeModelData.swift; sourceTree = "<group>"; };
-		CCB5A82421DFA2B70055EE7A /* PersonalInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInformationTableViewCell.swift; sourceTree = "<group>"; };
-		CCB5A82521DFA2B70055EE7A /* PersonalInformationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalInformationTableViewCell.xib; sourceTree = "<group>"; };
 		CCB5A82921DFA5620055EE7A /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		CCB5A82A21DFA5620055EE7A /* SupportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SupportViewController.xib; sourceTree = "<group>"; };
 		CCB5A82D21DFA5D00055EE7A /* SupportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportTableViewCell.swift; sourceTree = "<group>"; };
@@ -379,14 +369,10 @@
 		CCCE53CF21F0BDB0000760D1 /* ParentCheckoutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParentCheckoutViewController.xib; sourceTree = "<group>"; };
 		CCD502D7216A01960070F457 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CCD502D9216A02670070F457 /* HTTPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHelper.swift; sourceTree = "<group>"; };
-		CCD8149F21E3116A005D4C52 /* FooterButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterButtonTableViewCell.swift; sourceTree = "<group>"; };
-		CCD814A021E3116A005D4C52 /* FooterButtonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterButtonTableViewCell.xib; sourceTree = "<group>"; };
 		CCD814DD21E3515D005D4C52 /* SummaryPartyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPartyViewController.swift; sourceTree = "<group>"; };
 		CCD814DE21E3515D005D4C52 /* SummaryPartyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SummaryPartyViewController.xib; sourceTree = "<group>"; };
 		CCD814E121E352A8005D4C52 /* SummaryPersonalInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPersonalInfoTableViewCell.swift; sourceTree = "<group>"; };
 		CCD814E221E352A8005D4C52 /* SummaryPersonalInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SummaryPersonalInfoTableViewCell.xib; sourceTree = "<group>"; };
-		CCD814E521E357E9005D4C52 /* LiquorOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquorOptionTableViewCell.swift; sourceTree = "<group>"; };
-		CCD814E621E357E9005D4C52 /* LiquorOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LiquorOptionTableViewCell.xib; sourceTree = "<group>"; };
 		CCD814E921E35E64005D4C52 /* RobotoCondensed-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Light.ttf"; sourceTree = "<group>"; };
 		CCDBA8EB2209B8AF007FACCC /* ListOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOrder.swift; sourceTree = "<group>"; };
 		CCDBA8ED2209B8BA007FACCC /* ListOrder.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListOrder.xib; sourceTree = "<group>"; };
@@ -406,6 +392,8 @@
 		CCE6DE9B21EDBF35007CA850 /* ChangePasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangePasswordViewController.xib; sourceTree = "<group>"; };
 		CCE6DE9E21EDC68F007CA850 /* SuccessEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessEditing.swift; sourceTree = "<group>"; };
 		CCE6DEA021EDC696007CA850 /* SuccessEditing.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuccessEditing.xib; sourceTree = "<group>"; };
+		CCFE6E4E221AA7430038CCA9 /* PartyModelBaseClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyModelBaseClass.swift; sourceTree = "<group>"; };
+		CCFE6E50221AA8380038CCA9 /* PartyModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyModelData.swift; sourceTree = "<group>"; };
 		EC392BF63EA86635D82EFDA1 /* Pods_Vines.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vines.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -755,6 +743,7 @@
 		CC81666F216A06B6008FD617 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CCFE6E4D221AA71E0038CCA9 /* Party Service */,
 				CCC62BD52206FD450055BC23 /* Cart */,
 				CC3ED80A2200942C004F1F35 /* Order */,
 				90DF855721F7087700838007 /* StaticPage */,
@@ -937,14 +926,6 @@
 			children = (
 				CCE5226221D6202100F868DD /* PartyServiceViewController.swift */,
 				CCE5226321D6202100F868DD /* PartyServiceViewController.xib */,
-				CCB5A82421DFA2B70055EE7A /* PersonalInformationTableViewCell.swift */,
-				CCB5A82521DFA2B70055EE7A /* PersonalInformationTableViewCell.xib */,
-				CC191D5321E0DAA400FBB1D4 /* GeneralInformationTableViewCell.swift */,
-				CC191D5421E0DAA500FBB1D4 /* GeneralInformationTableViewCell.xib */,
-				CCD814E521E357E9005D4C52 /* LiquorOptionTableViewCell.swift */,
-				CCD814E621E357E9005D4C52 /* LiquorOptionTableViewCell.xib */,
-				CCD8149F21E3116A005D4C52 /* FooterButtonTableViewCell.swift */,
-				CCD814A021E3116A005D4C52 /* FooterButtonTableViewCell.xib */,
 				CCD814DD21E3515D005D4C52 /* SummaryPartyViewController.swift */,
 				CCD814DE21E3515D005D4C52 /* SummaryPartyViewController.xib */,
 				CCD814E121E352A8005D4C52 /* SummaryPersonalInfoTableViewCell.swift */,
@@ -966,6 +947,15 @@
 				CCE5226C21D6234600F868DD /* DetailNewsViewController.xib */,
 			);
 			path = News;
+			sourceTree = "<group>";
+		};
+		CCFE6E4D221AA71E0038CCA9 /* Party Service */ = {
+			isa = PBXGroup;
+			children = (
+				CCFE6E50221AA8380038CCA9 /* PartyModelData.swift */,
+				CCFE6E4E221AA7430038CCA9 /* PartyModelBaseClass.swift */,
+			);
+			path = "Party Service";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1085,7 +1075,6 @@
 				CCC7894421F60DD4004A82A3 /* ShowInfoTableViewCell.xib in Resources */,
 				CC64A6B8217CA946000743DE /* AllStoreTableViewCell.xib in Resources */,
 				CC8B4BC721B2B320001D0DBC /* MenuProfileTableViewCell.xib in Resources */,
-				CC191D5621E0DAA500FBB1D4 /* GeneralInformationTableViewCell.xib in Resources */,
 				CC191D5221E0461400FBB1D4 /* StaticPageViewController.xib in Resources */,
 				CCE5227221D6235600F868DD /* NewsTableViewCell.xib in Resources */,
 				CC2AF83C21BD2E9B002BA448 /* FeatureProductCollectionViewCell.xib in Resources */,
@@ -1115,8 +1104,6 @@
 				CC2512BC21C49E8E00B4F664 /* DescriptionTableViewCell.xib in Resources */,
 				CCB5A82C21DFA5620055EE7A /* SupportViewController.xib in Resources */,
 				CCCE53D121F0BDB0000760D1 /* ParentCheckoutViewController.xib in Resources */,
-				CCD814A221E3116A005D4C52 /* FooterButtonTableViewCell.xib in Resources */,
-				CCD814E821E357E9005D4C52 /* LiquorOptionTableViewCell.xib in Resources */,
 				CCB6699421F35F78007FAD74 /* OrderSummaryViewController.xib in Resources */,
 				CC74E41221F9AB2400D771F2 /* Slide.xib in Resources */,
 				CCE5226E21D6234600F868DD /* DetailNewsViewController.xib in Resources */,
@@ -1128,7 +1115,6 @@
 				CCAF350E21EDF1F7003EFADA /* TotalCartTableViewCell.xib in Resources */,
 				CCC2E65321F2DED6000879C6 /* DeliveryTableViewCell.xib in Resources */,
 				CCB5A83421DFADD70055EE7A /* ContactUsViewController.xib in Resources */,
-				CCB5A82721DFA2B70055EE7A /* PersonalInformationTableViewCell.xib in Resources */,
 				CC2AF82821BD21A7002BA448 /* ProfileSwipeViewController.xib in Resources */,
 				CCD814E421E352A8005D4C52 /* SummaryPersonalInfoTableViewCell.xib in Resources */,
 				CC2AF83821BD2E14002BA448 /* ProductTableViewCell.xib in Resources */,
@@ -1303,7 +1289,6 @@
 				CC2AF82C21BD21B1002BA448 /* AllStoreViewController.swift in Sources */,
 				CC4CD36521C3E0AF00217626 /* DetailProductViewController.swift in Sources */,
 				CC62C3FA21A5ACF700D2CA6F /* Modal.swift in Sources */,
-				CCD814A121E3116A005D4C52 /* FooterButtonTableViewCell.swift in Sources */,
 				CC74E40D21F9A9DF00D771F2 /* WalkthroughViewController.swift in Sources */,
 				CC2AF81021BD1A60002BA448 /* ForgotPasswordViewController.swift in Sources */,
 				CCD502D8216A01960070F457 /* Constants.swift in Sources */,
@@ -1312,6 +1297,7 @@
 				CCB6699F21F363CA007FAD74 /* SummaryTableViewCell.swift in Sources */,
 				CCE5226921D6233A00F868DD /* NewsViewController.swift in Sources */,
 				CCC7893721F576ED004A82A3 /* ApplyDiscountTableViewCell.swift in Sources */,
+				CCFE6E4F221AA7440038CCA9 /* PartyModelBaseClass.swift in Sources */,
 				CCAF350521EDEDD9003EFADA /* ShoppingCartViewController.swift in Sources */,
 				CCAF350D21EDF1F7003EFADA /* TotalCartTableViewCell.swift in Sources */,
 				CC74E40821F9A22300D771F2 /* JDropDownAlert.swift in Sources */,
@@ -1340,10 +1326,8 @@
 				9055595121F0B8F500C2E74E /* SuperSecretViewController.swift in Sources */,
 				CC4CD36921C3E22600217626 /* HeaderProductTableViewCell.swift in Sources */,
 				CC74E41021F9AB1A00D771F2 /* Slide.swift in Sources */,
-				CCB5A82621DFA2B70055EE7A /* PersonalInformationTableViewCell.swift in Sources */,
 				90E950C421DFC51800627E06 /* PublicFunction.swift in Sources */,
 				90DF855B21F7087800838007 /* StaticPageModelData.swift in Sources */,
-				CC191D5521E0DAA500FBB1D4 /* GeneralInformationTableViewCell.swift in Sources */,
 				CCC7894321F60DD4004A82A3 /* ShowInfoTableViewCell.swift in Sources */,
 				9097CBAD2189F3080053382D /* LoginModelBaseClass.swift in Sources */,
 				CC3ED80822008FC7004F1F35 /* OrderTableViewCell.swift in Sources */,
@@ -1364,7 +1348,6 @@
 				CC2AF83721BD2E14002BA448 /* ProductTableViewCell.swift in Sources */,
 				CC3ED8042200895D004F1F35 /* AllOrderViewController.swift in Sources */,
 				CCE5226D21D6234600F868DD /* DetailNewsViewController.swift in Sources */,
-				CCD814E721E357E9005D4C52 /* LiquorOptionTableViewCell.swift in Sources */,
 				CC3ED80C220094EA004F1F35 /* OrderModelBaseClass.swift in Sources */,
 				CC2AF7F721BD1280002BA448 /* HeaderStoreTableViewCell.swift in Sources */,
 				90AB72AD21E0DB2B009B72AB /* ProductListModelBaseClass.swift in Sources */,
@@ -1375,6 +1358,7 @@
 				907B67472189FD7100CFEDB1 /* Extension.swift in Sources */,
 				CCC7893F21F60DA5004A82A3 /* TotalPayTableViewCell.swift in Sources */,
 				CC2512BB21C49E8E00B4F664 /* DescriptionTableViewCell.swift in Sources */,
+				CCFE6E51221AA8380038CCA9 /* PartyModelData.swift in Sources */,
 				CCB6699321F35F78007FAD74 /* OrderSummaryViewController.swift in Sources */,
 				CCB6699721F35FBE007FAD74 /* ListOrderTableViewCell.swift in Sources */,
 				CC191D5921E0E4A400FBB1D4 /* LiquorSelectionTableViewCell.swift in Sources */,

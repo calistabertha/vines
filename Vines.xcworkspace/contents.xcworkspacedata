@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:PartyModelData.swift">
+   </FileRef>
+   <FileRef
       location = "group:Vines.xcodeproj">
    </FileRef>
    <FileRef

@@ -21,7 +21,7 @@ class ParentCheckoutViewController: VinesViewController {
         super.viewDidLoad()
         setupView()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(getDataCustomer(_:)), name: .dataCustomer, object: nil)
+       // NotificationCenter.default.addObserver(self, selector: #selector(getDataCustomer(_:)), name: .dataCustomer, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(getOrderSummary(_:)), name: .orderSummary, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(getPaymentMethod(_:)), name: .paymentMethod, object: nil)
     }
@@ -36,17 +36,27 @@ class ParentCheckoutViewController: VinesViewController {
             subview.removeFromSuperview()
         }
         
-        let vc = DataCustomerViewController()
-        vc.vinesStore = storeName ?? ""
+//        let vc = DataCustomerViewController()
+//        vc.vinesStore = storeName ?? ""
+//        vc.view.frame = viewContainer.bounds
+//        self.addChildViewController(vc)
+//        viewContainer.addSubview(vc.view)
+//        vc.didMove(toParentViewController: self)
+//        generateNavBarWithBackButton(titleString: "CHECKOUT", viewController: self, isRightBarButton: false, isNavbarColor: true)
+//
+//        lblSummary.textColor = UIColor.lightGray
+//        lblPayment.textColor = UIColor.lightGray
+//        iconNext.image = UIImage(named: "ico-nav-chevronr_1")
+        
+        let vc = OrderSummaryViewController()
         vc.view.frame = viewContainer.bounds
         self.addChildViewController(vc)
         viewContainer.addSubview(vc.view)
         vc.didMove(toParentViewController: self)
         generateNavBarWithBackButton(titleString: "CHECKOUT", viewController: self, isRightBarButton: false, isNavbarColor: true)
-        
-        lblSummary.textColor = UIColor.lightGray
+        lblSummary.textColor = UIColor.black
         lblPayment.textColor = UIColor.lightGray
-        iconNext.image = UIImage(named: "ico-nav-chevronr_1")
+        iconNext.image = UIImage(named: "ico-nav-chevronr")
     }
     
     override func backButtonDidPush() {

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-protocol ProfileSwipeDelegate : class {
+protocol MenuSwipeDelegate : class {
     func dismissView(controller: ProfileSwipeViewController)
 }
 
@@ -22,7 +22,7 @@ class ProfileSwipeViewController: UIViewController {
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var viewProfile: UIView!
     
-    var delegate: ProfileSwipeDelegate?
+    var delegate: MenuSwipeDelegate?
     var promotionList: [PromotionModelData] = []
     var userData: LoginModelUserData?
     
@@ -58,7 +58,7 @@ class ProfileSwipeViewController: UIViewController {
         }
         lblFullname.text = "HI, \(userData?.fullname?.uppercased() ?? "")"
         lblEmail.text = userData?.email ?? ""
-//        lblPhoneNumber.text = userData.
+        lblPhone.text = userData?.phone ?? ""
         
     }
     

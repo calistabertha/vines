@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,6 +24,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignInViewController" customModule="Vines" customModuleProvider="target">
             <connections>
                 <outlet property="btnSignIn" destination="357-Xp-KIt" id="lxE-uN-jLZ"/>
+                <outlet property="spinner" destination="dH9-Jt-icP" id="sRQ-ch-uHD"/>
                 <outlet property="txtEmail" destination="pfh-lw-tfq" id="MhC-cd-qQO"/>
                 <outlet property="txtPassword" destination="WZu-Hi-DWz" id="bz0-38-GaR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -192,6 +193,10 @@
                                 <action selector="loginButtonDidPush:" destination="-1" eventType="touchUpInside" id="30J-Et-bed"/>
                             </connections>
                         </button>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="dH9-Jt-icP">
+                            <rect key="frame" x="169" y="305" width="37" height="37"/>
+                            <color key="color" red="0.49019607840000001" green="0.023529411760000001" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </activityIndicatorView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -200,12 +205,14 @@
                         <constraint firstItem="8UF-w3-lOc" firstAttribute="top" secondItem="357-Xp-KIt" secondAttribute="bottom" constant="16" id="4Tr-Ks-eVA"/>
                         <constraint firstAttribute="trailing" secondItem="357-Xp-KIt" secondAttribute="trailing" constant="16" id="EcX-ey-BW0"/>
                         <constraint firstAttribute="bottom" secondItem="8UF-w3-lOc" secondAttribute="bottom" constant="20" id="EeO-8j-zyh"/>
+                        <constraint firstItem="dH9-Jt-icP" firstAttribute="centerX" secondItem="e4E-tV-gqL" secondAttribute="centerX" id="Ey5-vJ-zjh"/>
                         <constraint firstItem="ceI-SG-cMm" firstAttribute="trailing" secondItem="pfh-lw-tfq" secondAttribute="trailing" id="KtM-Qc-b4y"/>
                         <constraint firstItem="lMO-34-sIz" firstAttribute="leading" secondItem="WZu-Hi-DWz" secondAttribute="leading" id="PKg-yI-gzB"/>
                         <constraint firstItem="G6r-0H-hhT" firstAttribute="leading" secondItem="e4E-tV-gqL" secondAttribute="leading" constant="24" id="PhX-UJ-0RI"/>
                         <constraint firstItem="pfh-lw-tfq" firstAttribute="top" secondItem="G6r-0H-hhT" secondAttribute="bottom" constant="44" id="U4h-cD-Fhx"/>
                         <constraint firstItem="357-Xp-KIt" firstAttribute="leading" secondItem="e4E-tV-gqL" secondAttribute="leading" constant="16" id="URL-dd-5nP"/>
                         <constraint firstItem="tiS-Zs-azU" firstAttribute="leading" secondItem="e4E-tV-gqL" secondAttribute="leading" constant="24" id="Z3S-FE-jGd"/>
+                        <constraint firstItem="dH9-Jt-icP" firstAttribute="centerY" secondItem="e4E-tV-gqL" secondAttribute="centerY" id="bZ0-GW-bSk"/>
                         <constraint firstAttribute="trailing" secondItem="WZu-Hi-DWz" secondAttribute="trailing" constant="24" id="eV6-70-Fuf"/>
                         <constraint firstAttribute="trailing" secondItem="pfh-lw-tfq" secondAttribute="trailing" constant="24" id="ffo-vC-ITe"/>
                         <constraint firstItem="W7n-DA-wZo" firstAttribute="top" secondItem="WZu-Hi-DWz" secondAttribute="bottom" constant="12" id="gfb-Zk-pL0"/>

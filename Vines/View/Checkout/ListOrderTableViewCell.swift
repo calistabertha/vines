@@ -31,7 +31,7 @@ class ListOrderTableViewCell: UITableViewCell {
             view.translatesAutoresizingMaskIntoConstraints = false
             stackView.addArrangedSubview(view)
             view.clipsToBounds = true
-            view.heightAnchor.constraint(equalToConstant: 37).isActive = true
+            view.heightAnchor.constraint(equalToConstant: 50).isActive = true
             
             view.lblName.text = list.name
             view.lblTotal.text = "\(list.jumlahOrder ?? 0)" + " pcs"

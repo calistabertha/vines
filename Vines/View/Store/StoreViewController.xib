@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,6 +20,7 @@
                 <outlet property="tableView" destination="EV4-KZ-zGv" id="wlc-rv-Xtg"/>
                 <outlet property="txtSearch" destination="aOZ-6B-ADI" id="djJ-Lu-tge"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewBackground" destination="j5g-b8-oHo" id="twT-ci-ixB"/>
                 <outlet property="viewCart" destination="JSz-zy-oBV" id="o0D-hd-pxQ"/>
             </connections>
         </placeholder>
@@ -103,12 +104,20 @@
                                 <constraint firstAttribute="width" constant="60" id="uDD-kJ-5GX"/>
                             </constraints>
                         </view>
+                        <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j5g-b8-oHo">
+                            <rect key="frame" x="0.0" y="60" width="375" height="587"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="JSz-zy-oBV" secondAttribute="bottom" constant="16" id="2xz-OE-dpg"/>
+                        <constraint firstItem="j5g-b8-oHo" firstAttribute="leading" secondItem="EV4-KZ-zGv" secondAttribute="leading" id="3lw-wL-72D"/>
+                        <constraint firstItem="j5g-b8-oHo" firstAttribute="bottom" secondItem="EV4-KZ-zGv" secondAttribute="bottom" id="4HA-dx-IdF"/>
                         <constraint firstAttribute="trailing" secondItem="IMd-eT-sn0" secondAttribute="trailing" id="8R0-Yd-WUg"/>
                         <constraint firstItem="IMd-eT-sn0" firstAttribute="top" secondItem="3jC-9Q-Kj7" secondAttribute="top" constant="10" id="Fzj-YL-mQZ"/>
+                        <constraint firstItem="j5g-b8-oHo" firstAttribute="top" secondItem="EV4-KZ-zGv" secondAttribute="top" id="Mie-vG-qpF"/>
+                        <constraint firstItem="j5g-b8-oHo" firstAttribute="trailing" secondItem="EV4-KZ-zGv" secondAttribute="trailing" id="NCb-EM-jec"/>
                         <constraint firstAttribute="trailing" secondItem="JSz-zy-oBV" secondAttribute="trailing" constant="16" id="ZcK-Qf-tfG"/>
                         <constraint firstAttribute="trailing" secondItem="EV4-KZ-zGv" secondAttribute="trailing" id="h6G-mc-SuN"/>
                         <constraint firstItem="EV4-KZ-zGv" firstAttribute="leading" secondItem="3jC-9Q-Kj7" secondAttribute="leading" id="hd6-kY-gS3"/>

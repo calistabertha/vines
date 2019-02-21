@@ -20,12 +20,15 @@ class StoreViewController: VinesViewController {
     @IBOutlet weak var txtSearch: UITextField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var viewCart: UIView!
+    @IBOutlet weak var viewBackground: UIView!
     
     var storeName: String?
     var storeId: Int = 0
+    var nextOffset = 1
+    var urlImgStore: String?
 
     var favouriteList: [ProductListModelData] = []
-    var productList: [ProductListModelData] = []
+    var productList : [ProductListModelData] = []
     
     var cartList: [ProductListModelData] = []
     
@@ -42,7 +45,7 @@ class StoreViewController: VinesViewController {
         
         collectionItemSize = calculateSize()
         fetchFavouriteList()
-        fetchProductList()
+        fetchProductList(isInit: true, offset: 1)
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,6 +55,7 @@ class StoreViewController: VinesViewController {
     
     override func backButtonDidPush() {
         userDefault().removeObject(forKey: "ORDER_CODE")
+        productList = []
         navigationController?.popViewController(animated: true)
     }
     
@@ -62,10 +66,14 @@ class StoreViewController: VinesViewController {
         tableView.register(HeaderSectionStoreTableViewCell.nib, forCellReuseIdentifier: HeaderSectionStoreTableViewCell.identifier)
         
         viewCart.layer.cornerRadius = viewCart.layer.frame.width / 2
+        viewBackground.isHidden = true
     }
     
     @IBAction func searchButtonDidPush(_ sender: Any) {
-        fetchProductList()
+        if txtSearch.text != "" {
+            fetchProductList(isInit: true, offset: 1)
+        }
+        viewBackground.isHidden = true
     }
     
     @IBAction func cartButtonDidPush(_ sender: Any) {
@@ -93,19 +101,28 @@ class StoreViewController: VinesViewController {
         }
     }
     
-    func fetchProductList() {
+    func fetchProductList(isInit: Bool, offset: Int) {
         let params = [
             "store_id": storeId,
             "limit": 10,
             "category_id": "",
-            "offset": 0,
+            "offset": offset,
             "user_id": userDefault().getUserID(),
             "keyword": txtSearch.text ?? ""
             ] as [String : Any]
         HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Product.list, param: params, method: HTTPMethodHelper.post) { (success, json) in
             let data = ProductListModelBaseClass(json: json ?? "")
             if data.message == "Success", let datas = data.data {
-                self.productList = datas
+                if isInit{
+                    self.productList = datas
+                    print("counttt \(datas.count) || \(self.productList.count)")
+                }else{
+                    for value in datas {
+                        self.productList.append(value)
+                    }
+                    self.nextOffset = offset + 1
+                     print("counttt \(datas.count) || \(self.productList.count)")
+                }
                 self.tableView.reloadData()
             } else {
                 print(data.displayMessage ?? "")
@@ -179,41 +196,6 @@ class StoreViewController: VinesViewController {
             alert.alertWith("Product exist", message: "Product already added to cart", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
             
         }
-        
-       
-//        let params = [
-//            "user_id": userDefault().getUserID(),
-//            "order_code": userDefault().getOrderCode(),
-//            "token": userDefault().getToken(),
-//            "list_order": [[
-//                "product_id": product.productId ?? 0,
-//                "category_id": product.categoryId ?? 0,
-//                "price": product.price ?? 0,
-//                "code_product": product.code ?? "",
-//                "size": "",
-//                "discount": product.discount ?? 0,
-//                "jumlah_order": 1
-//                ]]
-//            ] as [String: Any]
-//
-//        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.addCart, param: params, method: HTTPMethodHelper.post) { (success, json) in
-//            let data = CartModelBaseClass(json: json ?? "")
-//            if data.message?.lowercased() == "success" {
-//                if isBuyProduct{
-//                    let vc = ShoppingCartViewController()
-//                    vc.storeName = self.storeName
-//                    self.navigationController?.pushViewController(vc, animated: true)
-//                }else{
-//                    let alert = JDropDownAlert()
-//                    alert.alertWith("Success", message: "Success add to cart", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 76/255, green: 188/255, blue: 30/255, alpha: 1), image: nil)
-//                }
-//
-//            } else {
-//                let alert = JDropDownAlert()
-//                alert.alertWith("Oopss..", message: data.displayMessage, topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
-//                print(data.displayMessage ?? "")
-//            }
-//        }
     }
 }
 
@@ -262,7 +244,7 @@ extension StoreViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            return HeaderStoreTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
+            return HeaderStoreTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: self.urlImgStore)
         } else if indexPath.section == 1 {
             let cell = FeatureProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: favouriteList) as! FeatureProductTableViewCell
             cell.size = collectionItemSize
@@ -279,9 +261,24 @@ extension StoreViewController: UITableViewDataSource{
 
 extension StoreViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        fetchProductList()
+        if textField.text != "" {
+            fetchProductList(isInit: true, offset: 1)
+        }
+        viewBackground.isHidden = true
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        viewBackground.isHidden = false
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.text != "" {
+            fetchProductList(isInit: true, offset: 1)
+        }
+        viewBackground.isHidden = true
     }
 }
 

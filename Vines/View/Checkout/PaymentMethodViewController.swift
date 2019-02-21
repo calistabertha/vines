@@ -26,7 +26,8 @@ class PaymentMethodViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        btnPayNow.layer.cornerRadius = 4
+        btnEdit2.layer.cornerRadius = btnEdit2.frame.height / 2
        
     }
 
@@ -36,7 +37,7 @@ class PaymentMethodViewController: UIViewController {
     }
     
     @IBAction func editPersonalInfoButtonDidPush(_ sender: Any) {
-        NotificationCenter.default.post(name: .dataCustomer, object: nil)
+        NotificationCenter.default.post(name: .orderSummary, object: nil)
     }
    
     @IBAction func editShippingButtonDidPush(_ sender: Any) {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,6 +36,7 @@
                 <outlet property="lblAddress" destination="eeQ-H1-mUy" id="pVf-ck-TOh"/>
                 <outlet property="lblStoreName" destination="1m7-KT-Enu" id="G9u-dz-cHf"/>
                 <outlet property="lblTimeOpen" destination="oOa-UG-xbt" id="fnU-h2-M6C"/>
+                <outlet property="spinner" destination="o7Q-N6-3JN" id="vZf-HU-eoj"/>
                 <outlet property="viewCalling" destination="tlN-y3-ELL" id="Jq6-hD-EGd"/>
             </connections>
         </placeholder>
@@ -148,17 +149,23 @@
                                                 <action selector="goShoppingButtonDidPush:" destination="-1" eventType="touchUpInside" id="vu4-Nu-dSS"/>
                                             </connections>
                                         </button>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="o7Q-N6-3JN">
+                                            <rect key="frame" x="177.5" y="256" width="20" height="20"/>
+                                            <color key="color" red="0.46274509800000002" green="0.18039215689999999" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="iJx-dH-mB4" firstAttribute="leading" secondItem="i70-1H-Jge" secondAttribute="leading" constant="20" id="2Lh-Ho-Qct"/>
                                         <constraint firstItem="pTA-7O-i5g" firstAttribute="leading" secondItem="i70-1H-Jge" secondAttribute="leading" constant="16" id="2uc-kg-Fta"/>
                                         <constraint firstItem="1m7-KT-Enu" firstAttribute="leading" secondItem="i70-1H-Jge" secondAttribute="leading" constant="16" id="3JH-Dd-tIU"/>
+                                        <constraint firstItem="o7Q-N6-3JN" firstAttribute="centerX" secondItem="iJx-dH-mB4" secondAttribute="centerX" id="7fh-3c-cKs"/>
                                         <constraint firstAttribute="trailing" secondItem="oOa-UG-xbt" secondAttribute="trailing" constant="16" id="FBx-5q-v4h"/>
                                         <constraint firstItem="eed-25-gTk" firstAttribute="leading" secondItem="i70-1H-Jge" secondAttribute="leading" constant="16" id="FY6-KE-MFj"/>
                                         <constraint firstAttribute="trailing" secondItem="eeQ-H1-mUy" secondAttribute="trailing" constant="16" id="H90-yf-6il"/>
                                         <constraint firstItem="1m7-KT-Enu" firstAttribute="top" secondItem="eed-25-gTk" secondAttribute="bottom" constant="4" id="IzW-gd-jez"/>
                                         <constraint firstAttribute="trailing" secondItem="1m7-KT-Enu" secondAttribute="trailing" constant="16" id="NmL-lW-bTW"/>
+                                        <constraint firstItem="o7Q-N6-3JN" firstAttribute="centerY" secondItem="iJx-dH-mB4" secondAttribute="centerY" id="Weh-mm-8Ca"/>
                                         <constraint firstItem="eed-25-gTk" firstAttribute="top" secondItem="noe-5D-nt1" secondAttribute="bottom" constant="20" id="X3R-cI-qPw"/>
                                         <constraint firstItem="eeQ-H1-mUy" firstAttribute="top" secondItem="1m7-KT-Enu" secondAttribute="bottom" constant="4" id="Ygh-HV-GUr"/>
                                         <constraint firstItem="eeQ-H1-mUy" firstAttribute="leading" secondItem="i70-1H-Jge" secondAttribute="leading" constant="16" id="ZOw-ol-23D"/>
@@ -182,7 +189,7 @@
                                             </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico-nav-call" translatesAutoresizingMaskIntoConstraints="NO" id="ufn-pq-hB9">
-                                            <rect key="frame" x="9.5" y="9.5" width="20" height="20"/>
+                                            <rect key="frame" x="10" y="10" width="20" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="20" id="U5j-vX-AOb"/>
                                                 <constraint firstAttribute="height" constant="20" id="kGP-z7-z93"/>
