@@ -31,12 +31,31 @@ class PartyServiceViewController: VinesViewController {
     var packageList: [PartyModelData] = []
     var packageID: Int?
     
+    var timer: Timer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         generateNavBarWithBackButton(titleString: "PARTY SERVICE", viewController: self, isRightBarButton: false, isNavbarColor: true)
         btnSolveParty.layer.cornerRadius = 5
         fetchPackage()
         setupCarousel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        timer = Timer.scheduledTimer(
+            timeInterval: 2,
+            target: self,
+            selector: #selector(nextBanner),
+            userInfo: nil,
+            repeats: true)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        timer?.invalidate()
+        timer = nil
     }
 
     override func didReceiveMemoryWarning() {
@@ -200,6 +219,10 @@ extension PartyServiceViewController: UIPickerViewDataSource{
 }
 
 extension PartyServiceViewController: iCarouselDelegate, iCarouselDataSource {
+    @objc func nextBanner() {
+        carouselView.scroll(byNumberOfItems: 1, duration: 1.0)
+    }
+    
     func setupCarousel() {
         carouselView.type = .linear
         carouselView.isPagingEnabled = true
@@ -210,6 +233,14 @@ extension PartyServiceViewController: iCarouselDelegate, iCarouselDataSource {
     
     func numberOfItems(in carousel: iCarousel) -> Int {
         return self.packageList.count
+    }
+    
+    func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
+        if option == .wrap {
+            return 1
+        } else {
+            return value
+        }
     }
     
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
