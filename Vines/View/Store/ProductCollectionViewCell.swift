@@ -98,7 +98,15 @@ extension ProductCollectionViewCell: CollectionViewCellProtocol{
                 ctx.addToWishlist(data)
             }
         }else if let ctx = context as? DetailProductViewController{
+            cell.addCart = {
+                (cells) in
+                ctx.addToCart(data: data)
+            }
             
+            cell.addWishlist = {
+                (cells) in
+                ctx.addToWishlist(data)
+            }
         }
         
         
