@@ -13,14 +13,6 @@ public func userDefault() -> UserDefaults {
     return UserDefaults.shared
 }
 
-class Products: NSObject {
-    let product: [ProductListModelData]
-    
-    init(product: [ProductListModelData]) {
-        self.product = product
-    }
-}
-
 extension UserDefaults {
     @objc public static let shared: UserDefaults = UserDefaults.standard
     
