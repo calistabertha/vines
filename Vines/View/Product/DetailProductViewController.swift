@@ -89,7 +89,7 @@ class DetailProductViewController: VinesViewController {
     
     @IBAction func addItemButtonDidPush(_ sender: Any) {
         //how do you know if this product already add to cart?
-        self.addToCart()
+        self.addToCart(data: detail!)
     }
 
     func fetchSimiliarList() {
@@ -127,8 +127,8 @@ class DetailProductViewController: VinesViewController {
         }
     }
     
-    func addToCart() {
-        guard let _ = cartList.first(where: { $0.productId == detail?.productId }) else {
+    func addToCart(data: ProductListModelData) {
+        guard let _ = cartList.first(where: { $0.productId == data.productId }) else {
             cartList.append(detail!)
             let alert = JDropDownAlert()
             alert.alertWith("Success", message: "Success add to cart", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 76/255, green: 188/255, blue: 30/255, alpha: 1), image: nil)
@@ -179,6 +179,48 @@ class DetailProductViewController: VinesViewController {
 //                print(data.displayMessage ?? "")
 //            }
 //        }
+    }
+    
+    func addToWishlist(_ product: ProductListModelData) {
+        if product.isFavourite! {
+            let params = [
+                "user_id": userDefault().getUserID(),
+                "product_id": product.productId ?? 0,
+                "token": userDefault().getToken()
+                ] as [String: Any]
+            HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.deleteWishlist, param: params, method: HTTPMethodHelper.post) { (success, json) in
+                let data = ProductListModelBaseClass(json: json ?? "")
+                if data.message?.lowercased() == "success" {
+                    let index: Int? = self.similiarList.index { $0.productId == product.productId }
+                    if index != 0 {
+                        self.similiarList[index!].isFavourite = !self.similiarList[index!].isFavourite!
+                    }
+                    self.tableView.reloadData()
+                } else {
+                    print(data.displayMessage ?? "")
+                }
+            }
+        } else {
+            let params = [
+                "user_id": userDefault().getUserID(),
+                "product_id": product.productId ?? 0,
+                "store_id": storeID ?? 0,
+                "token": userDefault().getToken()
+                ] as [String: Any]
+            HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.addWishlist, param: params, method: HTTPMethodHelper.post) { (success, json) in
+                let data = ProductListModelBaseClass(json: json ?? "")
+                if data.message?.lowercased() == "success" {
+                    let index: Int? = self.similiarList.index { $0.productId == product.productId }
+                    if index != 0 {
+                        self.similiarList[index!].isFavourite = !self.similiarList[index!].isFavourite!
+                    }
+                    
+                    self.tableView.reloadData()
+                } else {
+                    print(data.displayMessage ?? "")
+                }
+            }
+        }
     }
     
 }

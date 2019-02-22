@@ -34,13 +34,14 @@ extension OrderTableViewCell: TableViewCellProtocol {
         guard let data = object as? [OrderModelData] else { return cell }
         let totalOrder = String(data[indexPath.row].totalOrder ?? 0).asRupiah()
         cell.viewOrder.layer.cornerRadius = 5
-        cell.lblInvoiceNumber.text = String(data[indexPath.row].storeId ?? 0)
+        cell.lblInvoiceNumber.text = data[indexPath.row].orderCode ?? ""//String(data[indexPath.row].storeId ?? 0)
         cell.lblDate.text = "Date: \(data[indexPath.row].datecreate?.getDateString() ?? "") / Total: \(totalOrder)"
-        if data[indexPath.row].paymentStatus == "Waiting Payment" {
-            cell.lblStatus.text = "READY TO PICKUP"
-        } else {
-            cell.lblStatus.text = ""
-        }
+//        if data[indexPath.row].paymentStatus == "Waiting Payment" {
+//            cell.lblStatus.text = "READY TO PICKUP"
+//        } else {
+//            cell.lblStatus.text = ""
+//        }
+         cell.lblStatus.text = data[indexPath.row].paymentStatus
         
         cell.lblStore.text = data[indexPath.row].name?.uppercased()
         cell.lblAddress.text = data[indexPath.row].storeAddress

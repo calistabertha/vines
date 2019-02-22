@@ -21,8 +21,8 @@ class StaticPageViewController: VinesViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let htmlString = "<p style=\"text-align:justify\">\(staticPage)</p>"
+        let replaceString = staticPage.replacingOccurrences(of: "<div>", with: "<br>").replacingOccurrences(of: "<li>", with: "<li style=\"text-align:justify\">")
+        let htmlString = "<p style=\"text-align:justify\">\(replaceString)</p>"
         webView.loadHTMLString(htmlString, baseURL: nil)
         webView.scrollView.showsVerticalScrollIndicator = false
     }
