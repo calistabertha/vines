@@ -158,6 +158,12 @@
 		CCC7894821F60DF1004A82A3 /* ShowShippingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCC7894621F60DF1004A82A3 /* ShowShippingTableViewCell.xib */; };
 		CCCE53D021F0BDB0000760D1 /* ParentCheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCE53CE21F0BDB0000760D1 /* ParentCheckoutViewController.swift */; };
 		CCCE53D121F0BDB0000760D1 /* ParentCheckoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCCE53CF21F0BDB0000760D1 /* ParentCheckoutViewController.xib */; };
+		CCD1D488222018D100FE1362 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD1D486222018D100FE1362 /* FilterViewController.swift */; };
+		CCD1D489222018D100FE1362 /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCD1D487222018D100FE1362 /* FilterViewController.xib */; };
+		CCD1D48C22201E3A00FE1362 /* CountryModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD1D48B22201E3A00FE1362 /* CountryModelBaseClass.swift */; };
+		CCD1D48E22201E4400FE1362 /* CountryModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD1D48D22201E4400FE1362 /* CountryModelData.swift */; };
+		CCD1D49222201FC700FE1362 /* CategoryModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD1D49122201FC700FE1362 /* CategoryModelBaseClass.swift */; };
+		CCD1D49422201FD300FE1362 /* CategoryModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD1D49322201FD300FE1362 /* CategoryModelData.swift */; };
 		CCD502D8216A01960070F457 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD502D7216A01960070F457 /* Constants.swift */; };
 		CCD502DA216A02670070F457 /* HTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD502D9216A02670070F457 /* HTTPHelper.swift */; };
 		CCD814DF21E3515D005D4C52 /* SummaryPartyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD814DD21E3515D005D4C52 /* SummaryPartyViewController.swift */; };
@@ -367,6 +373,12 @@
 		CCC7894621F60DF1004A82A3 /* ShowShippingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowShippingTableViewCell.xib; sourceTree = "<group>"; };
 		CCCE53CE21F0BDB0000760D1 /* ParentCheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentCheckoutViewController.swift; sourceTree = "<group>"; };
 		CCCE53CF21F0BDB0000760D1 /* ParentCheckoutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParentCheckoutViewController.xib; sourceTree = "<group>"; };
+		CCD1D486222018D100FE1362 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		CCD1D487222018D100FE1362 /* FilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterViewController.xib; sourceTree = "<group>"; };
+		CCD1D48B22201E3A00FE1362 /* CountryModelBaseClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModelBaseClass.swift; sourceTree = "<group>"; };
+		CCD1D48D22201E4400FE1362 /* CountryModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModelData.swift; sourceTree = "<group>"; };
+		CCD1D49122201FC700FE1362 /* CategoryModelBaseClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModelBaseClass.swift; sourceTree = "<group>"; };
+		CCD1D49322201FD300FE1362 /* CategoryModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModelData.swift; sourceTree = "<group>"; };
 		CCD502D7216A01960070F457 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CCD502D9216A02670070F457 /* HTTPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHelper.swift; sourceTree = "<group>"; };
 		CCD814DD21E3515D005D4C52 /* SummaryPartyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPartyViewController.swift; sourceTree = "<group>"; };
@@ -588,6 +600,8 @@
 				CC2AF83621BD2E14002BA448 /* ProductTableViewCell.xib */,
 				CC2AF83D21BD3489002BA448 /* ProductCollectionViewCell.swift */,
 				CC2AF83E21BD3489002BA448 /* ProductCollectionViewCell.xib */,
+				CCD1D486222018D100FE1362 /* FilterViewController.swift */,
+				CCD1D487222018D100FE1362 /* FilterViewController.xib */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -743,6 +757,8 @@
 		CC81666F216A06B6008FD617 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CCD1D48F22201F5C00FE1362 /* Filter by Category */,
+				CCD1D48A22201E1100FE1362 /* Filter by Country */,
 				CCFE6E4D221AA71E0038CCA9 /* Party Service */,
 				CCC62BD52206FD450055BC23 /* Cart */,
 				CC3ED80A2200942C004F1F35 /* Order */,
@@ -906,6 +922,24 @@
 				CCC7894621F60DF1004A82A3 /* ShowShippingTableViewCell.xib */,
 			);
 			path = Checkout;
+			sourceTree = "<group>";
+		};
+		CCD1D48A22201E1100FE1362 /* Filter by Country */ = {
+			isa = PBXGroup;
+			children = (
+				CCD1D48D22201E4400FE1362 /* CountryModelData.swift */,
+				CCD1D48B22201E3A00FE1362 /* CountryModelBaseClass.swift */,
+			);
+			path = "Filter by Country";
+			sourceTree = "<group>";
+		};
+		CCD1D48F22201F5C00FE1362 /* Filter by Category */ = {
+			isa = PBXGroup;
+			children = (
+				CCD1D49322201FD300FE1362 /* CategoryModelData.swift */,
+				CCD1D49122201FC700FE1362 /* CategoryModelBaseClass.swift */,
+			);
+			path = "Filter by Category";
 			sourceTree = "<group>";
 		};
 		CCD502D6216A013A0070F457 /* General */ = {
@@ -1140,6 +1174,7 @@
 				CC2AF81221BD1A60002BA448 /* SignInViewController.xib in Resources */,
 				CCE5226521D6202100F868DD /* PartyServiceViewController.xib in Resources */,
 				CCC7893821F576ED004A82A3 /* ApplyDiscountTableViewCell.xib in Resources */,
+				CCD1D489222018D100FE1362 /* FilterViewController.xib in Resources */,
 				CC2AF80F21BD1A60002BA448 /* ForgotPasswordViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1322,8 +1357,11 @@
 				CC954BF6217B389D0017C5F4 /* VinesViewController.swift in Sources */,
 				CCE6DE9C21EDBF35007CA850 /* ChangePasswordViewController.swift in Sources */,
 				9015139B21D614DE00BD836E /* PromotionModelData.swift in Sources */,
+				CCD1D488222018D100FE1362 /* FilterViewController.swift in Sources */,
 				CCC2E65621F33851000879C6 /* PickupTableViewCell.swift in Sources */,
+				CCD1D48C22201E3A00FE1362 /* CountryModelBaseClass.swift in Sources */,
 				9055595121F0B8F500C2E74E /* SuperSecretViewController.swift in Sources */,
+				CCD1D48E22201E4400FE1362 /* CountryModelData.swift in Sources */,
 				CC4CD36921C3E22600217626 /* HeaderProductTableViewCell.swift in Sources */,
 				CC74E41021F9AB1A00D771F2 /* Slide.swift in Sources */,
 				90E950C421DFC51800627E06 /* PublicFunction.swift in Sources */,
@@ -1336,6 +1374,7 @@
 				90D4876621A6EC56005B5A7C /* StoreDetailModelData.swift in Sources */,
 				CC816671216A06CE008FD617 /* ResponseModel.swift in Sources */,
 				CC070D0E21D48B7200E0ABE8 /* PromotionsViewController.swift in Sources */,
+				CCD1D49422201FD300FE1362 /* CategoryModelData.swift in Sources */,
 				CC2AF80821BD1A52002BA448 /* StoreViewController.swift in Sources */,
 				CC2AF83B21BD2E9B002BA448 /* FeatureProductCollectionViewCell.swift in Sources */,
 				CCD814DF21E3515D005D4C52 /* SummaryPartyViewController.swift in Sources */,
@@ -1353,6 +1392,7 @@
 				90AB72AD21E0DB2B009B72AB /* ProductListModelBaseClass.swift in Sources */,
 				CCC62BD92206FD6B0055BC23 /* CartModelBaseClass.swift in Sources */,
 				CCC7894721F60DF1004A82A3 /* ShowShippingTableViewCell.swift in Sources */,
+				CCD1D49222201FC700FE1362 /* CategoryModelBaseClass.swift in Sources */,
 				CC954BFD217B3F6C0017C5F4 /* BaseCellProtocol.swift in Sources */,
 				90AB72AE21E0DB2B009B72AB /* ProductListModelData.swift in Sources */,
 				907B67472189FD7100CFEDB1 /* Extension.swift in Sources */,

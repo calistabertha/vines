@@ -59,6 +59,7 @@ class EditProfileViewController: VinesViewController {
             txtLastName.text = lastName.capitalized
         }
         txtEmailAddress.text = userData?.email ?? ""
+        txtPhoneNumber.text = userData?.phone ?? ""
         
         let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
             size: imgProfile.frame.size,

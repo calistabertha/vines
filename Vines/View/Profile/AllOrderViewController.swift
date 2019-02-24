@@ -30,7 +30,8 @@ class AllOrderViewController: VinesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         spinner.startAnimating()
-        fetchOrder()
+        fetchHistoryOrder()
+        fetchCurrentOrder()
         tableView.register(OrderTableViewCell.nib, forCellReuseIdentifier: OrderTableViewCell.identifier)
         generateNavBarWithBackButton(titleString: "ALL ORDERS", viewController: self, isRightBarButton: false, isNavbarColor: false)
     }
@@ -40,7 +41,7 @@ class AllOrderViewController: VinesViewController {
       
     }
     
-    func fetchOrder() {
+    func fetchHistoryOrder() {
         let params = [
             "limit": "10",
             "offset": "0",
@@ -48,16 +49,31 @@ class AllOrderViewController: VinesViewController {
             "token": userDefault().getToken()
             
             ] as [String : Any]
-        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Order.list, param: params, method: HTTPMethodHelper.post) { [weak self] (success, json) in
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Order.history, param: params, method: HTTPMethodHelper.post) { [weak self] (success, json) in
             let data = OrderModelBaseClass(json: json ?? "")
-            if data.message == "success" {
-                for item in data.data ?? [] {
-                    if item.paymentStatus == "Waiting Payment" {
-                        self?.recentOrderList.append(item)
-                    } else {
-                        self?.historyOrderList.append(item)
-                    }
-                }
+            if data.message == "success", let datas = data.data  {
+                self?.historyOrderList = datas
+                self?.spinner.stopAnimating()
+                self?.spinner.isHidden = true
+                self?.tableView.reloadData()
+            } else {
+                print(data.displayMessage ?? "")
+            }
+        }
+    }
+    
+    func fetchCurrentOrder() {
+        let params = [
+            "limit": "10",
+            "offset": "0",
+            "user_id": userDefault().getUserID(),
+            "token": userDefault().getToken()
+            
+            ] as [String : Any]
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Order.current, param: params, method: HTTPMethodHelper.post) { [weak self] (success, json) in
+            let data = OrderModelBaseClass(json: json ?? "")
+            if data.message == "success", let datas = data.data  {
+                self?.recentOrderList = datas
                 self?.spinner.stopAnimating()
                 self?.spinner.isHidden = true
                 self?.tableView.reloadData()

@@ -8,6 +8,11 @@
 
 import UIKit
 
+class ProductListCollection {
+    static let shared = ProductListCollection()
+    var products: [ProductListModelData] = []
+}
+
 class DetailProductViewController: VinesViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -16,13 +21,15 @@ class DetailProductViewController: VinesViewController {
     @IBOutlet weak var viewOption: UIView!
     @IBOutlet weak var viewButton: UIView!
     @IBOutlet weak var btnProduct: UIButton!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     var titleText = ""
     var similiarList: [ProductListModelData] = []
+    var storeIDCode: String?
     var storeID: Int?
+    var productID: Int?
     var detail: ProductListModelData?
     var size: String?
-    var product: ProductListModelData?
     var cartList: [ProductListModelData] = []
     var storeName: String?
     
@@ -30,14 +37,23 @@ class DetailProductViewController: VinesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
         generateNavBarWithBackButton(titleString: titleText, viewController: self, isRightBarButton: true, isNavbarColor: true)
+        spinner.startAnimating()
+        tableView.isHidden = true
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.register(HeaderProductTableViewCell.nib, forCellReuseIdentifier: HeaderProductTableViewCell.identifier)
+        tableView.register(DescriptionTableViewCell.nib, forCellReuseIdentifier: DescriptionTableViewCell.identifier)
+        tableView.register(HeaderSectionStoreTableViewCell.nib, forCellReuseIdentifier: HeaderSectionStoreTableViewCell.identifier)
+        tableView.register(ProductTableViewCell.nib, forCellReuseIdentifier: ProductTableViewCell.identifier)
+        
+        collectionItemSize = calculateSize()
+        fetchSimiliarList()
+        fetchDetail()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchSimiliarList()
-        fetchDetail()
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,21 +68,13 @@ class DetailProductViewController: VinesViewController {
     override func cartButtonDidPush() {
         let vc = ShoppingCartViewController()
         vc.storeName = storeName
-        vc.productCartList = cartList
+       // vc.productCartList = cartList
        // vc.delegate = self
         navigationController?.pushViewController(vc, animated: false)
     }
     
     func setupView() {
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.register(HeaderProductTableViewCell.nib, forCellReuseIdentifier: HeaderProductTableViewCell.identifier)
-        tableView.register(DescriptionTableViewCell.nib, forCellReuseIdentifier: DescriptionTableViewCell.identifier)
-        tableView.register(HeaderSectionStoreTableViewCell.nib, forCellReuseIdentifier: HeaderSectionStoreTableViewCell.identifier)
-        tableView.register(ProductTableViewCell.nib, forCellReuseIdentifier: ProductTableViewCell.identifier)
-        
-        collectionItemSize = calculateSize()
-      
-        if product?.stock == 0 {
+        if detail?.stock == 0 {
             viewButton.isHidden = false
             btnProduct.layer.cornerRadius = 5
             btnProduct.layer.borderColor = UIColor(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).cgColor
@@ -74,21 +82,31 @@ class DetailProductViewController: VinesViewController {
             btnProduct.layer.borderWidth = 1
             btnProduct.setTitleColor(UIColor(red: 151/255, green: 151/255, blue: 151/255, alpha: 1), for: .normal)
             btnProduct.backgroundColor = UIColor.white
-            
             btnProduct.isUserInteractionEnabled = false
-        }else {
+            
+        } else {
             viewButton.isHidden = true
             btnAddItem.layer.cornerRadius = 5
             btnAddItem.layer.borderColor = UIColor.init(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).cgColor
             btnAddItem.layer.borderWidth = 1
             btnBuyProduct.layer.cornerRadius = 5
-            
         }
-      
+        
+        guard let _ = ProductListCollection.shared.products.first(where: { $0.productId == detail?.productId }) else {
+            return
+        }
+        
+        self.viewButton.isHidden = false
+        self.btnProduct.layer.cornerRadius = 5
+        self.btnProduct.layer.borderWidth = 1
+        self.btnProduct.layer.borderColor = UIColor.init(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).cgColor
+        self.btnProduct.setTitle("ADDED", for: .normal)
+        self.btnProduct.setTitleColor(UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), for: .normal)
+        btnProduct.isUserInteractionEnabled = false
+        
     }
     
     @IBAction func addItemButtonDidPush(_ sender: Any) {
-        //how do you know if this product already add to cart?
         self.addToCart(data: detail!)
     }
 
@@ -107,78 +125,55 @@ class DetailProductViewController: VinesViewController {
             } else {
                 print(data.displayMessage ?? "")
             }
+            self.spinner.stopAnimating()
+            self.spinner.isHidden = true
         }
     }
     
     func fetchDetail (){
         let params = [
-            "product_id": product?.productId ?? 0,
-            "store_id": storeID ?? 0
+            "product_id": productID ?? 0,
+            "StoreId": storeIDCode ?? "",
+            "user_id": userDefault().getUserID(),
+            "order_code": userDefault().getOrderCode()
             ] as [String: Any]
         HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Product.detail, param: params, method: HTTPMethodHelper.post) { (success, json) in
              self.size = json!["data"][0]["size"][0]["name"].stringValue
             let data = ProductListModelBaseClass(json: json ?? "")
             if data.message == "success", let datas = data.data {
                 self.detail = datas[0]
+                self.setupView()
                 self.tableView.reloadData()
             } else {
                 print(data.displayMessage ?? "")
             }
+            self.tableView.isHidden = false
+            self.spinner.stopAnimating()
+            self.spinner.isHidden = true
         }
     }
     
     func addToCart(data: ProductListModelData) {
-        guard let _ = cartList.first(where: { $0.productId == data.productId }) else {
-            cartList.append(detail!)
+//        guard let _ = cartList.first(where: { $0.productId == data.productId }) else {
+//            cartList.append(detail!)
             let alert = JDropDownAlert()
             alert.alertWith("Success", message: "Success add to cart", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 76/255, green: 188/255, blue: 30/255, alpha: 1), image: nil)
-            self.viewButton.isHidden = false
-            self.btnProduct.layer.cornerRadius = 5
-            self.btnProduct.layer.borderWidth = 1
-            self.btnProduct.layer.borderColor = UIColor.init(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).cgColor
-            self.btnProduct.setTitle("ADDED", for: .normal)
-            self.btnProduct.setTitleColor(UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), for: .normal)
-            return
-        }
+//            self.viewButton.isHidden = false
+//            self.btnProduct.layer.cornerRadius = 5
+//            self.btnProduct.layer.borderWidth = 1
+//            self.btnProduct.layer.borderColor = UIColor.init(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).cgColor
+//            self.btnProduct.setTitle("ADDED", for: .normal)
+//            self.btnProduct.setTitleColor(UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), for: .normal)
+//            return
+//        }
         
+        ProductListCollection.shared.products.append(data)
         self.viewButton.isHidden = false
         self.btnProduct.layer.cornerRadius = 5
         self.btnProduct.layer.borderWidth = 1
         self.btnProduct.layer.borderColor = UIColor.init(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).cgColor
         self.btnProduct.setTitle("ADDED", for: .normal)
         self.btnProduct.setTitleColor(UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), for: .normal)
-        
-//        let params = [
-//            "user_id": userDefault().getUserID(),
-//            "order_code": userDefault().getOrderCode(),
-//            "token": userDefault().getToken(),
-//            "list_order": [[
-//                "product_id": detail?.productId ?? 0,
-//                "category_id": detail?.categoryId ?? 0,
-//                "price": detail?.price ?? 0,
-//                "code_product": detail?.code ?? "",
-//                "size": "",
-//                "discount": detail?.discount ?? 0,
-//                "jumlah_order": 1
-//                ]]
-//            ] as [String: Any]
-//
-//        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.addCart, param: params, method: HTTPMethodHelper.post) { (success, json) in
-//            let data = CartModelBaseClass(json: json ?? "")
-//            if data.message?.lowercased() == "success" {
-//                self.viewButton.isHidden = false
-//                self.btnProduct.layer.cornerRadius = 5
-//                self.btnProduct.layer.borderWidth = 1
-//                self.btnProduct.layer.borderColor = UIColor.init(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).cgColor
-//                self.btnProduct.setTitle("ADDED", for: .normal)
-//                self.btnProduct.setTitleColor(UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), for: .normal)
-//
-//            } else {
-//                let alert = JDropDownAlert()
-//                alert.alertWith("Oopss..", message: data.displayMessage, topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
-//                print(data.displayMessage ?? "")
-//            }
-//        }
     }
     
     func addToWishlist(_ product: ProductListModelData) {
@@ -237,7 +232,7 @@ extension DetailProductViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            return HeaderProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: product)
+            return HeaderProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: detail)
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: DescriptionTableViewCell.identifier, for: indexPath) as! DescriptionTableViewCell
             cell.lblDescription.text = detail?.summary ?? "-"

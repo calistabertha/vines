@@ -15,8 +15,6 @@ class TotalCartTableViewCell: UITableViewCell {
     
     var payment : ((UITableViewCell) -> Void)?
     
-//    public var cartList: [CartModelData] = []
-    
     override func awakeFromNib() {
         super.awakeFromNib()
 

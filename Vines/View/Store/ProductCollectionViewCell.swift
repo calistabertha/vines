@@ -42,7 +42,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
        
     }
-
 }
 
 extension ProductCollectionViewCell: CollectionViewCellProtocol{
@@ -50,10 +49,6 @@ extension ProductCollectionViewCell: CollectionViewCellProtocol{
          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as! ProductCollectionViewCell
         guard let data = object as? ProductListModelData else { return cell }
         cell.context = context
-//        if indexPath.row == ctx.productList.count - 1 && ctx.nextOffset > 0{
-//            ctx.fetchProductList(isInit: false, offset: ctx.nextOffset)
-//        }
-        
         cell.imgProduct.af_setImage(withURL: URL(string: data.image!)!, placeholderImage: UIImage(named: "placeholder")) { [weak cell] image in
             guard let wc = cell else { return }
             if let img = image.value {

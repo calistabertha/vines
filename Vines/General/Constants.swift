@@ -55,12 +55,18 @@ struct Constants {
         }
         
         struct Order {
-            static let list = "user/current_order"
+            static let current = "user/current_order"
+            static let history = "user/history_order"
         }
         
         struct Party {
             static let submit = "party_service"
             static let package = "select_package"
+        }
+        
+        struct Filter {
+            static let category = "select_category"
+            static let country = "select_country"
         }
     }
 }

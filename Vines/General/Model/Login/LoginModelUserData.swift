@@ -23,6 +23,7 @@ public final class LoginModelUserData: NSObject, NSCoding {
         static let point = "point"
         static let foto = "foto"
         static let phone = "phone"
+        static let dob = "dob"
     }
     
     // MARK: Properties
@@ -37,6 +38,7 @@ public final class LoginModelUserData: NSObject, NSCoding {
     public var point: Int?
     public var foto: String?
     public var phone: String?
+    public var dob : String?
     
     // MARK: SwiftyJSON Initializers
     /// Initiates the instance based on the object.
@@ -62,6 +64,7 @@ public final class LoginModelUserData: NSObject, NSCoding {
         point = json[SerializationKeys.point].int
         foto = json[SerializationKeys.foto].string
         phone = json[SerializationKeys.phone].string
+        dob = json[SerializationKeys.dob].string
     }
     
     /// Generates description of the object in the form of a NSDictionary.
@@ -80,6 +83,7 @@ public final class LoginModelUserData: NSObject, NSCoding {
         if let value = point { dictionary[SerializationKeys.point] = value }
         if let value = foto { dictionary[SerializationKeys.foto] = value }
         if let value = phone { dictionary[SerializationKeys.phone] = value }
+        if let value = dob { dictionary[SerializationKeys.dob] = value }
         return dictionary
     }
     
@@ -96,6 +100,7 @@ public final class LoginModelUserData: NSObject, NSCoding {
         self.point = aDecoder.decodeObject(forKey: SerializationKeys.point) as? Int
         self.foto = aDecoder.decodeObject(forKey: SerializationKeys.foto) as? String
         self.phone = aDecoder.decodeObject(forKey: SerializationKeys.phone) as? String
+        self.dob = aDecoder.decodeObject(forKey: SerializationKeys.dob) as? String
     }
     
     public func encode(with aCoder: NSCoder) {
@@ -110,6 +115,7 @@ public final class LoginModelUserData: NSObject, NSCoding {
         aCoder.encode(point, forKey: SerializationKeys.point)
         aCoder.encode(foto, forKey: SerializationKeys.foto)
         aCoder.encode(phone, forKey: SerializationKeys.phone)
+        aCoder.encode(dob, forKey: SerializationKeys.dob)
     }
     
 }

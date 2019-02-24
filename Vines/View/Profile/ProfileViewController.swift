@@ -81,6 +81,20 @@ class ProfileViewController: VinesViewController {
     }
     
     @IBAction func rateApplicationButtonDidPush(_ sender: Any) {
+        let url = "itms-apps://itunes.apple.com/us/app/id1444403618?mt=8&action=write-review"
+        guard let settingsUrl = URL(string: url) else {
+            return
+        }
+        
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                })
+            } else {
+                UIApplication.shared.openURL(settingsUrl as URL)
+            }
+        }
+
     }
     
     @IBAction func logoutButtonDidPush(_ sender: Any) {

@@ -143,19 +143,24 @@
                                             <color key="textColor" red="0.49019607840000001" green="0.023529411760000001" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QQ1-gO-aIo">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QQ1-gO-aIo">
                                             <rect key="frame" x="284" y="18" width="67" height="20"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="200 points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipB-lG-eeZ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200 points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipB-lG-eeZ">
                                                     <rect key="frame" x="10" y="0.0" width="47" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="RobotoCondensed-Bold" family="Roboto Condensed" pointSize="11"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" red="0.70196078429999997" green="0.62352941179999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="ipB-lG-eeZ" secondAttribute="bottom" id="4YA-Cb-jeC"/>
+                                                <constraint firstItem="ipB-lG-eeZ" firstAttribute="top" secondItem="QQ1-gO-aIo" secondAttribute="top" id="VON-gA-Z2Z"/>
+                                                <constraint firstAttribute="height" constant="20" id="WM6-rz-WyO"/>
+                                                <constraint firstAttribute="trailing" secondItem="ipB-lG-eeZ" secondAttribute="trailing" constant="10" id="Wyv-G4-oid"/>
+                                                <constraint firstItem="ipB-lG-eeZ" firstAttribute="leading" secondItem="QQ1-gO-aIo" secondAttribute="leading" constant="10" id="dWB-gv-SsU"/>
+                                            </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gcn-2r-lAi">
                                             <rect key="frame" x="0.0" y="55" width="375" height="1"/>
@@ -179,9 +184,11 @@
                                         <constraint firstAttribute="bottom" secondItem="gcn-2r-lAi" secondAttribute="bottom" id="DCe-Cm-ciN"/>
                                         <constraint firstItem="0Fv-WG-elv" firstAttribute="leading" secondItem="XaO-s9-oIU" secondAttribute="leading" id="DUQ-W0-Tfq"/>
                                         <constraint firstItem="2oI-Tx-XTk" firstAttribute="leading" secondItem="bjb-l5-fgL" secondAttribute="trailing" constant="22" id="PxL-0h-lCU"/>
+                                        <constraint firstAttribute="trailing" secondItem="QQ1-gO-aIo" secondAttribute="trailing" constant="24" id="SRR-eR-gJt"/>
                                         <constraint firstItem="gcn-2r-lAi" firstAttribute="top" secondItem="0Fv-WG-elv" secondAttribute="bottom" id="Xb9-Ug-o2x"/>
                                         <constraint firstItem="bjb-l5-fgL" firstAttribute="leading" secondItem="XaO-s9-oIU" secondAttribute="leading" constant="24" id="YDs-aD-Ppw"/>
                                         <constraint firstItem="bjb-l5-fgL" firstAttribute="centerY" secondItem="XaO-s9-oIU" secondAttribute="centerY" id="Zqq-X8-wUK"/>
+                                        <constraint firstItem="QQ1-gO-aIo" firstAttribute="centerY" secondItem="XaO-s9-oIU" secondAttribute="centerY" id="bDd-Wg-LdG"/>
                                         <constraint firstItem="gcn-2r-lAi" firstAttribute="leading" secondItem="XaO-s9-oIU" secondAttribute="leading" id="qJL-so-HPh"/>
                                         <constraint firstItem="0Fv-WG-elv" firstAttribute="top" secondItem="XaO-s9-oIU" secondAttribute="top" id="qV7-C4-lGj"/>
                                         <constraint firstAttribute="trailing" secondItem="0Fv-WG-elv" secondAttribute="trailing" id="sbu-zJ-nIy"/>

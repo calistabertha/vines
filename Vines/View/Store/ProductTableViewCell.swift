@@ -50,14 +50,14 @@ extension ProductTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let ctx = context as? StoreViewController{
             let vc = DetailProductViewController()
-            vc.product = list[indexPath.row]
-            vc.storeID = ctx.storeId
+            vc.productID = list[indexPath.row].productId
+            vc.storeIDCode = ctx.storeIDCode
             vc.storeName = ctx.storeName
             self.context?.navigationController?.pushViewController(vc, animated: true)
         } else if let ctx = context as? DetailProductViewController {
             let vc = DetailProductViewController()
-            vc.product = list[indexPath.row]
-            vc.storeID = ctx.storeID
+            vc.productID = list[indexPath.row].productId
+            vc.storeIDCode = ctx.storeIDCode
             vc.storeName = ctx.storeName
             self.context?.navigationController?.pushViewController(vc, animated: true)
         }

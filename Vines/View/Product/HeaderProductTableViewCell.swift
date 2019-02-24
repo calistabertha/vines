@@ -52,7 +52,7 @@ extension HeaderProductTableViewCell: TableViewCellProtocol {
                                          range: NSMakeRange(0, attributeString.length))
             cell.lblPriceBefore.attributedText = attributeString
             guard let price = data.price else {return cell}
-            let diskon = (price * 5)/100
+            let diskon = (price * (data.discount ?? 0))/100
             let priceAfter = price - diskon
             cell.lblPriceAfter.text = String(priceAfter).asRupiah()
             cell.viewDiscount.isHidden = false

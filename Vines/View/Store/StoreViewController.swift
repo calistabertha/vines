@@ -18,14 +18,23 @@ class StoreViewController: VinesViewController {
     }
     
     @IBOutlet weak var txtSearch: UITextField!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.delegate = self
+        }
+    }
     @IBOutlet weak var viewCart: UIView!
     @IBOutlet weak var viewBackground: UIView!
+    @IBOutlet weak var viewFilter: UIView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     var storeName: String?
     var storeId: Int = 0
+    var storeIDCode: String?
     var nextOffset = 1
     var urlImgStore: String?
+    var isFilter = false
+    var filtered:[String] = []
 
     var favouriteList: [ProductListModelData] = []
     var productList : [ProductListModelData] = []
@@ -33,19 +42,20 @@ class StoreViewController: VinesViewController {
     var cartList: [ProductListModelData] = []
     
     var collectionItemSize: CGSize = CGSize(width: 0, height: 0)
+    var isFetchProductList = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         generateNavBarWithBackButton(titleString: storeName ?? "", viewController: self, isRightBarButton: false, isNavbarColor: true)
+        spinner.isHidden = true
         setupView()
+        fetchFavouriteList()
+        fetchProductList(isInit: true, offset: 1)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         collectionItemSize = calculateSize()
-        fetchFavouriteList()
-        fetchProductList(isInit: true, offset: 1)
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,6 +66,7 @@ class StoreViewController: VinesViewController {
     override func backButtonDidPush() {
         userDefault().removeObject(forKey: "ORDER_CODE")
         productList = []
+        ProductListCollection.shared.products.removeAll()
         navigationController?.popViewController(animated: true)
     }
     
@@ -67,6 +78,11 @@ class StoreViewController: VinesViewController {
         
         viewCart.layer.cornerRadius = viewCart.layer.frame.width / 2
         viewBackground.isHidden = true
+        viewFilter.layer.cornerRadius = 14
+        viewFilter.layer.shadowColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.5).cgColor
+        viewFilter.layer.shadowOpacity = 0.5
+        viewFilter.layer.shadowOffset = CGSize(width: 0, height: 2)
+        viewFilter.layer.shadowRadius = 1
     }
     
     @IBAction func searchButtonDidPush(_ sender: Any) {
@@ -84,11 +100,16 @@ class StoreViewController: VinesViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBAction func filterButtonDidPush(_ sender: Any) {
+        let vc = FilterViewController()
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func fetchFavouriteList() {
         let params = [
             "limit": 10,
-            "user_id": userDefault().getUserID(),
-            "keyword": txtSearch.text ?? ""
+            "user_id": userDefault().getUserID()
             ] as [String : Any]
         HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Product.favourite, param: params, method: HTTPMethodHelper.post) { (success, json) in
             let data = ProductListModelBaseClass(json: json ?? "")
@@ -101,17 +122,25 @@ class StoreViewController: VinesViewController {
         }
     }
     
-    func fetchProductList(isInit: Bool, offset: Int) {
+    func fetchProductList(isInit: Bool, offset: Int, categoryID: Int = 0, country: String = "", priceID: Int = 0) {
+        guard !isFetchProductList else {
+            return
+        }
+        
         let params = [
             "store_id": storeId,
             "limit": 10,
-            "category_id": "",
+            "category_id": categoryID ,
             "offset": offset,
             "user_id": userDefault().getUserID(),
-            "keyword": txtSearch.text ?? ""
+            "keyword": txtSearch.text ?? "",
+            "country": country,
+            "price": priceID
             ] as [String : Any]
+        self.isFetchProductList = true
         HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Product.list, param: params, method: HTTPMethodHelper.post) { (success, json) in
             let data = ProductListModelBaseClass(json: json ?? "")
+            self.isFetchProductList = false
             if data.message == "Success", let datas = data.data {
                 if isInit{
                     self.productList = datas
@@ -120,13 +149,20 @@ class StoreViewController: VinesViewController {
                     for value in datas {
                         self.productList.append(value)
                     }
-                    self.nextOffset = offset + 1
+                    self.nextOffset = offset
                      print("counttt \(datas.count) || \(self.productList.count)")
                 }
                 self.tableView.reloadData()
             } else {
+                if data.message == "Failed" {
+                    //product not found
+                    self.tableView.reloadData()
+                }
                 print(data.displayMessage ?? "")
             }
+            
+            self.spinner.isHidden  = true
+            self.spinner.stopAnimating()
         }
     }
     
@@ -173,19 +209,27 @@ class StoreViewController: VinesViewController {
     }
     
     func addToCart(_ product: ProductListModelData, isBuyProduct: Bool) {
+        ProductListCollection.shared.products.append(product)
         if isBuyProduct {
-            guard let _ = cartList.first(where: { $0.productId == product.productId }) else {
-                cartList.append(product)
-                let vc = ShoppingCartViewController()
-                vc.storeName = storeName
-                vc.storeID = storeId
-                vc.productCartList = cartList
-                vc.delegate = self
-                navigationController?.pushViewController(vc, animated: true)
-                return
-            }
+            let vc = ShoppingCartViewController()
+            vc.storeName = storeName
+            vc.storeID = storeId
+            // vc.productCartList = cartList
+            vc.delegate = self
+            navigationController?.pushViewController(vc, animated: true)
+            
+//            guard let _ = cartList.first(where: { $0.productId == product.productId }) else {
+//                cartList.append(product)
+//                let vc = ShoppingCartViewController()
+//                vc.storeName = storeName
+//                vc.storeID = storeId
+//               // vc.productCartList = cartList
+//                vc.delegate = self
+//                navigationController?.pushViewController(vc, animated: true)
+//                return
+//            }
         }else{
-            guard let _ = cartList.first(where: { $0.productId == product.productId }) else {
+            guard let _ = ProductListCollection.shared.products.first(where: { $0.productId == product.productId }) else {
                 cartList.append(product)
                 let alert = JDropDownAlert()
                 alert.alertWith("Success", message: "Success add to cart", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 76/255, green: 188/255, blue: 30/255, alpha: 1), image: nil)
@@ -201,7 +245,7 @@ class StoreViewController: VinesViewController {
 
 extension StoreViewController: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -211,7 +255,15 @@ extension StoreViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return CGFloat.leastNormalMagnitude
-        }else{
+        }
+        else if section == 3 {
+            if isFilter{
+                return 40
+            }else{
+                return CGFloat.leastNormalMagnitude
+            }
+        }
+        else{
             return 40
         }
     }
@@ -221,6 +273,8 @@ extension StoreViewController: UITableViewDelegate {
             return 211
         } else if indexPath.section == 1 {
             return collectionItemSize.height
+        }else if indexPath.section == 2 {
+            return 0
         } else {
             return (collectionItemSize.height * CGFloat(halfCeil(productList.count)))
         }
@@ -237,8 +291,25 @@ extension StoreViewController: UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: HeaderSectionStoreTableViewCell.identifier) as! HeaderSectionStoreTableViewCell
             cell.lblTitle.text = "ALL PRODUCT"
             return cell
+        } else if section == 3 {
+            if isFilter{
+                let cell = tableView.dequeueReusableCell(withIdentifier: HeaderSectionStoreTableViewCell.identifier) as! HeaderSectionStoreTableViewCell
+                var stri: String = ""
+                for item in filtered {
+                    if item == filtered.first {
+                        stri = item
+                    } else {
+                        stri += ", \(item)"
+                    }
+                }
+                let showingTitle = NSMutableAttributedString(string: "Showing filtered results: ", attributes: [.font: UIFont.init(name: "Roboto-Regular", size: 14.0)!, .foregroundColor: UIColor(red: 74 / 255.0, green: 74 / 255.0, blue: 74 / 255.0, alpha: 1.0)])
+                let filterString = NSMutableAttributedString(string: "\(stri)", attributes: [.font: UIFont.init(name: "Roboto-Regular", size: 14.0)!, .foregroundColor: UIColor(red: 125 / 255.0, green: 6 / 255.0, blue: 15 / 255.0, alpha: 1.0)])
+                showingTitle.append(filterString)
+                cell.lblTitle.attributedText = showingTitle
+                return cell
+            }
+            return UIView()
         }
-        
         return UIView()
     }
     
@@ -249,7 +320,7 @@ extension StoreViewController: UITableViewDataSource{
             let cell = FeatureProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: favouriteList) as! FeatureProductTableViewCell
             cell.size = collectionItemSize
             return cell
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == 3 {
             let cell = ProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: productList) as! ProductTableViewCell
             cell.size = collectionItemSize
             return cell
@@ -284,6 +355,32 @@ extension StoreViewController: UITextFieldDelegate {
 
 extension StoreViewController: ShoppingCartDelegate {
     func removeItem(at index: Int) {
-        cartList.remove(at: index)
+        if index == 0 {
+            ProductListCollection.shared.products.removeAll()
+        }else {
+             ProductListCollection.shared.products.remove(at: index)
+        }
+        //cartList.remove(at: index)
     }
+}
+
+extension StoreViewController: FilterDelegate {
+    func setFilter(country: String, categoryID: Int, priceID: Int, filter:[String]) {
+        isFilter = true
+        fetchProductList(isInit: true, offset: nextOffset, categoryID: categoryID, country: country, priceID: priceID)
+        filtered = filter
+        print("\(country), \(categoryID), \(priceID)")
+    }
+}
+
+extension StoreViewController: UIScrollViewDelegate {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height + 44){
+            spinner.isHidden = false
+            spinner.startAnimating()
+            let offset = nextOffset + 1
+            fetchProductList(isInit: false, offset: offset)
+        }
+    }
+
 }
