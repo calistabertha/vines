@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PromotionsViewController" customModule="Vines" customModuleProvider="target">
             <connections>
+                <outlet property="spinner" destination="Sgk-yX-szi" id="uXQ-IE-idk"/>
                 <outlet property="tableView" destination="nVn-Ms-Eov" id="t6X-ts-TZe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -29,13 +30,19 @@
                         <outlet property="delegate" destination="-1" id="JGO-2b-ore"/>
                     </connections>
                 </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Sgk-yX-szi">
+                    <rect key="frame" x="169" y="325" width="37" height="37"/>
+                    <color key="color" red="0.49019607840000001" green="0.023529411760000001" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="nVn-Ms-Eov" secondAttribute="bottom" id="5Jg-cS-RBx"/>
+                <constraint firstItem="Sgk-yX-szi" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="WKX-e2-4g2"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nVn-Ms-Eov" secondAttribute="trailing" id="gqc-XP-jYO"/>
                 <constraint firstItem="nVn-Ms-Eov" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="h7u-oN-2AK"/>
                 <constraint firstItem="nVn-Ms-Eov" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="kn0-1K-WfI"/>
+                <constraint firstItem="Sgk-yX-szi" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="lS7-Ph-BET"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>

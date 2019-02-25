@@ -91,6 +91,12 @@ class ParentCheckoutViewController: VinesViewController {
         viewContainer.addSubview(vc.view)
         vc.didMove(toParentViewController: self)
         lblPayment.textColor = UIColor.black
+        if notification.name == .paymentMethod {
+            if let obj = notification.object as? OrderSummaryViewController {
+                vc.lblDeliveryAddress.text = obj.delivery
+                vc.lblPay.text = obj.totalPayment
+            }
+        }
     }
     
     deinit {

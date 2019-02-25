@@ -95,6 +95,7 @@ class StoreViewController: VinesViewController {
     @IBAction func cartButtonDidPush(_ sender: Any) {
         let vc = ShoppingCartViewController()
         vc.storeName = storeName
+        vc.storeID = storeId
         vc.productCartList = cartList
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
@@ -209,8 +210,8 @@ class StoreViewController: VinesViewController {
     }
     
     func addToCart(_ product: ProductListModelData, isBuyProduct: Bool) {
-        ProductListCollection.shared.products.append(product)
         if isBuyProduct {
+            ProductListCollection.shared.products.append(product)
             let vc = ShoppingCartViewController()
             vc.storeName = storeName
             vc.storeID = storeId
@@ -230,7 +231,8 @@ class StoreViewController: VinesViewController {
 //            }
         }else{
             guard let _ = ProductListCollection.shared.products.first(where: { $0.productId == product.productId }) else {
-                cartList.append(product)
+                ProductListCollection.shared.products.append(product)
+                //cartList.append(product)
                 let alert = JDropDownAlert()
                 alert.alertWith("Success", message: "Success add to cart", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 76/255, green: 188/255, blue: 30/255, alpha: 1), image: nil)
                 return

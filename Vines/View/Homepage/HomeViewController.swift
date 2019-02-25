@@ -174,7 +174,6 @@ class HomeViewController: UIViewController {
     
     @IBAction func moreButtonDidPush(_ sender: Any) {
         let vc = PromotionsViewController()
-        vc.promotionList = self.promotionList
         navigationController?.pushViewController(vc, animated: true)
     }
     

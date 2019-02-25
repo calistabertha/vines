@@ -10,6 +10,7 @@ import UIKit
 
 class PromotionsViewController: VinesViewController {
 
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +18,8 @@ class PromotionsViewController: VinesViewController {
         tableView.register(PromotionTableViewCell.nib, forCellReuseIdentifier: PromotionTableViewCell.identifier)
         tableView.register(HeaderSectionStoreTableViewCell.nib, forCellReuseIdentifier: HeaderSectionStoreTableViewCell.identifier)
         tableView.register(HeaderStoreTableViewCell.nib, forCellReuseIdentifier: HeaderStoreTableViewCell.identifier)
-        
+        spinner.startAnimating()
+        fetchPromotions()
     }
     
     var promotionList: [PromotionModelData] = []
@@ -31,6 +33,22 @@ class PromotionsViewController: VinesViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    func fetchPromotions() {
+        let params = [
+            "limit": 10,
+            ] as [String : Any]
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Promotion.promotion, param: params, method: HTTPMethodHelper.post) { (success, json) in
+            let data = PromotionModelBaseClass(json: json ?? "")
+            if data.message == "success", let datas = data.data {
+                self.promotionList = datas
+                self.tableView.reloadData()
+            } else {
+                print(data.displayMessage ?? "")
+            }
+            self.spinner.isHidden = true
+            self.spinner.stopAnimating()
+        }
+    }
 }
 
 extension PromotionsViewController: UITableViewDelegate{

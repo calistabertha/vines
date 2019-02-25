@@ -13,6 +13,8 @@ class OrderSummaryViewController: UIViewController {
     @IBOutlet weak var btnNext: UIButton!
     var cartList: [CartModelData] = []
     var isCodeApplied = false
+    var totalPayment: String?
+    var delivery: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +82,7 @@ class OrderSummaryViewController: UIViewController {
     }
     
     @IBAction func nextButtonDidPush(_ sender: Any) {
-        NotificationCenter.default.post(name: .paymentMethod, object: nil)
+        NotificationCenter.default.post(name: .paymentMethod, object: self)
 
     }
 }
@@ -125,6 +127,7 @@ extension OrderSummaryViewController: UITableViewDataSource{
                 return cell
             }else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: DiscountCodeTableViewCell.identifier, for: indexPath) as! DiscountCodeTableViewCell
+                cell.btnApply.layer.cornerRadius = cell.btnApply.frame.height / 2
                 return cell
             }
         }else if indexPath.row == 2 {
@@ -133,6 +136,7 @@ extension OrderSummaryViewController: UITableViewDataSource{
                 cell.textView.text = "Your Address"
                 cell.textView.textColor = UIColor.lightGray
             }
+            cell.textView.delegate = self
             return cell
         }
         else if indexPath.row == 3 {
@@ -146,8 +150,26 @@ extension OrderSummaryViewController: UITableViewDataSource{
             let totalPrice = subtotal - 100000
             cell.lblSubtotal.text = String(subtotal).asRupiah()
             cell.lblTotal.text = String(totalPrice).asRupiah()
+            self.totalPayment = String(totalPrice).asRupiah()
+            
             return cell
         }
         return UITableViewCell()
+    }
+}
+
+extension OrderSummaryViewController: UITextViewDelegate{
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        if textView.text == "Your Address"{
+            textView.text = ""
+        }
+     
+        textView.textColor = UIColor.black
+        return true
+    }
+    
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        delivery = textView.text
+        return true
     }
 }

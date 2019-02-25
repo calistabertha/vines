@@ -24,6 +24,8 @@ class WishlistViewController: VinesViewController {
     @IBOutlet weak var viewEmpty: UIView!
     
     var list: [ProductListModelData] = []
+    var storeName: String?
+    var storeID: Int?
     var collectionItemSize: CGSize = CGSize(width: 0, height: 0)
     
     override func viewDidLoad() {
@@ -96,11 +98,23 @@ class WishlistViewController: VinesViewController {
             }
         }
     }
+    
+    func buyProduct(_ product: ProductListModelData) {
+        ProductListCollection.shared.products.append(product)
+        let vc = ShoppingCartViewController()
+        vc.storeName = product.storeName
+        vc.storeID = product.storeId
+        //vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension WishlistViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = DetailProductViewController()
+        vc.productID = list[indexPath.row].productId
+        //vc.storeIDCode = ctx.storeIDCode
+        vc.storeName = list[indexPath.row].storeName
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -116,10 +130,10 @@ extension WishlistViewController: UICollectionViewDataSource {
         let cell = ProductCollectionViewCell.configure(context: self, collectionView: collectionView, indexPath: indexPath, object: data) as! ProductCollectionViewCell
         cell.isFromWishlist = true
         cell.setupView()
-//        cell.addToCart = { [weak self] int in
-//            guard let ws = self else { return }
-//            ws.addToCart(int)
-//        }
+        cell.addToCart = { [weak self] int in
+            guard let ws = self else { return }
+            ws.buyProduct(data)
+        }
         cell.addToWishlist = { [weak self] data in
             guard let ws = self else { return }
             ws.removeWishlist(data)

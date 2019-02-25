@@ -61,6 +61,7 @@ class EditProfileViewController: VinesViewController {
         txtEmailAddress.text = userData?.email ?? ""
         txtPhoneNumber.text = userData?.phone ?? ""
         
+        
         let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
             size: imgProfile.frame.size,
             radius: 70.0
@@ -127,10 +128,6 @@ class EditProfileViewController: VinesViewController {
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
-    }
-    
-    @IBAction func dateOfBirthButtonDidPush(_ sender: UIButton) {
-        
     }
     
     @IBAction func saveButtonDidPush(_ sender: Any) {
