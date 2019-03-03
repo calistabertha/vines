@@ -232,6 +232,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="156" height="306"/>
             <connections>
+                <outlet property="btnCart" destination="cS5-Hm-kjG" id="twn-OW-95v"/>
                 <outlet property="btnFavorite" destination="UJW-8S-f3b" id="zLH-R8-3Nj"/>
                 <outlet property="iconAction" destination="Ae0-C2-89t" id="wAj-GQ-gpl"/>
                 <outlet property="imgProduct" destination="IOi-sf-Ttn" id="BpB-GH-Ekh"/>

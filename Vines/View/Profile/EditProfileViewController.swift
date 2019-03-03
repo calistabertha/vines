@@ -23,6 +23,7 @@ class EditProfileViewController: VinesViewController {
     @IBOutlet weak var btnSave: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
      var userData: LoginModelUserData?
     override func viewDidLoad() {
@@ -49,6 +50,7 @@ class EditProfileViewController: VinesViewController {
     }
     
     func setupProfile() {
+        self.spinner.isHidden = true
         let fullname = userData?.fullname ?? ""
         var components = fullname.components(separatedBy: " ")
         if(components.count > 0)
@@ -61,6 +63,26 @@ class EditProfileViewController: VinesViewController {
         txtEmailAddress.text = userData?.email ?? ""
         txtPhoneNumber.text = userData?.phone ?? ""
         
+        let birth = userData?.dob ?? ""
+        if birth == ""{
+            txtDay.text = ""
+            txtMonth.text = ""
+            txtYear.text = ""
+        }else {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            
+            let date = dateFormatter.date(from: birth)
+            dateFormatter.dateFormat = "dd"
+            txtDay.text = dateFormatter.string(from: date!)
+            
+            dateFormatter.dateFormat = "MMMM"
+            txtMonth.text = dateFormatter.string(from: date!)
+            
+            dateFormatter.dateFormat = "yyyy"
+            txtYear.text = dateFormatter.string(from: date!)
+            
+        }
         
         let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
             size: imgProfile.frame.size,
@@ -131,12 +153,39 @@ class EditProfileViewController: VinesViewController {
     }
     
     @IBAction func saveButtonDidPush(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-        let rect = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height + 52)
-        let succesEditing = SuccessEditing.init(frame: rect)
-        succesEditing.delegate = self
-        succesEditing.successType(type: .profile)
-        succesEditing.show(animated: true)
+        spinner.isHidden = false
+        spinner.startAnimating()
+       // if let imageData = UIImageJPEGRepresentation(self.imgProfile.image ?? UIImage(named: "placeholderProfile")!, 0.5) {
+        let imageData = UIImageJPEGRepresentation(self.imgProfile.image ?? UIImage(named: "placeholderProfile")!, 0.5)
+            let params = [
+                "user_id": userDefault().getUserID(),
+                "first_name": self.txtFirstName.text!,
+                "last_name": self.txtLastName.text!,
+                "email": self.txtEmailAddress.text!,
+                "phone": self.txtPhoneNumber.text!,
+                "image": imageData ?? "",
+                "dob": "",
+                "token": userDefault().getToken(),
+                ] as [String : Any]
+            
+            HTTPHelper.shared.requestFormData(url: Constants.ServicesAPI.User.editProfile, param: params, method: .post) { (success, code, json) in
+                let data = LoginModelBaseClass(json: json ?? "")
+                if success {
+                    self.navigationController?.popViewController(animated: true)
+                    let rect = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height + 52)
+                    let succesEditing = SuccessEditing.init(frame: rect)
+                    succesEditing.delegate = self
+                    succesEditing.successType(type: .profile)
+                    succesEditing.show(animated: true)
+                } else {
+                    let alert = JDropDownAlert()
+                    alert.alertWith("Oopss..", message: "Edit profile failed", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
+                    print(data.data ?? "")
+                }
+            }
+       // }
+        self.spinner.isHidden = true
+        self.spinner.stopAnimating()
     }
     
 }
@@ -175,6 +224,8 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as? UIImage
         picker.dismiss(animated: true, completion: nil)
+        viewUpload.layer.cornerRadius = viewUpload.frame.height / 2
+        self.imgProfile.layer.cornerRadius = self.imgProfile.frame.height / 2
         self.imgProfile.image = image
         //image to data
     }

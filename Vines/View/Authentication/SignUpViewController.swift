@@ -28,6 +28,7 @@ class SignUpViewController: VinesViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var viewProfile: UIView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,7 @@ class SignUpViewController: VinesViewController {
     }
     
     private func setupView() {
+        spinner.isHidden = true
         viewUploadPicture.layer.cornerRadius = viewUploadPicture.frame.height / 2
         viewProfile.layer.cornerRadius = viewProfile.frame.width / 2
         btnSignUp.layer.cornerRadius = 5
@@ -96,6 +98,8 @@ class SignUpViewController: VinesViewController {
     }
     
     @IBAction func signUpButtonDidPush(_ sender: Any) {
+        spinner.isHidden = false
+        spinner.startAnimating()
         if let imageData = UIImageJPEGRepresentation(self.imgProfile.image ?? UIImage(named: "placeholderProfile")!, 0.5) {
             let params = [
                 "fullname": self.txtFirstName.text! + self.txtLastName.text!,
@@ -111,25 +115,21 @@ class SignUpViewController: VinesViewController {
             HTTPHelper.shared.requestFormData(url: Constants.ServicesAPI.User.register, param: params, method: .post) { (success, code, json) in
                 let data = RegisterModelBaseClass(json: json ?? "")
                 if success {
+                    let alert = JDropDownAlert()
+                    alert.alertWith("Success", message: "Register success", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 76/255, green: 188/255, blue: 30/255, alpha: 1), image: nil)
+                    self.navigationController?.popViewController(animated: true)
                     print(data.data ?? "")
                 } else {
+                    let alert = JDropDownAlert()
+                    alert.alertWith("Oopss..", message: "Register failed", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
                     print(data.data ?? "")
                 }
             }
         }
-        
-        
-//
-//        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.register, param: params, method: HTTPMethodHelper.post) { (success, json) in
-//            let data = RegisterModelBaseClass(json: json!)
-//            if success {
-//                print(data.data ?? "")
-//            } else {
-//                print(data.data ?? "")
-//            }
-//        }
-       
+        self.spinner.isHidden = true
+        self.spinner.stopAnimating()
     }
+    
     @IBAction func signInButtonDidPush(_ sender: Any) {
          navigationController?.popViewController(animated: true)
     }

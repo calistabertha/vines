@@ -32,7 +32,18 @@ class ApplyDiscountTableViewCell: UITableViewCell {
 extension ApplyDiscountTableViewCell: TableViewCellProtocol{
     static func configure<T>(context: UIViewController, tableView: UITableView, indexPath: IndexPath, object: T) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ApplyDiscountTableViewCell.identifier, for: indexPath) as! ApplyDiscountTableViewCell
-        
+        guard let ctx = context as? OrderSummaryViewController else {return cell}
+        if ctx.discountCode != nil {
+            cell.lblCode.text = ctx.discountCode
+        }else{
+            cell.lblCode.text = "Rp. 100.000"
+        }
+        cell.closeSelected = {
+            (cells) in
+            ctx.isCodeApplied = false
+            ctx.tableView.reloadData()
+            
+        }
         return cell
     }
     

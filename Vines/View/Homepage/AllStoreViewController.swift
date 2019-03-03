@@ -20,7 +20,7 @@ class AllStoreViewController: VinesViewController {
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    var location: CLLocation = CLLocation(latitude: 106.818477, longitude: -6.282391)
+    var location: CLLocation = CLLocation(latitude:-6.282391 , longitude:106.818477 )
     var storeList:[StoreListModelData] = []
     var stores: StoreListModelData?
     var detail: DetailStoreView?

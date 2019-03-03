@@ -61,8 +61,16 @@ extension CartTableViewCell: TableViewCellProtocol{
                 wc.imgProduct.image = UIImage(named: "placeholder")
             }
         }
+        
         cell.lblNameProduct.text = data.name ?? ""
-        cell.lblPrice.text = String(data.price ?? 0).asRupiah()
+        if data.discount == 0 {
+            cell.lblPrice.text = String(data.price ?? 0).asRupiah()
+        }else{
+            guard let price = data.price else {return cell}
+            let diskon = (price * (data.discount ?? 0))/100
+            let priceAfter = price - diskon
+            cell.lblPrice.text = String(priceAfter).asRupiah()
+        }
         cell.viewCount.layer.cornerRadius = cell.viewCount.frame.width / 2
         cell.lblCount.text = "\(cell.testCount)"
 //        cell.btnMinus.alpha = 0.5

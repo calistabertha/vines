@@ -103,12 +103,13 @@ class ProfileViewController: VinesViewController {
         // add the actions (buttons)
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in
          userDefault().logout()
-            if let bundle = Bundle.main.bundleIdentifier {
-                UserDefaults.standard.removePersistentDomain(forName: bundle)
-            }
-            
+//            if let bundle = Bundle.main.bundleIdentifier {
+//                UserDefaults.standard.removePersistentDomain(forName: bundle)
+//            }
+//
             let vc = SignInViewController()
-            self.present(vc, animated: true, completion: nil)
+            self.navigationController?.pushViewController(vc, animated: true)
+           // self.present(vc, animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.cancel, handler: nil))
         

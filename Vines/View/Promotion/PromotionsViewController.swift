@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import GoogleMaps
 
 class PromotionsViewController: VinesViewController {
 
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
+    var locationManager:CLLocationManager?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         generateNavBarWithBackButton(titleString: "PROMOTIONS", viewController: self, isRightBarButton: false, isNavbarColor: true)
@@ -82,6 +85,7 @@ extension PromotionsViewController: UITableViewDelegate{
         if indexPath.section == 1 {
             let vc = DetailPromoViewController()
             vc.data = promotionList[indexPath.row]
+            vc.locationManager = locationManager
             navigationController?.pushViewController(vc, animated: true)
         }
     }

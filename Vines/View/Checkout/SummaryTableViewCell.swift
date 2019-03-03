@@ -14,6 +14,7 @@ class SummaryTableViewCell: UITableViewCell {
     @IBOutlet weak var lblTotal: UILabel!
     @IBOutlet weak var lblSubtotal: UILabel!
     @IBOutlet weak var lblDiscount: UILabel!
+    @IBOutlet weak var viewDiscount: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
       

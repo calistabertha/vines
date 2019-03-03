@@ -8,6 +8,7 @@
 
 import UIKit
 import AlamofireImage
+import GoogleMaps
 
 class DetailPromoViewController: VinesViewController {
 
@@ -21,6 +22,7 @@ class DetailPromoViewController: VinesViewController {
     @IBOutlet weak var imgPromo: UIImageView!
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var btnShop: UIButton!
+    var locationManager:CLLocationManager?
     
     var data: PromotionModelData?
     
@@ -61,7 +63,7 @@ class DetailPromoViewController: VinesViewController {
         }
         
         lblDescription.text = data.title
-        lblDetail.text = data.summary
+        lblDetail.text = data.summary?.replacingOccurrences(of: "<br>", with: "\n")
       
         if data.promotionCode != nil{
             btnShop.setTitle("GET DISCOUNT CODE", for: .normal)
@@ -102,7 +104,7 @@ class DetailPromoViewController: VinesViewController {
     }
     
     @IBAction func promotionButtonDidPush(_ sender: UIButton) {
-        if data?.promotionCode != nil || isCopied == false{
+        if data?.promotionCode != nil && isCopied == false{
             let alert = UIAlertController(title: "Discount Code Copied", message: nil, preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                 UIPasteboard.general.string = self.data?.promotionCode
@@ -112,6 +114,10 @@ class DetailPromoViewController: VinesViewController {
             
             self.present(alert, animated: true, completion: nil)
         }else{
+            let vc = AllStoreViewController()
+            guard let location = self.locationManager?.location else { return }
+            vc.location = location
+            self.navigationController?.pushViewController(vc, animated: true)
             print("shop now")
             
             /*

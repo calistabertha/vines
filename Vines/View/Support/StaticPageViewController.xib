@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xxL-Tl-hIU">
-                    <rect key="frame" x="20" y="20" width="335" height="647"/>
+                    <rect key="frame" x="20" y="30" width="335" height="637"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </webView>
             </subviews>
@@ -31,7 +31,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="xxL-Tl-hIU" secondAttribute="bottom" id="HMY-YO-yGG"/>
                 <constraint firstItem="xxL-Tl-hIU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Uth-j2-fHI"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xxL-Tl-hIU" secondAttribute="trailing" constant="20" id="XX0-pP-IJj"/>
-                <constraint firstItem="xxL-Tl-hIU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="ow8-t2-XmP"/>
+                <constraint firstItem="xxL-Tl-hIU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="ow8-t2-XmP"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>

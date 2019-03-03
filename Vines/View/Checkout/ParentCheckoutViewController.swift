@@ -81,6 +81,14 @@ class ParentCheckoutViewController: VinesViewController {
         lblSummary.textColor = UIColor.black
         lblPayment.textColor = UIColor.lightGray
         iconNext.image = UIImage(named: "ico-nav-chevronr")
+        if notification.name == .orderSummary {
+            if let obj = notification.object as? PaymentMethodViewController {
+                vc.delivery = obj.delivery
+                vc.postCode = obj.postCode
+                vc.discountCode = obj.discountCode
+                vc.isCodeApplied = obj.isCodeApplied
+            }
+        }
     }
     
     @objc private func getPaymentMethod(_ notification: NSNotification) {
@@ -93,8 +101,12 @@ class ParentCheckoutViewController: VinesViewController {
         lblPayment.textColor = UIColor.black
         if notification.name == .paymentMethod {
             if let obj = notification.object as? OrderSummaryViewController {
-                vc.lblDeliveryAddress.text = obj.delivery
+                vc.lblDeliveryAddress.text = "\(obj.delivery ?? "") , \(obj.postCode ?? "")"
+                vc.delivery = obj.delivery
                 vc.lblPay.text = obj.totalPayment
+                vc.postCode = obj.postCode
+                vc.discountCode = obj.discountCode
+                vc.isCodeApplied = obj.isCodeApplied
             }
         }
     }

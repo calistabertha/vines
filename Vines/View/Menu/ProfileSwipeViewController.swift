@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import GoogleMaps
+
 protocol MenuSwipeDelegate : class {
     func dismissView(controller: ProfileSwipeViewController)
 }
@@ -25,6 +27,7 @@ class ProfileSwipeViewController: UIViewController {
     var delegate: MenuSwipeDelegate?
     var promotionList: [PromotionModelData] = []
     var userData: LoginModelUserData?
+    var locations: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +59,7 @@ class ProfileSwipeViewController: UIViewController {
                 ws.imgProfile.image = UIImage(named: "placeholder")
             }
         }
+        
         lblFullname.text = "HI, \(userData?.fullname?.uppercased() ?? "")"
         lblEmail.text = userData?.email ?? ""
         lblPhone.text = userData?.phone ?? ""

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,6 +26,7 @@
                 <outlet property="btnSignUp" destination="372-X1-qyq" id="d6r-qc-zuH"/>
                 <outlet property="imgProfile" destination="Wgg-QH-bsq" id="DKz-ww-8td"/>
                 <outlet property="scrollView" destination="v1f-c4-udi" id="jkU-rc-3cx"/>
+                <outlet property="spinner" destination="UTH-yv-zC8" id="GKS-mO-90V"/>
                 <outlet property="txtConfirmPassword" destination="qdK-nu-1B4" id="uiZ-u4-ooo"/>
                 <outlet property="txtEmail" destination="ceC-7U-Fzc" id="7FJ-9T-ofS"/>
                 <outlet property="txtFirstName" destination="x19-Kh-FhK" id="jae-mX-oRA"/>
@@ -304,6 +305,10 @@
                                         <constraint firstItem="EeZ-3K-u01" firstAttribute="top" secondItem="gbB-DD-GCN" secondAttribute="top" id="w7Q-FS-rhw"/>
                                     </constraints>
                                 </view>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="UTH-yv-zC8">
+                                    <rect key="frame" x="169" y="305" width="37" height="37"/>
+                                    <color key="color" red="0.49019607840000001" green="0.023529411760000001" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </activityIndicatorView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -378,9 +383,11 @@
                     </subviews>
                     <constraints>
                         <constraint firstItem="T6G-x2-8S6" firstAttribute="leading" secondItem="v1f-c4-udi" secondAttribute="leading" id="9FK-QN-wiz"/>
+                        <constraint firstItem="UTH-yv-zC8" firstAttribute="centerX" secondItem="v1f-c4-udi" secondAttribute="centerX" id="As8-A0-KSn"/>
                         <constraint firstAttribute="trailing" secondItem="T6G-x2-8S6" secondAttribute="trailing" id="K6u-QG-yfe"/>
                         <constraint firstAttribute="bottom" secondItem="T6G-x2-8S6" secondAttribute="bottom" id="SJ2-Sx-GyD"/>
                         <constraint firstItem="T6G-x2-8S6" firstAttribute="width" secondItem="v1f-c4-udi" secondAttribute="width" id="TGH-KQ-zei"/>
+                        <constraint firstItem="UTH-yv-zC8" firstAttribute="centerY" secondItem="v1f-c4-udi" secondAttribute="centerY" id="X4q-gD-GnK"/>
                         <constraint firstItem="T6G-x2-8S6" firstAttribute="top" secondItem="v1f-c4-udi" secondAttribute="top" id="mAl-KI-GOz"/>
                     </constraints>
                 </scrollView>

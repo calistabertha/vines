@@ -22,6 +22,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var iconAction: UIImageView!
     @IBOutlet weak var lblDiscount: UILabel!
     @IBOutlet weak var viewOutOfStock: UIView!
+    @IBOutlet weak var btnCart: UIButton!
     
     var addToWishlist: ProductClosure?
     var addToCart: ProductClosure?

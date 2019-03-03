@@ -42,6 +42,7 @@ class SignInViewController: UIViewController {
     }
     
     private func setupView() {
+        navigationController?.navigationBar.isHidden = true
         spinner.isHidden = true
         btnSignIn.layer.cornerRadius = 5
     }

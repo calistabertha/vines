@@ -22,8 +22,12 @@ class PaymentMethodViewController: UIViewController {
     @IBOutlet weak var btnPayNow: UIButton!
     @IBOutlet weak var viewDelivery: UIView!
     @IBOutlet weak var lblDeliveryAddress: UILabel!
+    var delivery: String?
+    var postCode: String?
+    var discountCode: String?
     var storeID : Int?
     var userData: LoginModelUserData?
+    var isCodeApplied = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,17 +52,18 @@ class PaymentMethodViewController: UIViewController {
     }
     
     @IBAction func editPersonalInfoButtonDidPush(_ sender: Any) {
-        NotificationCenter.default.post(name: .orderSummary, object: nil)
+        //NotificationCenter.default.post(name: .orderSummary, object: nil)
     }
    
     @IBAction func editShippingButtonDidPush(_ sender: Any) {
-        NotificationCenter.default.post(name: .orderSummary, object: nil)
+        NotificationCenter.default.post(name: .orderSummary, object: self)
     }
     
     @IBAction func payNowButtonDidPush(_ sender: Any) {
         let email = userData?.email?.replacingOccurrences(of: "@", with: "%40")
-        let deliv = lblDeliveryAddress.text?.replacingOccurrences(of: " ", with: "+").replacingOccurrences(of: ",", with: "%2C").replacingOccurrences(of: ".", with: "%2C")
-        let url = "https://vines-indonesia.com/cart/payment_list?user_id=\(userDefault().getUserID())&order_code=\(userDefault().getOrderCode())&user_email=\(email ?? "")&delivery_address=\(deliv ?? "")&postal_code=17113&use_point=&lat=-6.270095&long=106.85028790000001&address=jakarta&store_id=\(storeID ?? 0)&promotion_code=&submit=Submit"
+        let deliv = delivery?.replacingOccurrences(of: " ", with: "+").replacingOccurrences(of: ",", with: "%2C").replacingOccurrences(of: ".", with: "%2C")
+        let url = "https://vines-indonesia.com/cart/payment_list?user_id=\(userDefault().getUserID())&order_code=\(userDefault().getOrderCode())&user_email=\(email ?? "")&delivery_address=\(deliv ?? "")&postal_code=\(postCode ?? "")&use_point=&lat=\(userData?.latitude ?? 0)&long=\(userData?.longitude ?? 0)&address=jakarta&store_id=\(storeID ?? 0)&promotion_code=\(discountCode ?? "")&submit=Submit"
+        //let url = "https://vines-indonesia.com/cart/payment_list?user_id=\(userDefault().getUserID())&order_code=\(userDefault().getOrderCode())&user_email=\(email ?? "")&delivery_address=\(deliv ?? "")&postal_code=17113&use_point=&lat=-6.270095&long=106.85028790000001&address=jakarta&store_id=\(storeID ?? 0)&promotion_code=&submit=Submit"
         guard let settingsUrl = URL(string: url) else {
             return
         }

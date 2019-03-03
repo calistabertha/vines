@@ -23,6 +23,8 @@ class StoreViewController: VinesViewController {
             tableView.delegate = self
         }
     }
+    
+    @IBOutlet weak var btnCart: UIButton!
     @IBOutlet weak var viewCart: UIView!
     @IBOutlet weak var viewBackground: UIView!
     @IBOutlet weak var viewFilter: UIView!
@@ -43,12 +45,13 @@ class StoreViewController: VinesViewController {
     
     var collectionItemSize: CGSize = CGSize(width: 0, height: 0)
     var isFetchProductList = false
+    var isProductEmpty = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         generateNavBarWithBackButton(titleString: storeName ?? "", viewController: self, isRightBarButton: false, isNavbarColor: true)
         spinner.isHidden = true
-        setupView()
+        
         fetchFavouriteList()
         fetchProductList(isInit: true, offset: 1)
     }
@@ -56,6 +59,7 @@ class StoreViewController: VinesViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         collectionItemSize = calculateSize()
+        setupView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,6 +87,14 @@ class StoreViewController: VinesViewController {
         viewFilter.layer.shadowOpacity = 0.5
         viewFilter.layer.shadowOffset = CGSize(width: 0, height: 2)
         viewFilter.layer.shadowRadius = 1
+        
+        if ProductListCollection.shared.products.count == 0 { //179, 159, 102
+            viewCart.backgroundColor = UIColor(red: 179/255, green: 159/255, blue: 102/255, alpha: 0.7)
+            btnCart.isUserInteractionEnabled = false
+        }else {
+            viewCart.backgroundColor = UIColor(red: 179/255, green: 159/255, blue: 102/255, alpha: 1)
+            btnCart.isUserInteractionEnabled = true
+        }
     }
     
     @IBAction func searchButtonDidPush(_ sender: Any) {
@@ -102,6 +114,7 @@ class StoreViewController: VinesViewController {
     }
     
     @IBAction func filterButtonDidPush(_ sender: Any) {
+        filtered = []
         let vc = FilterViewController()
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
@@ -143,6 +156,7 @@ class StoreViewController: VinesViewController {
             let data = ProductListModelBaseClass(json: json ?? "")
             self.isFetchProductList = false
             if data.message == "Success", let datas = data.data {
+                self.isProductEmpty = false
                 if isInit{
                     self.productList = datas
                     print("counttt \(datas.count) || \(self.productList.count)")
@@ -156,7 +170,7 @@ class StoreViewController: VinesViewController {
                 self.tableView.reloadData()
             } else {
                 if data.message == "Failed" {
-                    //product not found
+                    self.isProductEmpty = true
                     self.tableView.reloadData()
                 }
                 print(data.displayMessage ?? "")
@@ -212,6 +226,9 @@ class StoreViewController: VinesViewController {
     func addToCart(_ product: ProductListModelData, isBuyProduct: Bool) {
         if isBuyProduct {
             ProductListCollection.shared.products.append(product)
+            viewCart.backgroundColor = UIColor(red: 179/255, green: 159/255, blue: 102/255, alpha: 1)
+            btnCart.isUserInteractionEnabled = true
+            
             let vc = ShoppingCartViewController()
             vc.storeName = storeName
             vc.storeID = storeId
@@ -232,6 +249,8 @@ class StoreViewController: VinesViewController {
         }else{
             guard let _ = ProductListCollection.shared.products.first(where: { $0.productId == product.productId }) else {
                 ProductListCollection.shared.products.append(product)
+                viewCart.backgroundColor = UIColor(red: 179/255, green: 159/255, blue: 102/255, alpha: 1)
+                btnCart.isUserInteractionEnabled = true
                 //cartList.append(product)
                 let alert = JDropDownAlert()
                 alert.alertWith("Success", message: "Success add to cart", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 76/255, green: 188/255, blue: 30/255, alpha: 1), image: nil)
@@ -247,7 +266,7 @@ class StoreViewController: VinesViewController {
 
 extension StoreViewController: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -257,15 +276,22 @@ extension StoreViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return CGFloat.leastNormalMagnitude
-        }
-        else if section == 3 {
+            
+        }else if section == 3 {
             if isFilter{
-                return 40
+                return UITableViewAutomaticDimension
             }else{
                 return CGFloat.leastNormalMagnitude
             }
-        }
-        else{
+            
+        }else if section == 4 {
+            if isProductEmpty{
+                return UITableViewAutomaticDimension
+            }else{
+                return CGFloat.leastNormalMagnitude
+            }
+            
+        }else{
             return 40
         }
     }
@@ -275,10 +301,10 @@ extension StoreViewController: UITableViewDelegate {
             return 211
         } else if indexPath.section == 1 {
             return collectionItemSize.height
-        }else if indexPath.section == 2 {
+        }else if indexPath.section == 2 || indexPath.section == 3 {
             return 0
-        } else {
-            return (collectionItemSize.height * CGFloat(halfCeil(productList.count)))
+        } else{
+             return (collectionItemSize.height * CGFloat(halfCeil(productList.count)))
         }
     }
 }
@@ -311,6 +337,12 @@ extension StoreViewController: UITableViewDataSource{
                 return cell
             }
             return UIView()
+        } else if section == 4 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: HeaderSectionStoreTableViewCell.identifier) as! HeaderSectionStoreTableViewCell
+            cell.lblTitle.text = "Product not found"
+            cell.lblTitle.textAlignment = .center
+            cell.lblTitle.font = UIFont(name: "Roboto-Italic", size: 12.0)
+            return cell
         }
         return UIView()
     }
@@ -318,11 +350,13 @@ extension StoreViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             return HeaderStoreTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: self.urlImgStore)
+            
         } else if indexPath.section == 1 {
             let cell = FeatureProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: favouriteList) as! FeatureProductTableViewCell
             cell.size = collectionItemSize
             return cell
-        } else if indexPath.section == 3 {
+            
+        }else if indexPath.section == 4 {
             let cell = ProductTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: productList) as! ProductTableViewCell
             cell.size = collectionItemSize
             return cell
@@ -368,21 +402,31 @@ extension StoreViewController: ShoppingCartDelegate {
 
 extension StoreViewController: FilterDelegate {
     func setFilter(country: String, categoryID: Int, priceID: Int, filter:[String]) {
-        isFilter = true
+        self.productList = []
         fetchProductList(isInit: true, offset: nextOffset, categoryID: categoryID, country: country, priceID: priceID)
         filtered = filter
+        if country == "" && categoryID == 0 && priceID == 0 {
+            isFilter = false
+        }else {
+            isFilter = true
+        }
         print("\(country), \(categoryID), \(priceID)")
     }
 }
 
 extension StoreViewController: UIScrollViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height + 44){
-            spinner.isHidden = false
-            spinner.startAnimating()
-            let offset = nextOffset + 1
-            fetchProductList(isInit: false, offset: offset)
+        if isProductEmpty{
+            //nothing
+        }else {
+            if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height + 44){
+                spinner.isHidden = false
+                spinner.startAnimating()
+                let offset = nextOffset + 1
+                fetchProductList(isInit: false, offset: offset)
+            }
         }
+        
     }
 
 }

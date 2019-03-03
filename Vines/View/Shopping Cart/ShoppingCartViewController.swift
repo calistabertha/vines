@@ -17,6 +17,7 @@ class ShoppingCartViewController: VinesViewController {
     var productCartList: [ProductListModelData] = []
     var storeName: String?
     var storeID: Int?
+    var isFromWishlist = false
     weak var delegate: ShoppingCartDelegate?
     
     override func viewDidLoad() {
@@ -33,6 +34,9 @@ class ShoppingCartViewController: VinesViewController {
     }
     
     override func backButtonDidPush() {
+        if isFromWishlist {
+            ProductListCollection.shared.products.removeAll()
+        }
         navigationController?.popViewController(animated: true)
     }
     

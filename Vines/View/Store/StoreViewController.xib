@@ -20,6 +20,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StoreViewController" customModule="Vines" customModuleProvider="target">
             <connections>
+                <outlet property="btnCart" destination="GIz-7N-Uwq" id="zqR-KQ-3uB"/>
                 <outlet property="spinner" destination="6Uk-oL-fR6" id="oeY-fo-w3Q"/>
                 <outlet property="tableView" destination="EV4-KZ-zGv" id="wlc-rv-Xtg"/>
                 <outlet property="txtSearch" destination="aOZ-6B-ADI" id="djJ-Lu-tge"/>
@@ -73,7 +74,7 @@
                             </constraints>
                         </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="EV4-KZ-zGv">
-                            <rect key="frame" x="0.0" y="60" width="375" height="587"/>
+                            <rect key="frame" x="0.0" y="60" width="375" height="577"/>
                             <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="o6U-5e-1Jq"/>
@@ -140,7 +141,7 @@
                             </constraints>
                         </view>
                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="6Uk-oL-fR6">
-                            <rect key="frame" x="177.5" y="627" width="20" height="20"/>
+                            <rect key="frame" x="177.5" y="617" width="20" height="20"/>
                             <color key="color" red="0.49019607840000001" green="0.023529411760000001" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
                         </activityIndicatorView>
                     </subviews>
@@ -150,7 +151,7 @@
                         <constraint firstAttribute="bottom" secondItem="JSz-zy-oBV" secondAttribute="bottom" constant="16" id="2xz-OE-dpg"/>
                         <constraint firstItem="6Uk-oL-fR6" firstAttribute="bottom" secondItem="EV4-KZ-zGv" secondAttribute="bottom" id="3QX-GZ-Kpo"/>
                         <constraint firstItem="j5g-b8-oHo" firstAttribute="leading" secondItem="EV4-KZ-zGv" secondAttribute="leading" id="3lw-wL-72D"/>
-                        <constraint firstItem="j5g-b8-oHo" firstAttribute="bottom" secondItem="EV4-KZ-zGv" secondAttribute="bottom" id="4HA-dx-IdF"/>
+                        <constraint firstAttribute="bottom" secondItem="j5g-b8-oHo" secondAttribute="bottom" id="7st-oH-mx1"/>
                         <constraint firstAttribute="trailing" secondItem="IMd-eT-sn0" secondAttribute="trailing" id="8R0-Yd-WUg"/>
                         <constraint firstItem="6Uk-oL-fR6" firstAttribute="centerX" secondItem="3jC-9Q-Kj7" secondAttribute="centerX" id="DtM-75-PuV"/>
                         <constraint firstItem="IMd-eT-sn0" firstAttribute="top" secondItem="3jC-9Q-Kj7" secondAttribute="top" constant="10" id="Fzj-YL-mQZ"/>
@@ -161,12 +162,12 @@
                         <constraint firstAttribute="trailing" secondItem="EV4-KZ-zGv" secondAttribute="trailing" id="h6G-mc-SuN"/>
                         <constraint firstItem="EV4-KZ-zGv" firstAttribute="leading" secondItem="3jC-9Q-Kj7" secondAttribute="leading" id="hd6-kY-gS3"/>
                         <constraint firstItem="IMd-eT-sn0" firstAttribute="leading" secondItem="3jC-9Q-Kj7" secondAttribute="leading" id="k95-Bx-0NQ"/>
-                        <constraint firstAttribute="bottom" secondItem="EV4-KZ-zGv" secondAttribute="bottom" id="kB9-4h-dPH"/>
+                        <constraint firstAttribute="bottom" secondItem="EV4-KZ-zGv" secondAttribute="bottom" constant="10" id="kB9-4h-dPH"/>
                         <constraint firstItem="EV4-KZ-zGv" firstAttribute="top" secondItem="IMd-eT-sn0" secondAttribute="bottom" id="qI0-ov-qqw"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="3jC-9Q-Kj7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="4Ag-aX-53Y"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="3jC-9Q-Kj7" secondAttribute="bottom" id="LG0-Ts-pPe"/>

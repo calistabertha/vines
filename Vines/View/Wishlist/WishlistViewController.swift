@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMaps
 
 class WishlistViewController: VinesViewController {
     
@@ -27,6 +28,7 @@ class WishlistViewController: VinesViewController {
     var storeName: String?
     var storeID: Int?
     var collectionItemSize: CGSize = CGSize(width: 0, height: 0)
+    var locations: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +40,7 @@ class WishlistViewController: VinesViewController {
         super.viewWillAppear(animated)
         spinner.startAnimating()
         collectionItemSize = calculateSize()
+        getOderCode()
         fetchWishlist()
     }
 
@@ -47,11 +50,13 @@ class WishlistViewController: VinesViewController {
     }
     
     override func backButtonDidPush() {
+        userDefault().removeObject(forKey: "ORDER_CODE")
         navigationController?.popViewController(animated: true)
     }
 
     @IBAction func continueShoppingButtonDidPush(_ sender: Any) {
-        
+        let vc = AllStoreViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func fetchWishlist() {
@@ -79,7 +84,8 @@ class WishlistViewController: VinesViewController {
         }
     }
     
-    func removeWishlist(_ product: ProductListModelData) {
+    @objc func removeWishlist(_ sender: UIButton) {
+        let product = self.list[sender.tag]
         let params = [
             "user_id": userDefault().getUserID(),
             "product_id": product.productId ?? 0,
@@ -99,13 +105,34 @@ class WishlistViewController: VinesViewController {
         }
     }
     
-    func buyProduct(_ product: ProductListModelData) {
-        ProductListCollection.shared.products.append(product)
+    @objc func buyProduct(_ sender: UIButton) {
+        let product = self.list[sender.tag]
+         guard let _ = ProductListCollection.shared.products.first(where: { $0.productId == product.productId }) else {
+            ProductListCollection.shared.products.append(product)
+            return
+        }
         let vc = ShoppingCartViewController()
+        vc.isFromWishlist = true
         vc.storeName = product.storeName
         vc.storeID = product.storeId
-        //vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func getOderCode() {
+        let params = [
+            "user_id": userDefault().getUserID(),
+            "token": userDefault().getToken()
+            ]as [String: Any]
+        
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.orderCode, param: params, method: HTTPMethodHelper.post) { (success, json) in
+            if json?["message"] == "success" {
+                userDefault().setOrderCode(code: json!["data"][0]["order_code"].stringValue)
+               
+            }else {
+                let alert = JDropDownAlert()
+                alert.alertWith("Oopss..", message: "Please check your connection", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
+            }
+        }
     }
 }
 
@@ -113,7 +140,7 @@ extension WishlistViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = DetailProductViewController()
         vc.productID = list[indexPath.row].productId
-        //vc.storeIDCode = ctx.storeIDCode
+        vc.storeIDCode = list[indexPath.row].storeIDCode
         vc.storeName = list[indexPath.row].storeName
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -130,14 +157,10 @@ extension WishlistViewController: UICollectionViewDataSource {
         let cell = ProductCollectionViewCell.configure(context: self, collectionView: collectionView, indexPath: indexPath, object: data) as! ProductCollectionViewCell
         cell.isFromWishlist = true
         cell.setupView()
-        cell.addToCart = { [weak self] int in
-            guard let ws = self else { return }
-            ws.buyProduct(data)
-        }
-        cell.addToWishlist = { [weak self] data in
-            guard let ws = self else { return }
-            ws.removeWishlist(data)
-        }
+        cell.btnCart.tag = indexPath.row
+        cell.btnFavorite.tag = indexPath.row
+        cell.btnCart.addTarget(self, action: #selector(buyProduct(_:)), for: .touchUpInside)
+        cell.btnFavorite.addTarget(self, action: #selector(removeWishlist(_:)), for: .touchUpInside)
         return cell
        
     }

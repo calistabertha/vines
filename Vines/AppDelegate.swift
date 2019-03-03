@@ -49,6 +49,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        print("url app delegate \(url)")
+        print("url host \(String(describing: url.host))")
+        
+        return true
+    }
+    
     func setGoogleMapsKey() {
         GMSServices.provideAPIKey("AIzaSyA-ThAMwdk-eESEOZl7PRH54lfXZo9kdk0")  //AIzaSyAHJfNPJUTy2uIrYBDhjWGp-bsFq7-k9KE
         GMSPlacesClient.provideAPIKey("AIzaSyA-ThAMwdk-eESEOZl7PRH54lfXZo9kdk0")  //AIzaSyAHJfNPJUTy2uIrYBDhjWGp-bsFq7-k9KE
