@@ -75,6 +75,12 @@ extension UserDefaults {
         commit()
     }
     
+    func setUserAddress(address: String) {
+        userDefault().set(address, forKey: "DELIVERY_ADDRESS")
+        commit()
+    }
+    
+    
     func addToCart(product: ProductListModelData) {
         var list = getCart()
         list.append(product)
@@ -96,6 +102,7 @@ extension UserDefaults {
         userDefault().removeObject(forKey: "USER_ID")
         userDefault().removeObject(forKey: "USER_TOKEN")
         userDefault().removeObject(forKey: "ORDER_CODE")
+        userDefault().removeObject(forKey: "DELIVERY_ADDRESS")
     }
     
     func isLoggedIn() -> Bool {
@@ -169,6 +176,13 @@ extension UserDefaults {
     func getUserCheckout() -> String {
         if let user = userDefault().value(forKey: "USER_CHECKOUT") as? String {
             return user
+        }
+        return ""
+    }
+    
+    func getUserAddress() -> String {
+        if let address = userDefault().value(forKey: "DELIVERY_ADDRESS") as? String {
+            return address
         }
         return ""
     }

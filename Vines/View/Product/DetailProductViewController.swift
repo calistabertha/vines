@@ -47,7 +47,6 @@ class DetailProductViewController: VinesViewController {
         tableView.register(ProductTableViewCell.nib, forCellReuseIdentifier: ProductTableViewCell.identifier)
         
         collectionItemSize = calculateSize()
-        fetchSimiliarList()
         fetchDetail()
     }
     
@@ -68,8 +67,7 @@ class DetailProductViewController: VinesViewController {
     override func cartButtonDidPush() {
         let vc = ShoppingCartViewController()
         vc.storeName = storeName
-       // vc.productCartList = cartList
-       // vc.delegate = self
+        vc.delegate = self
         navigationController?.pushViewController(vc, animated: false)
     }
     
@@ -110,12 +108,29 @@ class DetailProductViewController: VinesViewController {
         self.addToCart(data: detail!)
     }
 
+    @IBAction func buyProduct(_ sender: Any) {
+        ProductListCollection.shared.products.append(detail!)
+        let vc = ShoppingCartViewController()
+        vc.storeName = storeName
+        vc.storeID = storeID
+        vc.delegate = self
+        
+        self.viewButton.isHidden = false
+        self.btnProduct.layer.cornerRadius = 5
+        self.btnProduct.layer.borderWidth = 1
+        self.btnProduct.layer.borderColor = UIColor.init(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).cgColor
+        self.btnProduct.setTitle("ADDED", for: .normal)
+        self.btnProduct.setTitleColor(UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), for: .normal)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func fetchSimiliarList() {
         let params = [
             "category_id": detail?.categoryId ?? 0,
             "by_title": "",
             "limit": 10,
-            "offset":0
+            "offset":0,
+            "store_id" : storeID ?? 0,
             ] as [String : Any]
         HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Product.similiar, param: params, method: HTTPMethodHelper.post) { (success, json) in
             let data = ProductListModelBaseClass(json: json ?? "")
@@ -144,6 +159,7 @@ class DetailProductViewController: VinesViewController {
                 self.detail = datas[0]
                 self.setupView()
                 self.tableView.reloadData()
+                self.fetchSimiliarList()
             } else {
                 print(data.displayMessage ?? "")
             }
@@ -154,8 +170,6 @@ class DetailProductViewController: VinesViewController {
     }
     
     func addToCart(data: ProductListModelData) {
-//        guard let _ = cartList.first(where: { $0.productId == data.productId }) else {
-//            cartList.append(detail!)
             let alert = JDropDownAlert()
             alert.alertWith("Success", message: "Success add to cart", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 76/255, green: 188/255, blue: 30/255, alpha: 1), image: nil)
 //            self.viewButton.isHidden = false
@@ -289,5 +303,21 @@ extension DetailProductViewController: UITableViewDelegate{
             return (collectionItemSize.height * CGFloat(halfCeil(similiarList.count)))
         }
         return UITableViewAutomaticDimension
+    }
+}
+
+extension DetailProductViewController: ShoppingCartDelegate {
+    func removeItem(at index: Int) {
+        if index == 0 {
+            ProductListCollection.shared.products.removeAll()
+        }else {
+            ProductListCollection.shared.products.remove(at: index)
+        }
+        
+        viewButton.isHidden = true
+        btnAddItem.layer.cornerRadius = 5
+        btnAddItem.layer.borderColor = UIColor.init(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).cgColor
+        btnAddItem.layer.borderWidth = 1
+        btnBuyProduct.layer.cornerRadius = 5
     }
 }

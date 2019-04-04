@@ -53,6 +53,7 @@ extension ProductTableViewCell: UICollectionViewDelegate {
             vc.productID = list[indexPath.row].productId
             vc.storeIDCode = ctx.storeIDCode
             vc.storeName = ctx.storeName
+            vc.storeID = ctx.storeId
             self.context?.navigationController?.pushViewController(vc, animated: true)
         } else if let ctx = context as? DetailProductViewController {
             let vc = DetailProductViewController()

@@ -87,10 +87,11 @@ class OrderSummaryViewController: UIViewController {
         if delivery == "" || delivery == nil{
             let alert = JDropDownAlert()
             alert.alertWith("Oopss..", message: "Please fill delivery address", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
-        }else if postCode == "" || postCode == nil{
-            let alert = JDropDownAlert()
-            alert.alertWith("Oopss..", message: "Please fill your post code", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
+//        }else if postCode == "" || postCode == nil{
+//            let alert = JDropDownAlert()
+//            alert.alertWith("Oopss..", message: "Please fill your post code", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
         }else{
+            userDefault().setUserAddress(address: self.delivery!)
              NotificationCenter.default.post(name: .paymentMethod, object: self)
         }
     }
@@ -138,8 +139,8 @@ extension OrderSummaryViewController: UITableViewDataSource{
             }
         }else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: DeliveryTableViewCell.identifier, for: indexPath) as! DeliveryTableViewCell
-            if delivery != nil {
-                cell.textView.text = delivery
+            if userDefault().getUserAddress() != "" {
+                cell.textView.text = userDefault().getUserAddress()
             }else{
                 if cell.textView.text.isEmpty {
                     cell.textView.text = "Your Address"

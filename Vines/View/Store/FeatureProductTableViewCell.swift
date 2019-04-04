@@ -51,6 +51,8 @@ extension FeatureProductTableViewCell: UICollectionViewDelegate {
         vc.productID = list[indexPath.row].productId
         vc.storeIDCode = ctx.storeIDCode
         vc.storeName = ctx.storeName
+        vc.titleText = list[indexPath.row].categoryName ?? ""
+        vc.storeID = ctx.storeId
         self.context?.navigationController?.pushViewController(vc, animated: true)
     }
     

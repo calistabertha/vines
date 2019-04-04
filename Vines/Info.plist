@@ -29,6 +29,11 @@
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>https://vines-indonesia.com</key>
+			<string></string>
+		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Camera may includes take photo, sounds and icon badges. These can be configured in Settings.</string>

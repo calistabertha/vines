@@ -80,6 +80,8 @@
 		CC3ED80922008FC7004F1F35 /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC3ED80722008FC7004F1F35 /* OrderTableViewCell.xib */; };
 		CC3ED80C220094EA004F1F35 /* OrderModelBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3ED80B220094EA004F1F35 /* OrderModelBaseClass.swift */; };
 		CC3ED80E22009506004F1F35 /* OrderModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3ED80D22009506004F1F35 /* OrderModelData.swift */; };
+		CC40B6862237DA9E00A1F4AB /* PayNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC40B6842237DA9E00A1F4AB /* PayNowViewController.swift */; };
+		CC40B6872237DA9E00A1F4AB /* PayNowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC40B6852237DA9E00A1F4AB /* PayNowViewController.xib */; };
 		CC4CD36521C3E0AF00217626 /* DetailProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4CD36321C3E0AF00217626 /* DetailProductViewController.swift */; };
 		CC4CD36621C3E0AF00217626 /* DetailProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC4CD36421C3E0AF00217626 /* DetailProductViewController.xib */; };
 		CC4CD36921C3E22600217626 /* HeaderProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4CD36721C3E22600217626 /* HeaderProductTableViewCell.swift */; };
@@ -289,6 +291,8 @@
 		CC3ED80722008FC7004F1F35 /* OrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
 		CC3ED80B220094EA004F1F35 /* OrderModelBaseClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModelBaseClass.swift; sourceTree = "<group>"; };
 		CC3ED80D22009506004F1F35 /* OrderModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModelData.swift; sourceTree = "<group>"; };
+		CC40B6842237DA9E00A1F4AB /* PayNowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayNowViewController.swift; sourceTree = "<group>"; };
+		CC40B6852237DA9E00A1F4AB /* PayNowViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PayNowViewController.xib; sourceTree = "<group>"; };
 		CC4CD36321C3E0AF00217626 /* DetailProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProductViewController.swift; sourceTree = "<group>"; };
 		CC4CD36421C3E0AF00217626 /* DetailProductViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailProductViewController.xib; sourceTree = "<group>"; };
 		CC4CD36721C3E22600217626 /* HeaderProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderProductTableViewCell.swift; sourceTree = "<group>"; };
@@ -920,6 +924,8 @@
 				CCC7894221F60DD4004A82A3 /* ShowInfoTableViewCell.xib */,
 				CCC7894521F60DF1004A82A3 /* ShowShippingTableViewCell.swift */,
 				CCC7894621F60DF1004A82A3 /* ShowShippingTableViewCell.xib */,
+				CC40B6842237DA9E00A1F4AB /* PayNowViewController.swift */,
+				CC40B6852237DA9E00A1F4AB /* PayNowViewController.xib */,
 			);
 			path = Checkout;
 			sourceTree = "<group>";
@@ -1142,6 +1148,7 @@
 				CC74E41221F9AB2400D771F2 /* Slide.xib in Resources */,
 				CCE5226E21D6234600F868DD /* DetailNewsViewController.xib in Resources */,
 				CCAF350A21EDEE1A003EFADA /* CartTableViewCell.xib in Resources */,
+				CC40B6872237DA9E00A1F4AB /* PayNowViewController.xib in Resources */,
 				CC613FF32160FF93002C24CB /* Roboto-Italic.ttf in Resources */,
 				CC191D5A21E0E4A400FBB1D4 /* LiquorSelectionTableViewCell.xib in Resources */,
 				CCB5A83021DFA5D00055EE7A /* SupportTableViewCell.xib in Resources */,
@@ -1317,6 +1324,7 @@
 				CCCE53D021F0BDB0000760D1 /* ParentCheckoutViewController.swift in Sources */,
 				CC191D5121E0461400FBB1D4 /* StaticPageViewController.swift in Sources */,
 				9097CBAE2189F3080053382D /* LoginModelData.swift in Sources */,
+				CC40B6862237DA9E00A1F4AB /* PayNowViewController.swift in Sources */,
 				CCE5227121D6235600F868DD /* NewsTableViewCell.swift in Sources */,
 				CC2AF81C21BD1D5F002BA448 /* HomeViewController.swift in Sources */,
 				90D4876521A6EC56005B5A7C /* StoreDetailModelBaseClass.swift in Sources */,

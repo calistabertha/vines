@@ -167,7 +167,7 @@ class EditProfileViewController: VinesViewController {
                 "dob": "",
                 "token": userDefault().getToken(),
                 ] as [String : Any]
-            
+        
             HTTPHelper.shared.requestFormData(url: Constants.ServicesAPI.User.editProfile, param: params, method: .post) { (success, code, json) in
                 let data = LoginModelBaseClass(json: json ?? "")
                 if success {
