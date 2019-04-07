@@ -15,18 +15,17 @@ public protocol ShoppingCartDelegate: class {
 class ShoppingCartViewController: VinesViewController {
     @IBOutlet weak var tableView: UITableView!
     var productCartList: [ProductListModelData] = []
-//    var cartList: [CartModelData] = []
-//    var countPrice: [Int] = []
     var storeName: String?
     var storeID: Int?
+    var isFromWishlist = false
     weak var delegate: ShoppingCartDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        fetchCartList()
         generateNavBarWithBackButton(titleString: "SHOPPING CART", viewController: self, isRightBarButton: false, isNavbarColor: true)
         tableView.register(CartTableViewCell.nib, forCellReuseIdentifier: CartTableViewCell.identifier)
         tableView.register(TotalCartTableViewCell.nib, forCellReuseIdentifier: TotalCartTableViewCell.identifier)
+        productCartList = ProductListCollection.shared.products
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,30 +34,11 @@ class ShoppingCartViewController: VinesViewController {
     }
     
     override func backButtonDidPush() {
+        if isFromWishlist {
+            ProductListCollection.shared.products.removeAll()
+        }
         navigationController?.popViewController(animated: true)
     }
-    
-//    func fetchCartList() {
-//        let params = [
-//            "token": userDefault().getToken(),
-//            "user_id": userDefault().getUserID(),
-//            "order_code": userDefault().getOrderCode()
-//            ] as [String : Any]
-//
-//        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.listCart, param: params, method: HTTPMethodHelper.post) { (success, json) in
-//            let data = CartModelBaseClass(json: json ?? "")
-//            if data.message == "success", let datas = data.data {
-//                self.cartList = datas
-//                self.tableView.reloadData()
-//
-//                for item in data.data ?? [] {
-//                    self.countPrice.append(item.price ?? 0)
-//                }
-//            } else {
-//                print(data.displayMessage ?? "")
-//            }
-//        }
-//    }
     
 }
 

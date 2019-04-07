@@ -19,6 +19,7 @@ class ForgotPasswordViewController: VinesViewController {
     
     @IBOutlet weak var btnReset: UIButton!
     @IBOutlet weak var txtEmail: UITextField!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,7 @@ class ForgotPasswordViewController: VinesViewController {
     }
     
     private func setupView() {
+        spinner.isHidden = true
         btnReset.layer.cornerRadius = 5
         generateNavBarWithBackButton(titleString: "", viewController: self, isRightBarButton: false, isNavbarColor: false)
     }
@@ -40,6 +42,25 @@ class ForgotPasswordViewController: VinesViewController {
     }
     
     @IBAction func resetButtonDidPush(_ sender: Any) {
-        
+        spinner.isHidden = false
+        spinner.startAnimating()
+        let params = [
+            "email": txtEmail.text ?? ""
+        ]
+        HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.forgotPassword, param: params, method: HTTPMethodHelper.post) { (success, json) in
+            let data = LoginModelBaseClass(json: json ?? "")
+            if success {
+                let alert = JDropDownAlert()
+                alert.alertWith("Success", message: "Check your email to reset your password", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 76/255, green: 188/255, blue: 30/255, alpha: 1), image: nil)
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                let alert = JDropDownAlert()
+                alert.alertWith("Oopss..", message: data.displayMessage, topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
+                
+            }
+            self.spinner.stopAnimating()
+            self.spinner.isHidden = true
+         
+        }
     }
 }

@@ -22,6 +22,7 @@ struct Constants {
         struct User {
             static let login = "user/authentication"
             static let register = "user/register"
+            static let forgotPassword = "user/forgot_password"
             static let updatePassword = "user/update_password"
             static let wishlist = "user/wishlist"
             static let addWishlist = "user/add_wishlist"
@@ -30,6 +31,7 @@ struct Constants {
             static let deleteCart = "delete_temporary"
             static let orderCode = "get_ordercode"
             static let listCart = "list_temporary"
+            static let editProfile = "user/edit_profile"
         }
         
         struct Store {
@@ -55,12 +57,18 @@ struct Constants {
         }
         
         struct Order {
-            static let list = "user/current_order"
+            static let current = "user/current_order"
+            static let history = "user/history_order"
         }
         
         struct Party {
             static let submit = "party_service"
             static let package = "select_package"
+        }
+        
+        struct Filter {
+            static let category = "select_category"
+            static let country = "select_country"
         }
     }
 }

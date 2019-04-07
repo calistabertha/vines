@@ -22,6 +22,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var iconAction: UIImageView!
     @IBOutlet weak var lblDiscount: UILabel!
     @IBOutlet weak var viewOutOfStock: UIView!
+    @IBOutlet weak var btnCart: UIButton!
     
     var addToWishlist: ProductClosure?
     var addToCart: ProductClosure?
@@ -42,7 +43,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
        
     }
-
 }
 
 extension ProductCollectionViewCell: CollectionViewCellProtocol{
@@ -50,10 +50,6 @@ extension ProductCollectionViewCell: CollectionViewCellProtocol{
          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as! ProductCollectionViewCell
         guard let data = object as? ProductListModelData else { return cell }
         cell.context = context
-//        if indexPath.row == ctx.productList.count - 1 && ctx.nextOffset > 0{
-//            ctx.fetchProductList(isInit: false, offset: ctx.nextOffset)
-//        }
-        
         cell.imgProduct.af_setImage(withURL: URL(string: data.image!)!, placeholderImage: UIImage(named: "placeholder")) { [weak cell] image in
             guard let wc = cell else { return }
             if let img = image.value {
@@ -66,8 +62,6 @@ extension ProductCollectionViewCell: CollectionViewCellProtocol{
         cell.data = data
         cell.lblName.text = data.name ?? ""
         cell.lblType.text = data.categoryName ?? ""
-        //cell.lblPrice1.text = String(data.discount ?? 0).asRupiah()
-        cell.lblPrice1.isHidden = true
         if data.price == 0 {
             cell.lblPrice2.text = "Product not available"
             cell.lblPrice2.font = UIFont.init(name: "Roboto-Italic", size: 12.0)
@@ -80,9 +74,20 @@ extension ProductCollectionViewCell: CollectionViewCellProtocol{
         
         if data.discount == 0 {
             cell.viewDiscount.isHidden = true
+            cell.lblPrice1.isHidden = true
         }else {
+            let attributeString = NSMutableAttributedString(string: String(data.price ?? 0).asRupiah())
+            attributeString.addAttribute(NSAttributedStringKey.strikethroughStyle,
+                                         value: NSUnderlineStyle.styleSingle.rawValue,
+                                         range: NSMakeRange(0, attributeString.length))
+            cell.lblPrice1.attributedText = attributeString
+            cell.lblPrice1.isHidden = false
+            guard let price = data.price else {return cell}
+            let diskon = (price * (data.discount ?? 0))/100
+            let priceAfter = price - diskon
+            cell.lblPrice2.text = String(priceAfter).asRupiah()
             cell.viewDiscount.isHidden = false
-            cell.lblDiscount.text = String(data.discount ?? 0).asRupiah()
+            cell.lblDiscount.text = "\(data.discount ?? 0) %"
         }
         
         cell.viewCart.layer.cornerRadius = 10

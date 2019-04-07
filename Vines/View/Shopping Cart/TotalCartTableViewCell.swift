@@ -15,8 +15,6 @@ class TotalCartTableViewCell: UITableViewCell {
     
     var payment : ((UITableViewCell) -> Void)?
     
-//    public var cartList: [CartModelData] = []
-    
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -40,8 +38,17 @@ extension TotalCartTableViewCell: TableViewCellProtocol{
         guard let data = object as? [ProductListModelData] else {return cell}
         let totalPrice = String(data
             .map { (productData: ProductListModelData) -> Int in
-                guard let price = productData.price else { return 0 }
-                return productData.quantity * price
+                var price: Int?
+                if productData.discount == 0 {
+                    price = productData.price
+                }else{
+                    guard let prices = productData.price else {return 0}
+                    let diskon = (prices * (productData.discount ?? 0))/100
+                    price = prices - diskon
+                }
+                
+                guard let priceAfter = price else { return 0 }
+                return productData.quantity * priceAfter
             }
             .reduce(0, +))
             .asRupiah()

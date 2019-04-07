@@ -48,9 +48,11 @@ extension FeatureProductTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
          guard let ctx = context as? StoreViewController else {return}
         let vc = DetailProductViewController()
-        vc.product = list[indexPath.row]
-        vc.storeID = ctx.storeId
+        vc.productID = list[indexPath.row].productId
+        vc.storeIDCode = ctx.storeIDCode
         vc.storeName = ctx.storeName
+        vc.titleText = list[indexPath.row].categoryName ?? ""
+        vc.storeID = ctx.storeId
         self.context?.navigationController?.pushViewController(vc, animated: true)
     }
     

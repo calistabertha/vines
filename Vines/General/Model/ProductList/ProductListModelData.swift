@@ -30,6 +30,8 @@ public final class ProductListModelData: NSObject, NSCoding {
     static let subRegion = "sub_region"
     static let code = "code"
     static let size = "size"
+    static let isAddToCart = "isAddToCart"
+    static let storeIDCode = "StoreId"
   }
 
   // MARK: Properties
@@ -52,6 +54,8 @@ public final class ProductListModelData: NSObject, NSCoding {
     public var code: String?
     public var size : [SizeModelData]?
     public var quantity: Int = 1
+    public var isAddToCart: Bool?
+    public var storeIDCode: String?
 
 
   // MARK: SwiftyJSON Initializers
@@ -87,6 +91,8 @@ public final class ProductListModelData: NSObject, NSCoding {
     if let items = json[SerializationKeys.size].array {
         size = items.map { SizeModelData(json: $0) }
     }
+    isAddToCart = json[SerializationKeys.isAddToCart].bool
+    storeIDCode = json[SerializationKeys.storeIDCode].string
   }
 
   /// Generates description of the object in the form of a NSDictionary.
@@ -112,6 +118,8 @@ public final class ProductListModelData: NSObject, NSCoding {
     if let value = subRegion { dictionary[SerializationKeys.subRegion] = value }
     if let value = code { dictionary[SerializationKeys.code] = value }
     if let value = size { dictionary[SerializationKeys.size] = value.map { $0.dictionaryRepresentation() } }
+    if let value = isAddToCart { dictionary[SerializationKeys.isAddToCart] = value }
+    if let value = storeIDCode { dictionary[SerializationKeys.storeIDCode] = value }
     return dictionary
   }
 
@@ -135,6 +143,8 @@ public final class ProductListModelData: NSObject, NSCoding {
     self.subRegion = aDecoder.decodeObject(forKey: SerializationKeys.subRegion) as? String
     self.code = aDecoder.decodeObject(forKey: SerializationKeys.code) as? String
     self.size = aDecoder.decodeObject(forKey: SerializationKeys.size) as? [SizeModelData]
+    self.isAddToCart = aDecoder.decodeObject(forKey: SerializationKeys.isAddToCart) as? Bool
+    self.storeIDCode = aDecoder.decodeObject(forKey: SerializationKeys.storeIDCode) as? String
   }
 
   public func encode(with aCoder: NSCoder) {
@@ -156,6 +166,8 @@ public final class ProductListModelData: NSObject, NSCoding {
     aCoder.encode(subRegion, forKey: SerializationKeys.subRegion)
     aCoder.encode(code, forKey: SerializationKeys.code)
     aCoder.encode(size, forKey: SerializationKeys.size)
+    aCoder.encode(isAddToCart, forKey: SerializationKeys.isAddToCart)
+    aCoder.encode(storeIDCode, forKey: SerializationKeys.storeIDCode)
   }
 
 }

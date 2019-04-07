@@ -14,6 +14,7 @@ import UIKit
 class DeliveryTableViewCell: UITableViewCell {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var btnBack: UIButton!
+    @IBOutlet weak var txtPostCode: UITextField!
     
     var backSelected : ((UITableViewCell) -> Void)?
     var delegate : DeliveryDelegate?

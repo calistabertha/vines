@@ -16,6 +16,7 @@ public final class StoreListModelData: NSCoding {
     static let name = "name"
     static let image = "image"
     static let storeId = "store_id"
+    static let storeIDCode = "StoreId"
     static let address = "address"
     static let phone = "phone"
     static let open = "open"
@@ -24,17 +25,18 @@ public final class StoreListModelData: NSCoding {
     static let longitude = "longitude"
   }
 
-  // MARK: Properties
-  public var latitude: Float?
-  public var name: String?
-  public var image: String?
-  public var storeId: Int?
-  public var address: String?
-  public var phone: String?
-  public var open: String?
-  public var distance: Float?
-  public var close: String?
-  public var longitude: Float?
+    // MARK: Properties
+    public var latitude: Float?
+    public var name: String?
+    public var image: String?
+    public var storeId: Int?
+    public var storeIDCode: String?
+    public var address: String?
+    public var phone: String?
+    public var open: String?
+    public var distance: Float?
+    public var close: String?
+    public var longitude: Float?
 
   // MARK: SwiftyJSON Initializers
   /// Initiates the instance based on the object.
@@ -53,6 +55,7 @@ public final class StoreListModelData: NSCoding {
     name = json[SerializationKeys.name].string
     image = json[SerializationKeys.image].string
     storeId = json[SerializationKeys.storeId].int
+    storeIDCode = json[SerializationKeys.storeIDCode].string
     address = json[SerializationKeys.address].string
     phone = json[SerializationKeys.phone].string
     open = json[SerializationKeys.open].string
@@ -70,6 +73,7 @@ public final class StoreListModelData: NSCoding {
     if let value = name { dictionary[SerializationKeys.name] = value }
     if let value = image { dictionary[SerializationKeys.image] = value }
     if let value = storeId { dictionary[SerializationKeys.storeId] = value }
+    if let value = storeIDCode { dictionary[SerializationKeys.storeIDCode] = value }
     if let value = address { dictionary[SerializationKeys.address] = value }
     if let value = phone { dictionary[SerializationKeys.phone] = value }
     if let value = open { dictionary[SerializationKeys.open] = value }
@@ -85,6 +89,7 @@ public final class StoreListModelData: NSCoding {
     self.name = aDecoder.decodeObject(forKey: SerializationKeys.name) as? String
     self.image = aDecoder.decodeObject(forKey: SerializationKeys.image) as? String
     self.storeId = aDecoder.decodeObject(forKey: SerializationKeys.storeId) as? Int
+    self.storeIDCode = aDecoder.decodeObject(forKey: SerializationKeys.storeIDCode) as? String
     self.address = aDecoder.decodeObject(forKey: SerializationKeys.address) as? String
     self.phone = aDecoder.decodeObject(forKey: SerializationKeys.phone) as? String
     self.open = aDecoder.decodeObject(forKey: SerializationKeys.open) as? String
@@ -98,6 +103,7 @@ public final class StoreListModelData: NSCoding {
     aCoder.encode(name, forKey: SerializationKeys.name)
     aCoder.encode(image, forKey: SerializationKeys.image)
     aCoder.encode(storeId, forKey: SerializationKeys.storeId)
+    aCoder.encode(storeIDCode, forKey: SerializationKeys.storeIDCode)
     aCoder.encode(address, forKey: SerializationKeys.address)
     aCoder.encode(phone, forKey: SerializationKeys.phone)
     aCoder.encode(open, forKey: SerializationKeys.open)

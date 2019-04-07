@@ -81,6 +81,20 @@ class ProfileViewController: VinesViewController {
     }
     
     @IBAction func rateApplicationButtonDidPush(_ sender: Any) {
+        let url = "itms-apps://itunes.apple.com/us/app/id1444403618?mt=8&action=write-review"
+        guard let settingsUrl = URL(string: url) else {
+            return
+        }
+        
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                })
+            } else {
+                UIApplication.shared.openURL(settingsUrl as URL)
+            }
+        }
+
     }
     
     @IBAction func logoutButtonDidPush(_ sender: Any) {
@@ -89,12 +103,13 @@ class ProfileViewController: VinesViewController {
         // add the actions (buttons)
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in
          userDefault().logout()
-            if let bundle = Bundle.main.bundleIdentifier {
-                UserDefaults.standard.removePersistentDomain(forName: bundle)
-            }
-            
+//            if let bundle = Bundle.main.bundleIdentifier {
+//                UserDefaults.standard.removePersistentDomain(forName: bundle)
+//            }
+//
             let vc = SignInViewController()
-            self.present(vc, animated: true, completion: nil)
+            self.navigationController?.pushViewController(vc, animated: true)
+           // self.present(vc, animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.cancel, handler: nil))
         

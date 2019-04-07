@@ -13,6 +13,10 @@ class OrderSummaryViewController: UIViewController {
     @IBOutlet weak var btnNext: UIButton!
     var cartList: [CartModelData] = []
     var isCodeApplied = false
+    var totalPayment: String?
+    var delivery: String?
+    var postCode: String?
+    var discountCode: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,8 +84,16 @@ class OrderSummaryViewController: UIViewController {
     }
     
     @IBAction func nextButtonDidPush(_ sender: Any) {
-        NotificationCenter.default.post(name: .paymentMethod, object: nil)
-
+        if delivery == "" || delivery == nil{
+            let alert = JDropDownAlert()
+            alert.alertWith("Oopss..", message: "Please fill delivery address", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
+//        }else if postCode == "" || postCode == nil{
+//            let alert = JDropDownAlert()
+//            alert.alertWith("Oopss..", message: "Please fill your post code", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 125/255, green: 6/255, blue: 15/255, alpha: 1), image: nil)
+        }else{
+            userDefault().setUserAddress(address: self.delivery!)
+             NotificationCenter.default.post(name: .paymentMethod, object: self)
+        }
     }
 }
 
@@ -104,9 +116,9 @@ extension OrderSummaryViewController: UITableViewDelegate {
                 return 163
             }
         }else if indexPath.row == 2 {
-            return 208
+            return 233
         }else if indexPath.row == 3 {
-            return 215
+            return UITableViewAutomaticDimension
         }
         
         return 0
@@ -121,18 +133,28 @@ extension OrderSummaryViewController: UITableViewDataSource{
             return cell
         }else if indexPath.row == 1 {
             if isCodeApplied{
-                let cell = tableView.dequeueReusableCell(withIdentifier: ApplyDiscountTableViewCell.identifier, for: indexPath) as! ApplyDiscountTableViewCell
-                return cell
+                return ApplyDiscountTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
             }else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: DiscountCodeTableViewCell.identifier, for: indexPath) as! DiscountCodeTableViewCell
-                return cell
+                return DiscountCodeTableViewCell.configure(context: self, tableView: tableView, indexPath: indexPath, object: "")
             }
         }else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: DeliveryTableViewCell.identifier, for: indexPath) as! DeliveryTableViewCell
-            if cell.textView.text.isEmpty {
-                cell.textView.text = "Your Address"
-                cell.textView.textColor = UIColor.lightGray
+            if userDefault().getUserAddress() != "" {
+                cell.textView.text = userDefault().getUserAddress()
+            }else{
+                if cell.textView.text.isEmpty {
+                    cell.textView.text = "Your Address"
+                    cell.textView.textColor = UIColor.lightGray
+                }
             }
+            if postCode != nil{
+                cell.txtPostCode.text = postCode
+            }else {
+                cell.txtPostCode.text = ""
+                
+            }
+            cell.textView.delegate = self
+            cell.txtPostCode.delegate = self
             return cell
         }
         else if indexPath.row == 3 {
@@ -143,11 +165,48 @@ extension OrderSummaryViewController: UITableViewDataSource{
                     return quantity * price
                 }
                 .reduce(0, +)
-            let totalPrice = subtotal - 100000
-            cell.lblSubtotal.text = String(subtotal).asRupiah()
-            cell.lblTotal.text = String(totalPrice).asRupiah()
+            
+            if isCodeApplied{
+                cell.viewDiscount.frame.size.height = 20
+                cell.viewDiscount.isHidden = false
+                let totalPrice = subtotal - 100000
+                cell.lblSubtotal.text = String(subtotal).asRupiah()
+                cell.lblTotal.text = String(totalPrice).asRupiah()
+                self.totalPayment = String(totalPrice).asRupiah()
+            }else{
+                cell.viewDiscount.frame.size.height = 0
+                cell.viewDiscount.isHidden = true
+                cell.lblSubtotal.text = String(subtotal).asRupiah()
+                cell.lblTotal.text = String(subtotal).asRupiah()
+                self.totalPayment = String(subtotal).asRupiah()
+            }
+           
+            
             return cell
         }
         return UITableViewCell()
+    }
+}
+
+extension OrderSummaryViewController: UITextViewDelegate{
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        if textView.text == "Your Address"{
+            textView.text = ""
+        }
+     
+        textView.textColor = UIColor.black
+        return true
+    }
+    
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        delivery = textView.text
+        return true
+    }
+}
+
+extension OrderSummaryViewController: UITextFieldDelegate{
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        postCode = textField.text
+        return true
     }
 }

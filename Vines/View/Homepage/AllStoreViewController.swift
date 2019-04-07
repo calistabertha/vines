@@ -20,7 +20,7 @@ class AllStoreViewController: VinesViewController {
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    var location: CLLocation = CLLocation(latitude: 106.818477, longitude: -6.282391)
+    var location: CLLocation = CLLocation(latitude:-6.282391 , longitude:106.818477 )
     var storeList:[StoreListModelData] = []
     var stores: StoreListModelData?
     var detail: DetailStoreView?
@@ -29,19 +29,9 @@ class AllStoreViewController: VinesViewController {
         super.viewDidLoad()
         spinner.startAnimating()
         setupView()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         fetchStore()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-    
+
     private func setupView() {
         generateNavBarWithBackButton(titleString: "ALL STORE", viewController: self, isRightBarButton: false, isNavbarColor: true)
         viewDropDown.layer.cornerRadius = viewDropDown.frame.width / 2
@@ -50,8 +40,8 @@ class AllStoreViewController: VinesViewController {
     
     private func fetchStore() {
         let params = [
-            "longitude": "106.8694690",//self.location.coordinate.longitude,
-            "latitude": "-6.2732980" //self.location.coordinate.latitude
+            "longitude": self.location.coordinate.longitude, //"106.8694690",
+            "latitude": self.location.coordinate.latitude //"-6.2732980"
             ] as [String : Any]
         HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.Store.list, param: params, method: HTTPMethodHelper.post) { (success, json) in
             let data = StoreListModelBaseClass(json: json ?? "")
@@ -80,11 +70,12 @@ class AllStoreViewController: VinesViewController {
             ]as [String: Any]
         
         HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.orderCode, param: params, method: HTTPMethodHelper.post) { (success, json) in
-            if json!["message"] == "success" {
+            if json?["message"] == "success" {
                 userDefault().setOrderCode(code: json!["data"][0]["order_code"].stringValue)
                 view.dismiss(animated: true)
                 let vc = StoreViewController()
                 vc.storeId = view.data?.storeId ?? 0
+                vc.storeIDCode = view.data?.storeIDCode ?? ""
                 vc.storeName = view.data?.name ?? ""
                 vc.urlImgStore = view.data?.image ?? ""
                 self.navigationController?.pushViewController(vc, animated: true)

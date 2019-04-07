@@ -56,6 +56,7 @@ class HomeViewController: UIViewController {
         imgLogo.addGestureRecognizer(change)
         imgLogo.isUserInteractionEnabled = true
         viewUserLoc.layer.cornerRadius = viewUserLoc.layer.frame.height / 2
+        fetchPromotions()
         setupView()
         setupCarousel()
         setupLeftMenu()
@@ -69,7 +70,6 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
-        fetchPromotions()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -174,7 +174,7 @@ class HomeViewController: UIViewController {
     
     @IBAction func moreButtonDidPush(_ sender: Any) {
         let vc = PromotionsViewController()
-        vc.promotionList = self.promotionList
+        vc.locationManager = locationManager
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -259,7 +259,8 @@ extension HomeViewController: CLLocationManagerDelegate{
         self.locations = location
         latitude = String(location.coordinate.latitude)
         longitude = String(location.coordinate.longitude)
-        
+        profileSwipeVC.locations = location
+        profileSwipeVC.tableView.reloadData()
         self.viewMaps.animate(to: GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0))
         self.fetchStore(latitude: latitude, longitude: longitude)
         self.locationManager?.stopUpdatingLocation()
@@ -334,6 +335,7 @@ extension HomeViewController: iCarouselDelegate, iCarouselDataSource {
     func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
         let vc = DetailPromoViewController()
         vc.data = self.promotionList[index]
+        vc.locationManager = locationManager
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

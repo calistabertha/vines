@@ -61,8 +61,16 @@ extension CartTableViewCell: TableViewCellProtocol{
                 wc.imgProduct.image = UIImage(named: "placeholder")
             }
         }
+        
         cell.lblNameProduct.text = data.name ?? ""
-        cell.lblPrice.text = String(data.price ?? 0).asRupiah()
+        if data.discount == 0 {
+            cell.lblPrice.text = String(data.price ?? 0).asRupiah()
+        }else{
+            guard let price = data.price else {return cell}
+            let diskon = (price * (data.discount ?? 0))/100
+            let priceAfter = price - diskon
+            cell.lblPrice.text = String(priceAfter).asRupiah()
+        }
         cell.viewCount.layer.cornerRadius = cell.viewCount.frame.width / 2
         cell.lblCount.text = "\(cell.testCount)"
 //        cell.btnMinus.alpha = 0.5
@@ -74,30 +82,9 @@ extension CartTableViewCell: TableViewCellProtocol{
                 return datas.productId == data.productId
             }) else { return }
             ctx?.productCartList.remove(at: indexOfModel)
+            ProductListCollection.shared.products.remove(at: indexOfModel)
             ctx?.delegate?.removeItem(at: indexOfModel)
             tableView.reloadData()
-//            let params = [
-//                "token": userDefault().getToken(),
-//                "product_id": data.productID ?? 0,
-//                "order_code": userDefault().getOrderCode()
-//                ] as [String : Any]
-//
-//            HTTPHelper.shared.requestAPI(url: Constants.ServicesAPI.User.deleteCart, param: params, method: HTTPMethodHelper.post) { (success, json) in
-//
-//                if json!["message"] == "success" {
-//                    let alert = JDropDownAlert()
-//                    alert.alertWith("Success", message: "Remove from cart", topLabelColor: UIColor.white, messageLabelColor: UIColor.white, backgroundColor: UIColor(red: 76/255, green: 188/255, blue: 30/255, alpha: 1), image: nil)
-//                    UIView.animate(withDuration: 0.3, delay: 0.5, options: .curveEaseInOut, animations: {
-//                        cell.center = CGPoint(x: -(cell.frame.width), y: (cell.frame.height)/2)
-//                    }, completion: { (finished) in
-//                        ctx?.cartList.remove(at: indexPath.row)
-//                       ctx?.countPrice.remove(at: indexPath.row)
-//                        tableView.reloadData()
-//                    })
-//                } else {
-//                    print(json!["display_message"] )
-//                }
-//            }
       
         }
         
@@ -113,7 +100,6 @@ extension CartTableViewCell: TableViewCellProtocol{
             cell.lblCount.text = "\(cell.testCount)"
             let price = cell.testCount * data.price!
             cell.lblPrice.text = String(price).asRupiah()
-//            ctx?.countPrice.append(-data.price!)
             tableView.reloadData()
             
             
@@ -123,21 +109,7 @@ extension CartTableViewCell: TableViewCellProtocol{
             }) else { return }
             ctx?.productCartList[indexOfModel].quantity = cell.testCount
             tableView.reloadData()
-            
-            // Tambahin di method saat nambahin item ke cart
-            /*
-             var contohArray: [CartModelData] = []
-             let productItem = ctx?.cartList.first(where: { (datas: CartModelData) -> Bool in
-             return datas.productID == 0
-             })
-             
-             if let item = productItem {
-             contohArray.append(item)
-             } else {
-             print("You have been added this item to your cart")
-             }
-             
-             */
+
         }
         
         cell.plus = {
@@ -151,7 +123,6 @@ extension CartTableViewCell: TableViewCellProtocol{
             cell.lblCount.text = "\(cell.testCount)"
             let price = cell.testCount * data.price!
             cell.lblPrice.text = String(price).asRupiah()
-//            ctx?.countPrice.append(data.price!)
             tableView.reloadData()
             
             //update jumlahnya

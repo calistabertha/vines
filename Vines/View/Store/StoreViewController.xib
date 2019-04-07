@@ -13,15 +13,21 @@
         <array key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
         </array>
+        <array key="RobotoCondensed-Bold.ttf">
+            <string>RobotoCondensed-Bold</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StoreViewController" customModule="Vines" customModuleProvider="target">
             <connections>
+                <outlet property="btnCart" destination="GIz-7N-Uwq" id="zqR-KQ-3uB"/>
+                <outlet property="spinner" destination="6Uk-oL-fR6" id="oeY-fo-w3Q"/>
                 <outlet property="tableView" destination="EV4-KZ-zGv" id="wlc-rv-Xtg"/>
                 <outlet property="txtSearch" destination="aOZ-6B-ADI" id="djJ-Lu-tge"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewBackground" destination="j5g-b8-oHo" id="twT-ci-ixB"/>
                 <outlet property="viewCart" destination="JSz-zy-oBV" id="o0D-hd-pxQ"/>
+                <outlet property="viewFilter" destination="AAc-cR-dOJ" id="UcH-TU-Qq8"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -68,7 +74,7 @@
                             </constraints>
                         </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="EV4-KZ-zGv">
-                            <rect key="frame" x="0.0" y="60" width="375" height="587"/>
+                            <rect key="frame" x="0.0" y="60" width="375" height="577"/>
                             <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="o6U-5e-1Jq"/>
@@ -108,26 +114,60 @@
                             <rect key="frame" x="0.0" y="60" width="375" height="587"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AAc-cR-dOJ">
+                            <rect key="frame" x="144" y="594" width="87" height="28"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="buB-qG-n0x">
+                                    <rect key="frame" x="0.0" y="0.0" width="87" height="28"/>
+                                    <fontDescription key="fontDescription" name="RobotoCondensed-Bold" family="Roboto Condensed" pointSize="11"/>
+                                    <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
+                                    <inset key="imageEdgeInsets" minX="65" minY="0.0" maxX="-9" maxY="0.0"/>
+                                    <state key="normal" title="FILTER" image="ico-nav-dropdownact">
+                                        <color key="titleColor" red="0.49019607840000001" green="0.023529411760000001" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="filterButtonDidPush:" destination="-1" eventType="touchUpInside" id="uDY-rf-2Qh"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="buB-qG-n0x" firstAttribute="leading" secondItem="AAc-cR-dOJ" secondAttribute="leading" id="1lS-ND-4lC"/>
+                                <constraint firstItem="buB-qG-n0x" firstAttribute="top" secondItem="AAc-cR-dOJ" secondAttribute="top" id="7ic-1d-HJv"/>
+                                <constraint firstAttribute="width" constant="87" id="9vu-Ky-Kiu"/>
+                                <constraint firstAttribute="height" constant="28" id="dOX-JR-CNC"/>
+                                <constraint firstAttribute="bottom" secondItem="buB-qG-n0x" secondAttribute="bottom" id="hjK-yw-xkV"/>
+                                <constraint firstAttribute="trailing" secondItem="buB-qG-n0x" secondAttribute="trailing" id="mRS-3T-nq3"/>
+                            </constraints>
+                        </view>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="6Uk-oL-fR6">
+                            <rect key="frame" x="177.5" y="617" width="20" height="20"/>
+                            <color key="color" red="0.49019607840000001" green="0.023529411760000001" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </activityIndicatorView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="AAc-cR-dOJ" firstAttribute="centerX" secondItem="3jC-9Q-Kj7" secondAttribute="centerX" id="1fi-XY-3sP"/>
                         <constraint firstAttribute="bottom" secondItem="JSz-zy-oBV" secondAttribute="bottom" constant="16" id="2xz-OE-dpg"/>
+                        <constraint firstItem="6Uk-oL-fR6" firstAttribute="bottom" secondItem="EV4-KZ-zGv" secondAttribute="bottom" id="3QX-GZ-Kpo"/>
                         <constraint firstItem="j5g-b8-oHo" firstAttribute="leading" secondItem="EV4-KZ-zGv" secondAttribute="leading" id="3lw-wL-72D"/>
-                        <constraint firstItem="j5g-b8-oHo" firstAttribute="bottom" secondItem="EV4-KZ-zGv" secondAttribute="bottom" id="4HA-dx-IdF"/>
+                        <constraint firstAttribute="bottom" secondItem="j5g-b8-oHo" secondAttribute="bottom" id="7st-oH-mx1"/>
                         <constraint firstAttribute="trailing" secondItem="IMd-eT-sn0" secondAttribute="trailing" id="8R0-Yd-WUg"/>
+                        <constraint firstItem="6Uk-oL-fR6" firstAttribute="centerX" secondItem="3jC-9Q-Kj7" secondAttribute="centerX" id="DtM-75-PuV"/>
                         <constraint firstItem="IMd-eT-sn0" firstAttribute="top" secondItem="3jC-9Q-Kj7" secondAttribute="top" constant="10" id="Fzj-YL-mQZ"/>
+                        <constraint firstAttribute="bottom" secondItem="AAc-cR-dOJ" secondAttribute="bottom" constant="25" id="L5j-40-bsU"/>
                         <constraint firstItem="j5g-b8-oHo" firstAttribute="top" secondItem="EV4-KZ-zGv" secondAttribute="top" id="Mie-vG-qpF"/>
                         <constraint firstItem="j5g-b8-oHo" firstAttribute="trailing" secondItem="EV4-KZ-zGv" secondAttribute="trailing" id="NCb-EM-jec"/>
                         <constraint firstAttribute="trailing" secondItem="JSz-zy-oBV" secondAttribute="trailing" constant="16" id="ZcK-Qf-tfG"/>
                         <constraint firstAttribute="trailing" secondItem="EV4-KZ-zGv" secondAttribute="trailing" id="h6G-mc-SuN"/>
                         <constraint firstItem="EV4-KZ-zGv" firstAttribute="leading" secondItem="3jC-9Q-Kj7" secondAttribute="leading" id="hd6-kY-gS3"/>
                         <constraint firstItem="IMd-eT-sn0" firstAttribute="leading" secondItem="3jC-9Q-Kj7" secondAttribute="leading" id="k95-Bx-0NQ"/>
-                        <constraint firstAttribute="bottom" secondItem="EV4-KZ-zGv" secondAttribute="bottom" id="kB9-4h-dPH"/>
+                        <constraint firstAttribute="bottom" secondItem="EV4-KZ-zGv" secondAttribute="bottom" constant="10" id="kB9-4h-dPH"/>
                         <constraint firstItem="EV4-KZ-zGv" firstAttribute="top" secondItem="IMd-eT-sn0" secondAttribute="bottom" id="qI0-ov-qqw"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="3jC-9Q-Kj7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="4Ag-aX-53Y"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="3jC-9Q-Kj7" secondAttribute="bottom" id="LG0-Ts-pPe"/>
@@ -140,6 +180,7 @@
     </objects>
     <resources>
         <image name="ico-nav-cart" width="24" height="24"/>
+        <image name="ico-nav-dropdownact" width="9" height="8"/>
         <image name="ico-nav-search" width="13" height="12"/>
     </resources>
 </document>

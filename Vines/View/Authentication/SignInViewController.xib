@@ -39,7 +39,7 @@
                     <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGN IN" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tiS-Zs-azU">
-                            <rect key="frame" x="24" y="80" width="327" height="40"/>
+                            <rect key="frame" x="24" y="40" width="327" height="40"/>
                             <accessibility key="accessibilityConfiguration" hint="" identifier="5E03B5E7-196D-4F55-A2C8-0C2516EF5A1F" label=""/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="iaQ-7X-tZN"/>
@@ -49,7 +49,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please login to enjoy all VINES Apps feature." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6r-0H-hhT">
-                            <rect key="frame" x="24" y="124" width="327" height="20"/>
+                            <rect key="frame" x="24" y="84" width="327" height="20"/>
                             <accessibility key="accessibilityConfiguration" hint="" identifier="6C0708A0-69B9-4A63-9C6B-A61A7FB9D903" label=""/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="ASM-JY-UK4"/>
@@ -59,7 +59,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pfh-lw-tfq">
-                            <rect key="frame" x="24" y="188" width="327" height="30"/>
+                            <rect key="frame" x="24" y="148" width="327" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="FJr-fH-DaT"/>
                             </constraints>
@@ -71,14 +71,14 @@
                             </connections>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ceI-SG-cMm">
-                            <rect key="frame" x="24" y="217" width="327" height="1"/>
+                            <rect key="frame" x="24" y="177" width="327" height="1"/>
                             <color key="backgroundColor" red="0.70196078429999997" green="0.62352941179999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="MTI-iq-aF9"/>
                             </constraints>
                         </view>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WZu-Hi-DWz">
-                            <rect key="frame" x="24" y="246" width="327" height="30"/>
+                            <rect key="frame" x="24" y="206" width="327" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="Icp-Ad-lgO"/>
                             </constraints>
@@ -90,14 +90,14 @@
                             </connections>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lMO-34-sIz">
-                            <rect key="frame" x="24" y="275" width="327" height="1"/>
+                            <rect key="frame" x="24" y="235" width="327" height="1"/>
                             <color key="backgroundColor" red="0.70196078429999997" green="0.62352941179999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="Mfg-x7-f8r"/>
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nd7-jP-STB">
-                            <rect key="frame" x="318" y="244.5" width="33" height="33"/>
+                            <rect key="frame" x="318" y="204.5" width="33" height="33"/>
                             <accessibility key="accessibilityConfiguration" hint="" identifier="5AC83C31-7702-4142-8C15-B14F07E8595F-asset" label=""/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="33" id="KCo-KA-AXg"/>
@@ -112,7 +112,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7n-DA-wZo">
-                            <rect key="frame" x="267" y="288" width="84" height="20"/>
+                            <rect key="frame" x="267" y="248" width="84" height="20"/>
                             <accessibility key="accessibilityConfiguration" hint="" identifier="20EABA25-21E1-4A6A-A73E-E10EE2B9BE22" label=""/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="QxL-F0-jmn"/>
@@ -225,7 +225,7 @@
                         <constraint firstAttribute="trailing" secondItem="W7n-DA-wZo" secondAttribute="trailing" constant="24" id="nt2-rX-Zr3"/>
                         <constraint firstItem="nd7-jP-STB" firstAttribute="centerY" secondItem="WZu-Hi-DWz" secondAttribute="centerY" id="oOO-hQ-Qe5"/>
                         <constraint firstItem="WZu-Hi-DWz" firstAttribute="top" secondItem="pfh-lw-tfq" secondAttribute="bottom" constant="28" id="ohx-KG-hTf"/>
-                        <constraint firstItem="tiS-Zs-azU" firstAttribute="top" secondItem="e4E-tV-gqL" secondAttribute="top" constant="80" id="sLw-St-zVG"/>
+                        <constraint firstItem="tiS-Zs-azU" firstAttribute="top" secondItem="e4E-tV-gqL" secondAttribute="top" constant="40" id="sLw-St-zVG"/>
                         <constraint firstAttribute="trailing" secondItem="8UF-w3-lOc" secondAttribute="trailing" constant="90" id="sVM-ho-x3R"/>
                         <constraint firstItem="nd7-jP-STB" firstAttribute="trailing" secondItem="WZu-Hi-DWz" secondAttribute="trailing" id="xX2-Ic-rfy"/>
                         <constraint firstItem="G6r-0H-hhT" firstAttribute="top" secondItem="tiS-Zs-azU" secondAttribute="bottom" constant="4" id="z2L-v4-4Pu"/>
